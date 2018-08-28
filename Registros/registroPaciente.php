@@ -10,25 +10,29 @@ if (isset($_REQUEST['nameEnviar'])) {
     $nombre  = $_REQUEST['nombre'];
     echo $nombre;
     $apellido = $_REQUEST['apellido'];
-    
+    echo $apellido;
      $dui = $_REQUEST['dui'];
-    
+    echo $dui;
     $telefono = $_REQUEST['telefono'];
-   
+   echo $telefono;
     $fecha = $_REQUEST['fecha'];
-   
+   echo $fecha;
     $tipo = $_REQUEST['tipo'];
-   
+   echo $tipo;
     
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    $sql = "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta) VALUES('$nombre','$apellido','$dui','$telefono','$fecha','$tipo')"; 
+    $sql = "INSERT INTO t_paciente(id_paciente,pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta) VALUES('',$nombre','$apellido','$dui','$telefono','$fecha','$tipo')"; 
 
    $sentencia = $conexionx->prepare($sql);
     $usuario_insertado = $sentencia->execute();
 
-    
-    
+
+if($sentencia){
+   
+    echo "Exito";
+   
+ }   
 } else {
 
      ?>
@@ -102,11 +106,17 @@ if (isset($_REQUEST['nameEnviar'])) {
 
                                     <div class="col-lg-4">
                                          <label style="padding-top: 12px;" name="tipo">Tipo de consulta<small class="text-muted"></small></label>
-                                       <select class="custom-select" style="width: 100%; height:36px;">
+                                            <div class="input-group">
+                                    <input type="text" name="tipo" class="form-control" id="fnamep" placeholder="Ingrese apellido">  
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                </div> 
+                                       <!--<select class="custom-select" style="width: 100%; height:36px;">
                                             <option>Seleccionar</option>
                                                 <option value="CG">Consulta general</option>
                                                 <option value="CE">Control de embarazo</option>
-                                        </select>
+                                        </select>-->
                                     </div>
 
                                          <button type="submit" class="btn btn-info" name="nameEnviar">Guardar </button>
