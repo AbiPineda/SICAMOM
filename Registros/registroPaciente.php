@@ -4,8 +4,9 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 
-if (isset($_REQUEST['nameEnviar'])) {
-    include_once '../../Conexion/conexion.php';
+
+if (isset($_REQUEST['btnEnviar'])) {
+    include_once '../Conexion/conexion.php';
 
     $nombre  = $_REQUEST['nombre'];
     echo $nombre;
@@ -16,16 +17,21 @@ if (isset($_REQUEST['nameEnviar'])) {
     $telefono = $_REQUEST['telefono'];
    echo $telefono;
     $fecha = $_REQUEST['fecha'];
+<<<<<<< HEAD
    echo $fecha;
     $tipo = $_REQUEST['tipo'];
    echo $tipo;
+=======
+      $tipo = $_REQUEST['tipo'];
+   
+>>>>>>> 903045bd64790fa0c16a226ed1c5740116a3cf03
     
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
     $sql = "INSERT INTO t_paciente(id_paciente,pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta) VALUES('',$nombre','$apellido','$dui','$telefono','$fecha','$tipo')"; 
 
    $sentencia = $conexionx->prepare($sql);
-    $usuario_insertado = $sentencia->execute();
+   $usuario_insertado = $sentencia->execute();
 
 
 if($sentencia){
@@ -105,6 +111,7 @@ if($sentencia){
                                     </div>
 
                                     <div class="col-lg-4">
+<<<<<<< HEAD
                                          <label style="padding-top: 12px;" name="tipo">Tipo de consulta<small class="text-muted"></small></label>
                                             <div class="input-group">
                                     <input type="text" name="tipo" class="form-control" id="fnamep" placeholder="Ingrese apellido">  
@@ -117,9 +124,18 @@ if($sentencia){
                                                 <option value="CG">Consulta general</option>
                                                 <option value="CE">Control de embarazo</option>
                                         </select>-->
+=======
+                                         <label style="padding-top: 12px;" >Tipo de consulta<small class="text-muted"></small></label>
+                                       <select class="custom-select" name="tipo" style="width: 100%; height:36px;">
+                                            <option>Seleccionar</option>
+                                                <option value="CG">Consulta general</option>
+                                                <option value="CE">Control de embarazo</option>
+                                        </select>
+                                          <button type="submit" class="btn btn-info" name="btnEnviar">Guardar </button>
+                                        
+>>>>>>> 903045bd64790fa0c16a226ed1c5740116a3cf03
                                     </div>
 
-                                         <button type="submit" class="btn btn-info" name="nameEnviar">Guardar </button>
                                          </div>
 
                                     </section>

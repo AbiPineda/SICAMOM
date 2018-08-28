@@ -21,7 +21,7 @@ if (isset($_REQUEST['nameEnviar'])) {
     
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    $sql = "INSERT INTO t_responsable(idresponsable,res_cnombre,res_capellidos,res_cdui,res_ctelefono) VALUES('6','$nombre','$marca','$descripcion','$presentacion)"; 
+    $sql = "INSERT INTO t_responsable(res_cnombre,res_capellidos,res_cdui,res_ctelefono) VALUES('$nombre','$marca','$descripcion','$presentacion')"; 
 
     //$sql = "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad) VALUES('$nombre','$marca','$descripcion','$presentacion','$precio','$fecha')"; 
     $sentencia = $conexionx->prepare($sql);
@@ -129,8 +129,6 @@ if (isset($_REQUEST['nameEnviar'])) {
                                                     <button type="submit" class="btn btn-info" name="nameEnviar">Guardar </button>
                                                 </div>
 
-
-
                                             </div>
 
 
@@ -139,39 +137,12 @@ if (isset($_REQUEST['nameEnviar'])) {
                                     </div>
 
                                 </form>
-                                <div class="row mb-12" style="float: right; margin-right: 10px;">
-                                    <button type="submit" class="btn btn-info" name="btnGuardar">Guardar </button>
-
-
-                                </div>
-
-                                <div class="row mb-12" style="float: right; margin-right: 20px;">
-                                    <button type="submit" class="btn btn-info">Cancelar</button>
-                                </div>
+                               
                             </div>
 
                         </div>
-                        <!-- ============================================================== -->
-                        <!-- End PAge Content -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Right sidebar -->
-                        <!-- ============================================================== -->
-                        <!-- .right-sidebar -->
-                        <!-- ============================================================== -->
-                        <!-- End Right sidebar -->
-                        <!-- ============================================================== -->
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- End Container fluid  -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- footer -->
-                    <!-- ============================================================== -->
-
-                    <!-- ============================================================== -->
-                    <!-- End footer -->
-                    <!-- ============================================================== -->
+                   
                 </div>
 
 

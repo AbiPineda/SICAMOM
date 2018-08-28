@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -288,6 +289,44 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
+=======
+<?php
+include_once '../plantilla/cabecera.php';
+include_once '../plantilla/menu.php';
+include_once '../plantilla/menu_lateral.php';
+
+if (isset($_REQUEST['nameEnviar'])) {
+    include_once '../../Conexion/conexion.php';
+
+    $nombre  = $_REQUEST['nombreCom'];
+    echo $nombre;
+    $marca = $_REQUEST['marca'];
+    echo $marca;
+     $descripcion = $_REQUEST['descripcion'];
+    echo $descripcion;
+    $presentacion = $_REQUEST['presentacion'];
+    echo $presentacion;
+    $precio = $_REQUEST['precio'];
+    echo $precio;
+    $fecha = $_REQUEST['fecha'];
+    echo $fecha;
+    
+    Conexion::abrir_conexion();
+    $conexionx = Conexion::obtener_conexion();
+    $sql = "INSERT INTO t_responsable(idresponsable,res_cnombre,res_capellidos,res_cdui,res_ctelefono) VALUES('6','$nombre','$marca','$descripcion','$presentacion')"; 
+
+    //$sql = "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad) VALUES('$nombre','$marca','$descripcion','$presentacion','$precio','$fecha')"; 
+    $sentencia = $conexionx->prepare($sql);
+    $usuario_insertado = $sentencia->execute();
+
+    
+    
+} else {
+
+
+    ?>
+ <div class="page-wrapper" style="height: 671px;">
+>>>>>>> 903045bd64790fa0c16a226ed1c5740116a3cf03
            
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
