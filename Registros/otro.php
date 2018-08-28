@@ -56,7 +56,6 @@ if (isset($_REQUEST['nameEnviar'])) {
                                     <div>
                                         <h3>Datos generales</h3>
                                         <section>
-
                                             <div class="row mb-3">
 
                                                 <div class="col-lg-6">
