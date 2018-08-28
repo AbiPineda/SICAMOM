@@ -21,7 +21,7 @@ if (isset($_REQUEST['nameEnviar'])) {
     
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    $sql = "INSERT INTO t_responsable(idresponsable,res_cnombre,res_capellidos,res_cdui,res_ctelefono) VALUES('6','$nombre','$marca','$descripcion','$presentacion)"; 
+    $sql = "INSERT INTO t_responsable(idresponsable,res_cnombre,res_capellidos,res_cdui,res_ctelefono) VALUES('6','$nombre','$marca','$descripcion','$presentacion')"; 
 
     //$sql = "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad) VALUES('$nombre','$marca','$descripcion','$presentacion','$precio','$fecha')"; 
     $sentencia = $conexionx->prepare($sql);

@@ -4,8 +4,9 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 
-if (isset($_REQUEST['nameEnviar'])) {
-    include_once '../../Conexion/conexion.php';
+
+if (isset($_REQUEST['btnEnviar'])) {
+    include_once '../Conexion/conexion.php';
 
     $nombre  = $_REQUEST['nombre'];
     echo $nombre;
@@ -16,8 +17,7 @@ if (isset($_REQUEST['nameEnviar'])) {
     $telefono = $_REQUEST['telefono'];
    
     $fecha = $_REQUEST['fecha'];
-   
-    $tipo = $_REQUEST['tipo'];
+      $tipo = $_REQUEST['tipo'];
    
     
     Conexion::abrir_conexion();
@@ -25,7 +25,7 @@ if (isset($_REQUEST['nameEnviar'])) {
     $sql = "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta) VALUES('$nombre','$apellido','$dui','$telefono','$fecha','$tipo')"; 
 
    $sentencia = $conexionx->prepare($sql);
-    $usuario_insertado = $sentencia->execute();
+   $usuario_insertado = $sentencia->execute();
 
     
     
@@ -101,15 +101,16 @@ if (isset($_REQUEST['nameEnviar'])) {
                                     </div>
 
                                     <div class="col-lg-4">
-                                         <label style="padding-top: 12px;" name="tipo">Tipo de consulta<small class="text-muted"></small></label>
-                                       <select class="custom-select" style="width: 100%; height:36px;">
+                                         <label style="padding-top: 12px;" >Tipo de consulta<small class="text-muted"></small></label>
+                                       <select class="custom-select" name="tipo" style="width: 100%; height:36px;">
                                             <option>Seleccionar</option>
                                                 <option value="CG">Consulta general</option>
                                                 <option value="CE">Control de embarazo</option>
                                         </select>
+                                          <button type="submit" class="btn btn-info" name="btnEnviar">Guardar </button>
+                                        
                                     </div>
 
-                                         <button type="submit" class="btn btn-info" name="nameEnviar">Guardar </button>
                                          </div>
 
                                     </section>
