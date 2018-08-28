@@ -10,7 +10,7 @@ if (isset($_REQUEST['btnEnviar'])) {
 
     $nombre  = $_REQUEST['nombre'];
     echo $nombre;
-    $apellido = $_REQUEST['apellido'];
+    $apellido = $_REQUEST['apellido']; 
     
      $dui = $_REQUEST['dui'];
     
