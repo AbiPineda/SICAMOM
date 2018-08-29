@@ -107,7 +107,7 @@ if (isset($_REQUEST['btnEnviar'])) {
                                                 <option value="CG">Consulta general</option>
                                                 <option value="CE">Control de embarazo</option>
                                         </select>
-                                          <button type="submit" class="btn btn-info" name="btnEnviar">Guardar </button>
+                                          <button type="submit" class="btn btn-info" name="btnEnviar" href="registroPaciente.php">Guardar </button>
                                         
                                     </div>
 
