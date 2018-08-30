@@ -17,12 +17,24 @@ if (isset($_REQUEST['btnEnviar'])) {
     $telefono = $_REQUEST['telefono'];
    
     $fecha = $_REQUEST['fecha'];
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+    $tipo = $_REQUEST['tipo'];
+=======
+=======
+>>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
+=======
+>>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
+  
       $tipo = $_REQUEST['tipo'];
+>>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
    
     
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    $sql = "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta) VALUES('$nombre','$apellido','$dui','$telefono','$fecha','$tipo')"; 
+    $sql = "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta) VALUES('$nombre','$apellido','$dui','$telefono','$_fecha','$tipo')"; 
 
    $sentencia = $conexionx->prepare($sql);
    $usuario_insertado = $sentencia->execute();
@@ -30,24 +42,40 @@ if (isset($_REQUEST['btnEnviar'])) {
     
     
 }
+/*
 else if(isset($_REQUEST['modGuardar']))
     {
     include_once '../Conexion/conexion.php';
 
+<<<<<<< HEAD
+    $nombreR = $_REQUEST['nombreRes'];
+    echo $nombreR;
+    $apellidoR = $_REQUEST['apellidoRes'];
+
+    $duiR = $_REQUEST['duiRes'];
+
+    $telefonoR = $_REQUEST['telefonoRes'];
+=======
     $nombre = $_REQUEST['nombreRes'];
     echo $nombre;
     $apellido = $_REQUEST['apellidoRes'];
-
     $dui = $_REQUEST['duiRes'];
-
     $telefono = $_REQUEST['telefonoRes'];
+    
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
+=======
+>>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
+=======
+>>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    $sql = "INSERT INTO t_responsable(res_cnombre,res_capellidos,res_cdui,res_ctelefono) VALUES('$nombre','$apellido','$dui','$telefono')"; 
+    $sql = "INSERT INTO t_responsable(res_cnombre,res_capellidos,res_cdui,res_ctelefono) VALUES('$nombreR','$apellidoR','$duiR','$telefonoR')"; 
 
      $sentencia = $conexionx->prepare($sql);
      $usuario_insertado = $sentencia->execute();
-}
+}*/
 else {
 
      ?>
@@ -55,10 +83,11 @@ else {
           
             <div class="container-fluid">
                  <div class="card" style="background: rgba(0, 101, 191,0.3)">
-                      <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;">
+                      <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
                               <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#miModal">Registro encargado</button>
                             </div>
 
+                            <!-- MODAL-->
                             <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -119,8 +148,8 @@ else {
                                     </form>
 
                                     <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                    <button type="submit" class="btn btn-info" name="modGuardar">Guardar </button>
-
+                                    <button type="submit" onclick="M.toast({html: 'Guardando..'})" class="btn btn-info" name="modGuardar">Guardar </button>
+                                    
                                     </div>
 
                                 <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
@@ -134,7 +163,7 @@ else {
                               </div>
                             </div>
                                 <!-- Fin Div de modal-->
-
+                      
                     <div class="card-body wizard-content">
                         <h3 class="card-title">Registro Paciente.</h3>
                         <form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">
@@ -167,7 +196,7 @@ else {
                                     <div class="col-lg-4">
                                    <label>Fecha de nacimiento<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">
+                                    <input type="text" name="fecha" data-format="yyyy-MM-dd" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
@@ -207,27 +236,26 @@ else {
                                                 <option value="CE">Control de embarazo</option>
                                         </select>
                                           <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                          <button type="submit" class="btn btn-info" name="btnEnviar" href="registroPaciente.php">Guardar </button>
+                                          <button type="submit" href="registroPaciente.php" class="btn btn-info" name="btnEnviar">Guardar </button>
                                           </div>
                                          <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                          <button type="submit" class="btn btn-info" name="nameCancelar">Cancelar </button>
-                                         </div>
-                                    </div>
-
+                                             <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                          </div>
 
+                                        </div>
                                     </section>
 
                                 </div>
                             </form>
+
                         </div>
+
+
                      </div>
-
                 </div>
-
          </div>
-    
-                
+
+             
  <?php
     
     include_once '../plantilla/pie.php';
