@@ -7,6 +7,7 @@ include_once '../plantilla/menu_lateral.php';
 ?>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="../assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
@@ -15,6 +16,9 @@ include_once '../plantilla/menu_lateral.php';
 
 <link rel="stylesheet" href="../html/css/style.css">
     
+=======
+  
+>>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
 =======
   
 >>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b

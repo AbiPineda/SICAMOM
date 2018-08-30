@@ -20,11 +20,14 @@ if (isset($_REQUEST['btnEnviar'])) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     $tipo = $_REQUEST['tipo'];
 =======
 =======
 >>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
+=======
+>>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
 =======
 >>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
   
@@ -64,9 +67,12 @@ else if(isset($_REQUEST['modGuardar']))
     
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
 =======
 >>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
+=======
+>>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
 =======
 >>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
     Conexion::abrir_conexion();
