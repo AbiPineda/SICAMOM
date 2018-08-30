@@ -6,14 +6,7 @@ include_once '../plantilla/menu_lateral.php';
 
 ?>
 
-    <link rel="stylesheet" type="text/css" href="../assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css'>
-
-<link rel="stylesheet" href="../html/css/style.css">
-    
  <div class="page-wrapper">
             
             <div class="container-fluid">
