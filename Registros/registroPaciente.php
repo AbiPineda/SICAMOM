@@ -8,33 +8,17 @@ include_once '../plantilla/menu_lateral.php';
 if (isset($_REQUEST['btnEnviar'])) {
     include_once '../Conexion/conexion.php';
 
-    $nombre  = $_REQUEST['nombre'];
+    $nombre = $_REQUEST['nombre'];
     echo $nombre;
-    $apellido = $_REQUEST['apellido']; 
-    
-     $dui = $_REQUEST['dui'];
-    
+    $apellido = $_REQUEST['apellido'];
+    $dui = $_REQUEST['dui'];
     $telefono = $_REQUEST['telefono'];
-   
     $fecha = $_REQUEST['fecha'];
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
     $tipo = $_REQUEST['tipo'];
-=======
-=======
->>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
-=======
->>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
-=======
->>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
-  
-      $tipo = $_REQUEST['tipo'];
->>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
+
    
-    
+
+
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
     $sql = "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta) VALUES('$nombre','$apellido','$dui','$telefono','$_fecha','$tipo')"; 
@@ -45,43 +29,7 @@ if (isset($_REQUEST['btnEnviar'])) {
     
     
 }
-/*
-else if(isset($_REQUEST['modGuardar']))
-    {
-    include_once '../Conexion/conexion.php';
 
-<<<<<<< HEAD
-    $nombreR = $_REQUEST['nombreRes'];
-    echo $nombreR;
-    $apellidoR = $_REQUEST['apellidoRes'];
-
-    $duiR = $_REQUEST['duiRes'];
-
-    $telefonoR = $_REQUEST['telefonoRes'];
-=======
-    $nombre = $_REQUEST['nombreRes'];
-    echo $nombre;
-    $apellido = $_REQUEST['apellidoRes'];
-    $dui = $_REQUEST['duiRes'];
-    $telefono = $_REQUEST['telefonoRes'];
-    
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
-=======
->>>>>>> 89f4e850563b1dc94490bf1d651d9221118013cd
-=======
->>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
-=======
->>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
-    Conexion::abrir_conexion();
-    $conexionx = Conexion::obtener_conexion();
-    $sql = "INSERT INTO t_responsable(res_cnombre,res_capellidos,res_cdui,res_ctelefono) VALUES('$nombreR','$apellidoR','$duiR','$telefonoR')"; 
-
-     $sentencia = $conexionx->prepare($sql);
-     $usuario_insertado = $sentencia->execute();
-}*/
 else {
 
      ?>

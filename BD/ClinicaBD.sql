@@ -6,14 +6,37 @@ CREATE SCHEMA IF NOT EXISTS `Clinica` DEFAULT CHARACTER SET utf8 COLLATE utf8_ge
 USE `Clinica` ;
 
 -- -----------------------------------------------------
+-- Table `Clinica`.`t_usuario`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `Clinica`.`t_usuario` (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT ,
+  `usu_cnombre` VARCHAR(20) NULL ,
+  `usu_capellido` VARCHAR(20) NULL ,
+  `usu_ccorreo` VARCHAR(45) NULL ,
+  `usu_cusuario` VARCHAR(10) NULL ,
+  `usu_ccontrasena` VARCHAR(10) NULL ,
+  `usu_ctipo_usuario` VARCHAR(15) NULL ,
+  `usu_ccontrasena2` VARCHAR(10) NULL ,
+  PRIMARY KEY (`id_usuario`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `Clinica`.`t_medico`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `Clinica`.`t_medico` (
   `idMedico` INT NOT NULL AUTO_INCREMENT ,
+  `t_usuario` INT NOT NULL ,
   `med_cnombre` VARCHAR(20) NULL ,
   `med_capellidos` VARCHAR(20) NULL ,
   `med_cespecialidad` VARCHAR(45) NULL ,
-  PRIMARY KEY (`idMedico`) )
+  PRIMARY KEY (`idMedico`) ,
+  INDEX `fk_t_medico_t_usuario1_idx` (`t_usuario` ASC) ,
+  CONSTRAINT `fk_t_medico_t_usuario1`
+    FOREIGN KEY (`t_usuario` )
+    REFERENCES `Clinica`.`t_usuario` (`id_usuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -275,29 +298,6 @@ CREATE  TABLE IF NOT EXISTS `Clinica`.`t_insumo` (
   CONSTRAINT `fk_t_insumo_t_proveedor1`
     FOREIGN KEY (`fk_proveedor` )
     REFERENCES `Clinica`.`t_proveedor` (`id_proveedor` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `Clinica`.`t_usuario`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `Clinica`.`t_usuario` (
-  `id_usuario` INT NOT NULL AUTO_INCREMENT ,
-  `fk_medico` INT NOT NULL ,
-  `usu_cnombre` VARCHAR(20) NULL ,
-  `usu_capellido` VARCHAR(20) NULL ,
-  `usu_ccorreo` VARCHAR(45) NULL ,
-  `usu_cusuario` VARCHAR(10) NULL ,
-  `usu_ccontrasena` VARCHAR(10) NULL ,
-  `usu_ctipo_usuario` VARCHAR(15) NULL ,
-  `usu_ccontrasena2` VARCHAR(10) NULL ,
-  PRIMARY KEY (`id_usuario`) ,
-  INDEX `fk_t_usuario_t_medico1_idx` (`fk_medico` ASC) ,
-  CONSTRAINT `fk_t_usuario_t_medico1`
-    FOREIGN KEY (`fk_medico` )
-    REFERENCES `Clinica`.`t_medico` (`idMedico` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

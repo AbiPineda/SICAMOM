@@ -5,87 +5,111 @@ include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 
 ?>
+<html lang="en" >
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="../assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+<head>
+  <meta charset="UTF-8">
+  <title>Modificar Expediente</title>
   
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css'>
-
-<link rel="stylesheet" href="../html/css/style.css">
-    
-=======
   
->>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
-=======
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css'>
+
+<link rel="stylesheet" href="../css/tablaExpediente.css">
+
   
->>>>>>> 38e4ecb2acfad515e383d06a997f3fc2e662a06b
- <div class="page-wrapper">
-            
-            <div class="container-fluid">
-                 <div class="card" style="background: rgba(0, 101, 191,0.3)">
-                    <div class="card-body wizard-content">
-                      <ul class="nav nav-tabs" role="tablist">      
-                    <center><h1><label> Consulta de Expediente: </label></h1></center>
-                    </ul>
-                           <table id="example" class="table table-striped table-bordered" cellspacing="2" width="100%">
-    <thead>
-                 <tr>
-                   <th>Paciente</th>
-                   <th>Tipo de Consulta</th>
-                   <th>Fecha de Consulta</th>
-                
-                 </tr>
-               </thead>
-              
-               <tbody>
-                 <tr>
-                   <td>Abigail</td>
-                   <td>Control Prenatal</td>
-                   <td>2018/06/09</td>
-                
-                 </tr>
-                 <tr>
-                  <td>Tatiana</td>
-                   <td>Consulta</td>
-                   <td>2018/06/09</td>
-              
-                 </tr>
-                 <tr>
-                  <td>Laura</td>
-                   <td>Consulta</td>
-                   <td>2018/06/09</td>
-                
-                 </tr>
-                 <tr>
-                  <td>Ericka</td>
-                   <td>Control Prenatal</td>
-                   <td>2018/06/09</td>
-               
-                 </tr>
-                 <tr>
-                   <td>Blanca</td>
-                   <td>Consulta</td>
-                   <td>2018/06/09</td>
-                  
-                 </tr>
-                 <tr>
-                   <td>Abigail</td>
-                   <td>Control Prenatal</td>
-                   <td>2018/06/09</td>
-              
-                 </tr>
+</head>
+
+<body>
+
+  
+  <h1>Modificar Expediente</h1>
+
+  <div class="table-container">
+    <div class="table-header">
+      <h2>Customer Table</h2>
+      <button class="add-another btn btn-success">Agregar Paciente</button>
+    </div>
+    <table class="customer-table table table-hover" style="width:200%">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Dui</th>
+          <th>Telefono</th>
+          <th>Fecha de Nacimiento</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-container">
+    <form name="customer-details" class="customer-details form-horizontal">
+      <fieldset>
+        <legend>Customer details</legend>
+        <div class="form-group">
+          <label for="txtName" class="control-label col-md-5">*Nombre:</label>
+          <div class="col-md-8">
+            <input type="text" id="txtName" name="name" placeholder="Enter Your Name Here" maxlength="50">
+            <div class="error-msg"></div>
+          </div>
+        </div>
+         <div class="form-group">
+          <label for="txtName" class="control-label col-md-5">*Apellido:</label>
+          <div class="col-md-8">
+            <input type="text" id="txtName" name="name" placeholder="Enter Your Name Here" maxlength="50">
+            <div class="error-msg"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="rdoGender" class="control-label col-md-5">*Gender:</label>
+          <div class="col-md-8">
+            <label><input type="radio" class="rdo-gender" id="rdoGenderMale" name="gender" value="Male"><span>Male</span></label>
+            <label class="radio-gender"><input type="radio" name="gender" id="rdoGenderFemale" class="rdo-gender" value="Female"><span>Female</span></label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="txtCountry" class="control-label col-md-5">*Country:</label>
+          <div class="col-md-8">
+            <input type="text" id="txtCountry" name="country" placeholder="Country Name" maxlength="50">
+            <div class="error-msg"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="txtNumber" class="control-label col-md-5">*Phone Number:</label>
+          <div class="col-md-8">
+            <input type="text" id="txtNumber" name="phone" placeholder="Phone Number Here" maxlength="20">
+            <div class="error-msg"></div>
+          </div>
+        </div>
+        <button class="reset-button btn btn-danger">Reset</button>
+        <button class="add-button btn btn-success">Add</button>
+        <button class="update-button btn btn-primary">Update</button>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="message"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+</body>
+  
+  
+
+    <script  src="js/index.js"></script>
 
 
-               </tbody>
-                           </table>
 
-                    </div>
-                 </div>
-            </div>
- </div>
+
+</body>
+
+</html>
+
 
 
 <?php
