@@ -17,6 +17,7 @@
             <link href="../dist/css/style.min.css" rel="stylesheet">
             <link href="../dist/css/style.min.css" rel="stylesheet">
             <link href="../dist/css/style.css" rel="stylesheet">
+            
 
             <link rel="stylesheet" type="text/css" href="../assets/libs/select2/dist/css/select2.min.css">
             <link rel="stylesheet" type="text/css" href="../assets/libs/jquery-minicolors/jquery.minicolors.css">

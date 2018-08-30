@@ -52,7 +52,7 @@ if (isset($_REQUEST['nameEnviar'])) {
                         <div class="card" style="background: rgba(0, 101, 191,0.3)">
                             <div class="card-body wizard-content">
                                 <h4 class="card-title">Registro Inventario</h4>
-                                <form id="example-form" action="otro.php" method="POST" class="m-t-40">
+                                <form id="example-form" action="registroPaciente.php" method="POST" class="m-t-40">
                                     <div>
                                         <h3>Datos generales</h3>
                                         <section>
@@ -126,6 +126,8 @@ if (isset($_REQUEST['nameEnviar'])) {
                                                     </div>
 
                                                     <button type="submit" class="btn btn-info" name="nameEnviar">Guardar </button>
+                                                    <button type="submit" class="btn btn-info" name="name">Prueba </button>
+                                               
                                                 </div>
 
                                             </div>
