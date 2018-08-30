@@ -1,107 +1,212 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 08-30-2018, 11:31:17 AM
-    Author     : Deysi
-*/
-
-.form-container {
-  display: none;
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.table-container, .DataTable {
-  position: relative;
-  padding: 2%;
-  overflow-y: hidden;
+body {
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  color: #5e5d52;
 }
 
+a {
+  color: #337aa8;
+}
+a:hover, a:focus {
+  color: #4b8ab2;
+}
 
-h1 {
-  position: relative;
-  top: 0;
-  left: 0;
+.container {
+  margin: 5% 3%;
+}
+@media (min-width: 48em) {
+  .container {
+    margin: 2%;
+  }
+}
+@media (min-width: 75em) {
+  .container {
+    margin: 2em auto;
+    max-width: 75em;
+  }
+}
+
+.responsive-table {
   width: 100%;
-  height: 100px;
-  margin: 0;
-  padding-top: 20px;
-  text-align: center;
-  font-size: 3em;
-  vertical-align: center;
-  background-color: #727272;
-  color: #FFFFFF;
+  margin-bottom: 1.5em;
 }
-
-h2 {
-  margin-top: 0;
-  width: 50%;
-  float: left;
+@media (min-width: 48em) {
+  .responsive-table {
+    font-size: .9em;
+  }
 }
-.table-header button {
-  float: right;
+@media (min-width: 62em) {
+  .responsive-table {
+    font-size: 1em;
+  }
 }
-.table-header {
+.responsive-table thead {
+  position: absolute;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
   overflow: hidden;
 }
-#DataTables_Table_0_paginate{
-  float: right;
+@media (min-width: 48em) {
+  .responsive-table thead {
+    position: relative;
+    clip: auto;
+    height: auto;
+    width: auto;
+    overflow: auto;
+  }
 }
-#DataTables_Table_0_filter label {
-  float: right;
+.responsive-table thead th {
+  background-color: #1d96b2;
+  border: 1px solid #1d96b2;
+  font-weight: normal;
+  text-align: center;
+  color: white;
 }
-
-.view, .add-customer {
-  margin-top: 200px;
-  margin-left: 25%;
-  font-size: 2em;
+.responsive-table thead th:first-of-type {
+  text-align: left;
 }
-
-.message {
-  display: none;
-  position:fixed;
-  bottom:0;
-  right:0;
-  padding: 10px;
-  background-color: #494545;
-  color: #FFFFFF;
-  font-size: 1.3em;
-  border-style: ridge;
-  border-width: 2px 0 0 2px;
-  border-color: #3A3838;
-  border-radius: 10%;
-  width: 10%;
+.responsive-table tbody,
+.responsive-table tr,
+.responsive-table th,
+.responsive-table td {
+  display: block;
+  padding: 0;
+  text-align: left;
+  white-space: normal;
 }
-
-.error-msg {
-  color: #C93131;
+@media (min-width: 48em) {
+  .responsive-table tr {
+    display: table-row;
+  }
 }
-
-.form-container form {
-  width: 40%;
-  padding: 2% 2% 1% 2%;
-  margin-left: 30%;
+.responsive-table th,
+.responsive-table td {
+  padding: .5em;
+  vertical-align: middle;
 }
-.form-container {
-  padding-bottom: 30px;
+@media (min-width: 30em) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: .75em .5em;
+  }
 }
-.form-container input {
-  padding: 3px;
-  width: 300px;
+@media (min-width: 48em) {
+  .responsive-table th,
+  .responsive-table td {
+    display: table-cell;
+    padding: .5em;
+  }
 }
-.form-container .rdo-gender {
-  vertical-align: top;
-  width: auto;
+@media (min-width: 62em) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: .75em .5em;
+  }
 }
-.form-container .radio-gender {
-  padding-left: 10px;
+@media (min-width: 75em) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: .75em;
+  }
 }
-.form-container span {
-  padding-left: 8px;
+.responsive-table caption {
+  margin-bottom: 1em;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
 }
-
-.add-button, .update-button, .reset-button {
-  float: right;
-  margin-right: 10px;
+@media (min-width: 48em) {
+  .responsive-table caption {
+    font-size: 1.5em;
+  }
+}
+.responsive-table tfoot {
+  font-size: .8em;
+  font-style: italic;
+}
+@media (min-width: 62em) {
+  .responsive-table tfoot {
+    font-size: .9em;
+  }
+}
+@media (min-width: 48em) {
+  .responsive-table tbody {
+    display: table-row-group;
+  }
+}
+.responsive-table tbody tr {
+  margin-bottom: 1em;
+  border: 2px solid #1d96b2;
+}
+@media (min-width: 48em) {
+  .responsive-table tbody tr {
+    display: table-row;
+    border-width: 1px;
+  }
+}
+.responsive-table tbody tr:last-of-type {
+  margin-bottom: 0;
+}
+@media (min-width: 48em) {
+  .responsive-table tbody tr:nth-of-type(even) {
+    background-color: rgba(94, 93, 82, 0.1);
+  }
+}
+.responsive-table tbody th[scope="row"] {
+  background-color: #1d96b2;
+  color: white;
+}
+@media (min-width: 48em) {
+  .responsive-table tbody th[scope="row"] {
+    background-color: transparent;
+    color: #5e5d52;
+    text-align: left;
+  }
+}
+.responsive-table tbody td {
+  text-align: right;
+}
+@media (min-width: 30em) {
+  .responsive-table tbody td {
+    border-bottom: 1px solid #1d96b2;
+  }
+}
+@media (min-width: 48em) {
+  .responsive-table tbody td {
+    text-align: center;
+  }
+}
+.responsive-table tbody td[data-type=currency] {
+  text-align: right;
+}
+.responsive-table tbody td[data-title]:before {
+  content: attr(data-title);
+  float: left;
+  font-size: .8em;
+  color: rgba(94, 93, 82, 0.75);
+}
+@media (min-width: 30em) {
+  .responsive-table tbody td[data-title]:before {
+    font-size: .9em;
+  }
+}
+@media (min-width: 48em) {
+  .responsive-table tbody td[data-title]:before {
+    content: none;
+  }
 }
