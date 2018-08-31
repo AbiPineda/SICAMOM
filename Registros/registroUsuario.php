@@ -32,7 +32,28 @@ if (isset($_REQUEST['btnGuardar'])) {
 else {
 
      ?>
-     <div class="page-wrapper" style="height: 671px;">
+
+        <!--librerias css para alertify-->
+    <!-- include the RTL css files-->
+    <link rel="stylesheet" href="../css/alertas/themes/alertify.rtl.css">
+    <link rel="stylesheet" href="../css/alertas/themes/default.rtl.css">
+    <!-- include alertify.css -->
+    <link rel="stylesheet" href="../css/alertas/alertify.css">
+
+    <!-- include semantic ui theme  -->
+    <link rel="stylesheet" href="../css/alertas/themes/semantic.css">
+
+    <!-- include alertify.css -->
+    <link rel="stylesheet" href="../css/alertas/alertify.css">
+
+    <!-- include boostrap theme  -->
+    <link rel="stylesheet" href="../css/alertas/themes/bootstrap.css">
+    <!--fin librerias alertify-->
+
+    <!-- librerias toast-->
+    <link rel="stylesheet" href="../css/toastr.css">
+    <!--============================================================================ funciones para alertify===================-->
+    <div class="page-wrapper" style="height: 671px;">
           
             <div class="container-fluid">
                  <div class="card" style="background: rgba(0, 101, 191,0.3)">
@@ -114,10 +135,10 @@ else {
                                     </div>
                                 </div> 
                                           <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                              <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" href="registroUsuario.php">Guardar </button>
+                                              <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" onclick="return guardar()">Guardar </button>
                                           </div>
                                          <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                             <button type="submit" class="btn btn-info" name="nameCancelar" onclick="M.toast({html: 'Se limpiaron los campos..'})">Cancelar </button>
+                                             <button type="submit" class="btn btn-info" name="nameCancelar" onclick="return cancelar()">Cancelar </button>
                                          </div>
                                     </div>
 
@@ -152,6 +173,12 @@ else {
         }
     }
 </script>
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js">  
-</script>
+<script type="text/javascript">
+function guardar(){
+    toastr.success("Guardado");
+}
+     function cancelar(){
+         toastr.error("Limpiando Campos");
+         
+     }
+    </script>
