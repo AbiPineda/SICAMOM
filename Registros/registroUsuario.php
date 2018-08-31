@@ -117,7 +117,7 @@ else {
                                               <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" href="registroUsuario.php">Guardar </button>
                                           </div>
                                          <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                          <button type="submit" class="btn btn-info" name="nameCancelar">Cancelar </button>
+                                             <button type="submit" class="btn btn-info" name="nameCancelar" onclick="M.toast({html: 'Se limpiaron los campos..'})">Cancelar </button>
                                          </div>
                                     </div>
 
@@ -151,4 +151,7 @@ else {
             boton.disabled=false;
         }
     }
+</script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js">  
 </script>
