@@ -33,26 +33,7 @@ else {
 
      ?>
 
-        <!--librerias css para alertify-->
-    <!-- include the RTL css files-->
-    <link rel="stylesheet" href="../css/alertas/themes/alertify.rtl.css">
-    <link rel="stylesheet" href="../css/alertas/themes/default.rtl.css">
-    <!-- include alertify.css -->
-    <link rel="stylesheet" href="../css/alertas/alertify.css">
-
-    <!-- include semantic ui theme  -->
-    <link rel="stylesheet" href="../css/alertas/themes/semantic.css">
-
-    <!-- include alertify.css -->
-    <link rel="stylesheet" href="../css/alertas/alertify.css">
-
-    <!-- include boostrap theme  -->
-    <link rel="stylesheet" href="../css/alertas/themes/bootstrap.css">
-    <!--fin librerias alertify-->
-
-    <!-- librerias toast-->
-    <link rel="stylesheet" href="../css/toastr.css">
-    <!--============================================================================ funciones para alertify===================-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <div class="page-wrapper" style="height: 671px;">
           
             <div class="container-fluid">
@@ -138,7 +119,10 @@ else {
                                               <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" onclick="return guardar()">Guardar </button>
                                           </div>
                                          <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                             <button type="submit" class="btn btn-info" name="nameCancelar" onclick="return cancelar()">Cancelar </button>
+                                             <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
+                                         </div>
+                                         <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                             <button type="submit" class="btn btn-info" name="nameCancelar" id="botonCancelar">Alerta </button>
                                          </div>
                                     </div>
 
@@ -173,12 +157,15 @@ else {
         }
     }
 </script>
-<script type="text/javascript">
-function guardar(){
-    toastr.success("Guardado");
-}
-     function cancelar(){
-         toastr.error("Limpiando Campos");
-         
-     }
-    </script>
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script>
+document.getElementById('botonCancelar').addEventListener('click', function(){
+    toastr.info('Alertaaaa');
+});
+</script>
