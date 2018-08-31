@@ -27,7 +27,8 @@ if (isset($_REQUEST['modGuardar'])) {
 
 else {
 
-     ?>
+    ?>
+<
      <div class="page-wrapper" style="height: 671px;">
           
             <div class="container-fluid">
@@ -97,7 +98,7 @@ else {
                                     </form>
 
                                     <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                    <button type="submit" class="btn btn-info" name="modGuardar">Guardar </button>
+                                        <button type="submit" class="btn btn-info" name="modGuardar" id="Guardar">Guardar </button>
                                     
                                     </div>
 
@@ -114,15 +115,7 @@ else {
                                 </div>
                               </div>
                             </div>
-                                <!-- Fin Div de modal-->
-                      
-                    <div class="card-body wizard-content">
-                        <h3 class="card-title">Registro Paciente.</h3>
-                        
-
-                        </div>
-
-
+                         
                      </div>
                 </div>
          </div>

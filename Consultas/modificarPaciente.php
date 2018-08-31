@@ -4,8 +4,8 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 
-
- $modi= $_GET['ir'];
+include_once '../Conexion/conexion.php';  
+ 
  ?>
      <div class="page-wrapper" style="height: 671px;">
           
@@ -96,25 +96,14 @@ include_once '../plantilla/menu_lateral.php';
                         <h3 class="card-title">Registro Paciente.</h3>
         <form id="example-form" action="consultaExpediente.php" class="m-t-40" method="POST">
               
-            <input type="hidden" name="tirar" id="pase"/>
+            
                             <div>
                                 <h3>Datos personales</h3>
                                 <section>
 
                                      <div class="row mb-3">
                                     <div class="col-lg-4">
-        <?php
-              include_once '../Conexion/conexion.php';                   
-       $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE id_paciente='$modi'");
-            while ($fila = mysqli_fetch_array($sacar)) {
-                  $modificar=$fila['id_paciente']; 
-                 $ape=$fila['pac_capellidos'];  
-                 $nom=$fila['pac_cnombre'];  
-                 $dui=$fila['pac_cdui'];  
-                 $tel=$fila['pac_ctelefono'];  
-                 $fe=$fila['pac_ffecha_nac'];  
-            
-        ?>
+       
                                         <label>Nombre<small class="text-muted"></small></label>
                                      <div class="input-group">
                                          <input type="text" name="nombre" value="<?php echo $nom;?>" class="form-control" id="fnamep" placeholder="Ingrese nombre">  
@@ -175,40 +164,19 @@ include_once '../plantilla/menu_lateral.php';
                                              <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                          </div>
 
-                                        </div>
-                                          
+                                         </div>
+                                </section>
 
-                                    
-         <?php }?>
-                                    </section>
+                            </div>
+        </form>
 
-                                </div>
-                            </form>
-
-                        </div>
+                    </div>
 
 
-                     </div>
-                </div>
-         </div>
+                 </div>
+            </div>
+     </div>
 
              
- <?php
-    
-    include_once '../plantilla/pie.php';
-    
-     if (isset($_REQUEST['tirar'])) {
-    include_once '../Conexion/conexion.php';    
-    
-    $nombre = $_REQUEST['nombre'];
-    echo $nombre;
-    $apellido = $_REQUEST['apellido'];
-    $dui = $_REQUEST['dui'];
-   
-    
-    mysqli_query($conexion,"UPDATE t_paciente SET pac_cnombre='$nombre' WHERE id_paciente='$modi'"); 
-
-    
-    
-}
+ 
 ?>

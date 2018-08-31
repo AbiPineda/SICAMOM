@@ -129,7 +129,7 @@ else {
                                     <div class="col-lg-4">
                                         <label>Nombre<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="nombre" class="form-control" id="fnamep" placeholder="Ingrese nombre">  
+                                    <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre">  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -140,7 +140,7 @@ else {
                                    <div class="col-lg-4">
                                      <label>Apellido<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="apellido" class="form-control" id="fnamep" placeholder="Ingrese apellido">  
+                                    <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido">  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -150,7 +150,7 @@ else {
                                     <div class="col-lg-4">
                                    <label>Fecha de nacimiento<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="fecha" data-format="yyyy-MM-dd" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">
+                                    <input type="text" name="fecha" data-format="yyyy-MM-dd" class="form-control mydatepicker" autocomplete="off" placeholder="Ingrese fecha de nacimiento">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
@@ -161,7 +161,7 @@ else {
                                     <div class="col-lg-4">
                                          <label style="padding-top: 12px;">DUI<small class="text-muted"> 99999999-9</small></label>
                                      <div class="input-group">
-                                    <input type="text" name="dui" class="form-control phone-inputmask" id="phone-maske" placeholder="Ingrese DUI"> 
+                                    <input type="text" name="dui" class="form-control phone-inputmask" autocomplete="off" id="phone-maske" placeholder="Ingrese DUI"> 
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                     </div>
@@ -173,7 +173,7 @@ else {
                                     <div class="col-lg-4">
                                          <label style="padding-top: 12px;">Teléfono<small class="text-muted"> 9999-9999</small></label>
                                      <div class="input-group">
-                                    <input type="text" name="telefono" class="form-control phone-inputmask2" id="phone-mask2" placeholder="Ingrese número telefónico">
+                                    <input type="text" name="telefono" class="form-control phone-inputmask2" autocomplete="off" id="phone-mask2" placeholder="Ingrese número telefónico">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                     </div>

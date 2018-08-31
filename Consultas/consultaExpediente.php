@@ -11,7 +11,7 @@ include_once '../Conexion/conexion.php';
 
 <head>
   <meta charset="UTF-8">
-  <title>Responsive & Accessible Data Table</title>
+  <title> Data Table</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
 <meta name="viewport" content="width=device-width">
@@ -262,27 +262,16 @@ a:hover, a:focus {
      
     </tfoot>
     <tbody>
-        <?php
-        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente");
-            while ($fila = mysqli_fetch_array($sacar)) {
-                  $modificar=$fila['id_paciente']; 
-                 $ape=$fila['pac_capellidos'];  
-                 $nom=$fila['pac_cnombre'];  
-                 $dui=$fila['pac_cdui'];  
-                 $tel=$fila['pac_ctelefono'];  
-                 $fe=$fila['pac_ffecha_nac'];  
-            
-        ?>
+       
       <tr>
         <th scope="row"><?php echo $nom;?></th>
         <td data-title="Released"><?php echo $ape;?></td>
-        
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $fe;?></td>
-        <td class="text-center fas fa-edit"><a href="../Consultas/modificarPaciente.php?ir=<?php echo $modificar; ?>" class="btn">Modificar</a></td>
+        <td class="text-center fas fa-edit"><a href="../Consultas/modificarPaciente.php?modificar=1&id=<?php echo $row ->id_paciente;?>" class="btn">Modificar</a></td>
 
-       <?php  }?>
+   
       
       </tr>
       
@@ -297,6 +286,24 @@ a:hover, a:focus {
 </html>
 
 <?php
+
+    
+    include_once '../plantilla/pie.php';
+    
+     if (isset($_GET['modificar'])) {
+   
+    $sql = "SELECT * FROM t_paciente WHERE id_paciente='{$_POST['id']}'" ;
+    $query= mysql_query($sql);
+    $row = mysql_fetch_object($query);
+    $id =$row-> id_paciente;
+    $nom =$row-> pac_cnombre;
+    $ape =$row->pac_capellidos;
+    $fe =$row->pac_ffecha_nac;
+    $dui =$row->pac_cdui;
+    $tel =$row->pac_ctelefono;
+    
+    
+}
     
     include_once '../plantilla/pie.php';
 
