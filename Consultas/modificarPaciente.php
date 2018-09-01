@@ -33,96 +33,16 @@ if (isset($_REQUEST['btnEnviar'])) {
     <div class="page-wrapper" style="height: 671px;">
 
         <div class="container-fluid">
-            <div class="card" style="background: rgba(0, 101, 191,0.3)">
-                <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
-                    <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#miModal">Registro encargado</button>
-                </div>
-
-                <!-- MODAL-->
-                <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4>Datos generales del encargado</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
-                            </div>
-                            
-                                <div class="modal-body">
-
-
-
-                                    <div class="col-lg-12">
-                                        <label>Nombre<small class="text-muted"></small></label>
-                                        <div class="input-group">
-                                            <input type="text" name="nombreRes" class="form-control" id="fnamep" placeholder="Ingrese nombre">  
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                            </div>
-                                        </div> 
-
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <label>Apellido<small class="text-muted"></small></label>
-                                        <div class="input-group">
-                                            <input type="text" name="apellidoRes" class="form-control" id="fnamep" placeholder="Ingrese apellido">  
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                            </div>
-                                        </div>                                    
-                                    </div>
-
-
-                                    <div class="col-lg-12">
-                                        <label>DUI<small class="text-muted"> 99999999-9</small></label>
-                                        <div class="input-group">
-                                            <input type="text" name="duiRes" class="form-control phone-inputmask" id="phone-maske" placeholder="Ingrese DUI"> 
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="far fa-id-card"></i></span>
-                                            </div>
-                                        </div>  
-                                    </div>
-
-
-                                    <div class="col-lg-12">
-                                        <label>Teléfono<small class="text-muted"> 9999-9999</small></label>
-                                        <div class="input-group">
-                                            <input type="text" name="telefonoRes" class="form-control phone-inputmask2" id="phone-mask2" placeholder="Ingrese número telefónico">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                            </div>
-                                        </div> 
-
-                                    </div>   
-
-
-                                    <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                        <button type="submit" onclick="M.toast({html: 'Guardando..'})" class="btn btn-info" name="modGuardar">Guardar </button>
-
-                                    </div>
-
-                                    <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                        <button type="submit" class="btn btn-info" name="modCancelar">Cancelar </button>
-
-                                    </div>
-
-
-                                </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Fin Div de modal-->
+             <div class="card" style="background: rgba(176, 176, 176,0.7)"> 
+                
 
                 <div class="card-body wizard-content">
-                    <h3 class="card-title">Registro Paciente.</h3>
+                    <h3 class="card-title">Modificar datos del paciente</h3>
 
                     <form action="modificarPaciente.php" method="post">
                         <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
                     <div>
-                        <h3>Datos personales</h3>
+                     
                         <section>
 
                             <div class="row mb-3">
@@ -191,10 +111,10 @@ if (isset($_REQUEST['btnEnviar'])) {
                                     </div>
                                     <div class="col-lg-4">
 
-                                        <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                        <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 40px;">
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
                                         </div>
-                                        <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                        <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 40px;">
                                             <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                         </div>
 

@@ -3709,7 +3709,7 @@ input[type="button"].btn-block {
     background-color: #dee2e6;
     border-radius: 1rem; }
 
-.nav {
+.{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

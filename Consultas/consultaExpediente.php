@@ -10,7 +10,7 @@ include_once '../Conexion/conexion.php';
 <html lang="en" >
 
 <head>
-  <meta charset="UTF-8">
+   <meta charset="utf-8">
   <title>Responsive & Accessible Data Table</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
@@ -33,14 +33,14 @@ include_once '../Conexion/conexion.php';
 
 body {
   font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
-  color: #5e5d52;
+  color: black;
 }
 
 a {
-  color: #337aa8;
+  color: black;
 }
 a:hover, a:focus {
-  color: #4b8ab2;
+  color: black;
 }
 
 .container {
@@ -196,7 +196,7 @@ a:hover, a:focus {
 @media (min-width: 48em) {
   .responsive-table tbody th[scope="row"] {
     background-color: transparent;
-    color: #5e5d52;
+    color: black;
     text-align: left;
   }
 }
@@ -240,10 +240,24 @@ a:hover, a:focus {
 </head>
 
 <body>
+
     <div class="page-wrapper" style="height: 671px;">
+
   <div class="container-fluid">
-      
-      <div class="col-md-8">
+    <!-- Búsqueda-->
+             <div class="wrap">
+       <div class="search">
+          <input type="text" class="searchTerm" placeholder="Que está buscando?">
+          <button type="submit" class="searchButton">
+            <i class="fa fa-search"></i>
+         </button>
+       </div>
+            </div>
+            <!--Fin Búsqueda-->
+      <div class="card" style="background: rgba(176, 176, 176,0.7)"> 
+         <h4>Modificar datos generales de la paciente</h4>
+         
+      <div class="col-md-12">
   <table class="responsive-table">
     
     <thead>
@@ -251,9 +265,9 @@ a:hover, a:focus {
         <th scope="col">Nombre</th>
         <th scope="col">Apellido</th>
         <th scope="col">DUI</th>
-        <th scope="col">Telefono</th>
+        <th scope="col">Teléfono</th>
         <th scope="col">Fecha de Nacimiento</th>
-        <th scope="col">Accion</th>
+        <th scope="col">Acción</th>
         
         
       </tr>
@@ -291,6 +305,7 @@ a:hover, a:focus {
 </div>
       </div>
 
+</div>
 </div>
 </body>
 

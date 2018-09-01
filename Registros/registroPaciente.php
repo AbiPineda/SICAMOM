@@ -36,7 +36,7 @@ else {
      <div class="page-wrapper" style="height: 671px;">
           
             <div class="container-fluid">
-                 <div class="card" style="background: rgba(0, 101, 191,0.3)">
+                <div class="card" style="background: rgba(176, 176, 176,0.7)"> 
                       <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
                               <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#miModal">Registro encargado</button>
                             </div>
