@@ -33,11 +33,11 @@ include_once '../Conexion/conexion.php';
 
 body {
   font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
-  color: #5e5d52;
+  color: black;
 }
 
 a {
-  color: #337aa8;
+  color: black;
 }
 a:hover, a:focus {
   color: #4b8ab2;
@@ -196,7 +196,7 @@ a:hover, a:focus {
 @media (min-width: 48em) {
   .responsive-table tbody th[scope="row"] {
     background-color: transparent;
-    color: #5e5d52;
+    color:black;
     text-align: left;
   }
 }
@@ -242,6 +242,7 @@ a:hover, a:focus {
 <body>
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
+     
     <!-- Búsqueda UTILIZO EL JQUERY buscaresc.js que es el que hace el proceso interno de buscar
     funciona junto con jquery de lo contrario nada colocas el id="filtar" que con ese nombre lo reconoce
     el buscaresc.js para hacer el proceso que keres buscar ya sea por letras,numeros,dui, nit, loq sea
@@ -254,8 +255,8 @@ a:hover, a:focus {
        </div>
             </div>
             <!--Fin Búsqueda-->
-      
-      <div class="col-md-8">
+      <div class="card" style="background: rgba(176, 176, 176,0.6)">
+      <div class="col-md-12">
   <table class="responsive-table">
     
     <thead>
@@ -302,7 +303,7 @@ a:hover, a:focus {
   </table>
 </div>
       </div>
-
+    </div>
 </div>
 </body>
 
