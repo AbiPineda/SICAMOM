@@ -166,6 +166,6 @@ else {
 </script>
 <script>
 document.getElementById('botonCancelar').addEventListener('click', function(){
-    toastr.info('Alertaaaa');
+    toastr.success('Guardado exitoso!');
 });
 </script>

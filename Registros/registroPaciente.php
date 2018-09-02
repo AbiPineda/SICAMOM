@@ -95,21 +95,22 @@ function calcularEdad()
     }
 }
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
      <div class="page-wrapper" style="height: 671px;">
           
             <div class="container-fluid">
-                 <div class="card" style="background: rgba(0, 101, 191,0.3)">        
+                 <div class="card" style="background: rgba(176, 176, 176,0.7)">        
                     <div class="card-body wizard-content">
-                        <h3 class="card-title">Registro Paciente.</h3>
+                        <h3 class="card-title">Registro Paciente | Datos generales</h3>
       <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
       <form action="" id="f1" name="f1" method="post" class="form-register" >
           <input type="hidden" name="tirar" id="pase"/>
                             <div>
-                                <h3>Datos personales</h3>
+                              
                                 <section>
                                     <div class="row mb-12">
-                                     <div class="row mb-3">
-                                    <div class="col-lg-3">
+                                    
+                                    <div class="col-lg-4">
                                         <label>Nombre<small class="text-muted"></small></label>
                                      <div class="input-group">
                                     <input type="text" name="nombre" class="form-control" id="fnamep" placeholder="Ingrese nombre">  
@@ -154,10 +155,9 @@ function calcularEdad()
                                      
                                 </div> 
                                     </div>
-                                    </div>
 
-
-                                    <div class="col-lg-4">
+                                
+                                    <div class="col-lg-3">
                                          <label style="padding-top: 12px;">DUI<small class="text-muted"> 99999999-9</small></label>
                                      <div class="input-group">
                                          <input type="text" name="dui" class="form-control phone-inputmask" id="phone-maske" placeholder="Ingrese DUI"> 
@@ -188,10 +188,11 @@ function calcularEdad()
                                                 <option value="CG">Consulta general</option>
                                                 <option value="CE">Control de embarazo</option>
                                         </select>
-                                          <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                          <div class="row mb-12" style="float: left; margin-left: 400px; margin-top: -30px;">
                                               <input type="submit" class="btn btn-info" name="btnEnviar" value="Guardar">
                                           </div>
-                                         <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                         
+                                          <div class="row mb-12" style="float: left;margin-left: 300px; margin-top: -35px;">
                                              <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                          </div>
 
@@ -202,7 +203,8 @@ function calcularEdad()
                                 </div>
                                     
                             </form>
-                           
+                           <!-- -->
+                                    </div>
 
                         </div>
 
@@ -239,6 +241,14 @@ location.href="modal.php";
 ?>
 <script type="text/javascript">
 location.href="RegistroPaciente.php";
+</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+</script>
+<script>
+document.getElementById('nameCancelar').addEventListener('click', function(){
+    toastr.success('Guardado exitoso!');
+});
 </script>
 <?php //fin
    }
