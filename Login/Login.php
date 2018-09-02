@@ -21,13 +21,11 @@
 	<div class="container">
 		<h1>Bienvenido/a</h1>
 		
-		<form class="form">
-			<input type="text" placeholder="Usuario">
-			<input type="password" placeholder="Contraseña">
-	 
-		</form>
-                <form method="post" action="../html/ltr/index.html">
-                    <input class="btn btn-outline-primary" type="submit" id="login-button" name="Submit" value="Iniciar Sesión">
+		<form class="form" method="post" action="ValidarUsuario.php">
+			<input type="text" placeholder="Usuario" name="usuario">
+			<input type="password" placeholder="Contraseña" name="clave">
+		</br>
+	        <input class="btn btn-outline-primary" type="submit" id="login-button" name="Submit" value="Iniciar Sesión">
                 </form>  
                 <form method="post" action="RegistroUsuario.php">
                     <input class="btn btn-outline-info" type="submit" name="Submit" value="Registrarse">
