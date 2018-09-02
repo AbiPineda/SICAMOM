@@ -244,13 +244,15 @@ a:hover, a:focus {
     <div class="page-wrapper" style="height: 671px;">
 
   <div class="container-fluid">
-    <!-- Búsqueda-->
+    <!-- Búsqueda UTILIZO EL JQUERY buscaresc.js que es el que hace el proceso interno de buscar
+    funciona junto con jquery de lo contrario nada colocas el id="filtar" que con ese nombre lo reconoce
+    el buscaresc.js para hacer el proceso que keres buscar ya sea por letras,numeros,dui, nit, loq sea
+    solo eso necesitas para que busque-->
              <div class="wrap">
+                 <script src="../html/js/jquery.min.js" ></script>
+                 <script src="../html/js/buscaresc.js"></script>
        <div class="search">
-          <input type="text" class="searchTerm" placeholder="Que está buscando?">
-          <button type="submit" class="searchButton">
-            <i class="fa fa-search"></i>
-         </button>
+          <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
        </div>
             </div>
             <!--Fin Búsqueda-->
@@ -275,7 +277,7 @@ a:hover, a:focus {
     <tfoot>
      
     </tfoot>
-    <tbody>
+    <tbody class="buscar"> <!--mandas a llamar la clase del jquey para que lo aga automaticamente-->
         <?php
         $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente");
             while ($fila = mysqli_fetch_array($sacar)) {
