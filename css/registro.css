@@ -28,7 +28,7 @@ and open the template in the editor.
 body {
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
-  font-weight: 900;
+  font-weight: 200;
 }
 body ::-webkit-input-placeholder {
   /* WebKit browsers */
@@ -75,7 +75,7 @@ body :-ms-input-placeholder {
   max-width: 600px;
   margin: 0 auto;
   padding: 100px 0;
-  height: 400px;
+  height: 600px;
   text-align: center;
 }
 .container h1 {
