@@ -135,7 +135,7 @@ function calcularEdad()
                                    <label>Fecha de nacimiento<small class="text-muted"></small></label>
                                      <div class="input-group">
                                          <!--<input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">-->
-                                         <input type="date" name="user_date" class="form-control" id="user_date" onChange="javascript:calcularEdad();"/>
+                                         <input type="date" name="user_date" class="form-control" id="user_date" max="2017-01-02" onChange="javascript:calcularEdad();"/>
                                          <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
