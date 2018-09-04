@@ -276,7 +276,7 @@ a:hover, a:focus {
     </tfoot>
     <tbody class="buscar"> <!--mandas a llamar la clase del jquey para que lo aga automaticamente-->
         <?php
-        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente");
+        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE estado=1");
             while ($fila = mysqli_fetch_array($sacar)) {
                   $modificar=$fila['id_paciente']; 
                  $ape=$fila['pac_capellidos'];  
