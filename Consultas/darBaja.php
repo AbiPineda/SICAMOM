@@ -284,19 +284,33 @@ a:hover, a:focus {
                  $nom=$fila['pac_cnombre'];  
                  $dui=$fila['pac_cdui'];  
                  $tel=$fila['pac_ctelefono'];  
-                 $fe=$fila['estado'];  
+                 $fe=$fila['estado']; 
+                 
+                 if ($fe==0) {
+                     $estado="Desactivado";
+                 } else {
+                     $estado="Activado";
+                 }
             
         ?>
+        
       <tr>
         <th scope="row"><?php echo $nom;?></th>
         <td data-title="Released"><?php echo $ape;?></td>
         
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
-        <td data-title="Domestic Gross" data-type="currency"><?php echo $fe;?></td>
-        <td class="text-center fas fa-arrow-circle-down"><a href="../Consultas/modificarPaciente.php?ir=<?php echo $modificar; ?>" class="btn">Dar Baja</a></td>
-
-       <?php  }?>
+        <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
+        <?php 
+        if($fe==0){ ?>
+        <td class="text-center fas fa-arrow-circle-down"><a href="../Consultas/ProcesoDarBajaAlta.php?ir=<?php echo $modificar; ?>"  class="btn btn-warning">Dar Alta</a></td>
+        <?php
+        }else{
+        ?>
+        <td class="text-center fas fa-arrow-circle-down"><a href="../Consultas/ProcesoDarBajaAlta.php?ir=<?php echo $modificar; ?>" class="btn btn-success" >Dar Baja</a></td>
+      
+ <?php  }
+            }?>
       
       </tr>
       
