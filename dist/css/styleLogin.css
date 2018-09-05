@@ -1,13 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 09-01-2018, 02:38:29 PM
-    Author     : Deysi
-*/
-
 @font-face {
   font-family: 'Source Sans Pro';
   font-style: normal;
@@ -29,7 +19,7 @@ and open the template in the editor.
 body {
   font-family: 'Source Sans Pro', sans-serif;
   color: white;
-  font-weight: 900;
+  font-weight: 300;
 }
 body ::-webkit-input-placeholder {
   /* WebKit browsers */
@@ -64,8 +54,8 @@ body :-ms-input-placeholder {
   top: 50%;
   left: 0;
   width: 100%;
-  height: 730px;
-  margin-top: -400px;
+  height: 400px;
+  margin-top: -200px;
   overflow: hidden;
 }
 .wrapper.form-success .container h1 {
@@ -73,10 +63,10 @@ body :-ms-input-placeholder {
           transform: translateY(85px);
 }
 .container {
-  max-width: 400px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 260px 0;
-  height: 400px;
+  padding: 80px 0;
+  
   text-align: center;
 }
 .container h1 {
@@ -86,7 +76,6 @@ body :-ms-input-placeholder {
   font-weight: 200;
 }
 form {
-  
   padding: 20px 0;
   position: relative;
   z-index: 2;
@@ -133,7 +122,7 @@ form button {
   transition-duration: 0.25s;
 }
 form button:hover {
-  background-color: black;
+  background-color: #f5f7f9;
 }
 .bg-bubbles {
   position: absolute;
@@ -244,4 +233,3 @@ form button:hover {
             transform: translateY(-700px) rotate(600deg);
   }
 }
-

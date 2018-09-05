@@ -16,9 +16,9 @@
 </head>
 
 <body>
-    <div class="page-wrapper" style="height: 671px;">
-  <div class="wrapper">
-	<div class="container">
+    <div class="page-wrapper" >
+  <div class="wrapper" style="background-image: url(../assets/images/ecografia3.jpg);">
+	<div class="container" >
 		<h1>Bienvenido/a</h1>
 		
 		<form class="form" method="post" action="ValidarUsuario.php">
