@@ -3,7 +3,7 @@ $usuario=$_POST['usuario'];
 $clave=$_POST['clave'];
 
 //conectar a la base de datos 
-$conexion=mysqli_connect("localhost", "root", "", "clinica");
+$conexion=mysqli_connect("localhost", "root", "", "clinicabd");
 $consulta="SELECT usu.usu_cusuario, usu.usu_ccontrasena FROM t_usuario as usu WHERE usu_cusuario='$usuario' and usu_ccontrasena='$clave'";
 $resultado=mysqli_query($conexion,$consulta);
 

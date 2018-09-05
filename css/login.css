@@ -73,6 +73,8 @@ body :-ms-input-placeholder {
           transform: translateY(85px);
 }
 .container {
+ 
+ width: 600px;
   max-width: 400px;
   margin: 0 auto;
   padding: 260px 0;
@@ -80,6 +82,7 @@ body :-ms-input-placeholder {
   text-align: center;
 }
 .container h1 {
+   
   font-size: 40px;
   transition-duration: 1s;
   transition-timing-function: ease-in-put;
@@ -87,9 +90,11 @@ body :-ms-input-placeholder {
 }
 form {
   
-  padding: 20px 0;
+  height: 200px;
+  padding: 50px 0;
   position: relative;
   z-index: 2;
+
 }
 form input {
   -webkit-appearance: none;
@@ -110,9 +115,11 @@ form input {
   font-weight: 300;
 }
 form input:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+
+ background-color: rgba(255, 255, 255, 0.4);
 }
 form input:focus {
+ 
   background-color: white;
   width: 300px;
   color: #53e3a6;
@@ -223,6 +230,13 @@ form button:hover {
   height: 160px;
   -webkit-animation-delay: 11s;
           animation-delay: 11s;
+}
+.login-html{
+	//width:10%;
+	//height:10%;
+	//position:absolute;
+	padding:50px 50px 50px 50px;
+	background: rgba(176, 176, 176,0.7);
 }
 @-webkit-keyframes square {
   0% {

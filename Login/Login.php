@@ -18,7 +18,8 @@
 <body>
     <div class="page-wrapper" >
   <div class="wrapper" style="background-image: url(../assets/images/ecografia3.jpg);">
-	<div class="container" >
+    
+	<div class="container">
 		<h1>Bienvenido/a</h1>
 		
 		<form class="form" method="post" action="ValidarUsuario.php">
@@ -31,6 +32,7 @@
                     <input class="btn btn-outline-info" type="submit" name="Submit" value="Registrarse">
                 </form>  
 	</div>
+      </div>
 	
 	<ul class="bg-bubbles">
 		<li></li>
@@ -45,7 +47,7 @@
 		<li></li>
 	</ul>
 </div>
-        </div>
+      
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
   

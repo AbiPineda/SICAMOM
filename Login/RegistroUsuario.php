@@ -16,12 +16,12 @@ if (isset($_REQUEST['btnGuardar'])) {
     $apellido = $_REQUEST['apellido'];
     $email = $_REQUEST['email'];
     $nusuario = $_REQUEST['nusuario'];
-    $contrasena = $_REQUEST['contrasena'];
+    $contrasena = password_hash($_REQUEST['contrasena'], PASSWORD_DEFAULT);
     $tusuario = $_REQUEST['tusuario'];
-    $concontrasena = $_REQUEST['concontrasena'];
+   // $concontrasena = $_REQUEST['concontrasena'];
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-     $sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario,usu_ccontrasena2) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario','$concontrasena')"; 
+     $sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
    $sentencia = $conexionx->prepare($sql);
    $usuario_insertado = $sentencia->execute();
     

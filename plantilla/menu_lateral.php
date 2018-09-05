@@ -13,7 +13,7 @@
 
                         <li class="sidebar-item"><a href="../Consultas/consultaExpediente.php" class="sidebar-link"><i class="fas fa-pencil-alt"></i><span class="hide-menu">Modificar</span></a></li>
                         <li class="sidebar-item"><a href="../Consultas/buscarPaciente.php.php" class="sidebar-link"><i class="fas fa-search"></i><span class="hide-menu">Buscar</span></a></li>
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="fas fa-arrows-alt-v"></i><span class="hide-menu">Dar alta/baja</span></a></li>
+                        <li class="sidebar-item"><a href="../Consultas/darBaja.php" class="sidebar-link"><i class="fas fa-arrows-alt-v"></i><span class="hide-menu">Dar alta/baja</span></a></li>
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="far fa-file"></i><span class="hide-menu">Reporte</span></a></li>
                     </ul>
                 </li>
@@ -32,7 +32,7 @@
 
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-user"></i><span class="hide-menu">Usuario </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="fas fa-user-plus"></i><span class="hide-menu">Registrar</span></a></li>
+                        <li class="sidebar-item"><a href="../Registros/registroUsuario.php" class="sidebar-link"><i class="fas fa-user-plus"></i><span class="hide-menu">Registrar</span></a></li>
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="fas fa-pencil-alt"></i><span class="hide-menu">Modificar</span></a></li>
 
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="fas fa-user-times"></i><span class="hide-menu">Dar Alta/Baja</span></a></li>
