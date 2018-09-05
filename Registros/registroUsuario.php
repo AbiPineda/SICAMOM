@@ -19,7 +19,37 @@ if (isset($_REQUEST['btnGuardar'])) {
 
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-     $sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
+    
+    
+    $numero_correo = 0;
+    $numero_usuario = 0;
+    
+ 
+    // $sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
+
+    $sql = "SELECT * FROM t_usuario WHERE usu_ccorreo = '$email'"; ///cantidad de usuarios con el mismo dui 
+    foreach ($conexion->query($sql) as $row) {
+        $numero_correo++;
+    }
+     
+    $sql = "SELECT * FROM t_usuario WHERE usu_cusuario = '$nusuario'"; // cantidad de usuaris con el mismo telefono 
+    foreach ($conexion->query($sql) as $row) {
+        $numero_usuario++;
+    }
+    
+    
+    if ($numero_correo) { //entra en este si encontro el dui 
+          echo '<script>  CorreoExistente();   function CorreoExistente() {alert("Este Correo ya existe ingrese otro");}</script>';
+             
+    }if($numero_usuario) {
+         echo '<script>  UsuarioExistente();   function UsuarioExistente() {alert("Este Usuario ya existe ingrese otro");}</script>';
+    }
+    
+    if (!$numero_correo && !$numero_usuario ) {
+           mysqli_query($conexion, "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"); 
+    }
+    
+     //$sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
 
 
    $sentencia = $conexionx->prepare($sql);
@@ -51,7 +81,7 @@ else {
                                     <div class="col-lg-4">
                                         <label>Nombre<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre">  
+                                    <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" required>  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -62,7 +92,7 @@ else {
                                    <div class="col-lg-4">
                                      <label>Apellido<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido">  
+                                    <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" required>  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -83,7 +113,7 @@ else {
                                     <div class="col-lg-4">
                                          <label style="padding-top: 12px;">Nombre de Usuario<small class="text-muted"> </small></label>
                                      <div class="input-group">
-                                    <input type="text" name="nusuario" class="form-control" autocomplete="off" id="phone-maske" placeholder="Ingrese Usuario"> 
+                                    <input type="text" name="nusuario" class="form-control" autocomplete="off" id="phone-maske" placeholder="Ingrese Usuario"  value="" required> 
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                     </div>
@@ -91,8 +121,8 @@ else {
                                     <label style="padding-top: 12px;" >Tipo de Usuario<small class="text-muted"></small></label>
                                        <select class="custom-select" name="tusuario" style="width: 100%; height:36px;">
                                             <option>Seleccionar</option>
-                                                <option value="CG">Administrador</option>
-                                                <option value="CE">Enfermera</option>
+                                                <option value="Administrador">Administrador</option>
+                                                <option value="Enfermera">Enfermera</option>
                                         </select>
                                     </div>
 
@@ -143,6 +173,8 @@ else {
  <?php
     
     include_once '../plantilla/pie.php';
+    
+    
 }
 ?>
 <script>
@@ -163,9 +195,4 @@ else {
 </script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-</script>
-<script>
-document.getElementById('botonCancelar').addEventListener('click', function(){
-    toastr.success('Guardado exitoso!');
-});
 </script>
