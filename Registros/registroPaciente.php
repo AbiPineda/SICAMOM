@@ -86,7 +86,17 @@ include_once '../plantilla/menu_lateral.php';
                 ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
                 dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
             }
-            document.f1.inp.value = edad;
+            document.f1.inp.disabled=true;
+            var x=document.f1.inp.value = edad;
+            
+            if (edad<=17) {
+             document.f1.dui.disabled=true;
+             document.f1.tel.disabled=true;
+            }else{
+                document.f1.dui.disabled=false;
+             document.f1.tel.disabled=false;
+            }
+            
             document.getElementById("result").innerHTML = "Tienes " + edad + " años, " + meses + " meses y " + dias + " días";
         } else {
 
@@ -146,7 +156,7 @@ include_once '../plantilla/menu_lateral.php';
                                     <label>Edad<small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <!--<input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">-->
-                                        <input name="inp" id="inp" class="form-control"> 
+                                        <input name="inp" id="inp" class="form-control" onChange="javascript:desabilitar();"> 
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -159,7 +169,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-3">
                                     <label style="padding-top: 12px;">DUI<small class="text-muted"> 99999999-9</small></label>
                                     <div class="input-group">
-                                        <input type="text" name="dui" class="form-control phone-inputmask" id="phone-maske" placeholder="Ingrese DUI" autocomplete="off" value="" required> 
+                                        <input type="text" name="dui" class="form-control phone-inputmask" id="dui" placeholder="Ingrese DUI" autocomplete="off" value="" required> 
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                         </div>
@@ -171,7 +181,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-3">
                                     <label style="padding-top: 12px;">Teléfono<small class="text-muted"> 9999-9999</small></label>
                                     <div class="input-group">
-                                        <input type="text" name="telefono" class="form-control phone-inputmask2" id="phone-mask2" placeholder="Ingrese número telefónico" autocomplete="off" value="" required>
+                                        <input type="text" name="telefono" class="form-control phone-inputmask2" id="tel" placeholder="Ingrese número telefónico" autocomplete="off" value="" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         </div>
@@ -233,15 +243,19 @@ if (isset($_REQUEST['tirar'])) {
     //Variable que guardo en la base para que entre de alta automaticamente
     $esta=1;
     
-
+    if($dui==null){} else {
+ 
     $sql = "SELECT * FROM t_paciente WHERE pac_cdui = '$dui'"; ///cantidad de usuarios con el mismo dui 
     foreach ($conexion->query($sql) as $row) {
         $numero_dui++;
     }
+    }
      
+    if($dui==null){} else {
     $sql = "SELECT * FROM t_paciente WHERE pac_ctelefono = '$telefono'"; // cantidad de usuaris con el mismo telefono 
     foreach ($conexion->query($sql) as $row) {
         $numero_telefono++;
+    }
     }
     
     
