@@ -10,14 +10,14 @@ if ($estadoUpdate == 0) {
     mysqli_query($conexion, "UPDATE t_paciente SET estado=1 WHERE id_paciente='$modificar'");
     ?>
 <script type="text/javascript">
-    location.href = "darBaja.php";
+    location.href = "darBajaAlta.php";
 </script>
 <?php
 }else{
 mysqli_query($conexion, "UPDATE t_paciente SET estado=0 WHERE id_paciente='$modificar'"); 
 ?>
 <script type="text/javascript">
-    location.href = "darBaja.php";
+    location.href = "darBajaAlta.php";
 </script>
 <?php
 }
