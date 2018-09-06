@@ -1,5 +1,5 @@
 <?php
-$conexion = mysqli_connect("localhost", "root", "", "clinicabd");
+$conexion = mysqli_connect("localhost", "root", "", "clinica");
 
 class Conexion { 
 
@@ -11,7 +11,7 @@ class Conexion {
                 $nombre_servidor = 'localhost';
                 $nombre_usuario = 'root';
                 $password = '';
-                $nombre_base_datos = 'clinicabd';
+                $nombre_base_datos = 'clinica';
                 self::$conexion = new PDO("mysql:host=$nombre_servidor; dbname=$nombre_base_datos", $nombre_usuario, $password);
                 self::$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$conexion->exec("SET CHARACTER SET utf8");
