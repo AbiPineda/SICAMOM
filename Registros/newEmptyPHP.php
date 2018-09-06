@@ -27,7 +27,11 @@ echo '   ';
     mensaje();
 function mensaje(){
     
-      toastr.success("Guardado con Exito");
+     toastr.error("Error al registrar datos", "Title", {
+            "timeOut": "6000",
+            "extendedTImeout": "200",
+            "onclick" : window.location.href = "http://sitioweb.com"
+        });
     
     
 }
