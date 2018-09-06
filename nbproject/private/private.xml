@@ -3,7 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Registros/registroUsuario.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Consultas/darBaja.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Registros/registroPaciente.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/html/ltr/indexSecretaria.html</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Registros/registroInsumo.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Consultas/consultaExpedientecopy.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Login/ValidarUsuario.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Conexion/conexion.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/html/ltr/index.html</file>
             <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Consultas/consultaExpediente.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Login/Login.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Consultas/buscarPaciente.php</file>
+            <file>file:/C:/xampp/htdocs/pruebaSICAMOM/Consultas/modificarPaciente.php</file>
         </group>
     </open-files>
 </project-private>

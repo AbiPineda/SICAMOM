@@ -105,10 +105,10 @@ include_once '../plantilla/menu_lateral.php';
                 <form action="" id="f1" name="f1" method="post" class="form-register" >
                     <input type="hidden" name="tirar" id="pase"/>
                     <div>
-
+                        
                         <section>
                             <div class="row mb-12">
-
+                               
                                 <div class="col-lg-4">
                                     <label>Nombre<small class="text-muted"></small></label>
                                     <div class="input-group">
@@ -188,7 +188,7 @@ include_once '../plantilla/menu_lateral.php';
                                         <option value="Control de Embarazo">Control de embarazo</option>
                                     </select>
                                     <div class="row mb-12" style="float: left; margin-left: 400px; margin-top: -30px;">
-                                        <input type="submit" class="btn btn-info" name="btnEnviar" value="Guardar">
+                                        <input type="submit" class="btn btn-info" name="btnEnviar" id="success" value="Guardar">
                                     </div>
 
                                     <div class="row mb-12" style="float: left;margin-left: 300px; margin-top: -35px;">
@@ -254,7 +254,10 @@ if (isset($_REQUEST['tirar'])) {
     
     if (!$numero_dui && !$numero_telefono ) {
            mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
-    }
+   ?>
+
+<?php
+           }
     
     
     if ($edad <= 17) { //si es menor de edad entonce que levante el modal con JavaScript

@@ -15,8 +15,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     $nusuario = $_REQUEST['nusuario'];
     $contrasena = password_hash($_REQUEST['contrasena'], PASSWORD_DEFAULT);
     $tusuario = $_REQUEST['tusuario'];
-  //  $concontrasena = $_REQUEST['concontrasena'];
-
+ 
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
     
@@ -25,8 +24,6 @@ if (isset($_REQUEST['btnGuardar'])) {
     $numero_usuario = 0;
     
  
-    // $sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
-
     $sql = "SELECT * FROM t_usuario WHERE usu_ccorreo = '$email'"; ///cantidad de usuarios con el mismo dui 
     foreach ($conexion->query($sql) as $row) {
         $numero_correo++;
@@ -72,7 +69,7 @@ else {
 
                     <div class="card-body wizard-content">
                         <h3 class="card-title">Registro de Usuario</h3>
-                        <form id="example-form" action="registroUsuario.php" class="m-t-40" method="POST">
+                        <form id="example-form" action="" class="m-t-40" method="POST">
                             <div>
                                 <h3>  </h3>
                                 <section>
@@ -122,7 +119,7 @@ else {
                                        <select class="custom-select" name="tusuario" style="width: 100%; height:36px;">
                                             <option>Seleccionar</option>
                                                 <option value="Administrador">Administrador</option>
-                                                <option value="Enfermera">Enfermera</option>
+                                                <option value="Secretaria">Secretaria</option>
                                         </select>
                                     </div>
 
@@ -146,13 +143,13 @@ else {
                                     </div>
                                 </div> 
                                           <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                              <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" onclick="return guardar()">Guardar </button>
+                                              <button type="submit" class="btn btn-info" name="btnGuardar" id="success" onclick="return guardar()">Guardar </button>
                                           </div>
                                          <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                              <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
                                          </div>
                                          <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                             <button type="submit" class="btn btn-info" name="nameCancelar" id="botonCancelar">Alerta </button>
+                                             <button type="submit" class="btn btn-info" name="nameCancelar" id="botonCancelar" >Alerta </button>
                                          </div>
                                     </div>
 
@@ -195,4 +192,28 @@ else {
 </script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script>
+$(function () {
+    $('#error').click(function () {
+        // make it not dissappear
+        toastr.error("Error al registrar datos", "Title", {
+            "timeOut": "100",
+            "extendedTImeout": "200"
+        });
+    });
+    $('#info').click(function () {
+   		// title is optional
+        toastr.info("Info Message", "Title");
+    });
+    $('#warning').click(function () {
+        toastr.warning("Warning");
+    });
+    $('#success').click(function () {
+        toastr.success("Guardado con Exito");
+    });
+    
+    
+});
+   
 </script>

@@ -11,7 +11,7 @@
 
 <body>
     <form class="form" method="post" action="ValidarUsuario.php">
-  <div class="cont" style="background-image: url(../assets/images/embarazo.jpg);">
+  <div class="cont" style="background-image: url(../assets/images/ecografia.jpg);">
   <div class="demo" >
     <div class="login">
       <div class="login__check">
@@ -43,5 +43,3 @@
     <script  src="js/index.js"></script>
 </body>
 
-
-                
