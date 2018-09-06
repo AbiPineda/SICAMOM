@@ -18,7 +18,7 @@ include_once '../Conexion/conexion.php';
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
    <!-- Estilo de la tabla-->
-  <link href="../dist/css/styleTable2.css" rel="stylesheet">
+  <link href="../dist/css/styleTabla.css" rel="stylesheet">
 
 </head>
 
