@@ -143,7 +143,7 @@ else {
                                     </div>
                                 </div> 
                                           <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                              <button type="submit" class="btn btn-info" name="btnGuardar" id="success" onclick="return guardar()">Guardar </button>
+                                              <button type="submit" class="btn btn-info" name="btnGuardar" id="success">Guardar </button>
                                           </div>
                                          <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                              <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
@@ -209,7 +209,7 @@ $(function () {
     $('#warning').click(function () {
         toastr.warning("Warning");
     });
-    $('#success').click(function () {
+    $('#botonCancelar').click(function () {
         toastr.success("Guardado con Exito");
     });
     

@@ -14,6 +14,8 @@
             <!-- this page js -->
             <script src="../assets/libs/jquery-steps/build/jquery.steps.min2.js"></script>
             <script src="../assets/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+            
+            <script src="../js/sweetalert.min.js"></script>
 
 
             <!-- This Page JS -->

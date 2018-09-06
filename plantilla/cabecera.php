@@ -26,6 +26,9 @@
             <link rel="stylesheet" type="text/css" href="../assets/libs/quill/dist/quill.snow.css">
 
             <link rel="stylesheet" type="text/css" href="../assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+            <link rel="stylesheet" href="../css/alertas/toastr.css">
+            <script src="../js/toastr.min.js"></script>
+            <link rel="stylesheet" href="../css/sweetalert.css">
            
         </head>
 

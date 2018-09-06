@@ -4,6 +4,7 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 ?>
+
 <script type="text/javascript">
     /**
      * Funcion que devuelve true o false dependiendo de si la fecha es correcta.
@@ -198,13 +199,13 @@ include_once '../plantilla/menu_lateral.php';
                                         <option value="Control de Embarazo">Control de embarazo</option>
                                     </select>
                                     <div class="row mb-12" style="float: left; margin-left: 400px; margin-top: -30px;">
-                                        <input type="submit" class="btn btn-info" name="btnEnviar" id="success" value="Guardar">
+                                        <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar">
                                     </div>
 
                                     <div class="row mb-12" style="float: left;margin-left: 300px; margin-top: -35px;">
                                         <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                     </div>
-
+        </div>
                                 </div>
                             </div>
                         </section>
@@ -212,10 +213,9 @@ include_once '../plantilla/menu_lateral.php';
                     </div>
 
                 </form>
-                <!-- -->
+                 
             </div>
 
-        </div>
 
 
     </div>
@@ -243,7 +243,9 @@ if (isset($_REQUEST['tirar'])) {
     //Variable que guardo en la base para que entre de alta automaticamente
     $esta=1;
     
-    if($dui==null){} else {
+    if($dui==null){
+        
+    } else {
  
     $sql = "SELECT * FROM t_paciente WHERE pac_cdui = '$dui'"; ///cantidad de usuarios con el mismo dui 
     foreach ($conexion->query($sql) as $row) {
@@ -251,7 +253,7 @@ if (isset($_REQUEST['tirar'])) {
     }
     }
      
-    if($dui==null){} else {
+    if($telefono==null){} else {
     $sql = "SELECT * FROM t_paciente WHERE pac_ctelefono = '$telefono'"; // cantidad de usuaris con el mismo telefono 
     foreach ($conexion->query($sql) as $row) {
         $numero_telefono++;
@@ -268,38 +270,65 @@ if (isset($_REQUEST['tirar'])) {
     
     if (!$numero_dui && !$numero_telefono ) {
            mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
-   ?>
-
-<?php
+   
+          
            }
     
     
     if ($edad <= 17) { //si es menor de edad entonce que levante el modal con JavaScript
-        ?>
-        <script type="text/javascript">
-        //$('#miModal').modal('show');
-            location.href = "modal.php";
-        </script>
-        <?php
-
+        echo '<script>swal({
+                    title: "Registro",
+                    text: "Guardado!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="modal.php";
+                    
+                });</script>';
         //sigue la sentencia php para validar sino es menor de edad    
     } else { // como no es menor de edad solo recarcargara la pagina
-        ?>
-        <script type="text/javascript">
-            location.href = "RegistroPaciente.php";
-        </script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
-        </script>
-        <script>
-            document.getElementById('nameCancelar').addEventListener('click', function () {
-                toastr.success('Guardado exitoso!');
-            });
-        </script>
-        <?php
-
+        echo '<script>swal({
+                    title: "Exito",
+                    text: "Guardado!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroPaciente.php";
+                    
+                });</script>';
+       
+       
+      
         //fin
     }
 
 }
 ?>
+<script>
+$(function () {
+    $('#error').click(function () {
+        // make it not dissappear
+        toastr.error("Error al registrar datos", "Title", {
+            "timeOut": "100",
+            "extendedTImeout": "200"
+        });
+    });
+    $('#info').click(function () {
+   		// title is optional
+        toastr.info("Info Message", "Title");
+    });
+    $('#warning').click(function () {
+        toastr.warning("Warning");
+    });
+    $('#success').click(function () {
+        toastr.success("Guardado con Exito");
+    });
+    
+    
+});
+   
+</script>
