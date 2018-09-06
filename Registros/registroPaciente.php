@@ -243,15 +243,19 @@ if (isset($_REQUEST['tirar'])) {
     //Variable que guardo en la base para que entre de alta automaticamente
     $esta=1;
     
-
+    if($dui==null){} else {
+ 
     $sql = "SELECT * FROM t_paciente WHERE pac_cdui = '$dui'"; ///cantidad de usuarios con el mismo dui 
     foreach ($conexion->query($sql) as $row) {
         $numero_dui++;
     }
+    }
      
+    if($dui==null){} else {
     $sql = "SELECT * FROM t_paciente WHERE pac_ctelefono = '$telefono'"; // cantidad de usuaris con el mismo telefono 
     foreach ($conexion->query($sql) as $row) {
         $numero_telefono++;
+    }
     }
     
     
