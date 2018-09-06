@@ -230,6 +230,8 @@ if (isset($_REQUEST['tirar'])) {
 
     $numero_dui = 0;
     $numero_telefono = 0;
+    //Variable que guardo en la base para que entre de alta automaticamente
+    $esta=1;
     
 
     $sql = "SELECT * FROM t_paciente WHERE pac_cdui = '$dui'"; ///cantidad de usuarios con el mismo dui 
@@ -251,13 +253,9 @@ if (isset($_REQUEST['tirar'])) {
     }
     
     if (!$numero_dui && !$numero_telefono ) {
-           mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo')");
+           mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
     }
     
-    
-    
-    
-
     
     if ($edad <= 17) { //si es menor de edad entonce que levante el modal con JavaScript
         ?>
