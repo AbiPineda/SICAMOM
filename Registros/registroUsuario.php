@@ -60,7 +60,7 @@ else {
 
      ?>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<link rel="stylesheet" href="../js/toastr.min.css">
     <div class="page-wrapper" style="height: 671px;">
           
             <div class="container-fluid">
@@ -188,10 +188,10 @@ else {
 </script>
 
 <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+    src="../js/toastr.min.js">
 </script>
 <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    src="../js/jquery.min.js">
 </script>
 <script>
 $(function () {
