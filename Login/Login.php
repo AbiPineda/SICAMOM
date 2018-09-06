@@ -1,63 +1,47 @@
 
-     
-<html lang="en" >
-
 <head>
-  <meta charset="UTF-8">
-  <title>Iniciar Sesión</title>
-  
-  <link rel="stylesheet" href="../css/login.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+ <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<!-- 
+      <link rel="stylesheet" href="css/styleLogin.css">
+      -->
+      <link href="../dist/css/styleLogin.css" rel="stylesheet">
 
   
 </head>
 
 <body>
-    <div class="page-wrapper" >
-  <div class="wrapper" style="background-image: url(../assets/images/ecografia3.jpg);">
-    
-	<div class="container">
-		<h1>Bienvenido/a</h1>
-		
-		<form class="form" method="post" action="ValidarUsuario.php">
-			<input type="text" placeholder="Usuario" name="usuario">
-			<input type="password" placeholder="Contraseña" name="clave">
-		</br>
-	        <input class="btn btn-outline-primary" type="submit" id="login-button" name="Submit" value="Iniciar Sesión">
-                </form>  
-                <form method="post" action="RegistroUsuario.php">
-                    <input class="btn btn-outline-info" type="submit" name="Submit" value="Registrarse">
-                </form>  
-	</div>
+    <form class="form" method="post" action="ValidarUsuario.php">
+  <div class="cont" style="background-image: url(../assets/images/embarazo.jpg);">
+  <div class="demo" >
+    <div class="login">
+      <div class="login__check">
+        <img src="../assets/images/SICAMOM.png">
       </div>
-	
-	<ul class="bg-bubbles">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ul>
-</div>
-      
+      <div class="login__form">
+        <div class="login__row">
+          <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          </svg>
+          <input type="text" class="login__input name" placeholder="Usuario" name="usuario" autocomplete="off"/>
+        </div>
+        <div class="login__row">
+          <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+          </svg>
+          <input type="password" class="login__input pass" placeholder="Contraseña" name="clave" autocomplete="off"/>
+        </div>
+        <button type="submit" class="login__submit" name="Submit">Iniciar Sesión</button>
+        <p class="login__signup">¿Olvidó su contraseña? &nbsp;<a>¡Entra aqui!</a></p>
+      </div>
+    </div>
+
+  </div>
+  </div>
+    </form>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-  
-
-  <script  src="../js/js_login/index.js.js"></script>
-
-
-
-
+    <script  src="js/index.js"></script>
 </body>
 
-</html>
+
                 

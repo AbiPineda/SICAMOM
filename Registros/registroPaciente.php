@@ -285,13 +285,6 @@ if (isset($_REQUEST['tirar'])) {
 
         //fin
     }
-////
-//
-//    Conexion::abrir_conexion();
-//    $conexionx = Conexion::obtener_conexion();
-//    $sql = "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta) VALUES('$nombre','$apellido','$dui','$telefono','$_fecha','$tipo')"; 
-//
-//   $sentencia = $conexionx->prepare($sql);
-//   $usuario_insertado = $sentencia->execute();
+
 }
 ?>
