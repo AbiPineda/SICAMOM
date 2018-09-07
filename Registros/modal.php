@@ -49,7 +49,7 @@ include_once '../plantilla/menu_lateral.php';
 
                                     <label>Nombre<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="nombreRes" class="form-control" id="fnamep" placeholder="Ingrese nombre" value="" required>  
+                                        <input type="text" name="nombreRes" class="form-control" id="fnamep" placeholder="Ingrese nombre" value="" required autocomplete="off">  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
@@ -60,7 +60,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-12">
                                     <label>Apellido<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="apellidoRes" class="form-control" id="fnamep" placeholder="Ingrese apellido" value="" required>  
+                                        <input type="text" name="apellidoRes" class="form-control" id="fnamep" placeholder="Ingrese apellido" value="" required autocomplete="off">  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
