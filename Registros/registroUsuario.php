@@ -37,11 +37,29 @@ if (isset($_REQUEST['btnGuardar'])) {
     
     
     if ($numero_correo) { //entra en este si encontro el dui 
-             echo '<script>  CorreoExistente();   function CorreoExistente() {alert("Este Correo ya existe ingrese otro");}</script>';
-       
+           echo '<script>swal({
+                    title: "¡Atención!",
+                    text: "El correo ingresado ya existe!",
+                    type: "info",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroUsuario.php";
+                    
+                });</script>';    
     }if($numero_usuario) {
-         echo '<script>  UsuarioExistente();   function UsuarioExistente() {alert("Este Usuario ya existe ingrese otro");}</script>';
-    }
+    echo '<script>swal({
+                    title: "¡Atención!",
+                    text: "El usuario ingresado ya existe!",
+                    type: "info",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroUsuario.php";
+                    
+                });</script>';  }
     
     if (!$numero_correo && !$numero_usuario ) {
            mysqli_query($conexion, "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"); 
