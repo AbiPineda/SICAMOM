@@ -9,9 +9,9 @@ if (isset($_REQUEST['btnEnviar'])) {
     $nombre = $_REQUEST['nombre'];
     echo $nombre;
     $apellido = $_REQUEST['apellido'];
-    $dui = $_REQUEST['dui'];
+   
     $tel = $_REQUEST['telefono'];
-    $fech = $_REQUEST['fecha'];
+  
 
     /*                    $ape = $fila['pac_capellidos'];
                                         $nom = $fila['pac_cnombre'];
@@ -20,7 +20,7 @@ if (isset($_REQUEST['btnEnviar'])) {
                                         $fe = $fila['pac_ffecha_nac'];*/
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    $sql = "UPDATE t_paciente SET pac_cnombre='$nombre',pac_capellidos='$apellido',pac_cdui='$dui',pac_ctelefono='$tel',pac_ffecha_nac='$fech' WHERE id_paciente='$modi'";
+    $sql = "UPDATE t_paciente SET pac_cnombre='$nombre',pac_capellidos='$apellido',pac_ctelefono='$tel' WHERE id_paciente='$modi'";
 
     echo 'el sql es ' . $sql;
 
@@ -40,7 +40,6 @@ if (isset($_REQUEST['btnEnviar'])) {
         <div class="container-fluid">
             <div class="card" style="background: rgba(0, 101, 191,0.3)">
                 <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
-                    <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#miModal">Registro encargado</button>
                 </div>
 
                 <!-- MODAL-->
@@ -122,12 +121,12 @@ if (isset($_REQUEST['btnEnviar'])) {
                 <!-- Fin Div de modal-->
 
                 <div class="card-body wizard-content">
-                    <h3 class="card-title">Registro Paciente.</h3>
+                    <h3 class="card-title">Modificar Paciente | Datos personales</h3>
 
                     <form action="modificarPaciente.php" method="post">
                         <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
                     <div>
-                        <h3>Datos personales</h3>
+                        <h3></h3>
                         <section>
 
                             <div class="row mb-3">
@@ -163,27 +162,7 @@ if (isset($_REQUEST['btnEnviar'])) {
                                         </div>                                    
                                     </div>
 
-                                    <div class="col-lg-4">
-                                        <label>Fecha de nacimiento<small class="text-muted"></small></label>
-                                        <div class="input-group">
-                                            <input type="text" name="fecha" value="<?php echo $fe; ?>" data-format="yyyy-MM-dd" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>                              
-                                    </div>
-
-
-                                    <div class="col-lg-4">
-                                        <label style="padding-top: 12px;">DUI<small class="text-muted"> 99999999-9</small></label>
-                                        <div class="input-group">
-                                            <input type="text" name="dui" value="<?php echo $dui; ?>" class="form-control phone-inputmask" id="phone-maske" placeholder="Ingrese DUI"> 
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="far fa-id-card"></i></span>
-                                            </div>
-                                        </div> 
-
-                                    </div>
+                                   
 
                                     <div class="col-lg-4">
                                         <label style="padding-top: 12px;">Teléfono<small class="text-muted"> 9999-9999</small></label>
