@@ -123,7 +123,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-4">
                                     <label>Nombre<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="nombre" class="form-control" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="" required>  
+                                        <input type="text" name="nombre" class="form-control" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
@@ -134,7 +134,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-3">
                                     <label>Apellido<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="apellido" class="form-control" id="fnamep" placeholder="Ingrese apellido" autocomplete="off" value="" required>  
+                                        <input type="text" name="apellido" class="form-control" id="fnamep" placeholder="Ingrese apellido" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
@@ -280,3 +280,28 @@ if (isset($_REQUEST['tirar'])) {
 }
 include_once '../plantilla/pie.php';
 ?>
+<script>
+function soloLetras(e) {
+    textoArea = document.getElementById("fnamep").value;
+    var total = textoArea.length;
+    if (total == 0) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toString();
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; //Se define todo el abecedario que se quiere que se muestre.
+      especiales = [8, 9, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+
+      tecla_especial = false
+      for (var i in especiales) {
+        if (key == especiales[i]) {
+          tecla_especial = true;
+          break;
+        }
+      }
+
+      if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+        alert('No puedes comenzar escribiendo numeros');
+      }
+    }
+  }
+</script>
