@@ -89,15 +89,15 @@ include_once '../plantilla/menu_lateral.php';
             }
             //document.f1.inp.disabled=true;
             document.f1.inp.value = edad;
-            
-            if (edad<=17) {
-             document.f1.dui.disabled=true;
-             document.f1.tel.disabled=true;
-            }else{
-                document.f1.dui.disabled=false;
-             document.f1.tel.disabled=false;
+
+            if (edad <= 17) {
+                document.f1.dui.disabled = true;
+                document.f1.tel.disabled = true;
+            } else {
+                document.f1.dui.disabled = false;
+                document.f1.tel.disabled = false;
             }
-            
+
             document.getElementById("result").innerHTML = "Tienes " + edad + " años, " + meses + " meses y " + dias + " días";
         } else {
 
@@ -116,10 +116,10 @@ include_once '../plantilla/menu_lateral.php';
                 <form action="" id="f1" name="f1" method="post" class="form-register" >
                     <input type="hidden" name="tirar" id="pase"/>
                     <div>
-                        
+
                         <section>
                             <div class="row mb-12">
-                               
+
                                 <div class="col-lg-4">
                                     <label>Nombre<small class="text-muted"></small></label>
                                     <div class="input-group">
@@ -205,16 +205,16 @@ include_once '../plantilla/menu_lateral.php';
                                     <div class="row mb-12" style="float: left;margin-left: 300px; margin-top: -35px;">
                                         <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                     </div>
-        </div>
                                 </div>
                             </div>
-                        </section>
-
                     </div>
+                    </section>
 
-                </form>
-                 
             </div>
+
+            </form>
+
+        </div>
 
 
 
@@ -224,6 +224,7 @@ include_once '../plantilla/menu_lateral.php';
 
 
 <?php
+
 if (isset($_REQUEST['tirar'])) {
     include_once '../Conexion/conexion.php';
 
@@ -235,42 +236,6 @@ if (isset($_REQUEST['tirar'])) {
     $tipo = $_REQUEST['tipo'];
     $edad = $_REQUEST['inp'];
 
-    $numero_dui = 0;
-    $numero_telefono = 0;
-    //Variable que guardo en la base para que entre de alta automaticamente
-    $esta=1;
-    
-    if($dui==null){
-        
-    } else {
- 
-    $sql = "SELECT * FROM t_paciente WHERE pac_cdui = '$dui'"; ///cantidad de usuarios con el mismo dui 
-    foreach ($conexion->query($sql) as $row) {
-        $numero_dui++;
-    }
-    }
-     
-    if($telefono==null){} else {
-    $sql = "SELECT * FROM t_paciente WHERE pac_ctelefono = '$telefono'"; // cantidad de usuaris con el mismo telefono 
-    foreach ($conexion->query($sql) as $row) {
-        $numero_telefono++;
-    }
-    }
-    
-    
-    if ($numero_dui) { //entra en este si encontro el dui 
-          echo '<script>  DuiExistente();   function DuiExistente() {alert("Este dui ya existe ingrese otro");}</script>';
-             
-    }if($numero_telefono) {
-         echo '<script>  TelefonoExistente();   function TelefonoExistente() {alert("Este telefono ya existe ingrese otro");}</script>';
-    }
-    
-    //if (!$numero_dui && !$numero_telefono ) {
-           
-          
-         //  }
-    
-    
     if ($edad <= 17) { //si es menor de edad entonce que levante el modal con JavaScript
         mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
         echo '<script>swal({
@@ -286,9 +251,17 @@ if (isset($_REQUEST['tirar'])) {
                 });</script>';
         //sigue la sentencia php para validar sino es menor de edad    
     } else { // como no es menor de edad solo recarcargara la pagina
-        mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
-   
-        echo '<script>swal({
+        $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_paciente WHERE pac_cdui='$dui'");
+         $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_paciente WHERE pac_ctelefono='$telefono'");
+        if (mysqli_num_rows($verificar_insert) > 0 || mysqli_num_rows($verificar_insert2) > 0 ) {
+            echo '<script>swal("Dui o Telefono ya existen")
+             .then((value) => {
+              swal(`Verifique los datos`);
+                });</script>';
+        }else {
+            mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
+
+            echo '<script>swal({
                     title: "Exito",
                     text: "Guardado!",
                     type: "success",
@@ -299,12 +272,12 @@ if (isset($_REQUEST['tirar'])) {
                     location.href="registroPaciente.php";
                     
                 });</script>';
-       
-       
-      
-        //fin
-    }
 
+
+
+            //fin
+        }
+    }
 }
 include_once '../plantilla/pie.php';
 ?>
