@@ -75,7 +75,9 @@ include_once '../Conexion/conexion.php';
                  $nom=$fila['pac_cnombre'];  
                  $dui=$fila['pac_cdui'];  
                  $tel=$fila['pac_ctelefono'];  
-                 $fe=$fila['pac_ffecha_nac'];  
+                  $fe=$fila['pac_ffecha_nac']; 
+                $partes = explode('-', $fe);
+                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
             
         ?>
       <tr>
@@ -84,7 +86,7 @@ include_once '../Conexion/conexion.php';
         
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
-        <td data-title="Domestic Gross" data-type="currency"><?php echo $fe;?></td>
+        <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
         </td>
 
        <?php  }?>
