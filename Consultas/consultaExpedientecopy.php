@@ -68,15 +68,18 @@ include_once '../Conexion/conexion.php';
     <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
     <!-- Donde va el contenido de la tabla-->
     <?php
-        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE estado=1");
+        $sacar = mysqli_query($conexion, "SELECT *FROM t_paciente WHERE estado=1 ");
             while ($fila = mysqli_fetch_array($sacar)) {
                   $modificar=$fila['id_paciente']; 
                  $ape=$fila['pac_capellidos'];  
                  $nom=$fila['pac_cnombre'];  
                  $dui=$fila['pac_cdui'];  
                  $tel=$fila['pac_ctelefono'];  
-                 $fe=$fila['pac_ffecha_nac'];  
-            
+                
+                $fe=$fila['pac_ffecha_nac']; 
+                $partes = explode('-', $fe);
+                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
+          
         ?>
       <tr>
         <th scope="row"><?php echo $nom;?></th>
@@ -84,7 +87,7 @@ include_once '../Conexion/conexion.php';
         
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
-        <td data-title="Domestic Gross" data-type="currency"><?php echo $fe;?></td>
+        <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
         <td class="text"><a href="../Consultas/modificarPaciente.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Modificar</a>
         </td>
 
