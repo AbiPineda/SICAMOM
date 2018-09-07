@@ -22,18 +22,8 @@ if (isset($_REQUEST['btnEnviar'])) {
     $conexionx = Conexion::obtener_conexion();
     $sql = "UPDATE t_paciente SET pac_cnombre='$nombre',pac_capellidos='$apellido',pac_ctelefono='$tel' WHERE id_paciente='$modi'";
 
-    echo '<script>swal({
-                    title: "Registro Modificado",
-                    text: "Guardado!",
-                    type: "success",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="modal.php";
-                    
-                });</script>';
-  
+
+header('Location:../Consultas/consultaExpedientecopy.php');
 
 
     $sentencia = $conexionx->prepare($sql);
