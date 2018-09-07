@@ -87,8 +87,8 @@ include_once '../plantilla/menu_lateral.php';
                 ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
                 dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
             }
-            document.f1.inp.disabled=true;
-            var x=document.f1.inp.value = edad;
+            //document.f1.inp.disabled=true;
+            document.f1.inp.value = edad;
             
             if (edad<=17) {
              document.f1.dui.disabled=true;
@@ -224,9 +224,6 @@ include_once '../plantilla/menu_lateral.php';
 
 
 <?php
-
-include_once '../plantilla/pie.php';
-
 if (isset($_REQUEST['tirar'])) {
     include_once '../Conexion/conexion.php';
 
@@ -268,14 +265,14 @@ if (isset($_REQUEST['tirar'])) {
          echo '<script>  TelefonoExistente();   function TelefonoExistente() {alert("Este telefono ya existe ingrese otro");}</script>';
     }
     
-    if (!$numero_dui && !$numero_telefono ) {
-           mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
-   
+    //if (!$numero_dui && !$numero_telefono ) {
+           
           
-           }
+         //  }
     
     
     if ($edad <= 17) { //si es menor de edad entonce que levante el modal con JavaScript
+        mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
         echo '<script>swal({
                     title: "Registro",
                     text: "Guardado!",
@@ -289,6 +286,8 @@ if (isset($_REQUEST['tirar'])) {
                 });</script>';
         //sigue la sentencia php para validar sino es menor de edad    
     } else { // como no es menor de edad solo recarcargara la pagina
+        mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
+   
         echo '<script>swal({
                     title: "Exito",
                     text: "Guardado!",
@@ -307,28 +306,5 @@ if (isset($_REQUEST['tirar'])) {
     }
 
 }
+include_once '../plantilla/pie.php';
 ?>
-<script>
-$(function () {
-    $('#error').click(function () {
-        // make it not dissappear
-        toastr.error("Error al registrar datos", "Title", {
-            "timeOut": "100",
-            "extendedTImeout": "200"
-        });
-    });
-    $('#info').click(function () {
-   		// title is optional
-        toastr.info("Info Message", "Title");
-    });
-    $('#warning').click(function () {
-        toastr.warning("Warning");
-    });
-    $('#success').click(function () {
-        toastr.success("Guardado con Exito");
-    });
-    
-    
-});
-   
-</script>
