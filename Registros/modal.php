@@ -49,7 +49,7 @@ include_once '../plantilla/menu_lateral.php';
 
                                     <label>Nombre<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="nombreRes" class="form-control" id="fnamep" placeholder="Ingrese nombre">  
+                                        <input type="text" name="nombreRes" class="form-control" id="fnamep" placeholder="Ingrese nombre" value="" required>  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
@@ -60,7 +60,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-12">
                                     <label>Apellido<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="apellidoRes" class="form-control" id="fnamep" placeholder="Ingrese apellido">  
+                                        <input type="text" name="apellidoRes" class="form-control" id="fnamep" placeholder="Ingrese apellido" value="" required>  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
@@ -71,7 +71,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-12">
                                     <label>DUI<small class="text-muted"> 99999999-9</small></label>
                                     <div class="input-group">
-                                        <input type="text" name="duiRes" class="form-control phone-inputmask" id="phone-maske" placeholder="Ingrese DUI"> 
+                                        <input type="text" name="duiRes" class="form-control phone-inputmask" id="phone-maske" placeholder="Ingrese DUI" value="" required> 
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                         </div>
@@ -82,7 +82,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-12">
                                     <label>Teléfono<small class="text-muted"> 9999-9999</small></label>
                                     <div class="input-group">
-                                        <input type="text" name="telefonoRes" class="form-control phone-inputmask2" id="phone-mask2" placeholder="Ingrese número telefónico">
+                                        <input type="text" name="telefonoRes" class="form-control phone-inputmask2" id="phone-mask2" placeholder="Ingrese número telefónico" value="" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         </div>
@@ -235,7 +235,16 @@ include_once '../plantilla/pie.php';
                                 $dui = $_REQUEST['duiRes'];
                                 $telefono = $_REQUEST['telefonoRes'];
 
-                                mysqli_query($conexion, "INSERT INTO t_responsable(t_paciente,res_cnombre,res_capellidos,res_cdui,res_ctelefono)"
+////////////
+       $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_responsable WHERE res_cdui='$dui'");
+         $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_responsable WHERE res_ctelefono='$telefono'");
+        if (mysqli_num_rows($verificar_insert) > 0 || mysqli_num_rows($verificar_insert2) > 0 ) {
+            echo '<script>swal("DUI o Teléfono ya existen")
+             .then((value) => {
+              swal(`Verifique los datos`);
+                });</script>';
+        }else {
+                                 mysqli_query($conexion, "INSERT INTO t_responsable(t_paciente,res_cnombre,res_capellidos,res_cdui,res_ctelefono)"
                                         . " VALUES('$id','$nombre_res','$apellido','$dui','$telefono')");
 
                                 echo '<script>swal({
@@ -250,6 +259,9 @@ include_once '../plantilla/pie.php';
                     
                 });</script>';
                             }
+                                //////////////
+}
+
                             ?>
 
 <script type="text/javascript">

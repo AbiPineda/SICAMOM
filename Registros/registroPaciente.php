@@ -175,8 +175,7 @@ include_once '../plantilla/menu_lateral.php';
                                             <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                         </div>
                                     </div> 
-                                    <input id="acceptTerms2" name="acceptTerms" type="checkbox">
-                                    <label for="acceptTerms">Si la paciente no porta el DUI</label>  
+                                     
                                 </div>
 
                                 <div class="col-lg-3">
@@ -187,8 +186,7 @@ include_once '../plantilla/menu_lateral.php';
                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         </div>
                                     </div> 
-                                    <input id="acceptTerms2" name="acceptTerms" type="checkbox">
-                                    <label for="acceptTerms">Si la paciente no posee número telefónico</label>  
+                                    
                                 </div>
 
                                 <div class="col-lg-3">
