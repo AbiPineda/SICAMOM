@@ -98,7 +98,7 @@ include_once '../plantilla/menu_lateral.php';
                                 </div>
 
                                 <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                    <button type="submit" class="btn btn-info" name="modCancelar">Cancelar </button>
+                                    <button type="reset" class="btn btn-info" name="modCancelar" onclick='location.href="registroPaciente.php'>Cancelar </button>
 
                                 </div>
                             </form>
