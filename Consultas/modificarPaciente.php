@@ -22,7 +22,18 @@ if (isset($_REQUEST['btnEnviar'])) {
     $conexionx = Conexion::obtener_conexion();
     $sql = "UPDATE t_paciente SET pac_cnombre='$nombre',pac_capellidos='$apellido',pac_ctelefono='$tel' WHERE id_paciente='$modi'";
 
-    echo 'el sql es ' . $sql;
+    echo '<script>swal({
+                    title: "Registro Modificado",
+                    text: "Guardado!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="modal.php";
+                    
+                });</script>';
+  
 
 
     $sentencia = $conexionx->prepare($sql);
@@ -141,8 +152,11 @@ if (isset($_REQUEST['btnEnviar'])) {
                                         $dui = $fila['pac_cdui'];
                                         $tel = $fila['pac_ctelefono'];
                                         $fe = $fila['pac_ffecha_nac'];
+
+                                        
+
                                         ?>
-                                        <label>Nombre<small class="text-muted"></small></label>
+                                        <label style="padding-top: 12px;">Nombre<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="nombre" value="<?php echo $nom; ?>" class="form-control" id="fnamep" placeholder="Ingrese nombre">  
                                             <div class="input-group-append">
@@ -153,7 +167,7 @@ if (isset($_REQUEST['btnEnviar'])) {
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label>Apellido<small class="text-muted"></small></label>
+                                        <label style="padding-top: 12px;">Apellido<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="apellido" value="<?php echo $ape; ?>" class="form-control" id="fnamep" placeholder="Ingrese apellido">  
                                             <div class="input-group-append">
@@ -175,10 +189,10 @@ if (isset($_REQUEST['btnEnviar'])) {
                                     </div>
                                     <div class="col-lg-4">
 
-                                        <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 850px; margin-top: 11px;">
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
                                         </div>
-                                        <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 750px; margin-top: -34px;">
                                             <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                         </div>
 
