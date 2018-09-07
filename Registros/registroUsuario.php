@@ -1,3 +1,4 @@
+
 <?php
 
 include_once '../plantilla/cabecera.php';
@@ -36,14 +37,27 @@ if (isset($_REQUEST['btnGuardar'])) {
     
     
     if ($numero_correo) { //entra en este si encontro el dui 
-          echo '<script>  CorreoExistente();   function CorreoExistente() {alert("Este Correo ya existe ingrese otro");}</script>';
-             
+             echo '<script>  CorreoExistente();   function CorreoExistente() {alert("Este Correo ya existe ingrese otro");}</script>';
+       
     }if($numero_usuario) {
          echo '<script>  UsuarioExistente();   function UsuarioExistente() {alert("Este Usuario ya existe ingrese otro");}</script>';
     }
     
     if (!$numero_correo && !$numero_usuario ) {
            mysqli_query($conexion, "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"); 
+    
+           echo '<script>swal({
+                    title: "Registro",
+                    text: "Guardado!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroUsuario.php";
+                    
+                });</script>';
+           
     }
     
      //$sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
@@ -78,7 +92,7 @@ else {
                                     <div class="col-lg-4">
                                         <label>Nombre<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" required>  
+                                         <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" required >  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -146,7 +160,7 @@ else {
                                               <button type="submit" class="btn btn-info" name="btnGuardar" id="boton">Guardar </button>
                                           </div>
                                          <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                             <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
+                                             <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
                                          </div>
                                       
                                     </div>

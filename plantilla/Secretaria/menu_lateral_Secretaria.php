@@ -9,8 +9,8 @@
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fas fa-briefcase"></i><span class="hide-menu">Expediente </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
 
-                        <li class="sidebar-item"><a href="../Registros/registroPaciente.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Registrar </span></a></li>
-                        <li class="sidebar-item"><a href="../Consultas/buscarPaciente.php" class="sidebar-link"><i class="fas fa-search"></i><span class="hide-menu">Buscar</span></a></li>
+                        <li class="sidebar-item"><a href="../../Registros_Secretaria/registroPaciente.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Registrar </span></a></li>
+                        <li class="sidebar-item"><a href="../../Registros_Secretaria/buscarPaciente.php.php" class="sidebar-link"><i class="fas fa-search"></i><span class="hide-menu">Buscar</span></a></li>
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="far fa-file"></i><span class="hide-menu">Reporte</span></a></li>
                     </ul>
                 </li>
