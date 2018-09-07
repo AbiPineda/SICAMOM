@@ -13,13 +13,13 @@ if (isset($_REQUEST['btnGuardar'])) {
     $apellido = $_REQUEST['apellido'];
     $email = $_REQUEST['email'];
     $nusuario = $_REQUEST['nusuario'];
-    $contrasena = password_hash($_REQUEST['contrasena'], PASSWORD_DEFAULT);
+    $contrasena = $_REQUEST['contrasena'];
     $tusuario = $_REQUEST['tusuario'];
  
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
     
-    
+       
     $numero_correo = 0;
     $numero_usuario = 0;
     
@@ -143,14 +143,12 @@ else {
                                     </div>
                                 </div> 
                                           <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                              <button type="submit" class="btn btn-info" name="btnGuardar" id="success">Guardar </button>
+                                              <button type="submit" class="btn btn-info" name="btnGuardar" id="boton">Guardar </button>
                                           </div>
                                          <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                              <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
                                          </div>
-                                         <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                             <button type="submit" class="btn btn-info" name="nameCancelar" id="botonCancelar" >Alerta </button>
-                                         </div>
+                                      
                                     </div>
 
                                          </div>
@@ -192,28 +190,4 @@ else {
 </script>
 <script
     src="../js/jquery.min.js">
-</script>
-<script>
-$(function () {
-    $('#error').click(function () {
-        // make it not dissappear
-        toastr.error("Error al registrar datos", "Title", {
-            "timeOut": "100",
-            "extendedTImeout": "200"
-        });
-    });
-    $('#info').click(function () {
-   		// title is optional
-        toastr.info("Info Message", "Title");
-    });
-    $('#warning').click(function () {
-        toastr.warning("Warning");
-    });
-    $('#botonCancelar').click(function () {
-        toastr.success("Guardado con Exito");
-    });
-    
-    
-});
-   
 </script>
