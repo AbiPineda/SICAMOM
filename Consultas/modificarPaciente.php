@@ -39,7 +39,7 @@
                                         ?>
                                         <label style="padding-top: 12px;">Nombre<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="text" name="nombre" value="<?php echo $nom; ?>" class="form-control" id="fnamep" placeholder="Ingrese nombre">  
+                                            <input type="text" name="nombre" value="<?php echo $nom; ?>" class="form-control" id="fnamep" placeholder="Ingrese nombre" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
@@ -50,7 +50,7 @@
                                     <div class="col-lg-4">
                                         <label style="padding-top: 12px;">Apellido<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="text" name="apellido" value="<?php echo $ape; ?>" class="form-control" id="fnamep" placeholder="Ingrese apellido">  
+                                            <input type="text" name="apellido" value="<?php echo $ape; ?>" class="form-control" id="fnamep" placeholder="Ingrese apellido" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
@@ -62,7 +62,7 @@
                                     <div class="col-lg-4">
                                         <label style="padding-top: 12px;">Teléfono<small class="text-muted"> 9999-9999</small></label>
                                         <div class="input-group">
-                                            <input type="text" name="telefono" value="<?php echo $tel; ?>" class="form-control phone-inputmask2" id="phone-mask2" placeholder="Ingrese número telefónico">
+                                            <input type="text" name="telefono" value="<?php echo $tel; ?>" class="form-control phone-inputmask2" id="phone-mask2" placeholder="Ingrese número telefónico" value="" required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                             </div>
@@ -132,3 +132,27 @@ if (isset($_REQUEST['btnEnviar'])) {
                 });</script>';
 } 
 ?>
+
+<script>
+function soloLetras(e) {
+    textoArea = document.getElementById("fnamep").value;
+    var total = textoArea.length;
+    if (total == 0) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toString();
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; //Se define todo el abecedario que se quiere que se muestre.
+      especiales = [8, 9, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+      tecla_especial = false
+      for (var i in especiales) {
+        if (key == especiales[i]) {
+          tecla_especial = true;
+          break;
+        }
+      }
+      if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+        alert('No puedes comenzar escribiendo numeros');
+      }
+    }
+  }
+</script>

@@ -36,7 +36,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     }
     
     
-    if ($numero_correo) { //entra en este si encontro el dui 
+    if ($numero_correo) { //entra en este si encontro el correo
            echo '<script>swal({
                     title: "¡Atención!",
                     text: "El correo ingresado ya existe!",
@@ -110,7 +110,7 @@ else {
                                     <div class="col-lg-4">
                                         <label>Nombre<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                         <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                         <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required >  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -121,7 +121,7 @@ else {
                                    <div class="col-lg-4">
                                      <label>Apellido<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                    <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required >  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -131,7 +131,7 @@ else {
                                     <div class="col-lg-4">
                                    <label>E-mail<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="email" class="form-control" autocomplete="off" placeholder="email" id="email" name="email" value=""  >
+                                    <input type="email" class="form-control" autocomplete="off" placeholder="email" id="email" name="email" value="" required >
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                                     </div>
@@ -142,7 +142,7 @@ else {
                                     <div class="col-lg-4">
                                          <label style="padding-top: 12px;">Nombre de Usuario<small class="text-muted"> </small></label>
                                      <div class="input-group">
-                                    <input type="text" name="nusuario" class="form-control" autocomplete="off" id="phone-maske" placeholder="Ingrese Usuario"  value="" required> 
+                                    <input type="text" name="nusuario" class="form-control" autocomplete="off" id="phone-maske" placeholder="Ingrese Usuario"  value="" required > 
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                     </div>
@@ -158,7 +158,7 @@ else {
                                     <div class="col-lg-4">
                                          <label style="padding-top: 12px;">Contraseña<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="password" pattern=".{4,}" title="4 o mas caracteres" class="form-control" autocomplete="off" placeholder="Contraseña" id="campo1" name="contrasena" value="" required>
+                                    <input type="password" pattern=".{4,}" title="4 o mas caracteres" class="form-control" autocomplete="off" placeholder="Contraseña" id="campo1" name="contrasena" value="" required >
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                     </div>
@@ -169,7 +169,7 @@ else {
                                     <div class="col-lg-4">
                                          <label style="padding-top: 12px;" >Confirmar contraseña<small class="text-muted"></small></label>
                                        <div class="input-group">
-                                     <input type="password" class="form-control" autocomplete="off" placeholder="Ingrese contraseña" id="campo2" name="concontrasena" onkeyup="Habilitar()" value="" required>
+                                     <input type="password" class="form-control" autocomplete="off" placeholder="Ingrese contraseña" id="campo2" name="concontrasena" onkeyup="Habilitar()" value="" required >
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                     </div>
@@ -181,7 +181,7 @@ else {
                                              <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
                                          </div>
                                       
-                                    </div>
+                                    </div> 
 
                                          </div>
 
