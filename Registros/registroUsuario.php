@@ -92,7 +92,7 @@ else {
                                     <div class="col-lg-4">
                                         <label>Nombre<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                         <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" required >  
+                                         <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -103,7 +103,7 @@ else {
                                    <div class="col-lg-4">
                                      <label>Apellido<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" required>  
+                                    <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -113,7 +113,7 @@ else {
                                     <div class="col-lg-4">
                                    <label>E-mail<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="email" class="form-control" autocomplete="off" placeholder="email" id="email" name="email" value="" required >
+                                    <input type="email" class="form-control" autocomplete="off" placeholder="email" id="email" name="email" value=""  >
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                                     </div>
@@ -199,6 +199,49 @@ else {
     }
 </script>
 
+<script>
+function soloLetras(e) {
+    textoArea = document.getElementById("fnamep").value;
+    var total = textoArea.length;
+    if (total == 0) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toString();
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; //Se define todo el abecedario que se quiere que se muestre.
+      especiales = [8, 9, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+
+      tecla_especial = false
+      for (var i in especiales) {
+        if (key == especiales[i]) {
+          tecla_especial = true;
+          break;
+        }
+      }
+
+      if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+        alert('No puedes comenzar escribiendo numeros');
+      }
+    }
+  }
+</script>
+
+<script>
+    function SoloNumeros(evt){
+ if(window.event){//asignamos el valor de la tecla a keynum
+  keynum = evt.keyCode; //IE
+ }
+ else{
+  keynum = evt.which; //FF
+ } 
+ //comprobamos si se encuentra en el rango numérico y que teclas no recibirá.
+ if((keynum > 47 && keynum < 58) || keynum == 8 || keynum == 13 || keynum == 6 ){
+  return true;
+ }
+ else{
+  return false;
+ }
+}
+</script>
 <script
     src="../js/toastr.min.js">
 </script>
