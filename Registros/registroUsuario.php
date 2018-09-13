@@ -25,12 +25,12 @@ if (isset($_REQUEST['btnGuardar'])) {
     $numero_usuario = 0;
     
  
-    $sql = "SELECT * FROM t_usuario WHERE usu_ccorreo = '$email'"; ///cantidad de usuarios con el mismo dui 
+    $sql = "SELECT * FROM t_usuario WHERE usu_ccorreo = '$email'"; 
     foreach ($conexion->query($sql) as $row) {
         $numero_correo++;
     }
      
-    $sql = "SELECT * FROM t_usuario WHERE usu_cusuario = '$nusuario'"; // cantidad de usuaris con el mismo telefono 
+    $sql = "SELECT * FROM t_usuario WHERE usu_cusuario = '$nusuario'"; 
     foreach ($conexion->query($sql) as $row) {
         $numero_usuario++;
     }

@@ -190,17 +190,13 @@ include_once '../plantilla/menu_lateral.php';
                                 </div>
 
                                 <div class="col-lg-3">
-                                    <label style="padding-top: 12px;" >Tipo de consulta<small class="text-muted"></small></label>
-                                    <select class="custom-select" name="tipo" style="width: 100%; height:36px;">
-                                        <option>Seleccionar</option>
-                                        <option value="Consulta General">Consulta general</option>
-                                        <option value="Control de Embarazo">Control de embarazo</option>
-                                    </select>
-                                    <div class="row mb-12" style="float: left; margin-left: 400px; margin-top: -30px;">
+                                    <label style="padding-top: 12px;" ><small class="text-muted"></small></label>
+                                    
+                                    <div class="row mb-12" style="float: left; margin-left: 400px; margin-top: -10px;">
                                         <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar">
                                     </div>
 
-                                    <div class="row mb-12" style="float: left;margin-left: 300px; margin-top: -35px;">
+                                    <div class="row mb-12" style="float: left;margin-left: 300px; margin-top: -10px;">
                                         <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                     </div>
                                 </div>
@@ -231,12 +227,12 @@ if (isset($_REQUEST['tirar'])) {
     $dui = $_REQUEST['dui'];
     $telefono = $_REQUEST['telefono'];
     $fecha = $_REQUEST['user_date'];
-    $tipo = $_REQUEST['tipo'];
+    //$tipo = $_REQUEST['tipo'];
     $edad = $_REQUEST['inp'];
     $esta=1;
 
     if ($edad <= 17) { //si es menor de edad entonce que levante el modal con JavaScript
-        mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
+        mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$esta')");
         echo '<script>swal({
                     title: "Registro",
                     text: "Guardado!",
@@ -258,7 +254,7 @@ if (isset($_REQUEST['tirar'])) {
               swal(`Verifique los datos`);
                 });</script>';
         }else {
-            mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,pac_ctipo_consulta,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$tipo','$esta')");
+            mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$esta')");
 
             echo '<script>swal({
                     title: "Exito",
