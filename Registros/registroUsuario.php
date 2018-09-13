@@ -36,7 +36,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     }
     
     
-    if ($numero_correo) { //entra en este si encontro el correo
+    if ($numero_correo) { 
            echo '<script>swal({
                     title: "¡Atención!",
                     text: "El correo ingresado ya existe!",

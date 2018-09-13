@@ -12,14 +12,14 @@ if (isset($_REQUEST['btnGuardar'])) {
     $presentacion = $_REQUEST['presentacion'];
     $precio = $_REQUEST['precio'];
 
-    $fecha = $_REQUEST['fecha'];
-    $partes = explode('-', $fecha);
-    $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
+    $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
+  // $partes = explode('-', $fecha);
+   // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
     $esta=1;
     Conexion::abrir_conexion(); 
     $conexionx = Conexion::obtener_conexion();
     
-    mysqli_query($conexion,"INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad,estado) VALUES('$nombre','$marca','$descripcion','$presentacion','$precio','$_fecha','$esta')"); 
+    mysqli_query($conexion,"INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad,estado) VALUES('$nombre','$marca','$descripcion','$presentacion','$precio','$fecha','$esta')"); 
 
     echo '<script>swal({
                     title: "Exito",
@@ -78,7 +78,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     <div class="col-lg-4">
                                  <label>Fecha de Caducidad:</label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control mydatepicker" name="fecha" placeholder="Ingrese fecha de Caducidad." max="2019-01-01" min="2016-01-01" onChange="javascript:validate_fecha($_fecha);">
+                                    <input type="text" class="form-control mydatepicker" name="fecha" placeholder="Ingrese fecha de Caducidad." max="2019-01-01" min="2016-01-01" onChange="javascript:validate_fecha($_fecha);">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
