@@ -14,7 +14,7 @@ include_once '../plantilla/menu_lateral.php';
                     <div class="modal-content">
                         <div class="modal-header">
 
-                            <h4>Datos extras de Insumo Médico</h4>
+                            <h4>Datos de Proveedor</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -47,27 +47,35 @@ include_once '../plantilla/menu_lateral.php';
                                         <input type="text" name="encargado" value="<?php echo $noPa; ?>" class="form-control" id="fnamep" placeholder="Ingrese nombre">  
                                     </div> <br>
 
-                                    <label>Precio<small class="text-muted"></small></label>
+                                    <label>Nombre de Empresa<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="precio" class="form-control" id="fnamep" placeholder="Ingrese precio" value="" required autocomplete="off">  
+                                        <input type="text" name="nombreEmp" class="form-control" id="fnamep" placeholder="Ingrese el Nombre de la Empresa" value="" required autocomplete="off">  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
                                     </div> <br>
                                     
-                                     <label>Cantidad<small class="text-muted"></small></label>
+                                     <label>Nombre del Responsable<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="cantidad" class="form-control" id="fnamep" placeholder="Ingrese cantidad" value="" required autocomplete="off">  
+                                        <input type="text" name="nombreRes" class="form-control" id="fnamep" placeholder="Ingrese el nombre del Responsable" value="" required autocomplete="off">  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
                                     </div> <br>
                                      
-                                     <label>Fecha de Caducidad<small class="text-muted"></small></label>
+                                     <label>Dirección<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                         <input type="text" class="form-control mydatepicker" name="fecha" placeholder="Ingrese fecha de Caducidad." max="2019-01-01" min="2016-01-01">
+                                         <input type="text" name="direccion" class="form-control" id="fnamep" placeholder="Ingrese dirección" value="" required autocomplete="off">  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        </div>
+                                    </div><br>
+                                     
+                                    <label>Teléfono<small class="text-muted"> 9999-9999</small></label>
+                                    <div class="input-group">
+                                        <input type="text" name="telefonoProv" class="form-control phone-inputmask2" id="phone-mask2"  value="" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         </div>
                                     </div> 
 
@@ -83,7 +91,7 @@ include_once '../plantilla/menu_lateral.php';
                                 LA ETIQUETA </form> DETRO DE ELLA SIEMPRE TEIENE QUE ESTAR LOS BOTONES-->
 
                                 <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                    <!--yo lo utilizo tipo input porque asi me funciona--><input type="submit" class="btn btn-info" value="Guardar" name="modGuardar">
+                                <input type="submit" class="btn btn-info" value="Guardar" name="modGuardar">
 
                                 </div>
 
@@ -114,22 +122,21 @@ include_once '../plantilla/pie.php';
                                 // aqui vamos a guardar la informacion que contiene el modal.
                                 include_once '../Conexion/conexion.php';
 
-                                $nombre_res = $_POST['nombreRes'];
-                                $apellido = $_REQUEST['apellidoRes'];
-                                $dui = $_REQUEST['duiRes'];
-                                $telefono = $_REQUEST['telefonoRes'];
+                                $nombreEm = $_POST['nombreEmp'];
+                                $nombreRes = $_REQUEST['nombreRes'];
+                                $direccion = $_REQUEST['direccion'];
+                                $telefono = $_REQUEST['telefonoProv'];
 
 ////////////
-       $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_responsable WHERE res_cdui='$dui'");
-         $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_responsable WHERE res_ctelefono='$telefono'");
-        if (mysqli_num_rows($verificar_insert) > 0 || mysqli_num_rows($verificar_insert2) > 0 ) {
-            echo '<script>swal("DUI o Teléfono ya existen")
+     //  $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_responsable WHERE res_cdui='$dui'");
+         $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_proveedor WHERE pro_ctelefono='$telefono'");
+        if (mysqli_num_rows($verificar_insert2) > 0 ) {
+            echo '<script>swal("Teléfono ya existe")
              .then((value) => {
               swal(`Verifique los datos`);
                 });</script>';
         }else {
-                                 mysqli_query($conexion, "INSERT INTO t_responsable(t_paciente,res_cnombre,res_capellidos,res_cdui,res_ctelefono)"
-                                        . " VALUES('$id','$nombre_res','$apellido','$dui','$telefono')");
+                                 mysqli_query($conexion, "INSERT INTO t_proveedor(fk_insumo,pro_cnombre_empresa,pro_cnombre_responsable,pro_cdireccion,pro_ctelefono)VALUES('$id','$nombreEm','$nombreRes','$direccion','$telefono')");
 
                                 echo '<script>swal({
                     title: "Registro",
@@ -139,11 +146,11 @@ include_once '../plantilla/pie.php';
                     closeOnConfirm: false
                 },
                 function () {
-                    location.href="registroPaciente.php";
+                    location.href="registroInsumo.php";
                     
                 });</script>';
                             }
-                                //////////////
+                         
 }
 
                             ?>
