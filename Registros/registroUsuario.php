@@ -16,7 +16,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     $nusuario = $_REQUEST['nusuario'];
     $contrasena = $_REQUEST['contrasena'];
     $tusuario = $_REQUEST['tusuario'];
- 
+    $esta=1;
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
     
@@ -62,7 +62,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                 });</script>';  }
     
     if (!$numero_correo && !$numero_usuario ) {
-           mysqli_query($conexion, "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"); 
+           mysqli_query($conexion, "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario,estado) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario','$esta')"); 
     
            echo '<script>swal({
                     title: "Registro",

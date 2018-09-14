@@ -29,7 +29,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                     closeOnConfirm: false
                 },
                 function () {
-                    location.href="registroInsumo.php";
+                    location.href="modalInsumo.php";
                     
                 });</script>';
    
