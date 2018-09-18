@@ -9,18 +9,24 @@ if (isset($_REQUEST['btnGuardar'])) {
     $nombre = $_REQUEST['nombreCom'];
     $marca = $_REQUEST['marca'];
     $descripcion = $_REQUEST['descripcion'];
-    $presentacion = $_REQUEST['presentacion'];
     $precio = $_REQUEST['precio'];
-
     $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
+    
   // $partes = explode('-', $fecha);
    // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
     $esta=1;
     Conexion::abrir_conexion(); 
     $conexionx = Conexion::obtener_conexion();
     
-    mysqli_query($conexion,"INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad,estado) VALUES('$nombre','$marca','$descripcion','$presentacion','$precio','$fecha','$esta')"); 
+    mysqli_query($conexion,"INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_dprecio,ins_ffecha_caducidad,estado) VALUES('$nombre','$marca','$descripcion','$precio','$fecha','$esta')"); 
 
+    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
+                                    while ($row = mysqli_fetch_array($insumo)) {
+                                        $id = $row['ins_codigo'];
+                                        $presentacion = $_REQUEST['presentacion'];
+                                        $unidad = $_REQUEST['unidad'];
+                                    }
+     mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$presentacion','$unidad')");
     echo '<script>swal({
                     title: "Exito",
                     text: "Insumo Guardado!",
@@ -49,8 +55,8 @@ if (isset($_REQUEST['btnGuardar'])) {
                             <div>
                                <section>
 
-                                     <div class="row mb-3">
-                                    <div class="col-lg-4">
+                                     <div class="row mb-9">
+                                    <div class="col-lg-6">
                                     <label>Nombre Comercial:<small class="text-muted" ></small></label>                                     
                                     <input type="text" class="form-control" id="fname"  name="nombreCom" placeholder="Nombre Comercial del Insumo.">                                     
                                     </div>
@@ -66,10 +72,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción del Producto.">                                     
                                     </div>
 
-                                    <div class="col-lg-4">
-                                    <label>Presentación:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Detalle la forma de Presentación del Producto."></div>
-
+                               
                                     <div class="col-lg-4">
                                     <label>Precio:<small class="text-muted" ></small></label>                                     
                                     <input type="number" min="0" class="form-control" id="lname" name="precio" placeholder="Digite el precio del Producto.">
@@ -84,7 +87,16 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     </div>
                                 </div>
                                     </div>
-
+                                 
+                                   <div class="col-lg-4">
+                                    <label>Presentación:<small class="text-muted" ></small></label>                                     
+                                    <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Digite presentacion.">
+                                    </div>
+                                   
+                                   <div class="col-lg-4">
+                                    <label>Unidad:<small class="text-muted" ></small></label>                                     
+                                    <input type="number" min="0" class="form-control" id="lname" name="unidad" placeholder="Digite unidades.">
+                                    </div>
                                  <div class="col-lg-4">
                                         
                                           <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
