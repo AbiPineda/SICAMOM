@@ -58,9 +58,10 @@ include_once '../Conexion/conexion.php';
      <th><div>Nombre</div></th>
       <th><div>Marca</div></th>
       <th><div>Descripción</div></th>
-      <th><div>Presentación</div></th>
       <th><div>Precio</div></th>
       <th><div>Fecha de Caducidad</div></th>
+      <th><div>Presentación</div></th>
+      <th><div>Unidad</div></th>
     
       
       
@@ -69,27 +70,30 @@ include_once '../Conexion/conexion.php';
     <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
     <!-- Donde va el contenido de la tabla-->
     <?php
-        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo");
+        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo, detalle_insumo WHERE ins_codigo=fk_insumo AND estado=1");
             while ($fila = mysqli_fetch_array($sacar1)) {
                  
                 $nom=$fila['ins_cnombre_comercial'];  
                 $marca=$fila['ins_cmarca'];  
                 $desc=$fila['ins_cdescripcion'];  
-                $pres=$fila['ins_cpresentacion'];  
                 $precio=$fila['ins_dprecio'];
                 $fec_cad=$fila['ins_ffecha_caducidad']; 
                 $partes = explode('-', $fec_cad);
                 $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
-            
+                $pres=$fila['paquete'];
+                $unidad=$fila['unidad'];
+
+
         ?> 
       <tr>
         <th scope="row"><?php echo $nom;?></th>
         <td data-title="Released"><?php echo $marca;?></td>
         
         <td data-title="Studio"><?php echo $desc;?></td>
-        <td data-title="Worldwide Gross" data-type="currency"><?php echo $pres;?></td>
-        <td data-title="Worldwide Gross" data-type="currency"><?php echo $precio;?></td>
+        <td data-title="Worldwide Gross" data-type="currency"> $<?php echo $precio;?></td>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
+         <td data-title="Worldwide Gross" data-type="currency"> $<?php echo $pres;?></td>
+        <td data-title="Domestic Gross" data-type="currency"><?php echo $unidad;?></td>
         </td>
 
        <?php  }?>
