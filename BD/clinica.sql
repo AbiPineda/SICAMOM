@@ -324,6 +324,24 @@ CREATE  TABLE IF NOT EXISTS `Clinica`.`t_bitacora` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `Clinica`.`detalle_insumo`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `Clinica`.`detalle_insumo` (
+  `id_detalle` INT NULL AUTO_INCREMENT ,
+  `fk_insumo` INT NOT NULL ,
+  `unidad` INT NULL ,
+  `paquete` INT NULL ,
+  PRIMARY KEY (`id_detalle`) ,
+  INDEX `fk_detalle_insumo_t_insumo1_idx` (`fk_insumo` ASC) ,
+  CONSTRAINT `fk_detalle_insumo_t_insumo1`
+    FOREIGN KEY (`fk_insumo` )
+    REFERENCES `Clinica`.`t_insumo` (`ins_codigo` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 USE `Clinica` ;
 
 
