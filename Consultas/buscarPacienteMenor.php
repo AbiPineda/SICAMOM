@@ -41,7 +41,7 @@ include_once '../Conexion/conexion.php';
             <!--Fin Búsqueda-->
 
     <div class="card" >
-      <h3 class="card-title">Buscar Paciente | Datos generales</h3>
+      <h3 class="card-title">Paciente Menor de Edad | Datos generales</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -52,11 +52,12 @@ include_once '../Conexion/conexion.php';
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
       
-     <th><div>Nombre</div></th>
+      <th><div>Nombre</div></th>
       <th><div>Apellido</div></th>
+      <th><div>Responsable</div></th>
       <th><div>DUI</div></th>
       <th><div>Teléfono</div></th>
-      <th><div>Fecha de nacimiento</div></th>
+      
     
       
       
@@ -64,25 +65,24 @@ include_once '../Conexion/conexion.php';
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE estado=1");
-            while ($fila = mysqli_fetch_array($sacar)) {
-                 
+    //SELECT CONCAT(p.res_cnombre," ",p.res_capellidos) as res_cnombre from t_responsable p;
+        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente, t_responsable WHERE id_paciente=idresponsable AND estado=1");
+            $nombre = mysqli_query($conexion, "SELECT CONCAT(p.res_cnombre,' ',p.res_capellidos) as res_cnombre from t_responsable p");
+            
+        while ($fila = mysqli_fetch_array($sacar)) {
                  $ape=$fila['pac_capellidos'];  
                  $nom=$fila['pac_cnombre'];  
                  $dui=$fila['pac_cdui'];  
                  $tel=$fila['pac_ctelefono'];  
-                  $fe=$fila['pac_ffecha_nac']; 
-                $partes = explode('-', $fe);
-                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+                 $res=$fila['res_cnombre'];            
             
         ?>
       <tr>
         <th scope="row"><?php echo $nom;?></th>
         <td data-title="Released"><?php echo $ape;?></td>
-        
-        <td data-title="Studio"><?php echo $dui;?></td>
-        <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
-        <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
+        <td data-title="Studio"><?php echo $res;?></td>
+        <td data-title="Worldwide Gross" data-type="currency"><?php echo $dui;?></td>
+        <td data-title="Domestic Gross" data-type="currency"><?php echo $tel;?></td>
         </td>
 
        <?php  }?>
@@ -111,3 +111,4 @@ include_once '../Conexion/conexion.php';
     include_once '../plantilla/pie.php';
 
 ?>
+

@@ -26,10 +26,6 @@ include_once '../Conexion/conexion.php';
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
 
-     <!-- Búsqueda UTILIZO EL JQUERY buscaresc.js que es el que hace el proceso interno de buscar
-    funciona junto con jquery de lo contrario nada colocas el id="filtar" que con ese nombre lo reconoce
-    el buscaresc.js para hacer el proceso que keres buscar ya sea por letras,numeros,dui, nit, loq sea
-    solo eso necesitas para que busque-->
 
             <div class="wrap">
               <script src="../html/js/jquery.min.js" ></script>
@@ -67,8 +63,7 @@ include_once '../Conexion/conexion.php';
       
       
     </thead>
-    <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
-    <!-- Donde va el contenido de la tabla-->
+    <tbody  class="buscar"> 
     <?php
         $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo, detalle_insumo WHERE ins_codigo=fk_insumo AND estado=1");
             while ($fila = mysqli_fetch_array($sacar1)) {
@@ -88,11 +83,10 @@ include_once '../Conexion/conexion.php';
       <tr>
         <th scope="row"><?php echo $nom;?></th>
         <td data-title="Released"><?php echo $marca;?></td>
-        
         <td data-title="Studio"><?php echo $desc;?></td>
         <td data-title="Worldwide Gross" data-type="currency"> $<?php echo $precio;?></td>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
-         <td data-title="Worldwide Gross" data-type="currency"> $<?php echo $pres;?></td>
+         <td data-title="Worldwide Gross" data-type="currency"><?php echo $pres;?></td>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $unidad;?></td>
         </td>
 
