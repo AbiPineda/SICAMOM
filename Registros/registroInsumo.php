@@ -10,6 +10,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     $marca = $_REQUEST['marca'];
     $descripcion = $_REQUEST['descripcion'];
     $precio = $_REQUEST['precio'];
+    $presentacion = $_REQUEST['presentacion'];
     $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
     
   // $partes = explode('-', $fecha);
@@ -18,15 +19,15 @@ if (isset($_REQUEST['btnGuardar'])) {
     Conexion::abrir_conexion(); 
     $conexionx = Conexion::obtener_conexion();
     
-    mysqli_query($conexion,"INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_dprecio,ins_ffecha_caducidad,estado) VALUES('$nombre','$marca','$descripcion','$precio','$fecha','$esta')"); 
+    mysqli_query($conexion,"INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad,estado) VALUES('$nombre','$marca','$descripcion','$presentacion','$precio','$fecha','$esta')"); 
 
     $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
                                     while ($row = mysqli_fetch_array($insumo)) {
                                         $id = $row['ins_codigo'];
-                                        $presentacion = $_REQUEST['presentacion'];
+                                        $paquete = $_REQUEST['paquete'];
                                         $unidad = $_REQUEST['unidad'];
                                     }
-     mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$presentacion','$unidad')");
+     mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
     echo '<script>swal({
                     title: "Exito",
                     text: "Insumo Guardado!",
@@ -44,7 +45,9 @@ if (isset($_REQUEST['btnGuardar'])) {
 } else {
     ?>
  <div class="page-wrapper" style="height: 671px;">
-          
+     
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
             <div class="container-fluid">
                  <div class="card" style="background: rgba(0, 101, 191,0.3)">
                       
@@ -55,27 +58,27 @@ if (isset($_REQUEST['btnGuardar'])) {
                             <div>
                                <section>
 
-                                     <div class="row mb-9">
-                                    <div class="col-lg-6">
+                                     <div class="row mb-12">
+                                    <div class="col-lg-4">
                                     <label>Nombre Comercial:<small class="text-muted" ></small></label>                                     
                                     <input type="text" class="form-control" id="fname"  name="nombreCom" placeholder="Nombre Comercial del Insumo.">                                     
                                     </div>
-                                     </div>
+                                    
                                    
-                                     <div class="col-lg-4">
+                                     <div class="col-lg-3">
                                     <label>Marca:<small class="text-muted" ></small></label>                                     
                                     <input type="text" class="form-control" id="lname" name="marca" placeholder="Marca del Insumo.">                                     
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                     <label>Descripción:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción del Producto.">                                     
+                                    <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción de Insumo.">                                     
                                     </div>
-
+                                   
                                
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-2">
                                     <label>Precio:<small class="text-muted" ></small></label>                                     
-                                    <input type="number" min="0" class="form-control" id="lname" name="precio" placeholder="Digite el precio del Producto.">
+                                    <input type="number" min="0" class="form-control" id="lname" name="precio" placeholder="Digite Precio">
                                     </div>
                                     
                                     <div class="col-lg-4">
@@ -89,15 +92,30 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     </div>
                                  
                                    <div class="col-lg-4">
-                                    <label>Presentación:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Digite presentacion.">
-                                    </div>
+                                     <label>Tipo de Insumo<small class="text-muted"></small></label>
+                                     <select class="custom-select" name="tipo" id="tipo" style="width: 100%; height:36px;" >
+                                         
+                                                <option value="Contable" selected>Contables</option>
+                                                <option value="No contable">No contables</option>
+                                        </select>
+                                  </div>
                                    
                                    <div class="col-lg-4">
-                                    <label>Unidad:<small class="text-muted" ></small></label>                                     
-                                    <input type="number" min="0" class="form-control" id="lname" name="unidad" placeholder="Digite unidades.">
+                                    <label>Presentación:<small class="text-muted" ></small></label>                                     
+                                    <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Descripción del Producto.">                                     
                                     </div>
-                                 <div class="col-lg-4">
+                                   
+                                   <div class="col-lg-2">
+                                    <label>Cantidad de Paquete:<small class="text-muted" ></small></label>                                     
+                                    <input type="number" class="form-control" id="lname" name="paquete" placeholder="Cantidad de Paquete." >
+                                    </div>
+                                   
+                                   <div class="col-lg-2">
+                                    <label>Unidad:<small class="text-muted" ></small></label>                                     
+                                    <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Cantidad de Unidades." >
+                                    </div>
+                                 
+                                 <div class="col-lg-12">
                                         
                                           <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
                                               <button type="submit" class="btn btn-info" name="btnGuardar" id="boton">Guardar </button>
@@ -110,9 +128,13 @@ if (isset($_REQUEST['btnGuardar'])) {
                             </div>
 
                         </div>
+                 </div>
                     </div>
+                
                     </div>
- </div>
+      </div>
+
+ 
                 <!-- ============================================================== --> 
 
   <?php
@@ -151,3 +173,14 @@ if (isset($_REQUEST['btnGuardar'])) {
         return false;
     }
 </script>
+<script>
+$( function() {
+    $("#tipo").change( function() {
+        if ($(this).val() === "No contable") {
+            $("#unidad").prop("disabled", true);
+        } else {
+            $("#unidad").prop("disabled", false);
+        }
+    });
+});
+    </script>

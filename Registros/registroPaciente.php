@@ -189,6 +189,7 @@ include_once '../plantilla/menu_lateral.php';
                                     
                                 </div>
 
+                                
                                 <div class="col-lg-3">
                                     <label style="padding-top: 12px;" ><small class="text-muted"></small></label>
                                     
