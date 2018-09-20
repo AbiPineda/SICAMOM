@@ -83,8 +83,7 @@ include_once '../Conexion/conexion.php';
         ?>
       <tr>
         <th scope="row"><?php echo $nom;?></th>
-        <td data-title="Released"><?php echo $ape;?></td>
-        
+        <td data-title="Released"><?php echo $ape;?></td>   
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>

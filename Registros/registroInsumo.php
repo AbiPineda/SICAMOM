@@ -47,6 +47,8 @@ if (isset($_REQUEST['btnGuardar'])) {
  <div class="page-wrapper" style="height: 671px;">
      
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+          
+         
 
             <div class="container-fluid">
                  <div class="card" style="background: rgba(0, 101, 191,0.3)">
@@ -54,7 +56,7 @@ if (isset($_REQUEST['btnGuardar'])) {
 
                     <div class="card-body wizard-content">
                         <h3 class="card-title">Registro de Insumos | Datos generales</h3>
-                        <form id="example-form" action="" class="m-t-40" method="POST">
+                        <form id="example-form" action="" class="m-t-40" method="POST" autocomplete="off">
                             <div>
                                <section>
 
@@ -77,14 +79,22 @@ if (isset($_REQUEST['btnGuardar'])) {
                                    
                                
                                     <div class="col-lg-2">
-                                    <label>Precio:<small class="text-muted" ></small></label>                                     
+                                    <label>Precio ($):<small class="text-muted" ></small></label>                                     
                                     <input type="number" min="0" class="form-control" id="lname" name="precio" placeholder="Digite Precio">
                                     </div>
                                     
+                                  <div class="col-lg-4">
+                                     <label>Seleccione si el Insumo tiene caducidad:<small class="text-muted"></small></label>
+                                     <select class="custom-select" name="tipoCaducidad" id="tipoCaducidad" style="width: 100%; height:36px;" >
+                                         
+                                                <option value="Caducidad" selected>Tiene Caducidad</option>
+                                                <option value="No caducidad">No tiene Caducidad</option>
+                                        </select>
+                                  </div>
                                     <div class="col-lg-4">
                                  <label>Fecha de Caducidad:</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control mydatepicker" name="fecha" placeholder="Ingrese fecha de Caducidad." max="2019-01-01" min="2016-01-01" onChange="javascript:validate_fecha($_fecha);">
+                                    <input type="text" class="form-control mydatepicker" name="fecha" id="fecha" placeholder="Ingrese fecha de Caducidad.">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                     </div>
@@ -92,11 +102,11 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     </div>
                                  
                                    <div class="col-lg-4">
-                                     <label>Tipo de Insumo<small class="text-muted"></small></label>
+                                     <label>Tipo de Insumo:<small class="text-muted"></small></label>
                                      <select class="custom-select" name="tipo" id="tipo" style="width: 100%; height:36px;" >
                                          
-                                                <option value="Contable" selected>Contables</option>
-                                                <option value="No contable">No contables</option>
+                                                <option value="Contable" selected>Contable</option>
+                                                <option value="No contable">No contable</option>
                                         </select>
                                   </div>
                                    
@@ -126,13 +136,15 @@ if (isset($_REQUEST['btnGuardar'])) {
                                       
                                     </div> 
                             </div>
+                                   
 
                         </div>
+                        </form>
                  </div>
+
                     </div>
                 
-                    </div>
-      </div>
+                  
 
  
                 <!-- ============================================================== --> 
@@ -183,4 +195,19 @@ $( function() {
         }
     });
 });
-    </script>
+</script>
+<script>
+$( function() {
+    $("#tipoCaducidad").change( function() {
+        if ($(this).val() === "No caducidad") {
+            $("#fecha").prop("disabled", true);
+        } else {
+            $("#fecha").prop("disabled", false);
+        }
+    });
+});
+    </script>    
+    
+    
+    
+     
