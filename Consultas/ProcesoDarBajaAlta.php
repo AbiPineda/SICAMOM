@@ -5,6 +5,7 @@ $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE id_paciente='$mod
 while ($fila = mysqli_fetch_array($sacar)) {
     $modificar = $fila['id_paciente'];
     $estadoUpdate = $fila['estado'];
+    
 }
 if ($estadoUpdate == 0) {
     mysqli_query($conexion, "UPDATE t_paciente SET estado=1 WHERE id_paciente='$modificar'");
