@@ -39,6 +39,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         $unidad = $_REQUEST['unidad'];
                                     }
      mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
+    
     echo '<script>swal({
                     title: "Exito",
                     text: "Insumo Guardado!",
@@ -75,26 +76,24 @@ if (isset($_REQUEST['btnGuardar'])) {
 
                                      <div class="row mb-12">
                                     <div class="col-lg-2">
-                                    <label>Codigo:<small class="text-muted" ></small></label>  
-                                    <?php 
-                                    ?>
-                                    <input type="text" class="form-control" id="fname"  name="codigo">                                     
+                                    <label>Código:<small class="text-muted" ></small></label>  
+                                    <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código." disabled>                                     
                                     </div>
                                     
                                     <div class="col-lg-3">
                                     <label>Nombre Comercial:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre Comercial del Insumo.">                                     
+                                    <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre Comercial del Insumo." onkeypress="return soloLetras(event)">                                     
                                     </div>
                                     
                                    
                                      <div class="col-lg-3">
                                     <label>Marca:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="lname" name="marca" placeholder="Marca del Insumo.">                                     
+                                    <input type="text" class="form-control" id="marca" name="marca" placeholder="Marca del Insumo." onkeypress="return sinCaracterEspecial(event)">                                     
                                     </div>
 
                                     <div class="col-lg-4">
                                     <label>Descripción:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción de Insumo.">                                     
+                                    <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción de Insumo." onkeypress="return sinCaracterEspecial(event)">                                     
                                     </div>
                                    
                                
@@ -132,7 +131,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                    
                                    <div class="col-lg-4">
                                     <label>Presentación:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Descripción del Producto.">                                     
+                                    <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Descripción del Producto." onkeypress="return sinCaracterEspecial(event)">                                     
                                     </div>
                                    
                                    <div class="col-lg-2">
@@ -204,6 +203,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     }
 </script>
 <script>
+    //Habilitar y deshabilitar dependiendo si el insumo se puede contabilizar en unidades.
 $( function() {
     $("#tipo").change( function() {
         if ($(this).val() === "No contable") {
@@ -215,6 +215,7 @@ $( function() {
 });
 </script>
 <script>
+    //Habilitar y deshabilitar dependiendo si el insumo tiene o no fecha de caducidad
 $( function() {
     $("#tipoCaducidad").change( function() {
         if ($(this).val() === "1") {
@@ -227,12 +228,15 @@ $( function() {
     </script>    
     
     <script src="http://code.jquery.com/jquery-1.0.4.js"></script>
+    
+   
 <script>
+    //Generacion de codigo (primeras 3 letras del nombre comercial, 3 numeros aleatorios)
       $(document).ready(function () {
           $("#nombreCom").keyup(function () {
               
               var value = $(this).val();
-              $cod = value.substr(0,3);
+              $cod = value.substr(0,3).toUpperCase();
               if(value!=""){
               var numero = Math.floor(Math.random() * (999-100))+100;
               $codigo = $cod+numero;
@@ -245,13 +249,40 @@ $( function() {
       });
 </script>
 
- <script>
-        
- function codigo()
- {
-     
-    // var comercial = document.getElementById("nombreCom").valueOf()
- }
- </script>
-    
-     
+
+<script>
+ function soloLetras(e) {
+        key = e.keyCode || e.which;
+        teclado = String.fromCharCode(key).toLowerCase();
+        letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+        especiales = "8-37-38-46-164";
+        teclado_especial = false;
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                teclado_especial = true;
+                break;
+            }
+        }
+        if (letras.indexOf(teclado) == -1 && !teclado_especial) {
+            return false;
+        }
+    }
+
+</script>
+   
+<script>
+ function sinCaracterEspecial(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla == 8) {
+        return true;
+    }
+
+    // Patron de entrada, en este caso solo acepta numeros y letras
+    patron = /[A-Za-z0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+</script>
+
