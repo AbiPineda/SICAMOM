@@ -82,7 +82,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     
                                     <div class="col-lg-3">
                                     <label>Nombre Comercial:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre Comercial del Insumo." onkeypress="return soloLetras(event)">                                     
+                                    <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre Comercial del Insumo." onkeypress="return soloLetras(event)" value="" required min="">                                     
                                     </div>
                                     
                                    
@@ -279,8 +279,8 @@ $( function() {
         return true;
     }
 
-    // Patron de entrada, en este caso solo acepta numeros y letras
-    patron = /[A-Za-z0-9]/;
+    // Patron de entrada, en este caso solo acepta numeros, letras, espacio.
+    patron = /[A-Za-z0-9 ]/;
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 }
