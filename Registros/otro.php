@@ -3,33 +3,7 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 
-if (isset($_REQUEST['nameEnviar'])) {
-    include_once '../../Conexion/conexion.php';
 
-    $nombre  = $_REQUEST['nombreCom'];
-    echo $nombre;
-    $marca = $_REQUEST['marca'];
-    echo $marca;
-     $descripcion = $_REQUEST['descripcion'];
-    echo $descripcion;
-    $presentacion = $_REQUEST['presentacion'];
-    echo $presentacion;
-    $precio = $_REQUEST['precio'];
-    echo $precio;
-    $fecha = $_REQUEST['fecha'];
-    echo $fecha;
-    
-    Conexion::abrir_conexion();
-    $conexionx = Conexion::obtener_conexion();
-    $sql = "INSERT INTO t_responsable(res_cnombre,res_capellidos,res_cdui,res_ctelefono) VALUES('$nombre','$marca','$descripcion','$presentacion')"; 
-
-    //$sql = "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad) VALUES('$nombre','$marca','$descripcion','$presentacion','$precio','$fecha')"; 
-    $sentencia = $conexionx->prepare($sql);
-    $usuario_insertado = $sentencia->execute();
-
-    
-    
-} else {
 
 
     ?>
@@ -52,7 +26,7 @@ if (isset($_REQUEST['nameEnviar'])) {
                         <div class="card" style="background: rgba(0, 101, 191,0.3)">
                             <div class="card-body wizard-content">
                                 <h4 class="card-title">Registro Inventario</h4>
-                                <form id="example-form" action="registroPaciente.php" method="POST" class="m-t-40">
+                                <form id="FORMULARIO" action="" method="POST" class="m-t-40">
                                     <div>
                                         <h3>Datos generales</h3>
                                         <section>
@@ -60,12 +34,12 @@ if (isset($_REQUEST['nameEnviar'])) {
 
                                                 <div class="col-lg-6">
                                                     <label>Nombre Comercial<small class="text-muted"></small></label>
-                                                    <div class="input-group">
+                                                   
                                                         <input type="text" class="form-control" name="nombreCom" id="fnamep" placeholder="Ingrese nombre de la comercial">  
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="fas fa-building"></i></span>
                                                         </div>
-                                                    </div> 
+                                                    
 
                                                 </div>
 
@@ -153,5 +127,5 @@ if (isset($_REQUEST['nameEnviar'])) {
     <?php
     
     include_once '../plantilla/pie.php';
-}
+
 ?>
