@@ -3,10 +3,8 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 $codigo1= '';
-
 if (isset($_REQUEST['btnGuardar'])) {
     include_once '../Conexion/conexion.php';
-
     $codigo = $_REQUEST['codigo'];
     $nombre = $_REQUEST['nombreCom'];
     $marca = $_REQUEST['marca'];
@@ -31,7 +29,6 @@ if (isset($_REQUEST['btnGuardar'])) {
     $conexionx = Conexion::obtener_conexion();
     
     mysqli_query($conexion,"INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad,estado,codigo) VALUES('$nombre','$marca','$descripcion','$presentacion','$precio','$fecha','$esta',' $codigo')"); 
-
     $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
                                     while ($row = mysqli_fetch_array($insumo)) {
                                         $id = $row['ins_codigo'];
@@ -39,7 +36,6 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         $unidad = $_REQUEST['unidad'];
                                     }
      mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
-    
     echo '<script>swal({
                     title: "Exito",
                     text: "Insumo Guardado!",
@@ -76,30 +72,32 @@ if (isset($_REQUEST['btnGuardar'])) {
 
                                      <div class="row mb-12">
                                     <div class="col-lg-2">
-                                    <label>Código:<small class="text-muted" ></small></label>  
-                                    <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código." disabled>                                     
+                                    <label>Codigo:<small class="text-muted" ></small></label>  
+                                    <?php 
+                                    ?>
+                                    <input type="text" class="form-control" id="fname"  name="codigo">                                     
                                     </div>
                                     
                                     <div class="col-lg-3">
                                     <label>Nombre Comercial:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre Comercial del Insumo." onkeypress="return soloLetras(event)" value="" required min="">                                     
+                                    <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre Comercial del Insumo." onkeypress="return soloLetras(event)" value="" required>                                     
                                     </div>
                                     
                                    
                                      <div class="col-lg-3">
                                     <label>Marca:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="marca" name="marca" placeholder="Marca del Insumo." onkeypress="return sinCaracterEspecial(event)">                                     
+                                    <input type="text" class="form-control" id="lname" name="marca" placeholder="Marca del Insumo." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
                                     </div>
 
                                     <div class="col-lg-4">
                                     <label>Descripción:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción de Insumo." onkeypress="return sinCaracterEspecial(event)">                                     
+                                    <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción de Insumo." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
                                     </div>
                                    
                                
                                     <div class="col-lg-2">
                                     <label>Precio ($):<small class="text-muted" ></small></label>                                     
-                                    <input type="number" min="0" class="form-control" id="lname" name="precio" placeholder="Digite Precio">
+                                    <input type="number" min="0" class="form-control" id="lname" name="precio" placeholder="Digite Precio" value="" required>
                                     </div>
                                     
                                   <div class="col-lg-3">
@@ -131,17 +129,17 @@ if (isset($_REQUEST['btnGuardar'])) {
                                    
                                    <div class="col-lg-4">
                                     <label>Presentación:<small class="text-muted" ></small></label>                                     
-                                    <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Descripción del Producto." onkeypress="return sinCaracterEspecial(event)">                                     
+                                    <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Presentación del Producto." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
                                     </div>
                                    
                                    <div class="col-lg-2">
                                     <label>Cantidad de Paquete:<small class="text-muted" ></small></label>                                     
-                                    <input type="number" min="0" class="form-control" id="lname" name="paquete" placeholder="Cantidad de Paquete." >
+                                    <input type="number" min="0" class="form-control" id="lname" name="paquete" placeholder="Cantidad de Paquete." value="" required>
                                     </div>
                                    
                                    <div class="col-lg-2">
                                     <label>Unidad:<small class="text-muted" ></small></label>                                     
-                                    <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Cantidad de Unidades." >
+                                    <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Cantidad de Unidades." value="" required >
                                     </div>
                                  
                                  <div class="col-lg-12">
@@ -181,16 +179,11 @@ if (isset($_REQUEST['btnGuardar'])) {
         var dteDate;
         month = month - 1;
         dteDate = new Date(year, month, day);
-
-
         return ((day == dteDate.getDate()) && (month == dteDate.getMonth()) && (year == dteDate.getFullYear()));
     }
-
-
     function validate_fecha(fecha)
     {
         var patron = new RegExp("^(19|20)+([0-9]{2})([-])([0-9]{1,2})([-])([0-9]{1,2})$");
-
         if (fecha.search(patron) == 0)
         {
             var values = fecha.split("-");
@@ -203,7 +196,6 @@ if (isset($_REQUEST['btnGuardar'])) {
     }
 </script>
 <script>
-    //Habilitar y deshabilitar dependiendo si el insumo se puede contabilizar en unidades.
 $( function() {
     $("#tipo").change( function() {
         if ($(this).val() === "No contable") {
@@ -215,7 +207,6 @@ $( function() {
 });
 </script>
 <script>
-    //Habilitar y deshabilitar dependiendo si el insumo tiene o no fecha de caducidad
 $( function() {
     $("#tipoCaducidad").change( function() {
         if ($(this).val() === "1") {
@@ -228,10 +219,7 @@ $( function() {
     </script>    
     
     <script src="http://code.jquery.com/jquery-1.0.4.js"></script>
-    
-   
 <script>
-    //Generacion de codigo (primeras 3 letras del nombre comercial, 3 numeros aleatorios)
       $(document).ready(function () {
           $("#nombreCom").keyup(function () {
               
@@ -249,8 +237,7 @@ $( function() {
       });
 </script>
 
-
-<script>
+ <script>
  function soloLetras(e) {
         key = e.keyCode || e.which;
         teclado = String.fromCharCode(key).toLowerCase();
@@ -267,22 +254,18 @@ $( function() {
             return false;
         }
     }
-
 </script>
    
 <script>
  function sinCaracterEspecial(e) {
     tecla = (document.all) ? e.keyCode : e.which;
-
     //Tecla de retroceso para borrar, siempre la permite
     if (tecla == 8) {
         return true;
     }
-
     // Patron de entrada, en este caso solo acepta numeros, letras, espacio.
     patron = /[A-Za-z0-9 ]/;
     tecla_final = String.fromCharCode(tecla);
     return patron.test(tecla_final);
 }
 </script>
-

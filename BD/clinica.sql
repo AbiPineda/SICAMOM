@@ -110,6 +110,7 @@ CREATE  TABLE IF NOT EXISTS `Clinica`.`t_insumo` (
   `ins_dprecio` DOUBLE NULL ,
   `ins_ffecha_caducidad` DATE NULL ,
   `estado` INT NULL ,
+  `codigo` VARCHAR(6) NULL ,
   PRIMARY KEY (`ins_codigo`) )
 ENGINE = InnoDB;
 
