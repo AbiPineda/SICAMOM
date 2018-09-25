@@ -82,7 +82,7 @@ include_once '../Conexion/conexion.php';
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
  
-        <td class="text"><a href="../Consultas/modificarPaciente.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Modificar</a>
+        <td class="text"><a href="../Consultas/modificarResponsable.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Modificar</a>
         </td>
 
        <?php  }?>
