@@ -12,51 +12,101 @@
                 <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
                 </div>
 
+                
+                
+                
                     <div class="card-body wizard-content">
                     <h3 class="card-title">Modificar Insumo | Datos personales</h3>
 
-                    <form action="modificarInsumo.php" method="post">
+                    <form action="" method="post">
                         <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
                     <div>
                         <h3></h3>
                         <section>
 
-                            <div class="row mb-3">
+                            <div class="row mb-1">
                                 <div class="col-lg-4">
                                     <?php
                                     include_once '../Conexion/conexion.php';
-                                    $sacar = mysqli_query($conexion, "SELECT*FROM t_insumo, detalle_insumo WHERE ins_codigo=id_detalle AND ins_codigo='$modi'");
+                                    $sacar = mysqli_query($conexion, "SELECT*FROM t_insumo, t_proveedor WHERE ins_codigo=id_proveedor AND ins_codigo='$modi'");
                                     while ($fila = mysqli_fetch_array($sacar)) {
                                         $modificar = $fila['ins_codigo'];
-                                        $des = $fila['ins_cdescripcion'];
-                                        $uni = $fila['unidad'];
+                                        $nomComercial = $fila['ins_cnombre_comercial'];
+                                        $marca = $fila['ins_cmarca'];
+                                        $descripcion = $fila['ins_cdescripcion'];
+                                        $presentacion = $fila['ins_cpresentacion'];
+                                        $nombreEmpresa = $fila['pro_cnombre_empresa'];
+                                        $nombreVendedor = $fila['pro_cnombre_responsable'];
+                                        $direccion = $fila['pro_cdireccion'];
+                                        $telefono = $fila['pro_ctelefono'];
+                                        
                                         
 
                                         ?>
-                                        <label style="padding-top: 12px;">Descripción<small class="text-muted"></small></label>
+                                    <label style="padding-top: 12px;">Nombre Comercial<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="text" name="nombre" value="<?php echo $des; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
+                                            <input type="text" name="nombreComercial" value="<?php echo $nomComercial; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
                                         </div> 
-
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <label style="padding-top: 12px;">Unidades<small class="text-muted"></small></label>
+                                    
+                                    <label style="padding-top: 12px;">Marca<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="number" name="apellido" value="<?php echo $uni; ?>" class="form-control" id="fnamep" placeholder="Ingrese unidades" autocomplete="off">  
+                                            <input type="text" name="marca" value="<?php echo $marca; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
-                                        </div>                                    
-                                    </div>
-
-                                   
-
+                                        </div> 
                                     
-                                    <div class="col-lg-4">
+                                        <label style="padding-top: 12px;">Descripción<small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                            <input type="text" name="descripcion" value="<?php echo $descripcion; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                        </div> 
+                                        
+                                         <label style="padding-top: 12px;">Presentación<small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                            <input type="text" name="presentacion" value="<?php echo $presentacion; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                        </div>
+                                         <label> <h3>Modificar Proveedor | Datos personales</h3></label>
+                                          <label style="padding-top: 12px;">Nombre de Empresa<small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                            <input type="text" name="nombreEmpresa" value="<?php echo $nombreEmpresa; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                        </div>
+                                          
+                                          <label style="padding-top: 12px;">Nombre del Vendedor<small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                            <input type="text" name="nombreVendedor" value="<?php echo $nombreVendedor; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                        </div>
+                                          
+                                          <label style="padding-top: 12px;">Dirección<small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                            <input type="text" name="direccion" value="<?php echo $direccion; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                        </div>
+
+                                          <label style="padding-top: 12px;">Telefono<small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                            <input type="text" name="telefono" value="<?php echo $telefono; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            </div>
+                                        </div>
+                                          <div class="col-lg-4">
 
                                         <div class="row mb-12" style="float: left;margin-left: 850px; margin-top: 11px;">
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
@@ -66,6 +116,10 @@
                                         </div>
 
                                     </div>
+                                    </div>
+
+                                 
+                                   
                             </div>
                                     <?php
                                 }
@@ -91,20 +145,29 @@ if (isset($_REQUEST['btnEnviar'])) {
     $modi = $_REQUEST['tirar'];
     include_once '../Conexion/conexion.php';
 
-    $des = $_REQUEST['nombre'];
-    echo $nombre;
-    $uni = $_REQUEST['apellido'];
-   
-  
+     $nomComercial = $_REQUEST['nombreComercial'];
+    $marca = $_REQUEST['marca'];
+    $descripcion = $_REQUEST['descripcion'];
+    $presentacion = $_REQUEST['descripcion'];
+    $nombreEmpresa = $_REQUEST['nombreEmpresa'];
+    $nombreVendedor = $_REQUEST['nombreVendedor'];
+    $direccion = $_REQUEST['direccion'];
+    $telefono = $_REQUEST['telefono'];
 
-    /*                    $ape = $fila['pac_capellidos'];
-                                        $nom = $fila['pac_cnombre'];
-                                        $dui = $fila['pac_cdui'];
-                                        $tel = $fila['pac_ctelefono'];
-                                        $fe = $fila['pac_ffecha_nac'];*/
+   
+
+    /*                    $nomComercial = $fila['ins_cnombre_comercial'];
+                                        $marca = $fila['ins_cmarca'];
+                                        $descripcion = $fila['ins_cdescripcion'];
+                                        $presentacion = $fila['ins_cpresentacion'];
+                                        $nombreEmpresa = $fila['pro_cnombre_empresa'];
+                                        $nombreVendedor = $fila['pro_cnombre_responsable'];
+                                        $direccion = $fila['pro_cdireccion'];
+                                        $telefono = $fila['pro_ctelefono'];
+                                        */
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    $sql = "UPDATE t_insumo, detalle_insumo SET ins_cdescripcion='$des',unidad='$uni' WHERE ins_codigo=id_detalle AND ins_codigo='$modi'";
+    $sql = "UPDATE t_insumo, t_proveedor SET ins_cnombre_comercial='$nomComercial',ins_cmarca='$marca',ins_cdescripcion='$descripcion',ins_cpresentacion='$presentacion',pro_cnombre_empresa='$nombreEmpresa',pro_cnombre_responsable='$nombreVendedor',pro_cdireccion='$direccion',pro_ctelefono='$telefono' WHERE ins_codigo=id_proveedor AND ins_codigo='$modi'";
     $sentencia = $conexionx->prepare($sql);
     $usuario_insertado = $sentencia->execute();
         echo '<script>swal({

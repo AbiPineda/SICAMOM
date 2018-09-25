@@ -50,18 +50,15 @@ include_once '../Conexion/conexion.php';
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
-    <thead>
-      
-    <th><div>Codigo</div></th>
+  
+  <thead>  
+  <th><div>Codigo</div></th>
   <th><div>Nombre Comercial</div></th>
   <th><div>Descripción</div></th>
   <th><div>Presentación</div></th>
   <th><div>Paquete</div></th>
   <th><div>Unidad</div></th>
   <th><<div>Acción</div></th>
-      
-      
-      
     </thead>
     <tbody  class="buscar"> 
     <?php
@@ -75,10 +72,10 @@ include_once '../Conexion/conexion.php';
                  $cod=$fila['codigo'];  
                  $paq=$fila['paquete'];
                  $uni=$fila['unidad'];
-             
+              
         ?>
       <tr>
-        <th data-title="row"><?php echo $cod;?></th>
+        <th scope="row"><?php echo $cod;?></th>
         <td data-title="Released"><?php echo $nom;?></td>
         <td data-title="Studio"><?php echo $descrip;?></td>
         <td data-title="Worldwide Gross"><?php echo $pre;?></td>

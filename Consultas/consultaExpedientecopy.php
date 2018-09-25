@@ -61,9 +61,6 @@ include_once '../Conexion/conexion.php';
       <th><div>Teléfono</div></th>
       <th><div>Fecha de nacimiento</div></th>
       <th><div>Acción</div></th>
-      
-      
-      
     </thead>
     <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
     <!-- Donde va el contenido de la tabla-->
