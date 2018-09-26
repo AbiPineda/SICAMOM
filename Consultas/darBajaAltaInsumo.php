@@ -75,7 +75,9 @@ include_once '../Conexion/conexion.php';
                          <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
     <!-- Donde va el contenido de la tabla-->
       <?php
-        $sacar = mysqli_query($conexion, "SELECT*FROM detalle_insumo, t_proveedor WHERE id_detalle=id_proveedor");
+      $id = '5';
+      
+        $sacar = mysqli_query($conexion, "SELECT*FROM detalle_insumo, t_proveedor WHERE id_detalle= '$id'");
             while ($fila = mysqli_fetch_array($sacar)) { 
                  
                   $cod1=$fila['unidad']; 
