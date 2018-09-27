@@ -65,10 +65,10 @@ include_once '../Conexion/conexion.php';
       
       <th ><div>Nombre</div></th>
       <th ><div>Apellido</div></th>
-      <th ><div>Fecha de nacimiento</div></th>
-      <th ><div>Nombre del Responsable</div></th>
-      <th ><div>DUI del Responsable</div></th>
-      <th ><div>Teléfono del Responsable</div></th>   
+      <th ><div>Fecha nacimiento</div></th>
+      <th ><div>Responsable</div></th>
+      <th ><div>DUI Responsable</div></th>
+      <th ><div>Tel. Responsable</div></th>   
       <th ><div>Acción</div></th>      
     </thead>
     <tbody  class="buscar"> 
