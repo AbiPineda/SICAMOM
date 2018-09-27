@@ -31,7 +31,7 @@ include_once '../Conexion/conexion.php';
             <select class="custom-select" name="tipo" onchange="location = this.value">
                 <option>Seleccionar</option>
                 <option value="modificarMenoresdeEdad.php">Menor de Edad</option>
-                <option value="consultaMayoresdeEdad.php">Mayor de Edad</option>
+                <option value="modificarMayoresdeEdad.php">Mayor de Edad</option>
                
             </select>
             
@@ -56,7 +56,7 @@ include_once '../Conexion/conexion.php';
             <!--Fin Búsqueda-->
 
     <div class="card" >
-      <h3 class="card-title">Modificar Paciente | Datos generales</h3>
+      <h3 class="card-title">Modificar Paciente Mayor de Edad | Datos generales</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -65,38 +65,46 @@ include_once '../Conexion/conexion.php';
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
-    <thead>
+     <thead>
       
      <th><div>Nombre</div></th>
       <th><div>Apellido</div></th>
       <th><div>DUI</div></th>
       <th><div>Teléfono</div></th>
       <th><div>Fecha de nacimiento</div></th>
-      <th><div>Acción</div></th>
+       <th><div>Acción</div></th>
+    
+      
+      
+      
     </thead>
-    <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
-    <!-- Donde va el contenido de la tabla-->
+    <tbody  class="buscar"> 
     <?php
-        $sacar = mysqli_query($conexion, "SELECT *FROM t_paciente WHERE estado=1 ");
+$d = date("d");
+$m = date("m");
+$y = date("Y");
+$ym=$y-18;
+
+//echo "$d-$m-$ym";
+        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE (pac_ffecha_nac<='$ym-$m-$d') AND estado=1");
             while ($fila = mysqli_fetch_array($sacar)) {
-                  $modificar=$fila['id_paciente']; 
+                  $modificar=$fila['id_paciente'];
                  $ape=$fila['pac_capellidos'];  
                  $nom=$fila['pac_cnombre'];  
                  $dui=$fila['pac_cdui'];  
                  $tel=$fila['pac_ctelefono'];  
-                
-                $fe=$fila['pac_ffecha_nac']; 
+                  $fe=$fila['pac_ffecha_nac']; 
                 $partes = explode('-', $fe);
-                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
-          
+                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+            
         ?>
       <tr>
         <th scope="row"><?php echo $nom;?></th>
-        <td data-title="Released"><?php echo $ape;?></td>   
+        <td data-title="Released"><?php echo $ape;?></td>
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
-        <td class="text"><a href="../Consultas/modificarPaciente.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Modificar</a>
+         <td class="text"><a href="../Consultas/modificarPaciente.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Modificar</a>
         </td>
 
        <?php  }?>

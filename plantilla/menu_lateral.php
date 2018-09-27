@@ -11,7 +11,7 @@
 
                         <li class="sidebar-item"><a href="../Registros/registroPaciente.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Registrar </span></a></li>
 
-                        <li class="sidebar-item"><a href="../Consultas/consultaExpedientecopy.php" class="sidebar-link"><i class="fas fa-pencil-alt"></i><span class="hide-menu">Modificar pacientes</span></a></li>
+                        <li class="sidebar-item"><a href="../Consultas/modificarMayoresdeEdad.php" class="sidebar-link"><i class="fas fa-pencil-alt"></i><span class="hide-menu">Modificar pacientes</span></a></li>
                         <li class="sidebar-item"><a href="../Consultas/consultaResponsable.php" class="sidebar-link"><i class="fas fa-pencil-alt"></i><span class="hide-menu">Modificar responsables</span></a></li>
                         <li class="sidebar-item"><a href="../Consultas/buscarPaciente.php" class="sidebar-link"><i class="fas fa-search"></i><span class="hide-menu">Buscar</span></a></li>
                         <li class="sidebar-item"><a href="../Consultas/darBajaAlta.php" class="sidebar-link"><i class="fas fa-arrows-alt-v"></i><span class="hide-menu">Dar alta/baja</span></a></li>

@@ -26,22 +26,18 @@ include_once '../Conexion/conexion.php';
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
 
-     <div class="col-lg-4">
+         <div class="col-lg-4">
             <label style="padding-top: 5px;" >Organizar por Edad<small class="text-muted"></small></label>
             <select class="custom-select" name="tipo" onchange="location = this.value">
-                <option>Seleccionar</option>
-                <option value="modificarMenoresdeEdad.php">Menor de Edad</option>
-                <option value="consultaMayoresdeEdad.php">Mayor de Edad</option>
+                <option>Menor de Edad</option>
+               <!-- <option value="consultaMenoresdeEdad.php">Menor de Edad</option> -->
+                <option value="modificarMayoresdeEdad.php">Mayor de Edad</option>
+                
                
             </select>
             
         </div>
-      </br>
-
-     <!-- Búsqueda UTILIZO EL JQUERY buscaresc.js que es el que hace el proceso interno de buscar
-    funciona junto con jquery de lo contrario nada colocas el id="filtar" que con ese nombre lo reconoce
-    el buscaresc.js para hacer el proceso que keres buscar ya sea por letras,numeros,dui, nit, loq sea
-    solo eso necesitas para que busque-->
+      <br/>
 
             <div class="wrap">
               <script src="../html/js/jquery.min.js" ></script>
@@ -56,48 +52,58 @@ include_once '../Conexion/conexion.php';
             <!--Fin Búsqueda-->
 
     <div class="card" >
-      <h3 class="card-title">Modificar Paciente | Datos generales</h3>
+      <h3 class="card-title">Modificar Paciente Menor de Edad | Datos generales</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
 
 
   <div class="scroll-window-wrapper">
-  <div class="scroll-window">
+  <div class="scroll-window" >
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
       
-     <th><div>Nombre</div></th>
-      <th><div>Apellido</div></th>
-      <th><div>DUI</div></th>
-      <th><div>Teléfono</div></th>
-      <th><div>Fecha de nacimiento</div></th>
-      <th><div>Acción</div></th>
+      <th ><div>Nombre</div></th>
+      <th ><div>Apellido</div></th>
+      <th ><div>Fecha de nacimiento</div></th>
+      <th ><div>Nombre del Responsable</div></th>
+      <th ><div>DUI del Responsable</div></th>
+      <th ><div>Teléfono del Responsable</div></th>   
+      <th ><div>Acción</div></th>      
     </thead>
-    <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
-    <!-- Donde va el contenido de la tabla-->
+    <tbody  class="buscar"> 
     <?php
-        $sacar = mysqli_query($conexion, "SELECT *FROM t_paciente WHERE estado=1 ");
+$d = date("d");
+$m = date("m");
+$y = date("Y");
+$ym=$y-18;
+
+//echo "$d-$m-$ym";
+        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente, t_responsable WHERE (pac_ffecha_nac>='$ym-$m-$d') AND t_paciente=id_paciente AND t_paciente.estado=1");
             while ($fila = mysqli_fetch_array($sacar)) {
-                  $modificar=$fila['id_paciente']; 
+                 $modificar=$fila['id_paciente']; 
                  $ape=$fila['pac_capellidos'];  
                  $nom=$fila['pac_cnombre'];  
-                 $dui=$fila['pac_cdui'];  
-                 $tel=$fila['pac_ctelefono'];  
-                
-                $fe=$fila['pac_ffecha_nac']; 
+                 $fe=$fila['pac_ffecha_nac']; 
                 $partes = explode('-', $fe);
-                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
-          
+                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+         
+                 $resnombre=$fila['res_cnombre'];
+                 $resapellidos=$fila['res_capellidos'];
+                 $dui=$fila['res_cdui'];  
+                 $tel=$fila['res_ctelefono']; 
+            
         ?>
       <tr>
         <th scope="row"><?php echo $nom;?></th>
-        <td data-title="Released"><?php echo $ape;?></td>   
+        <td data-title="Released"><?php echo $ape;?></td>
+        <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
+        <td data-title="Domestic Gross" data-type="currency"><?php echo $resnombre . " " . $resapellidos;?></td>
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
-        <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
-        <td class="text"><a href="../Consultas/modificarPaciente.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Modificar</a>
+        <td class="text"><a href="../Consultas/modificarPacienteMenor.php?ir1=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Modificar</a>
         </td>
+        
 
        <?php  }?>
       

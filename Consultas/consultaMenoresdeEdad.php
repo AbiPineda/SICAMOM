@@ -32,6 +32,7 @@ include_once '../Conexion/conexion.php';
                 <option>Menor de Edad</option>
                <!-- <option value="consultaMenoresdeEdad.php">Menor de Edad</option> -->
                 <option value="consultaMayoresdeEdad.php">Mayor de Edad</option>
+                <option value="buscarPaciente.php">Todos</option>
                
             </select>
             
