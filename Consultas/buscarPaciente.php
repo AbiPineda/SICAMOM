@@ -41,6 +41,12 @@ include_once '../Conexion/conexion.php';
             <div class="wrap">
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
+                 </br>
+             </br>
+                 </br>
+                    </br>
+                        </br>
+                            </br>
          <div class="search">
             <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
             <button type="submit" class="searchButton">

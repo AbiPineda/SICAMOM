@@ -29,33 +29,43 @@ include_once '../Conexion/conexion.php';
 
       <div class="col-lg-4">
             <label style="padding-top: 5px;" >Tipo de Insumo<small class="text-muted"></small></label>
+          
             <select class="custom-select" name="tipo" onchange="location = this.value">
+                
                 <option>Seleccionar</option>
                 <option value="insumoContable.php">Contable por unidades</option>
                 <option value="insumoNoContable.php">No contable</option>
                
             </select>
-            
+         
         </div>
+      
      <!-- Búsqueda UTILIZO EL JQUERY buscaresc.js que es el que hace el proceso interno de buscar
     funciona junto con jquery de lo contrario nada colocas el id="filtar" que con ese nombre lo reconoce
     el buscaresc.js para hacer el proceso que keres buscar ya sea por letras,numeros,dui, nit, loq sea
     solo eso necesitas para que busque-->
-
+     
             <div class="wrap">
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
+           </br>
+                </br>
+                 </br>
+                    </br>
+                        </br>
+                            </br>
          <div class="search">
-            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
+           <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
             <button type="submit" class="searchButton">
               <i class="fa fa-search"></i>
            </button>
          </div>
+                
       </div>
             <!--Fin Búsqueda-->
 
-       
-
+       </br>
+    
     <div class="card" >
       <h3 class="card-title">  Inventario de insumos</h3>
       <div class="col-md-12">
@@ -120,6 +130,7 @@ include_once '../Conexion/conexion.php';
 
   </div> <!-- Div col-md-12 -->
   </div> <!-- Div card -->
+      
   </div> <!-- Div page-wrapper -->
   </div> <!-- Div page-wrapper -->
 
