@@ -44,10 +44,10 @@ include_once '../Conexion/conexion.php';
       </div>
             <!--Fin Búsqueda-->
 
-       
+          
 
     <div class="card" >
-      <h3 class="card-title">  Inventario de insumos</h3>
+      <h3 class="card-title">Inventario de insumos</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -79,18 +79,18 @@ include_once '../Conexion/conexion.php';
                  $uni=$fila['unidad'];
                  $pac=$fila['paquete'];
                   $cod=$fila['codigo']; 
-                $total=$uni*$pac;
+               
                
             
         ?>
           <tr>
          <?php
-         if($uni!=0) {?>
+         if($uni==0) {?>
 
          <td data-title="Worldwide Gross" data-type="currency"><?php echo $cod;?></td>
         <th scope="row"><?php echo $nom;?></th>
          <th scope="row"><?php echo $marc;?></th>
-          <th scope="row"><?php echo $total;?></th>
+          <th scope="row"><?php echo $pac;?></th>
        <td class="text"><a href="../Consultas/ProcesoDarBajaInsumo.php?ir=<?php echo $modificar; ?>" class="btn btn-success far fa-clock">    Historial</a></td>
         
        <?php }?>
