@@ -11,16 +11,17 @@
             <div class="card" style="background: rgba(0, 101, 191,0.3)">
                 <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
                 </div>
-
+                    <br> 
                     <div class="card-body wizard-content">
+                        
                     <h3 class="card-title">Modificar Paciente | Datos personales</h3>
-
+                            
                     <form action="modificarPaciente.php" method="post">
                         <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
                     <div>
                         <h3></h3>
                         <section>
-
+                            
                             <div class="row mb-3">
                                 <div class="col-lg-4">
                                     <?php
@@ -37,6 +38,7 @@
                                         
 
                                         ?>
+                                    
                                         <label style="padding-top: 12px;">Nombre<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="nombre" value="<?php echo $nom; ?>" class="form-control" id="fnamep" placeholder="Ingrese nombre" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
@@ -70,10 +72,10 @@
                                     </div>
                                     <div class="col-lg-4">
 
-                                        <div class="row mb-12" style="float: left;margin-left: 850px; margin-top: 11px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 1175px; margin-top: 25px;">
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
                                         </div>
-                                        <div class="row mb-12" style="float: left;margin-left: 750px; margin-top: -34px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 1070px; margin-top: -34px;">
                                             <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                         </div>
 
@@ -87,7 +89,7 @@
                     </form>
 
                 </div>
-
+                    
 
             </div>
         </div>

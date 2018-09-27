@@ -48,8 +48,8 @@ include_once '../Conexion/conexion.php';
             <div class="wrap">
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
-           </br>
-                </br>
+         </br>
+             </br>
                  </br>
                     </br>
                         </br>

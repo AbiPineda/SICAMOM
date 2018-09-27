@@ -70,10 +70,10 @@
                                     </div>
                                     <div class="col-lg-4">
 
-                                        <div class="row mb-12" style="float: left;margin-left: 850px; margin-top: 11px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 1175px; margin-top: 25px;">
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
                                         </div>
-                                        <div class="row mb-12" style="float: left;margin-left: 750px; margin-top: -34px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 1070px; margin-top: -34px;">
                                             <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                         </div>
 

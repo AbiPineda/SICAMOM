@@ -113,7 +113,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     <div class="col-lg-4">
                                         <label>Apellido<small class="text-muted"></small></label>
                                       
-                                            <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas"  value="" >  
+                                            <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas"  value=""  required>  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
@@ -166,10 +166,10 @@ if (isset($_REQUEST['btnGuardar'])) {
                                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                             </div>
                                        
-                                        <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                        <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 100px;">
                                             <button type="submit" class="btn btn-info" name="btnGuardar" id="boton">Guardar </button>
                                         </div>
-                                        <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                        <div class="row mb-12" style="float: right;margin-right: 30px; margin-top: 100px;">
                                             <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
                                         </div>
 

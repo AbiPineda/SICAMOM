@@ -116,7 +116,7 @@ include_once '../plantilla/menu_lateral.php';
                 <form action="" id="f1" name="f1" method="post" class="form-register" >
                     <input type="hidden" name="tirar" id="pase"/>
                     <div>
-
+                            <br/>
                         <section>
                             <div class="row mb-12">
 
@@ -193,11 +193,11 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-3">
                                     <label style="padding-top: 12px;" ><small class="text-muted"></small></label>
                                     
-                                    <div class="row mb-12" style="float: left; margin-left: 400px; margin-top: -10px;">
+                                    <div class="row mb-12" style="float: right; margin-right: -300px; margin-top: 100px;">
                                         <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar">
                                     </div>
 
-                                    <div class="row mb-12" style="float: left;margin-left: 300px; margin-top: -10px;">
+                                    <div class="row mb-12" style="float: right;margin-right: -200px; margin-top: 100px;">
                                         <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                     </div>
                                 </div>
