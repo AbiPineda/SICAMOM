@@ -100,40 +100,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Clinica`.`t_proveedor`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `Clinica`.`t_proveedor` (
-  `id_proveedor` INT NOT NULL AUTO_INCREMENT ,
-  `pro_cnombre_empresa` VARCHAR(30) NULL ,
-  `pro_cnombre_responsable` VARCHAR(30) NULL ,
-  `pro_cdireccion` VARCHAR(45) NULL ,
-  `pro_ctelefono` VARCHAR(9) NULL ,
-  `estado` INT NULL ,
-  PRIMARY KEY (`id_proveedor`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `Clinica`.`t_insumo`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `Clinica`.`t_insumo` (
   `ins_codigo` INT NOT NULL AUTO_INCREMENT ,
-  `fk_proveedor` INT NOT NULL ,
   `ins_cnombre_comercial` VARCHAR(30) NULL ,
   `ins_cmarca` VARCHAR(25) NULL ,
   `ins_cdescripcion` TEXT NULL ,
   `ins_cpresentacion` VARCHAR(25) NULL ,
-  `ins_dprecio` DOUBLE NULL ,
   `ins_ffecha_caducidad` DATE NULL ,
   `estado` INT NULL ,
   `codigo` VARCHAR(7) NULL ,
-  PRIMARY KEY (`ins_codigo`) ,
-  INDEX `fk_t_insumo_t_proveedor1_idx` (`fk_proveedor` ASC) ,
-  CONSTRAINT `fk_t_insumo_t_proveedor1`
-    FOREIGN KEY (`fk_proveedor` )
-    REFERENCES `Clinica`.`t_proveedor` (`id_proveedor` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`ins_codigo`) )
 ENGINE = InnoDB;
 
 
@@ -309,6 +287,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `Clinica`.`t_proveedor`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `Clinica`.`t_proveedor` (
+  `id_proveedor` INT NOT NULL AUTO_INCREMENT ,
+  `pro_cnombre_empresa` VARCHAR(30) NULL ,
+  `pro_cnombre_responsable` VARCHAR(30) NULL ,
+  `pro_cdireccion` VARCHAR(45) NULL ,
+  `pro_ctelefono` VARCHAR(9) NULL ,
+  `estado` INT NULL ,
+  `justificacion` VARCHAR(100) NULL ,
+  PRIMARY KEY (`id_proveedor`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `Clinica`.`t_bitacora`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `Clinica`.`t_bitacora` (
@@ -341,6 +334,32 @@ CREATE  TABLE IF NOT EXISTS `Clinica`.`detalle_insumo` (
   CONSTRAINT `fk_detalle_insumo_t_insumo1`
     FOREIGN KEY (`fk_insumo` )
     REFERENCES `Clinica`.`t_insumo` (`ins_codigo` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Clinica`.`t_compra`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `Clinica`.`t_compra` (
+  `id_compra` INT NULL AUTO_INCREMENT ,
+  `precio_unitario` DOUBLE NULL ,
+  `cantidad` INT NULL ,
+  `total` DOUBLE NULL ,
+  `fk_insumo` INT NOT NULL ,
+  `fk_proveedor` INT NOT NULL ,
+  PRIMARY KEY (`id_compra`) ,
+  INDEX `fk_t_compra_t_insumo1_idx` (`fk_insumo` ASC) ,
+  INDEX `fk_t_compra_t_proveedor1_idx` (`fk_proveedor` ASC) ,
+  CONSTRAINT `fk_t_compra_t_insumo1`
+    FOREIGN KEY (`fk_insumo` )
+    REFERENCES `Clinica`.`t_insumo` (`ins_codigo` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_t_compra_t_proveedor1`
+    FOREIGN KEY (`fk_proveedor` )
+    REFERENCES `Clinica`.`t_proveedor` (`id_proveedor` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
