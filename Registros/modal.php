@@ -245,7 +245,7 @@ include_once '../plantilla/pie.php';
               swal(`Verifique los datos`);
                 });</script>';
         }else {
-                                 mysqli_query($conexion, "INSERT INTO t_responsable(t_paciente,res_cnombre,res_capellidos,res_cdui,res_ctelefono,t_estado)"
+                                 mysqli_query($conexion, "INSERT INTO t_responsable(t_paciente,res_cnombre,res_capellidos,res_cdui,res_ctelefono,estado)"
                                         . " VALUES('$id','$nombre_res','$apellido','$dui','$telefono','$esta')");
 
                                 echo '<script>swal({

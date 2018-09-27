@@ -58,7 +58,7 @@ include_once '../Conexion/conexion.php';
   <th><div>Presentación</div></th>
   <th><div>Paquete</div></th>
   <th><div>Unidad</div></th>
-  <th><<div>Acción</div></th>
+  <th><div>Acción</div></th>
     </thead>
     <tbody  class="buscar"> 
     <?php

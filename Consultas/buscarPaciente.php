@@ -26,7 +26,17 @@ include_once '../Conexion/conexion.php';
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
 
-   
+         <div class="col-lg-4">
+            <label style="padding-top: 5px;" >Organizar por Edad<small class="text-muted"></small></label>
+            <select class="custom-select" name="tipo" onchange="location = this.value">
+                <option>Seleccionar</option>
+                <option value="consultaMenoresdeEdad.php">Menor de Edad</option>
+                <option value="consultaMayoresdeEdad.php">Mayor de Edad</option>
+               
+            </select>
+            
+        </div>
+      </br>
 
             <div class="wrap">
               <script src="../html/js/jquery.min.js" ></script>

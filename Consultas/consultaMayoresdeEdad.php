@@ -26,7 +26,17 @@ include_once '../Conexion/conexion.php';
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
 
-    
+         <div class="col-lg-4">
+            <label style="padding-top: 5px;" >Organizar por Edad<small class="text-muted"></small></label>
+            <select class="custom-select" name="tipo" onchange="location = this.value">
+                <option>Mayor de Edad</option>
+                <option value="consultaMenoresdeEdad.php">Menor de Edad</option>
+              <!--  <option value="consultaMayoresdeEdad.php">Mayor de Edad</option>  -->
+               
+            </select>
+            
+        </div>
+      </br>
 
             <div class="wrap">
               <script src="../html/js/jquery.min.js" ></script>
@@ -41,7 +51,7 @@ include_once '../Conexion/conexion.php';
             <!--Fin Búsqueda-->
 
     <div class="card" >
-      <h3 class="card-title">Modificar Usuario | Datos generales</h3>
+      <h3 class="card-title">Buscar Paciente | Datos generales</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -54,30 +64,40 @@ include_once '../Conexion/conexion.php';
       
      <th><div>Nombre</div></th>
       <th><div>Apellido</div></th>
-      <th><div>Correo</div></th>
-      <th><div>Usuario</div></th>
-      <th><div>Acción</div></th>
+      <th><div>DUI</div></th>
+      <th><div>Teléfono</div></th>
+      <th><div>Fecha de nacimiento</div></th>
+    
       
       
       
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar = mysqli_query($conexion, "SELECT *FROM t_usuario WHERE estado=1 ");
+$d = date("d");
+$m = date("m");
+$y = date("Y");
+$ym=$y-18;
+
+//echo "$d-$m-$ym";
+        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE (pac_ffecha_nac<='$ym-$m-$d') AND estado=1");
             while ($fila = mysqli_fetch_array($sacar)) {
-                  $modificar=$fila['id_usuario']; 
-                 $ape=$fila['usu_capellido'];  
-                 $nom=$fila['usu_cnombre'];  
-                 $correo=$fila['usu_ccorreo'];  
-                 $usuario=$fila['usu_cusuario'];  
-             
+                 
+                 $ape=$fila['pac_capellidos'];  
+                 $nom=$fila['pac_cnombre'];  
+                 $dui=$fila['pac_cdui'];  
+                 $tel=$fila['pac_ctelefono'];  
+                  $fe=$fila['pac_ffecha_nac']; 
+                $partes = explode('-', $fe);
+                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+            
         ?>
       <tr>
         <th scope="row"><?php echo $nom;?></th>
         <td data-title="Released"><?php echo $ape;?></td>
-        <td data-title="Studio"><?php echo $correo;?></td>
-        <td data-title="Worldwide Gross" data-type="currency"><?php echo $usuario;?></td>
-        <td class="text"><a href="../Consultas/modificarUsuario.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Modificar</a>
+        <td data-title="Studio"><?php echo $dui;?></td>
+        <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
+        <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
         </td>
 
        <?php  }?>

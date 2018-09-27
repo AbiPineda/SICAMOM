@@ -67,7 +67,7 @@ include_once '../Conexion/conexion.php';
     <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
     <!-- Donde va el contenido de la tabla-->
     <?php
-        $sacar = mysqli_query($conexion, "SELECT *FROM t_responsable WHERE t_estado=1 ");
+        $sacar = mysqli_query($conexion, "SELECT *FROM t_responsable WHERE estado=1 ");
             while ($fila = mysqli_fetch_array($sacar)) {
                   $modificar=$fila['idresponsable']; 
                  $ape=$fila['res_capellidos'];  
