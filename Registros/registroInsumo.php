@@ -1,6 +1,4 @@
-<?php
-$mysqli = new mysqli("localhost", "root", "", "clinica");
-?>
+
 <?php
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
@@ -12,7 +10,6 @@ if (isset($_REQUEST['btnGuardar'])) {
     $nombre = $_REQUEST['nombreCom'];
     $marca = $_REQUEST['marca'];
     $descripcion = $_REQUEST['descripcion'];
-    $precio = $_REQUEST['precio'];
     $caducidad = $_REQUEST['tipoCaducidad'];
     $presentacion = $_REQUEST['presentacion'];
     if ($caducidad == '0') {
@@ -31,7 +28,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
 
-    mysqli_query($conexion, "INSERT INTO t_insumo(fk_proveedor,ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_dprecio,ins_ffecha_caducidad,estado,codigo) VALUES('$id',$nombre','$marca','$descripcion','$presentacion','$precio','$fecha','$esta',' $codigo')");
+    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_ffecha_caducidad,estado,codigo) VALUES('$nombre','$marca','$descripcion','$presentacion','$fecha','$esta','$codigo')");
     $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
     while ($row = mysqli_fetch_array($insumo)) {
         $id = $row['ins_codigo'];
@@ -75,24 +72,11 @@ if (isset($_REQUEST['btnGuardar'])) {
 
                                 <div class="row mb-12">
 
-                                    <div class="col-lg-4">
-                                        <label style="color: white">Seleccione Proveedor:<small class="text-muted"></small></label>
-                                        <select class="form-control" name="tipo">
-
-                                            <option value="0">Proveedor:</option>
-                                            <?php
-                                            $query = $mysqli->query("SELECT * FROM t_proveedor");
-                                            while ($valores = mysqli_fetch_array($query)) {
-                                                echo '<option value="' . $valores['id_proveedor'] . '">' . $valores['pro_cnombre_empresa'] . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
+                                    
                                     <div class="col-lg-2">
                                         <label style="color: white">Código:<small class="text-muted" ></small></label>  
-                                        <?php
-                                        ?>
-                                        <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código" disabled>                                     
+                                        
+                                        <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código">                                     
                                     </div>
 
                                     <div class="col-lg-3">
@@ -112,11 +96,6 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     </div>
 
 
-                                    <div class="col-lg-2">
-                                        <label style="color: white">Precio Unitario:<small class="text-muted" ></small></label>                                     
-                                        <input type="number" min="0" class="form-control" id="lname" name="precio" placeholder="Digite Precio" value="" required>
-                                    </div>
-
                                     <div class="col-lg-3">
                                         <label style="color: white">Seleccione si tiene caducidad:<small class="text-muted"></small></label>
                                         <select class="custom-select" name="tipoCaducidad" id="tipoCaducidad" style="width: 100%; height:36px;" >
@@ -135,7 +114,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <label style="color: white">Tipo de Insumo:<small class="text-muted"></small></label>
                                         <select class="custom-select" name="tipo" id="tipo" style="width: 100%; height:36px;" >
 
@@ -144,7 +123,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         </select>
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <label style="color: white">Presentación:<small class="text-muted" ></small></label>                                     
                                         <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Presentación del Producto." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
                                     </div>
