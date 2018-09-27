@@ -73,7 +73,7 @@ include_once '../Conexion/conexion.php';
         $sacar = mysqli_query($conexion, "SELECT*FROM t_insumo, detalle_insumo WHERE ins_codigo=id_detalle ");
             while ($fila = mysqli_fetch_array($sacar)) {
                   $modificar=$fila['ins_codigo']; 
-                   $fe=$fila['estado']; 
+                   
                  $nom=$fila['ins_cnombre_comercial'];  
                  $marc=$fila['ins_cmarca'];
                  $uni=$fila['unidad'];
@@ -83,25 +83,19 @@ include_once '../Conexion/conexion.php';
                
             
         ?>
+          <tr>
+         <?php
+         if($uni!=0) {?>
 
-      <tr>
          <td data-title="Worldwide Gross" data-type="currency"><?php echo $cod;?></td>
         <th scope="row"><?php echo $nom;?></th>
          <th scope="row"><?php echo $marc;?></th>
           <th scope="row"><?php echo $total;?></th>
+       <td class="text"><a href="../Consultas/ProcesoDarBajaInsumo.php?ir=<?php echo $modificar; ?>" class="btn btn-success far fa-clock">    Historial</a></td>
+        
+       <?php }?>
        
-     
-
-        <?php
-
-        if($fe==0){ ?>
-        <td class="text"><a class="btn btn-warning ">DE BAJA</a></td>
-        <?php
-        }else{
-        ?>
-        <td class="text"><a href="../Consultas/ProcesoDarBajaInsumo.php?ir=<?php echo $modificar; ?>" class="btn btn-success far fa-clock">    Historial</a></td>
-      
- <?php  }
+ <?php  
             }?>
       
       </tr>
