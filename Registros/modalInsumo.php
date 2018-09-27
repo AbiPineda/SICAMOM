@@ -126,6 +126,7 @@ include_once '../plantilla/pie.php';
                                 $nombreRes = $_REQUEST['nombreRes'];
                                 $direccion = $_REQUEST['direccion'];
                                 $telefono = $_REQUEST['telefonoProv'];
+                                $esta=1;
 
 ////////////
      //  $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_responsable WHERE res_cdui='$dui'");
@@ -136,7 +137,7 @@ include_once '../plantilla/pie.php';
               swal(`Verifique los datos`);
                 });</script>';
         }else {
-                                 mysqli_query($conexion, "INSERT INTO t_proveedor(fk_insumo,pro_cnombre_empresa,pro_cnombre_responsable,pro_cdireccion,pro_ctelefono)VALUES('$id','$nombreEm','$nombreRes','$direccion','$telefono')");
+                                 mysqli_query($conexion, "INSERT INTO t_proveedor(fk_insumo,pro_cnombre_empresa,pro_cnombre_responsable,pro_cdireccion,pro_ctelefono,estado)VALUES('$id','$nombreEm','$nombreRes','$direccion','$telefono','$esta)");
 
                                 echo '<script>swal({
                     title: "Registro",

@@ -75,7 +75,7 @@ include_once '../Conexion/conexion.php';
                          <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
     <!-- Donde va el contenido de la tabla-->
       <?php
-      $id ='2';
+      $id ='3';
       
         $sacar = mysqli_query($conexion, "SELECT unidad,paquete, pro_cnombre_responsable,pro_ctelefono,pro_cnombre_empresa FROM detalle_insumo
                                             INNER JOIN t_insumo ON detalle_insumo.fk_insumo = t_insumo.ins_codigo
