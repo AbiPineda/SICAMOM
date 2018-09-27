@@ -64,11 +64,11 @@ if (isset($_REQUEST['btnGuardar'])) {
 
 
         <div class="container-fluid">
-            <div class="card" style="background: rgba(0, 101, 191,0.3)">
+            <div class="card" style="background: rgba(0, 101, 191,0.6)">
 
 
                 <div class="card-body wizard-content">
-                    <h3 class="card-title">Registro de Insumos | Datos generales</h3>
+                    <h3 class="card-title" style="color: white">Registro de Insumos | Datos generales</h3>
                     <form id="example-form" action="" class="m-t-40" method="POST" autocomplete="off">
                         <div>
                             <section>
@@ -76,7 +76,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                 <div class="row mb-12">
 
                                     <div class="col-lg-4">
-                                        <label>Seleccione Proveedor:<small class="text-muted"></small></label>
+                                        <label style="color: white">Seleccione Proveedor:<small class="text-muted"></small></label>
                                         <select class="form-control" name="tipo">
 
                                             <option value="0">Proveedor:</option>
@@ -89,36 +89,36 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         </select>
                                     </div>
                                     <div class="col-lg-2">
-                                        <label>Codigo:<small class="text-muted" ></small></label>  
+                                        <label style="color: white">Código:<small class="text-muted" ></small></label>  
                                         <?php
                                         ?>
                                         <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código" disabled>                                     
                                     </div>
 
                                     <div class="col-lg-3">
-                                        <label>Nombre Comercial:<small class="text-muted" ></small></label>                                     
+                                        <label style="color: white">Nombre Comercial:<small class="text-muted" ></small></label>                                     
                                         <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre Comercial del Insumo." onkeypress="return soloLetras(event)" value="" required>                                     
                                     </div>
 
 
                                     <div class="col-lg-3">
-                                        <label>Marca:<small class="text-muted" ></small></label>                                     
+                                        <label style="color: white">Marca:<small class="text-muted" ></small></label>                                     
                                         <input type="text" class="form-control" id="lname" name="marca" placeholder="Marca del Insumo." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label>Descripción:<small class="text-muted" ></small></label>                                     
+                                        <label style="color: white">Descripción:<small class="text-muted" ></small></label>                                     
                                         <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción de Insumo." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
                                     </div>
 
 
                                     <div class="col-lg-2">
-                                        <label>Precio ($):<small class="text-muted" ></small></label>                                     
+                                        <label style="color: white">Precio Unitario:<small class="text-muted" ></small></label>                                     
                                         <input type="number" min="0" class="form-control" id="lname" name="precio" placeholder="Digite Precio" value="" required>
                                     </div>
 
                                     <div class="col-lg-3">
-                                        <label>Seleccione si tiene caducidad:<small class="text-muted"></small></label>
+                                        <label style="color: white">Seleccione si tiene caducidad:<small class="text-muted"></small></label>
                                         <select class="custom-select" name="tipoCaducidad" id="tipoCaducidad" style="width: 100%; height:36px;" >
 
                                             <option value="0" selected>Tiene Caducidad</option>
@@ -126,7 +126,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         </select>
                                     </div>
                                     <div class="col-lg-3">
-                                        <label>Fecha de Caducidad:</label>
+                                        <label style="color: white">Fecha de Caducidad:</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control mydatepicker" name="fecha" id="fecha" placeholder="Ingrese fecha de Caducidad.">
                                             <div class="input-group-append">
@@ -136,7 +136,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label>Tipo de Insumo:<small class="text-muted"></small></label>
+                                        <label style="color: white">Tipo de Insumo:<small class="text-muted"></small></label>
                                         <select class="custom-select" name="tipo" id="tipo" style="width: 100%; height:36px;" >
 
                                             <option value="Contable" selected>Contable</option>
@@ -145,17 +145,17 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label>Presentación:<small class="text-muted" ></small></label>                                     
+                                        <label style="color: white">Presentación:<small class="text-muted" ></small></label>                                     
                                         <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Presentación del Producto." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
                                     </div>
 
                                     <div class="col-lg-2">
-                                        <label>Cantidad de Paquete:<small class="text-muted" ></small></label>                                     
+                                        <label style="color: white">Cantidad de Paquete:<small class="text-muted" ></small></label>                                     
                                         <input type="number" min="0" class="form-control" id="lname" name="paquete" placeholder="Cantidad de Paquete." value="" required>
                                     </div>
 
                                     <div class="col-lg-2">
-                                        <label>Unidad:<small class="text-muted" ></small></label>                                     
+                                        <label style="color: white">Unidad:<small class="text-muted" ></small></label>                                     
                                         <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Cantidad de Unidades." value="" required >
                                     </div>
 
