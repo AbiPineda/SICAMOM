@@ -27,6 +27,16 @@ include_once '../Conexion/conexion.php';
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
 
+      <div class="col-lg-4">
+            <label style="padding-top: 5px;" >Tipo de Insumo<small class="text-muted"></small></label>
+            <select class="custom-select" name="tipo" onchange="location = this.value">
+                <option>Seleccionar</option>
+                <option value="insumoContable.php">Contable por unidades</option>
+                <option value="insumoNoContable.php">No contable</option>
+               
+            </select>
+            
+        </div>
      <!-- Búsqueda UTILIZO EL JQUERY buscaresc.js que es el que hace el proceso interno de buscar
     funciona junto con jquery de lo contrario nada colocas el id="filtar" que con ese nombre lo reconoce
     el buscaresc.js para hacer el proceso que keres buscar ya sea por letras,numeros,dui, nit, loq sea
@@ -57,7 +67,7 @@ include_once '../Conexion/conexion.php';
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
-
+  
     <th><div>Código</div></th>
     <th><div>Nombre</div></th>
     <th><div>Marca</div></th>
