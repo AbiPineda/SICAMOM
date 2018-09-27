@@ -17,7 +17,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
     
-           mysqli_query($conexion, "INSERT INTO t_proveedor(fk_insumo,pro_cnombre_empresa,pro_cnombre_responsable,pro_cdireccion,pro_ctelefono) VALUES('$id','$nombre','$nombreRes','$direccion','$telefono')"); 
+           mysqli_query($conexion, "INSERT INTO t_proveedor(pro_cnombre_empresa,pro_cnombre_responsable,pro_cdireccion,pro_ctelefono,estado) VALUES('$nombre','$nombreRes','$direccion','$telefono','$esta')"); 
     
            echo '<script>swal({
                     title: "Registro",
@@ -27,7 +27,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                     closeOnConfirm: false
                 },
                 function () {
-                    location.href="registroProveedor.php";
+                    location.href="registroInsumo.php";
                     
                 });</script>';
            
@@ -65,7 +65,7 @@ else {
                                    <div class="col-lg-4">
                                      <label>Nombre del Responsable<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="nombreRes" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required >  
+                                    <input type="text" name="nombreRes" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required >  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
