@@ -13,7 +13,7 @@ include_once '../Conexion/conexion.php';
           <!--aqui va el codigo-->
                  <!--FORMULARIO PARA GUARDAR--><form action="" id="" method="post" class="form-register" >
 
-                                <!--CAPTURA COMO LA ACCION PARA GUARDAR--><input type="hidden" name="" id="pase"/>
+                             <input type="hidden" name="pase" id="pase"/>
             <!-- Modal Header -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
@@ -26,8 +26,8 @@ include_once '../Conexion/conexion.php';
                 <p class="statusMsg"></p>
                   
                   <div class="col-lg-12">                                      
-                   <textarea rows="10" cols="61" name="justi"  placeholder="Agregar justificación" onkeypress="return soloLetras(event)" form="usrform"></textarea> 
-                   <input type="text" name="name">                                  
+                   <textarea rows="10" cols="61" name="justi"  placeholder="Agregar justificación" onkeypress="return soloLetras(event)"></textarea> 
+                                                   
                      </div>
                    <center>
                    <div class="input-group">
@@ -39,8 +39,7 @@ include_once '../Conexion/conexion.php';
             <!-- Modal Footer -->
             <div class="modal-footer">
                  <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
-              <button title=" " class="btn btn-info" type="submit" id="guardarG" name="guardarG">Guardar</button>
-             
+                 <input class="btn btn-info" type="submit" id="guardarG" name="guardarG" value="Guardar">             
             </div>
           </form>
           </div>
@@ -54,7 +53,8 @@ include_once '../Conexion/conexion.php';
 
   if (isset($_REQUEST['pase'])) {
     include_once '../Conexion/conexion.php';
-    $justifi = $_REQUEST['justi'];
+    
+    $justifi = $_POST['justi'];
   
 
     mysqli_query($conexion, "INSERT INTO t_proveedor(justificacion) VALUES('$justifi')");
@@ -67,10 +67,10 @@ include_once '../Conexion/conexion.php';
                     closeOnConfirm: false
                 },
                 function () {
-                    location.href="registroInsumo.php";
+                    location.href="";
                     
                 });</script>';
-              }
+    }
         ?>
 <html lang="en" >
 
@@ -159,12 +159,13 @@ include_once '../Conexion/conexion.php';
         <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
         <?php 
         if($fe==0){ ?>
-        <td class="text"><a data-toggle="modal" data-target="#modalJust"
-         class="btn btn-success fas fa-arrow-circle-up">Dar Alta</a></td>
+        <td class="text"><a href="../Consultas/proveedorBajaAlta.php?ir=<?php echo $modificar; ?>"  class="btn btn-success fas fa-arrow-circle-up">Dar Alta</a></td>
+<!--        <td class="text"><a data-toggle="modal" data-target="#modalJust"
+         class="btn btn-success fas fa-arrow-circle-up">Dar Alta</a></td>-->
         <?php
         }else{
         ?>
-        <td class="text"><a href="../Consultas/ProcesoDarBajaAltaProveedor.php?ir=<?php echo $modificar; ?>" class="btn btn-warning fas fa-arrow-circle-down" >Dar Baja</a></td>
+        <td class="text"><a href="../Consultas/proveedorBajaAlta.php?ir=<?php echo $modificar; ?>" class="btn btn-warning fas fa-arrow-circle-down" >Dar Baja</a></td>
       
  <?php  }
             }?>
