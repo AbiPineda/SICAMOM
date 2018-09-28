@@ -42,7 +42,7 @@ include_once '../Conexion/conexion.php';
          </div>
       </div>
             <!--Fin Búsqueda-->
-
+<br/>
     <div class="card" >
       <h3 class="card-title">Dar alta/baja | Datos del paciente</h3>
       <div class="col-md-12">

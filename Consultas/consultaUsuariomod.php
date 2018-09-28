@@ -39,7 +39,7 @@ include_once '../Conexion/conexion.php';
          </div>
       </div>
             <!--Fin Búsqueda-->
-
+<br/>
     <div class="card" >
       <h3 class="card-title">Modificar Usuario | Datos generales</h3>
       <div class="col-md-12">

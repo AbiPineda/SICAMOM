@@ -63,8 +63,7 @@ include_once '../Conexion/conexion.php';
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
       
-      <th ><div>Nombre</div></th>
-      <th ><div>Apellido</div></th>
+      <th ><div>Paciente</div></th>
       <th ><div>Fecha nacimiento</div></th>
       <th ><div>Responsable</div></th>
       <th ><div>DUI Responsable</div></th>
@@ -95,9 +94,8 @@ $ym=$y-18;
             
         ?>
       <tr>
-        <th scope="row"><?php echo $nom;?></th>
-        <td data-title="Released"><?php echo $ape;?></td>
-        <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
+        <th scope="row"><?php echo $nom . " " . $ape;?></th>
+        <td data-title="Released" data-type="currency"><?php echo $_fecha;?></td>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $resnombre . " " . $resapellidos;?></td>
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
