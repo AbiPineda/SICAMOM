@@ -91,7 +91,7 @@ include_once '../Conexion/conexion.php';
     <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
     <!-- Donde va el contenido de la tabla-->
       <?php
-        $sacar = mysqli_query($conexion, "SELECT*FROM t_insumo, detalle_insumo WHERE ins_codigo=id_detalle ");
+        $sacar = mysqli_query($conexion, "SELECT*FROM t_insumo, t_compraWHERE ins_codigo=id_compra ");
             while ($fila = mysqli_fetch_array($sacar)) {
                   $modificar=$fila['ins_codigo']; 
                    

@@ -164,8 +164,8 @@ if($llego!=null){
 <?php
 include_once '../plantilla/pie.php';
  echo '<script>swal({
-  title: "¿Estas seguro que desea realizar siguiente proceso?",
-  text: "Los datos se modificaran!",
+  title: "¿Estas seguro que desea realizar el siguiente proceso?",
+  text: "Los datos se modificarán!",
   type: "warning",
   showCancelButton: true,
   confirmButtonClass: "btn-danger",
@@ -176,7 +176,7 @@ include_once '../plantilla/pie.php';
 },
 function(isConfirm) {
   if (isConfirm) {  
-   swal("Justifique!", "A continuacion ingresara la Justificacion,", "success");
+   swal("Justifique!", "A continuación ingresará una justificación", "success");
   } else {
     swal("Cancelado", "El cierre fue cancelado", "error");
     location.href="darBajaAltaProveedor.php";

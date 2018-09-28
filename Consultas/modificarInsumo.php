@@ -24,8 +24,8 @@
                         <h3></h3>
                         <section>
 
-                            <div class="row mb-1">
-                                <div class="col-lg-4">
+                            <div class="row mb-12">
+                               
                                     <?php
                                     include_once '../Conexion/conexion.php';
                                     $sacar = mysqli_query($conexion, "SELECT*FROM t_insumo WHERE ins_codigo AND ins_codigo='$modi'");
@@ -34,21 +34,19 @@
                                         $nomComercial = $fila['ins_cnombre_comercial'];
                                         $marca = $fila['ins_cmarca'];
                                         $descripcion = $fila['ins_cdescripcion'];
-                                       
-                                        
-                                       
-                                        
-                                        
-
+                                    
                                         ?>
-                                    <label style="padding-top: 12px; color: white">Nombre Comercial<small class="text-muted"></small></label>
+                                         <div class="col-lg-4">
+                   <label style="padding-top: 12px; color: white">Nombre Comercial<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="nombreComercial" value="<?php echo $nomComercial; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
                                         </div> 
+                                    </div>
                                     
+                                     <div class="col-lg-4">
                                     <label style="padding-top: 12px; color: white">Marca<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="marca" value="<?php echo $marca; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
@@ -56,7 +54,9 @@
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
                                         </div> 
+                                    </div>
                                     
+                                     <div class="col-lg-4">
                                         <label style="padding-top: 12px; color: white">Descripción<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="descripcion" value="<?php echo $descripcion; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
@@ -64,19 +64,20 @@
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
                                         </div> 
+                                    </div>
                                         
                                          
                                           <div class="col-lg-4">
 
-                                        <div class="row mb-12" style="float: left;margin-left: 850px; margin-top: 11px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 975px; margin-top: 11px;">
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
                                         </div>
-                                        <div class="row mb-12" style="float: left;margin-left: 750px; margin-top: -34px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 875px; margin-top: -34px;">
                                             <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                         </div>
 
                                     </div>
-                                    </div>
+                                 
 
                                  
                                    
