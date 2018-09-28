@@ -3,56 +3,56 @@
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
-$codigo1 = '';
-if (isset($_REQUEST['btnGuardar'])) {
-    include_once '../Conexion/conexion.php';
-    $codigo = $_REQUEST['codigo'];
-    $nombre = $_REQUEST['nombreCom'];
-    $marca = $_REQUEST['marca'];
-    $descripcion = $_REQUEST['descripcion'];
-    $caducidad = $_REQUEST['tipoCaducidad'];
-    $presentacion = $_REQUEST['presentacion'];
-    if ($caducidad == '0') {
-        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
-    } else {
-        $fecha = '0000-00-00';
-    }
-    // $partes = explode('-', $fecha);
-    // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
-    $esta = 1;
-    //$numero = rand(100,1000);
-    //$codigo1 = (strtoupper((substr($nombre, 0, 3))) . $numero); 
-    // $anio = date("y");
-
-
-    Conexion::abrir_conexion();
-    $conexionx = Conexion::obtener_conexion();
-
-    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_ffecha_caducidad,estado,codigo) VALUES('$nombre','$marca','$descripcion','$presentacion','$fecha','$esta','$codigo')");
-    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
-    while ($row = mysqli_fetch_array($insumo)) {
-        $id = $row['ins_codigo'];
-        $paquete = $_REQUEST['paquete'];
-        $unidad = $_REQUEST['unidad'];
-    }
-    mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
-    echo '<script>swal({
-                    title: "Exito",
-                    text: "Insumo Guardado!",
-                    type: "success",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="registroInsumo.php";
-                    
-                });</script>';
-
-
-
-    //  $sentencia = $conexionx->prepare($sql);
-    //$usuario_insertado = $sentencia->execute();
-} else {
+//$codigo1 = '';
+//if (isset($_REQUEST['btnGuardar'])) {
+//    include_once '../Conexion/conexion.php';
+//    $codigo = $_REQUEST['codigo'];
+//    $nombre = $_REQUEST['nombreCom'];
+//    $marca = $_REQUEST['marca'];
+//    $descripcion = $_REQUEST['descripcion'];
+//    $caducidad = $_REQUEST['tipoCaducidad'];
+//    $presentacion = $_REQUEST['presentacion'];
+//    if ($caducidad == '0') {
+//        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
+//    } else {
+//        $fecha = '0000-00-00';
+//    }
+//    // $partes = explode('-', $fecha);
+//    // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
+//    $esta = 1;
+//    //$numero = rand(100,1000);
+//    //$codigo1 = (strtoupper((substr($nombre, 0, 3))) . $numero); 
+//    // $anio = date("y");
+//
+//
+//    Conexion::abrir_conexion();
+//    $conexionx = Conexion::obtener_conexion();
+//
+//    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_ffecha_caducidad,estado,codigo) VALUES('$nombre','$marca','$descripcion','$presentacion','$fecha','$esta','$codigo')");
+//    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
+//    while ($row = mysqli_fetch_array($insumo)) {
+//        $id = $row['ins_codigo'];
+//        $paquete = $_REQUEST['paquete'];
+//        $unidad = $_REQUEST['unidad'];
+//    }
+//    mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
+//    echo '<script>swal({
+//                    title: "Exito",
+//                    text: "Insumo Guardado!",
+//                    type: "success",
+//                    confirmButtonText: "Aceptar",
+//                    closeOnConfirm: false
+//                },
+//                function () {
+//                    location.href="registroInsumo.php";
+//                    
+//                });</script>';
+//
+//
+//
+//    //  $sentencia = $conexionx->prepare($sql);
+//    //$usuario_insertado = $sentencia->execute();
+//}
     ?>
     <div class="page-wrapper" style="height: 671px;">
 
@@ -66,7 +66,8 @@ if (isset($_REQUEST['btnGuardar'])) {
 
                 <div class="card-body wizard-content">
                     <h3 class="card-title" style="color: white">Registro de Compra| Insumo</h3>
-                    <form id="example-form" action="" class="m-t-40" method="POST" autocomplete="off">
+                    <form id="f1" name="f1" action="" class="m-t-40" method="POST" autocomplete="off">
+                        <input type="hidden" name="tirar" id="pase"/>
                         <div>
                             <section>
 
@@ -74,19 +75,35 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     
                                     <div class="col-lg-3">
                                         <label style="color: white">Proveedor<small class="text-muted"></small></label>
-                                        <select class="custom-select" name="tipoCaducidad" id="tipoCaducidad" style="width: 100%; height:36px;" >
-
-                                            <option value="0" selected>Proveedor 1</option>
-                                            <option value="1">Proveedor 2</option>
+                                        <select class="custom-select" name="proveedor" id="proveedor" style="width: 100%; height:36px;" >
+                                             <?php
+                                          include_once '../Conexion/conexion.php';
+                                          $pro= mysqli_query($conexion,"SELECT*from t_proveedor WHERE estado=1");
+                              ?>
+                            <option>Proveedor</option>
+                            <?php
+                             while ($row = mysqli_fetch_array($pro)) {
+                                         $prove=$row['id_proveedor'];
+                                           echo '<option value='."$row[0]".'>'.$row['1'].'</option>';
+                                    }
+                                    ?>
                                         </select>
                                     </div>
 
                                     <div class="col-lg-3">
                                         <label style="color: white">Insumo<small class="text-muted"></small></label>
-                                        <select class="custom-select" name="tipoCaducidad" id="tipoCaducidad" style="width: 100%; height:36px;" >
-
-                                            <option value="0" selected>Insumo 1</option>
-                                            <option value="1">Insumo 2</option>
+                                        <select class="custom-select" name="insumo" id="insumo" style="width: 100%; height:36px;" >
+                                             <?php
+                                          include_once '../Conexion/conexion.php';
+                                          $ins= mysqli_query($conexion,"SELECT*from t_insumo WHERE estado=1");
+                              ?>
+                            <option>Insumo</option>
+                            <?php
+                             while ($row = mysqli_fetch_array($ins)) {
+                                       
+                                           echo '<option value='."$row[0]".'>'.$row['1'].'</option>';
+                                    }
+                                    ?>
                                         </select>
                                     </div>
 
@@ -121,7 +138,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     <div class="col-lg-3">
                                         <label style="color: white">Cantidad de paquete<small class="text-muted" ></small></label>
                                           <div class="input-group">                         
-                                        <input type="number" min="0" class="form-control" id="lname" name="paquete" placeholder="Paquetes" value="" required>
+                                        <input type="number" min="0" class="form-control" id="Cpaquete" name="Cpaquete" placeholder="Paquetes" value="" required>
                                         <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                                             </div> 
@@ -151,7 +168,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                      <div class="col-lg-3">
                                         <label style="color: white">Precio por paquete<small class="text-muted" ></small></label>     
                                         <div class="input-group">                                  
-                                        <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Precio" value="" required >
+                                            <input type="number" min="0" class="form-control" id="precioPa" name="precioPa" onChange="javascript:totalPrecio()" placeholder="Precio" value="" required >
                                         <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                             </div> 
@@ -161,7 +178,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                      <div class="col-lg-3">
                                         <label style="color: white">Total a pagar<small class="text-muted" ></small></label>  
                                          <div class="input-group">
-                                        <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Total">
+                                        <input type="text" class="form-control" id="Tpagar"  name="Tpagar" placeholder="Total">
                                          <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                         </div>
@@ -172,7 +189,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     <div class="col-lg-12">
 
                                         <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton">Guardar </button>
+                                            <input type="submit" class="btn btn-info" name="btnGuardar" id="boton" value="Guardar">
                                         </div>
                                         <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                             <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
@@ -193,8 +210,52 @@ if (isset($_REQUEST['btnGuardar'])) {
 
             <?php
             include_once '../plantilla/pie.php';
+        if (isset($_REQUEST['tirar'])) {
+         include_once '../Conexion/conexion.php';
+         $prove=$_REQUEST['proveedor'];
+         $insumo=$_REQUEST['insumo'];
+         $caducidad=$_REQUEST['tipoCaducidad'];
+         $tipo=$_REQUEST['tipo'];
+          $cantidad=$_REQUEST['Cpaquete'];
+          //tira un error por que el campo viene vacio
+          if (isset($_REQUEST['unidad'])!=null){
+          $uni=$_REQUEST['unidad'];
+          }else{
+              $uni=0;
+          }
+          $presen=$_REQUEST['presentacion'];
+          $precio=$_REQUEST['precioPa'];
+          $total=$_REQUEST['Tpagar'];
+          
+           if ($caducidad == '0') {
+        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
+    } else {
+        $fecha = '0000-00-00';
+    }
+          mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,presentacion,fecha_caducidad,precio_unitario,cantidad,unidad,total) "
+                  . "VALUES('$prove','$insumo','$presen','$fecha','$precio','$cantidad','$uni','$total')");
+        echo '<script>swal({
+                    title: "Registro",
+                    text: "Guardado!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroCompraInsumo.php";
+                    
+                });</script>';
+         
         }
         ?>
+            <script type="text/javascript">
+                function totalPrecio(){
+        var Cpaquete=document.getElementById("Cpaquete").value;
+        var precio=document.getElementById("precioPa").value;
+        var calculo=Cpaquete*precio;
+        document.f1.Tpagar.value =calculo;
+                }
+                </script>
         <script type="text/javascript">
             /**
              * Funcion que devuelve true o false dependiendo de si la fecha es correcta.
