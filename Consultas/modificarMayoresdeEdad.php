@@ -26,32 +26,43 @@ include_once '../Conexion/conexion.php';
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
 
-     <div class="col-lg-4">
-            <label style="padding-top: 5px;" >Organizar por Edad<small class="text-muted"></small></label>
-            <select class="custom-select" name="tipo" onchange="location = this.value">
-                <option>Mayor de Edad</option>
-                <option value="modificarMenoresdeEdad.php">Menor de Edad</option>
-                             
-            </select>
-            
-        </div>
-      </br>
-
+  
      <!-- Búsqueda UTILIZO EL JQUERY buscaresc.js que es el que hace el proceso interno de buscar
     funciona junto con jquery de lo contrario nada colocas el id="filtar" que con ese nombre lo reconoce
     el buscaresc.js para hacer el proceso que keres buscar ya sea por letras,numeros,dui, nit, loq sea
     solo eso necesitas para que busque-->
 
+             <div class="row mb-12">   
+        
             <div class="wrap">
+                <div class="col-lg-12">
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
+       
          <div class="search">
-            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
+           <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
             <button type="submit" class="searchButton">
               <i class="fa fa-search"></i>
            </button>
+
          </div>
+                
       </div>
+       </div>
+      <div class="col-lg-2">
+            
+            <select class="custom-select" name="tipo" onchange="location = this.value">
+               <option>Seleccionar Tabla</option>
+                <option value="modificarMayoresdeEdad.php">Mayor de edad</option>
+                <option value="modificarMenoresdeEdad.php">Menor de Edad</option>
+                
+            </select>
+        </div>
+
+   
+    
+
+    </div>
             <!--Fin Búsqueda-->
 
     <div class="card" >

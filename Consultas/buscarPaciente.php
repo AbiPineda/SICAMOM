@@ -19,41 +19,42 @@ include_once '../Conexion/conexion.php';
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
    <!-- Estilo de la tabla-->
    <link href="../dist/css/styleTabla.css" rel="stylesheet">
-
 </head>
 
 <body>
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
 
-         <div class="col-lg-4">
-            <label style="padding-top: 5px;" >Organizar por Edad<small class="text-muted"></small></label>
+       <div class="row mb-12">   
+        
+            <div class="wrap">
+                <div class="col-lg-12">
+              <script src="../html/js/jquery.min.js" ></script>
+            <script src="../html/js/buscaresc.js"></script>
+       
+         <div class="search">
+           <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
+            <button type="submit" class="searchButton">
+              <i class="fa fa-search"></i>
+           </button>
+
+         </div>
+                
+      </div>
+       </div>
+      <div class="col-lg-2">
             <select class="custom-select" name="tipo" onchange="location = this.value">
-                <option>Seleccionar</option>
+                <option>Seleccionar edad</option>
                 <option value="consultaMenoresdeEdad.php">Menor de Edad</option>
                 <option value="consultaMayoresdeEdad.php">Mayor de Edad</option>
                
             </select>
-            
         </div>
-      </br>
 
-            <div class="wrap">
-              <script src="../html/js/jquery.min.js" ></script>
-            <script src="../html/js/buscaresc.js"></script>
-                 </br>
-             </br>
-                 </br>
-                    </br>
-                        </br>
-                            </br>
-         <div class="search">
-            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
-            <button type="submit" class="searchButton">
-              <i class="fa fa-search"></i>
-           </button>
-         </div>
-      </div>
+   
+    
+
+    </div>
             <!--Fin Búsqueda-->
 
     <div class="card" >

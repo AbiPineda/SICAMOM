@@ -8,7 +8,7 @@
     <div class="page-wrapper" style="height: 671px;">
 
         <div class="container-fluid">
-            <div class="card" style="background: rgba(0, 101, 191,0.3)">
+            <div class="card" style="background: rgba(0, 101, 191,0.6)">
                 <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
                 </div>
 
@@ -16,7 +16,7 @@
                 
                 
                     <div class="card-body wizard-content">
-                    <h3 class="card-title">Modificar Insumo | Datos personales</h3>
+                    <h3 class="card-title" style="color: white">Modificar Insumo | Datos personales</h3>
 
                     <form action="" method="post">
                         <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
@@ -41,7 +41,7 @@
                                         
 
                                         ?>
-                                    <label style="padding-top: 12px;">Nombre Comercial<small class="text-muted"></small></label>
+                                    <label style="padding-top: 12px; color: white">Nombre Comercial<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="nombreComercial" value="<?php echo $nomComercial; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">
@@ -49,7 +49,7 @@
                                             </div>
                                         </div> 
                                     
-                                    <label style="padding-top: 12px;">Marca<small class="text-muted"></small></label>
+                                    <label style="padding-top: 12px; color: white">Marca<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="marca" value="<?php echo $marca; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">
@@ -57,7 +57,7 @@
                                             </div>
                                         </div> 
                                     
-                                        <label style="padding-top: 12px;">Descripción<small class="text-muted"></small></label>
+                                        <label style="padding-top: 12px; color: white">Descripción<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="descripcion" value="<?php echo $descripcion; ?>" class="form-control" id="fnamep" placeholder="Ingrese descripcion" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">

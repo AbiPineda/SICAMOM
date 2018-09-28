@@ -109,9 +109,9 @@ include_once '../plantilla/menu_lateral.php';
 <div class="page-wrapper" style="height: 671px;">
 
     <div class="container-fluid">
-        <div class="card" style="background: rgba(0, 101, 191,0.3)">        
+        <div class="card" style="background: rgba(0, 101, 191,0.6)">        
             <div class="card-body wizard-content">
-                <h3 class="card-title">Registro Paciente | Datos generales</h3>
+                <h3 class="card-title" style="color: white">Registro Paciente | Datos generales</h3>
                 <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
                 <form action="" id="f1" name="f1" method="post" class="form-register" >
                     <input type="hidden" name="tirar" id="pase"/>
@@ -121,7 +121,7 @@ include_once '../plantilla/menu_lateral.php';
                             <div class="row mb-12">
 
                                 <div class="col-lg-4">
-                                    <label>Nombre<small class="text-muted"></small></label>
+                                    <label style="color: white">Nombre <small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <input type="text" name="nombre"  class="form-control" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                         <div class="input-group-append">
@@ -132,7 +132,7 @@ include_once '../plantilla/menu_lateral.php';
                                 </div>
 
                                 <div class="col-lg-3">
-                                    <label>Apellido<small class="text-muted"></small></label>
+                                    <label style="color: white">Apellido<small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <input type="text" name="apellido"  class="form-control" id="fnamep" placeholder="Ingrese apellido" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                         <div class="input-group-append">
@@ -142,7 +142,7 @@ include_once '../plantilla/menu_lateral.php';
                                 </div>
 
                                 <div class="col-lg-3">
-                                    <label>Fecha de nacimiento<small class="text-muted"></small></label>
+                                    <label style="color: white">Fecha de nacimiento<small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <!--<input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">-->
                                         <input type="date" name="user_date" class="form-control" id="user_date" max="2015-06-01" min="1947-01-02" onChange="javascript:calcularEdad();"/>
@@ -154,7 +154,7 @@ include_once '../plantilla/menu_lateral.php';
                                 </div>
 
                                 <div class="col-lg-2">
-                                    <label>Edad<small class="text-muted"></small></label>
+                                    <label style="color: white">Edad<small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <!--<input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">-->
                                         <input name="inp" id="inp" class="form-control" onChange="javascript:desabilitar();"> 
@@ -168,7 +168,7 @@ include_once '../plantilla/menu_lateral.php';
 
 
                                 <div class="col-lg-3">
-                                    <label style="padding-top: 12px;">DUI<small class="text-muted"> 99999999-9</small></label>
+                                    <label style="padding-top: 12px; color: white">DUI<small class="text-muted"> 99999999-9</small></label>
                                     <div class="input-group">
                                         <input type="text" name="dui"  class="form-control phone-inputmask" id="dui" placeholder="Ingrese DUI" autocomplete="off" value="" required> 
                                         <div class="input-group-append">
@@ -179,7 +179,7 @@ include_once '../plantilla/menu_lateral.php';
                                 </div>
 
                                 <div class="col-lg-3">
-                                    <label style="padding-top: 12px;">Teléfono<small class="text-muted"> 9999-9999</small></label>
+                                    <label style="padding-top: 12px; color: white">Teléfono<small class="text-muted"> 9999-9999</small></label>
                                     <div class="input-group">
                                         <input type="text" name="telefono"  class="form-control phone-inputmask2" id="tel" placeholder="Ingrese número telefónico" autocomplete="off" value="" required>
                                         <div class="input-group-append">

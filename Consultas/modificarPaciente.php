@@ -8,13 +8,13 @@
     <div class="page-wrapper" style="height: 671px;">
 
         <div class="container-fluid">
-            <div class="card" style="background: rgba(0, 101, 191,0.3)">
+            <div class="card" style="background: rgba(0, 101, 191,0.6)">
                 <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
                 </div>
                     <br> 
                     <div class="card-body wizard-content">
                         
-                    <h3 class="card-title">Modificar Paciente | Datos personales</h3>
+                    <h3 class="card-title" style="color: white">Modificar Paciente | Datos personales</h3>
                             
                     <form action="modificarPaciente.php" method="post">
                         <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
@@ -39,7 +39,7 @@
 
                                         ?>
                                     
-                                        <label style="padding-top: 12px;">Nombre<small class="text-muted"></small></label>
+                                        <label style="padding-top: 12px; color: white">Nombre<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="nombre" value="<?php echo $nom; ?>" class="form-control" id="fnamep" placeholder="Ingrese nombre" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">
@@ -50,7 +50,7 @@
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label style="padding-top: 12px;">Apellido<small class="text-muted"></small></label>
+                                        <label style="padding-top: 12px; color: white">Apellido<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="apellido" value="<?php echo $ape; ?>" class="form-control" id="fnamep" placeholder="Ingrese apellido" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
                                             <div class="input-group-append">
@@ -62,7 +62,7 @@
                                    
 
                                     <div class="col-lg-4">
-                                        <label style="padding-top: 12px;">Teléfono<small class="text-muted"> 9999-9999</small></label>
+                                        <label style="padding-top: 12px; color: white">Teléfono<small class="text-muted"> 9999-9999</small></label>
                                         <div class="input-group">
                                             <input type="text" name="telefono" value="<?php echo $tel; ?>" class="form-control phone-inputmask2" id="phone-mask2" placeholder="Ingrese número telefónico" value="" required>
                                             <div class="input-group-append">
@@ -78,10 +78,10 @@
 
                                     <div class="col-lg-4">
 
-                                        <div class="row mb-12" style="float: left;margin-left: 850px; margin-top: 11px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 975px; margin-top: 11px;">
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
                                         </div>
-                                        <div class="row mb-12" style="float: left;margin-left: 750px; margin-top: -34px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 875px; margin-top: -34px;">
                                             <button type="reset" class="btn btn-info" name="nameCancelar"  onclick="location.href='modificarMayoresdeEdad.php'">Cancelar </button>
                                         </div>
 

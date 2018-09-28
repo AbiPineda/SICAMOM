@@ -88,11 +88,11 @@ if (isset($_REQUEST['btnGuardar'])) {
     <div class="page-wrapper" style="height: 671px;">
 
         <div class="container-fluid">
-            <div class="card" style="background: rgba(0, 101, 191,0.3)">
+            <div class="card" style="background: rgba(0, 101, 191,0.6)">
 
 
                 <div class="card-body wizard-content">
-                    <h3 class="card-title">Registro de Usuario | Datos generales</h3>
+                    <h3 class="card-title" style="color: white">Registro de Usuario | Datos generales</h3>
                     <form id="FORMULARIO" action="" class="m-t-40" method="POST">
                         <div>
 
@@ -100,46 +100,53 @@ if (isset($_REQUEST['btnGuardar'])) {
 
                                 <div class="row mb-3">
                                     <div class="col-lg-4">
-                                        <label>Nombre<small class="text-muted"></small></label>
-                                       
-                                            <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas"  value=""  >  
-                                            <div class="input-group-append">
+                                        <label style="color: white">Nombre<small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                            <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas"  value=""  >
+
+                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                            </div>
+                                            </div>  
+                                           </div>
                                          
 
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label>Apellido<small class="text-muted"></small></label>
-                                      
-                                            <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas"  value="" >  
-                                            <div class="input-group-append">
+                                        <label style="color: white">Apellido<small class="text-muted"></small></label>
+                                       <div class="input-group">
+                                            <input type="text" name="apellido" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese apellido" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas"  value="" > 
+
+                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
-                                                                            
+                                                    
+                                           </div>                         
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label>E-mail<small class="text-muted"></small></label>
-                                        
+                                        <label style="color: white">E-mail<small class="text-muted"></small></label>
+                                        <div class="input-group">
                                             <input type="email" class="form-control" autocomplete="off" placeholder="email" id="email" name="email" value=""  >
                                             <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                                <span class="input-group-text"><i class="fa fa-at"></i></span>
+                                            </div>
                                             </div>
                                                                     
                                     </div>
 
 
                                     <div class="col-lg-4">
-                                        <label style="padding-top: 12px;">Nombre de Usuario<small class="text-muted"> </small></label>
-                                        
+                                        <label style="padding-top: 12px; color: white">Nombre de Usuario<small class="text-muted"> </small></label>
+                                         <div class="input-group">
                                             <input type="text" name="nusuario" class="form-control" autocomplete="off" id="phone-maske" placeholder="Ingrese Usuario"  value=""  > 
+                                            
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                             </div>
+                                            </div>
                                        
-                                        <label style="padding-top: 12px;" >Tipo de Usuario<small class="text-muted"></small></label>
+                                        <label style="padding-top: 12px; color: white" >Tipo de Usuario<small class="text-muted"></small></label>
                                         <select class="custom-select" name="tusuario" style="width: 100%; height:36px;">
                                             <option>Seleccionar</option>
                                             <option value="Administrador">Administrador</option>
@@ -148,22 +155,26 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label style="padding-top: 12px;">Contraseña<small class="text-muted"></small></label>
-                                        
+                                        <label style="padding-top: 12px; color: white">Contraseña<small class="text-muted"></small></label>
+                                        <div class="input-group">
                                             <input type="password" pattern=".{4,}" title="4 o mas caracteres" class="form-control" autocomplete="off" placeholder="Contraseña" id="campo1" name="contrasena" value=""  >
-                                            <div class="input-group-append">
+                                           
+                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                             </div>
+                                           </div>
                                       
 
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label style="padding-top: 12px;" >Confirmar contraseña<small class="text-muted"></small></label>
-                                      
+                                        <label style="padding-top: 12px; color: white" >Confirmar contraseña<small class="text-muted"></small></label>
+                                      <div class="input-group">
                                             <input type="password" class="form-control" autocomplete="off" placeholder="Ingrese contraseña" id="campo2" name="concontrasena" onkeyup="Habilitar()" value=""  >
+                                            
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                            </div>
                                             </div>
                                        <br>
                                     <label style="color: white">*Observación: El botón "Guardar" se habilitará hasta que todos los campos sean completados</label>

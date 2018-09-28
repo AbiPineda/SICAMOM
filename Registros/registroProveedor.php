@@ -27,7 +27,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                     closeOnConfirm: false
                 },
                 function () {
-                    location.href="registroInsumo.php";
+                    location.href="registroProveedor.php";
                     
                 });</script>';
            
@@ -40,11 +40,11 @@ else {
     <div class="page-wrapper" style="height: 671px;">
           
             <div class="container-fluid">
-                 <div class="card" style="background: rgba(0, 101, 191,0.3)">
+                 <div class="card" style="background: rgba(0, 101, 191,0.6)">
                       
 
                     <div class="card-body wizard-content">
-                        <h3 class="card-title">Registro de Proveedor | Datos generales</h3>
+                        <h3 class="card-title" style="color: white">Registro de Proveedor | Datos generales</h3>
                         <form id="example-form" action="" class="m-t-40" method="POST">
                             <div>
                                 
@@ -52,7 +52,7 @@ else {
 
                                      <div class="row mb-3">
                                     <div class="col-lg-4">
-                                        <label>Nombre de Empresa<small class="text-muted"></small></label>
+                                        <label style="color: white">Nombre de Empresa<small class="text-muted"></small></label>
                                      <div class="input-group">
                                          <input type="text" name="nombre" onkeyup="campos()" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  onkeypress="return soloLetras(event)"  >  
                                     <div class="input-group-append">
@@ -63,7 +63,7 @@ else {
                                     </div>
 
                                    <div class="col-lg-4">
-                                     <label>Nombre del Responsable<small class="text-muted"></small></label>
+                                     <label style="color: white">Nombre del vendedor<small class="text-muted"></small></label>
                                      <div class="input-group">
                                     <input type="text" name="nombreRes" onkeyup="campos()" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre" onkeypress="return soloLetras(event)">  
                                     <div class="input-group-append">
@@ -73,7 +73,7 @@ else {
                                     </div>
 
                                     <div class="col-lg-4">
-                                   <label>Dirección<small class="text-muted"></small></label>
+                                   <label style="color: white">Dirección<small class="text-muted"></small></label>
                                      <div class="input-group">
                                     <input type="text" onkeyup="campos()" class="form-control" autocomplete="off" placeholder="Ingrese dirección" id="direccion" name="direccion" onkeypress="return sinCaracterEspecial(event)">
                                     <div class="input-group-append">
@@ -84,7 +84,7 @@ else {
 
 
                                     <div class="col-lg-4">
-                                    <label style="padding-top: 12px;">Teléfono<small class="text-muted"> 9999-9999</small></label>
+                                    <label style="padding-top: 12px; color: white">Teléfono<small class="text-muted"> 9999-9999</small></label>
                                     <div class="input-group">
                                         <input type="text" name="telefono"  class="form-control phone-inputmask2" id="tel" placeholder="Ingrese número telefónico" autocomplete="off" value="" required>
                                         <div class="input-group-append">
