@@ -4,36 +4,6 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 
-
-if (isset($_REQUEST['btnGuardar'])) {
-    include_once '../Conexion/conexion.php';
-
-    $nombre = $_REQUEST['nombre'];
-    $nombreRes = $_REQUEST['nombreRes'];
-    $direccion = $_REQUEST['direccion'];
-    $telefono = $_REQUEST['telefono'];
-    
-    $esta=1;
-    Conexion::abrir_conexion();
-    $conexionx = Conexion::obtener_conexion();
-    
-           mysqli_query($conexion, "INSERT INTO t_proveedor(pro_cnombre_empresa,pro_cnombre_responsable,pro_cdireccion,pro_ctelefono,estado) VALUES('$nombre','$nombreRes','$direccion','$telefono','$esta')"); 
-    
-           echo '<script>swal({
-                    title: "Registro",
-                    text: "Guardado!",
-                    type: "success",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="registroInsumo.php";
-                    
-                });</script>';
-           
-}
-else {
-
      ?>
 
 <link rel="stylesheet" href="../js/toastr.min.css">
@@ -122,11 +92,45 @@ else {
     
                 
  <?php
+ if (isset($_REQUEST['btnGuardar'])) {
+    include_once '../Conexion/conexion.php';
+
+    $nombre = $_REQUEST['nombre'];
+    $nombreRes = $_REQUEST['nombreRes'];
+    $direccion = $_REQUEST['direccion'];
+    $telefono = $_REQUEST['telefono'];
     
-    include_once '../plantilla/pie.php';
-    
-    
+    $esta=1;
+    Conexion::abrir_conexion();
+    $conexionx = Conexion::obtener_conexion();
+        $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_proveedor WHERE pro_cnombre_empresa='$nombre'");
+       $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_proveedor WHERE pro_ctelefono='$telefono'");
+        if (mysqli_num_rows($verificar_insert) > 0 || mysqli_num_rows($verificar_insert2) > 0 ) {
+            echo '<script>swal("Nombre de la Empresa o Teléfono ya Registrado")
+             .then((value) => {
+              swal(`Verifique los datos`);
+                });</script>';    
 }
+else {   
+   
+  mysqli_query($conexion, "INSERT INTO t_proveedor(pro_cnombre_empresa,pro_cnombre_responsable,pro_cdireccion,pro_ctelefono,estado) VALUES('$nombre','$nombreRes','$direccion','$telefono','$esta')"); 
+    
+           echo '<script>swal({
+                    title: "Registro",
+                    text: "Guardado!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroInsumo.php";
+                    
+                });</script>';
+           
+    
+}  
+} 
+ include_once '../plantilla/pie.php';
 ?>
 
 
