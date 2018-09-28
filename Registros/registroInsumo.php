@@ -85,7 +85,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     <div class="col-lg-3">
                                         <label style="color: white">Nombre Comercial<small class="text-muted" ></small></label>   
                                          <div class="input-group">                                  
-                                        <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre del insumo" onkeypress="return soloLetras(event)" value="" required>
+                                        <input type="text" onkeyup="campos()" class="form-control" id="nombreCom"  required name="nombreCom" placeholder="Nombre del insumo" onkeypress="return soloLetras(event)"  >
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-notes-medical"></i></span>
                                         </div>
@@ -96,7 +96,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     <div class="col-lg-3">
                                         <label style="color: white">Marca<small class="text-muted" ></small></label>  
                                         <div class="input-group">                                 
-                                        <input type="text" class="form-control" id="lname" name="marca" placeholder="Marca del insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>       
+                                        <input type="text" onkeyup="campos()" class="form-control" id="lname" name="marca" placeholder="Marca del insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>       
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-registered"></i></span>
                                         </div>
@@ -107,17 +107,19 @@ if (isset($_REQUEST['btnGuardar'])) {
                                          
                                         <label style="color: white">Descripción<small class="text-muted" ></small></label>
                                         <div class="input-group">                                    
-                                        <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción de insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                        <input type="text" onkeyup="campos()" class="form-control" id="lname" name="descripcion" placeholder="Descripción de insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
                                         </div>
-                                        </div>                                     
+                                        </div>  
+                                        
                                     </div>
-
+                                    <br>
+                                    <label style="color: white">*Observación: El botón "Guardar" se habilitará hasta que todos los campos sean completados</label>
                                     <div class="col-lg-12">
 
                                         <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton">Guardar </button>
+                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" disabled>Guardar </button>
                                         </div>
                                         <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                             <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
@@ -240,3 +242,21 @@ if (isset($_REQUEST['btnGuardar'])) {
                 return patron.test(tecla_final);
             }
         </script>
+        
+<script>
+function campos(){
+  var validado = true;
+  elementos = document.getElementsByClassName("form-control");
+  for(i=0;i<elementos.length;i++){
+    if(elementos[i].value == "" || elementos[i].value == null){
+    validado = false
+    }
+  }
+  if(validado){
+  document.getElementById("boton").disabled = false;
+  
+  }else{
+     document.getElementById("boton").disabled = true;  
+  }
+}
+</script>
