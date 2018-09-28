@@ -107,8 +107,6 @@ CREATE  TABLE IF NOT EXISTS `Clinica`.`t_insumo` (
   `ins_cnombre_comercial` VARCHAR(30) NULL ,
   `ins_cmarca` VARCHAR(25) NULL ,
   `ins_cdescripcion` TEXT NULL ,
-  `ins_cpresentacion` VARCHAR(25) NULL ,
-  `ins_ffecha_caducidad` DATE NULL ,
   `estado` INT NULL ,
   `codigo` VARCHAR(7) NULL ,
   PRIMARY KEY (`ins_codigo`) )
@@ -326,13 +324,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `Clinica`.`t_compra` (
   `id_compra` INT NULL AUTO_INCREMENT ,
+  `fk_proveedor` INT NOT NULL ,
+  `fk_insumo` INT NOT NULL ,
+  `presentacion` VARCHAR(45) NULL ,
+  `fecha_caducidad` DATE NULL ,
   `precio_unitario` DOUBLE NULL ,
   `cantidad` INT NULL ,
   `unidad` INT NULL ,
   `paquete` INT NULL ,
   `total` DOUBLE NULL ,
-  `fk_insumo` INT NOT NULL ,
-  `fk_proveedor` INT NOT NULL ,
   PRIMARY KEY (`id_compra`) ,
   INDEX `fk_t_compra_t_insumo1_idx` (`fk_insumo` ASC) ,
   INDEX `fk_t_compra_t_proveedor1_idx` (`fk_proveedor` ASC) ,
