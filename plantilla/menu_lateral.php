@@ -26,7 +26,7 @@
                         <li class="sidebar-item"><a href="../Registros/registroCompraInsumo.php" class="sidebar-link"><i class="fas fa-money-bill-alt"></i><span class="hide-menu"> Comprar Insumo </span></a></li>
                         <li class="sidebar-item"><a href="../Consultas/buscarInsumo.php" class="sidebar-link"><i class="fas fa-search"></i><span class="hide-menu"> Buscar Insumo </span></a></li>
                                
-                        <li class="sidebar-item"><a href="consult_Insumos.html" class="sidebar-link"><i class="far fa-check-square"></i><span class="hide-menu">Control de insumos</span></a></li>
+                        <li class="sidebar-item"><a href="consult_Insumos.html" class="sidebar-link"><i class="far fa-check-square"></i><span class="hide-menu">Control de inventario</span></a></li>
 
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="far fa-file"></i><span class="hide-menu">Reporte</span></a></li>
                     </ul>
