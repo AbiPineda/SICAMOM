@@ -21,7 +21,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     
            echo '<script>swal({
                     title: "Registro",
-                    text: "Guardado!",
+                    text: "Guardado!!",
                     type: "success",
                     confirmButtonText: "Aceptar",
                     closeOnConfirm: false
