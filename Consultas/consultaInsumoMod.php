@@ -54,33 +54,28 @@ include_once '../Conexion/conexion.php';
   <thead>  
   <th><div>Codigo</div></th>
   <th><div>Nombre Comercial</div></th>
+  <th><div>Marca</div></th>
   <th><div>Descripción</div></th>
-  <th><div>Presentación</div></th>
-  <th><div>Paquete</div></th>
-  <th><div>Unidad</div></th>
   <th><div>Acción</div></th>
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar = mysqli_query($conexion, "SELECT *FROM t_insumo, detalle_insumo WHERE ins_codigo=id_detalle AND estado=1 ");
+        $sacar = mysqli_query($conexion, "SELECT *FROM t_insumo WHERE ins_codigo AND estado=1 ");
             while ($fila = mysqli_fetch_array($sacar)) {
                  $modificar=$fila['ins_codigo']; 
-                
+                 $cod=$fila['codigo'];
                  $nom=$fila['ins_cnombre_comercial'];  
                  $descrip=$fila['ins_cdescripcion'];  
-                 $pre=$fila['ins_cpresentacion']; 
-                 $cod=$fila['codigo'];  
-                 $paq=$fila['paquete'];
-                 $uni=$fila['unidad'];
+                 $marca=$fila['ins_cmarca']; 
+                 
               
         ?>
       <tr>
         <th scope="row"><?php echo $cod;?></th>
         <td data-title="Released"><?php echo $nom;?></td>
+        <td data-title="Releaseda"><?php echo $marca;?></td>
         <td data-title="Studio"><?php echo $descrip;?></td>
-        <td data-title="Worldwide Gross"><?php echo $pre;?></td>
-        <td data-title="Releaseds"><?php echo $paq;?></td>
-        <td data-title="Releaseda"><?php echo $uni;?></td>
+      
         <td class="text"><a href="../Consultas/modificarInsumo.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Modificar</a>
         </td>
 

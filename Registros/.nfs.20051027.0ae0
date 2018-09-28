@@ -165,11 +165,9 @@ if (isset($_REQUEST['btnGuardar'])) {
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                             </div>
-                                       <br>
-                                    <label style="color: white">*Observación: El botón "Guardar" se habilitará hasta que todos los campos sean completados</label>
-                                    
+                                       
                                         <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" disabled>Guardar </button>
+                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton">Guardar </button>
                                         </div>
                                         <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                             <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
@@ -259,20 +257,3 @@ if (isset($_REQUEST['btnGuardar'])) {
     include_once '../plantilla/pie.php';
 }
 ?>
-<script>
-function campos(){
-  var validado = true;
-  elementos = document.getElementsByClassName("form-control");
-  for(i=0;i<elementos.length;i++){
-    if(elementos[i].value == "" || elementos[i].value == null){
-    validado = false
-    }
-  }
-  if(validado){
-  document.getElementById("boton").disabled = false;
-  
-  }else{
-     document.getElementById("boton").disabled = true;  
-  }
-}
-</script>

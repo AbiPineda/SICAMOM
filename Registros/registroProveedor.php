@@ -54,7 +54,7 @@ else {
                                     <div class="col-lg-4">
                                         <label>Nombre de Empresa<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                         <input type="text" name="nombre" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required >  
+                                         <input type="text" name="nombre" onkeyup="campos()" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre"  onkeypress="return soloLetras(event)"  >  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
@@ -65,17 +65,17 @@ else {
                                    <div class="col-lg-4">
                                      <label>Nombre del Responsable<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" name="nombreRes" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required >  
+                                    <input type="text" name="nombreRes" onkeyup="campos()" class="form-control" autocomplete="off" id="fnamep" placeholder="Ingrese nombre" onkeypress="return soloLetras(event)">  
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                    </div>
+                                    </div> 
                                 </div>                                    
                                     </div>
 
                                     <div class="col-lg-4">
                                    <label>Dirección<small class="text-muted"></small></label>
                                      <div class="input-group">
-                                    <input type="text" class="form-control" autocomplete="off" placeholder="Ingrese dirección" id="direccion" name="direccion" value="" required >
+                                    <input type="text" onkeyup="campos()" class="form-control" autocomplete="off" placeholder="Ingrese dirección" id="direccion" name="direccion" onkeypress="return sinCaracterEspecial(event)">
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                                     </div>
@@ -86,23 +86,28 @@ else {
                                     <div class="col-lg-4">
                                     <label style="padding-top: 12px;">Teléfono<small class="text-muted"> 9999-9999</small></label>
                                     <div class="input-group">
-                                        <input type="text" name="telefono" class="form-control phone-inputmask2" id="tel" placeholder="Ingrese número telefónico" autocomplete="off" value="" required>
+                                        <input type="text" name="telefono"  class="form-control phone-inputmask2" id="tel" placeholder="Ingrese número telefónico" autocomplete="off" value="" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         </div>
                                     </div> 
-                                </div> 
-                                         <div class="col-lg-3">
-                                          <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                              <button type="submit" class="btn btn-info" name="btnGuardar" id="boton">Guardar </button>
-                                          </div>
-                                         <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                             <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
-                                         </div>
-                                      
-                                    </div> 
+                                    
+                                </div>
+                                         <br>
+                                    
 
                                          </div>
+                                     <label style="color: white">*Observación: El botón "Guardar" se habilitará hasta que todos los campos sean completados</label>
+                                    <div class="col-lg-12">
+
+                                        <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" disabled>Guardar </button>
+                                        </div>
+                                        <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                            <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
+                                        </div>
+
+                                    </div> 
                            
                                     </section>
 
@@ -174,3 +179,53 @@ function soloLetras(e) {
 <script
     src="../js/jquery.min.js">
 </script>
+<script>
+function campos(){
+  var validado = true;
+  elementos = document.getElementsByClassName("form-control");
+  for(i=0;i<elementos.length;i++){
+    if(elementos[i].value == "" || elementos[i].value == null){
+    validado = false
+    }
+  }
+  if(validado){
+  document.getElementById("boton").disabled = false;
+  
+  }else{
+     document.getElementById("boton").disabled = true;  
+  }
+}
+</script>
+<script>
+            function soloLetras(e) {
+                key = e.keyCode || e.which;
+                teclado = String.fromCharCode(key).toLowerCase();
+                letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+                especiales = "8-37-38-46-164";
+                teclado_especial = false;
+                for (var i in especiales) {
+                    if (key == especiales[i]) {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+                if (letras.indexOf(teclado) == -1 && !teclado_especial) {
+                    return false;
+                }
+            }
+        </script>
+
+        <script>
+            function sinCaracterEspecial(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                //Tecla de retroceso para borrar, siempre la permite
+                if (tecla == 8) {
+                    return true;
+                }
+                // Patron de entrada, en este caso solo acepta numeros, letras, espacio.
+                patron = /[A-Za-z0-9 ]/;
+                tecla_final = String.fromCharCode(tecla);
+                return patron.test(tecla_final);
+            }
+        </script>
+        
