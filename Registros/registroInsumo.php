@@ -10,15 +10,15 @@ if (isset($_REQUEST['btnGuardar'])) {
     $nombre = $_REQUEST['nombreCom'];
     $marca = $_REQUEST['marca'];
     $descripcion = $_REQUEST['descripcion'];
-    $caducidad = $_REQUEST['tipoCaducidad'];
-    $presentacion = $_REQUEST['presentacion'];
-    if ($caducidad == '0') {
-        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
-    } else {
-        $fecha = '0000-00-00';
-    }
-    // $partes = explode('-', $fecha);
-    // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
+//    $caducidad = $_REQUEST['tipoCaducidad'];
+//    $presentacion = $_REQUEST['presentacion'];
+//    if ($caducidad == '0') {
+//        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
+//    } else {
+//        $fecha = '0000-00-00';
+//    }
+//    // $partes = explode('-', $fecha);
+//    // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
     $esta = 1;
     //$numero = rand(100,1000);
     //$codigo1 = (strtoupper((substr($nombre, 0, 3))) . $numero); 
@@ -28,14 +28,14 @@ if (isset($_REQUEST['btnGuardar'])) {
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
 
-    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_ffecha_caducidad,estado,codigo) VALUES('$nombre','$marca','$descripcion','$presentacion','$fecha','$esta','$codigo')");
-    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
-    while ($row = mysqli_fetch_array($insumo)) {
-        $id = $row['ins_codigo'];
-        $paquete = $_REQUEST['paquete'];
-        $unidad = $_REQUEST['unidad'];
-    }
-    mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
+    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo) VALUES('$nombre','$marca','$descripcion','$esta','$codigo')");
+//    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
+//    while ($row = mysqli_fetch_array($insumo)) {
+//        $id = $row['ins_codigo'];
+//        $paquete = $_REQUEST['paquete'];
+//        $unidad = $_REQUEST['unidad'];
+//    }
+//    mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
     echo '<script>swal({
                     title: "Exito",
                     text: "Insumo Guardado!",
