@@ -101,7 +101,7 @@ else {
                                     <div class="col-lg-12">
 
                                         <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" disabled>Guardar </button>
+                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" >Guardar </button>
                                         </div>
                                         <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                             <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>

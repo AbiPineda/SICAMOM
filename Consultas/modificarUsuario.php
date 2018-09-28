@@ -68,6 +68,8 @@
                                             </div>
                                         </div> 
                                     </div>
+                            
+                            
                                     <div class="col-lg-4">
 
                                         <div class="row mb-12" style="float: left;margin-left: 1175px; margin-top: 25px;">
@@ -78,6 +80,7 @@
                                         </div>
 
                                     </div>
+                            </div>
                                     <?php
                                 }
                                 ?>

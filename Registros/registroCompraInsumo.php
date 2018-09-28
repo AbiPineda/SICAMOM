@@ -168,7 +168,7 @@ include_once '../plantilla/menu_lateral.php';
                                      <div class="col-lg-3">
                                         <label style="color: white">Precio por paquete<small class="text-muted" ></small></label>     
                                         <div class="input-group">                                  
-                                            <input type="number" min="0" class="form-control" id="precioPa" name="precioPa" onChange="javascript:totalPrecio()" placeholder="Precio" value="" required >
+                                            <input type="number" placeholder="0.00" required name="price" min="0" value="0" step="0.01" class="form-control" id="precioPa" name="precioPa" onChange="javascript:totalPrecio()" placeholder="Precio" value="" required >
                                         <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                             </div> 
