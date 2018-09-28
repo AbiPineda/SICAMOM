@@ -123,7 +123,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-4">
                                     <label>Nombre<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="nombre" class="form-control" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                        <input type="text" name="nombre"  class="form-control" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
@@ -134,7 +134,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-3">
                                     <label>Apellido<small class="text-muted"></small></label>
                                     <div class="input-group">
-                                        <input type="text" name="apellido" class="form-control" id="fnamep" placeholder="Ingrese apellido" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                        <input type="text" name="apellido"  class="form-control" id="fnamep" placeholder="Ingrese apellido" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
@@ -170,7 +170,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-3">
                                     <label style="padding-top: 12px;">DUI<small class="text-muted"> 99999999-9</small></label>
                                     <div class="input-group">
-                                        <input type="text" name="dui" class="form-control phone-inputmask" id="dui" placeholder="Ingrese DUI" autocomplete="off" value="" required> 
+                                        <input type="text" name="dui"  class="form-control phone-inputmask" id="dui" placeholder="Ingrese DUI" autocomplete="off" value="" required> 
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                         </div>
@@ -181,7 +181,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-3">
                                     <label style="padding-top: 12px;">Teléfono<small class="text-muted"> 9999-9999</small></label>
                                     <div class="input-group">
-                                        <input type="text" name="telefono" class="form-control phone-inputmask2" id="tel" placeholder="Ingrese número telefónico" autocomplete="off" value="" required>
+                                        <input type="text" name="telefono"  class="form-control phone-inputmask2" id="tel" placeholder="Ingrese número telefónico" autocomplete="off" value="" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         </div>
@@ -189,18 +189,16 @@ include_once '../plantilla/menu_lateral.php';
                                     
                                 </div>
 
-                                
-                                <div class="col-lg-3">
-                                    <label style="padding-top: 12px;" ><small class="text-muted"></small></label>
-                                    
-                                    <div class="row mb-12" style="float: right; margin-right: -300px; margin-top: 100px;">
-                                        <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar">
-                                    </div>
+                                <br>
+                                <div class="col-lg-12">
 
-                                    <div class="row mb-12" style="float: right;margin-right: -200px; margin-top: 100px;">
-                                        <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
-                                    </div>
-                                </div>
+                                        <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                            <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar" ></div>
+                                        <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                          <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button></div>
+
+                                    </div>   
+                                
                             </div>
                     </div>
                     </section>
@@ -301,4 +299,21 @@ function soloLetras(e) {
       }
     }
   }
+</script>
+<script>
+function campos(){
+  var validado = true;
+  elementos = document.getElementsByClassName("form-control");
+  for(i=0;i<elementos.length;i++){
+    if(elementos[i].value == "" || elementos[i].value == null){
+    validado = false
+    }
+  }
+  if(validado){
+  document.getElementById("su").disabled = false;
+  
+  }else{
+     document.getElementById("su").disabled = true;  
+  }
+}
 </script>
