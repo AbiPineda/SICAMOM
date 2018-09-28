@@ -22,9 +22,7 @@ if($llego!=null){
                         <div class="modal-header">
 
                             <h4>Justificación</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            
                             <h4 class="modal-title" id="myModalLabel"></h4>
                         </div>
                         <div class="modal-body">
@@ -49,10 +47,6 @@ if($llego!=null){
 
                                 </div>
 
-                                <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                    <button type="submit" class="btn btn-info" name="modCancelar">Cancelar </button>
-
-                                </div>
                             </form>
                            
                         </div>
