@@ -63,12 +63,12 @@ include_once '../Conexion/conexion.php';
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
       
-      <th><div>Nombre</div></th>
-      <th><div>Apellido</div></th>
+      <th><div>Nombres</div></th>
+      <th><div>Apellidos</div></th>
       <th><div>Fecha de nacimiento</div></th>
       <th><div>Responsable</div></th>
-      <th><div>DUI del Responsable</div></th>
-      <th><div>Teléfono del Responsable</div></th>    
+      <th><div>DUI Responsable</div></th>
+      <th><div>Tel. Responsable</div></th>    
       
       
       

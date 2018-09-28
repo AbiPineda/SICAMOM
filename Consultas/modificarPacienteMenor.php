@@ -20,7 +20,7 @@
                     <div>
                         <h3></h3>
                         <section>
-
+                        
                             <div class="row mb-3">
                                 <div class="col-lg-4">
                                     <?php
@@ -121,7 +121,7 @@
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
                                         </div>
                                         <div class="row mb-12" style="float: left;margin-left: 750px; margin-top: -34px;">
-                                            <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
+                                            <button type="reset" class="btn btn-info" name="nameCancelar" onclick="location.href='modificarMenoresdeEdad.php'">Cancelar </button>
                                         </div>
 
                                     </div>

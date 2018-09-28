@@ -70,34 +70,53 @@ if (isset($_REQUEST['btnGuardar'])) {
                         <div>
                             <section>
 
-                                <div class="row mb-12">
-
-                                    
+                                <div class="row mb-12"> 
                                     <div class="col-lg-2">
-                                        <label style="color: white">Código:<small class="text-muted" ></small></label>  
-                                        
-                                        <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código">                                     
+                                        <label style="color: white">Código<small class="text-muted" ></small></label>  
+                                         <div class="input-group">
+                                        <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código">
+                                         <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-barcode"></i></span>
+                                        </div>
+                                    </div>
+
                                     </div>
 
                                     <div class="col-lg-3">
-                                        <label style="color: white">Nombre Comercial:<small class="text-muted" ></small></label>                                     
-                                        <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre Comercial del Insumo." onkeypress="return soloLetras(event)" value="" required>                                     
+                                        <label style="color: white">Nombre Comercial<small class="text-muted" ></small></label>   
+                                         <div class="input-group">                                  
+                                        <input type="text" class="form-control" id="nombreCom"  name="nombreCom" placeholder="Nombre del insumo" onkeypress="return soloLetras(event)" value="" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-notes-medical"></i></span>
+                                        </div>
+                                        </div>                                     
                                     </div>
 
 
                                     <div class="col-lg-3">
-                                        <label style="color: white">Marca:<small class="text-muted" ></small></label>                                     
-                                        <input type="text" class="form-control" id="lname" name="marca" placeholder="Marca del Insumo." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
+                                        <label style="color: white">Marca<small class="text-muted" ></small></label>  
+                                        <div class="input-group">                                 
+                                        <input type="text" class="form-control" id="lname" name="marca" placeholder="Marca del insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>       
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-registered"></i></span>
+                                        </div>
+                                        </div>                              
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label style="color: white">Descripción:<small class="text-muted" ></small></label>                                     
-                                        <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción de Insumo." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
+                                         
+                                        <label style="color: white">Descripción<small class="text-muted" ></small></label>
+                                        <div class="input-group">                                    
+                                        <input type="text" class="form-control" id="lname" name="descripcion" placeholder="Descripción de insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                        </div>
+                                        </div>                                     
                                     </div>
 
 
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Seleccione si tiene caducidad:<small class="text-muted"></small></label>
+                                    <div class="col-lg-2">
+                                        <label style="color: white">Caducidad<small class="text-muted"></small></label>
                                         <select class="custom-select" name="tipoCaducidad" id="tipoCaducidad" style="width: 100%; height:36px;" >
 
                                             <option value="0" selected>Tiene Caducidad</option>
@@ -115,7 +134,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     </div>
 
                                     <div class="col-lg-3">
-                                        <label style="color: white">Tipo de Insumo:<small class="text-muted"></small></label>
+                                        <label style="color: white">Tipo de Insumo<small class="text-muted"></small></label>
                                         <select class="custom-select" name="tipo" id="tipo" style="width: 100%; height:36px;" >
 
                                             <option value="Contable" selected>Contable</option>
@@ -123,19 +142,34 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         </select>
                                     </div>
 
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Presentación:<small class="text-muted" ></small></label>                                     
-                                        <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Presentación del Producto." onkeypress="return sinCaracterEspecial(event)" value="" required>                                     
+                                    <div class="col-lg-4">
+                                        <label style="color: white">Presentación<small class="text-muted" ></small></label>
+                                         <div class="input-group">                                   
+                                        <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Presentación del insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                        <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-desktop"></i></span>
+                                            </div>
+                                        </div>                                     
                                     </div>
 
                                     <div class="col-lg-2">
-                                        <label style="color: white">Cantidad de Paquete:<small class="text-muted" ></small></label>                                     
-                                        <input type="number" min="0" class="form-control" id="lname" name="paquete" placeholder="Cantidad de Paquete." value="" required>
+                                        <label style="color: white">Cantidad de Paquete<small class="text-muted" ></small></label>
+                                          <div class="input-group">                         
+                                        <input type="number" min="0" class="form-control" id="lname" name="paquete" placeholder="Paquetes" value="" required>
+                                        <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-box"></i></span>
+                                            </div> 
+                                           </div>
                                     </div>
 
                                     <div class="col-lg-2">
-                                        <label style="color: white">Unidad:<small class="text-muted" ></small></label>                                     
-                                        <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Cantidad de Unidades." value="" required >
+                                        <label style="color: white">Unidad<small class="text-muted" ></small></label>     
+                                        <div class="input-group">                                  
+                                        <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Unidades" value="" required >
+                                        <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-box"></i></span>
+                                            </div> 
+                                    </div>
                                     </div>
 
                                     <div class="col-lg-12">

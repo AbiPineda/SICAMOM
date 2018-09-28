@@ -29,10 +29,9 @@ include_once '../Conexion/conexion.php';
      <div class="col-lg-4">
             <label style="padding-top: 5px;" >Organizar por Edad<small class="text-muted"></small></label>
             <select class="custom-select" name="tipo" onchange="location = this.value">
-                <option>Seleccionar</option>
+                <option>Mayor de Edad</option>
                 <option value="modificarMenoresdeEdad.php">Menor de Edad</option>
-                <option value="modificarMayoresdeEdad.php">Mayor de Edad</option>
-               
+                             
             </select>
             
         </div>
@@ -67,8 +66,7 @@ include_once '../Conexion/conexion.php';
   <table class="table table-striped table-hover user-list fixed-header">
      <thead>
       
-     <th><div>Nombre</div></th>
-      <th><div>Apellido</div></th>
+     <th><div>Paciente</div></th>
       <th><div>DUI</div></th>
       <th><div>Teléfono</div></th>
       <th><div>Fecha de nacimiento</div></th>
@@ -99,8 +97,7 @@ $ym=$y-18;
             
         ?>
       <tr>
-        <th scope="row"><?php echo $nom;?></th>
-        <td data-title="Released"><?php echo $ape;?></td>
+        <th scope="row"><?php echo $nom . " " . $ape;?></th>
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>

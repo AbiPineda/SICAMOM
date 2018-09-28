@@ -70,13 +70,19 @@
                                             </div>
                                         </div> 
                                     </div>
+                                </div>
+                            </section> </div>
+                                                        <div>
+                        <h3></h3>
+                        <section>
+
                                     <div class="col-lg-4">
 
-                                        <div class="row mb-12" style="float: left;margin-left: 1175px; margin-top: 25px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 850px; margin-top: 11px;">
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
                                         </div>
-                                        <div class="row mb-12" style="float: left;margin-left: 1070px; margin-top: -34px;">
-                                            <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
+                                        <div class="row mb-12" style="float: left;margin-left: 750px; margin-top: -34px;">
+                                            <button type="reset" class="btn btn-info" name="nameCancelar"  onclick="location.href='modificarMayoresdeEdad.php'">Cancelar </button>
                                         </div>
 
                                     </div>
@@ -129,7 +135,7 @@ if (isset($_REQUEST['btnEnviar'])) {
                     closeOnConfirm: false
                 },
                 function () {
-                    location.href="consultaExpedientecopy.php";
+                    location.href="modificarMayoresdeEdad.php";
                     
                 });</script>';
 } 
