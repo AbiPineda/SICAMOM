@@ -100,8 +100,8 @@ include_once '../plantilla/menu_lateral.php';
                             <option>Insumo</option>
                             <?php
                              while ($row = mysqli_fetch_array($ins)) {
-                                       
-                                           echo '<option value='."$row[0]".'>'.$row['1'].'</option>';
+                                           
+                                           echo '<option value='."$row[0]".'>'.$row['1'].' '.$row['3'].'</option>';
                                     }
                                     ?>
                                         </select>
@@ -178,9 +178,23 @@ include_once '../plantilla/menu_lateral.php';
                                      <div class="col-lg-3">
                                         <label style="color: white">Total a pagar<small class="text-muted" ></small></label>  
                                          <div class="input-group">
-                                        <input type="text" class="form-control" id="Tpagar"  name="Tpagar" placeholder="Total">
+                                             <input type="text" class="form-control" id="Tpagar"  name="Tpagar" placeholder="Total" disabled>
                                          <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                    
+                                    <div class="col-lg-3">
+                                        <label style="color: white">Fecha de Compra<small class="text-muted" ></small></label>  
+                                         <div class="input-group">
+                                             <?php
+                                             date_default_timezone_set('America/El_Salvador');
+                                             ?>
+                                             <input type="text" class="form-control" id="FeActual"  name="FeActual" placeholder="Fecha Actual" value="<?=date('d/m/y g:ia');?>" disabled>
+                                         <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
                                     </div>
 
@@ -356,3 +370,5 @@ include_once '../plantilla/menu_lateral.php';
                 return patron.test(tecla_final);
             }
         </script>
+       
+        
