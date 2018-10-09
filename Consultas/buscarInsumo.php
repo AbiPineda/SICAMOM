@@ -55,6 +55,10 @@ include_once '../Conexion/conexion.php';
       <th><div>Nombre</div></th>
       <th><div>Marca</div></th>
       <th><div>Descripción</div></th>
+  <th><div>Compra</div></th>
+  <th><div>Presentacion</div></th>
+  <th><div>Paquete</div></th>
+  <th><div>Unidades</div></th>
      
     
       
@@ -63,22 +67,29 @@ include_once '../Conexion/conexion.php';
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo WHERE ins_codigo AND estado=1");
+        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo, t_compra WHERE ins_codigo=id_compra AND estado=1");
             while ($fila = mysqli_fetch_array($sacar1)) {
                 $cod=$fila['codigo'];
                 $nom=$fila['ins_cnombre_comercial'];  
                 $marca=$fila['ins_cmarca'];  
-                $desc=$fila['ins_cdescripcion'];  
+                $desc=$fila['ins_cdescripcion']; 
+                $compra=$fila['fecha_caducidad']; 
+                $presentacion=$fila['presentacion']; 
+                $paquete=$fila['cantidad']; 
+                $unidades=$fila['unidad']; 
                 
 
         ?> 
-      <tr>
-        <td data-title="Releaseda"><?php echo $cod;?></td>
-        <th scope="row"><?php echo $nom;?></th>
-        <td data-title="Released"><?php echo $marca;?></td>
-        <td data-title="Studio"><?php echo $desc;?></td>
-        
-        </td>
+        <tr>
+                <td data-title="Releaseda"><?php echo $cod; ?></td>
+                <th scope="row"><?php echo $nom; ?></th>
+                <td data-title="Released"><?php echo $marca; ?></td>
+                <td data-title="Studio"><?php echo $desc; ?></td>
+                <td data-title="Studio1"><?php echo $compra; ?></td>
+                <td data-title="Studio2"><?php echo $presentacion; ?></td>
+                <td data-title="Studio3"><?php echo $paquete; ?></td>
+                <td data-title="Studio4"><?php echo $unidades; ?></td>
+                </td>
 
        <?php  }?>
       
