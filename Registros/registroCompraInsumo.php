@@ -65,13 +65,27 @@ include_once '../plantilla/menu_lateral.php';
 
 
                 <div class="card-body wizard-content">
-                    <h3 class="card-title" style="color: white">Registro de Compra| Insumo</h3>
+                    <h3 class="card-title" style="color: white">Registro de Compra | Insumo</h3>
                     <form id="f1" name="f1" action="" class="m-t-40" method="POST" autocomplete="off">
                         <input type="hidden" name="tirar" id="pase"/>
                         <div>
                             <section>
 
                                 <div class="row mb-12"> 
+
+                                  <div class="col-lg-3">
+                                        <label style="color: white">Fecha de Compra<small class="text-muted" ></small></label>  
+                                         <div class="input-group">
+                                             <?php
+                                             date_default_timezone_set('America/El_Salvador');
+                                             ?>
+                                             <input type="text" class="form-control" id="FeActual"  name="FeActual" placeholder="Fecha Actual" value="<?=date('d/m/y g:ia');?>" >
+                                         <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+
+                                    </div>
                                     
                                     <div class="col-lg-3">
                                         <label style="color: white">Proveedor<small class="text-muted"></small></label>
@@ -80,7 +94,7 @@ include_once '../plantilla/menu_lateral.php';
                                           include_once '../Conexion/conexion.php';
                                           $pro= mysqli_query($conexion,"SELECT*from t_proveedor WHERE estado=1");
                               ?>
-                            <option>Proveedor</option>
+                            <option value="None" disabled selected required>Seleccione</option>
                             <?php
                              while ($row = mysqli_fetch_array($pro)) {
                                          $prove=$row['id_proveedor'];
@@ -97,7 +111,7 @@ include_once '../plantilla/menu_lateral.php';
                                           include_once '../Conexion/conexion.php';
                                           $ins= mysqli_query($conexion,"SELECT*from t_insumo WHERE estado=1");
                               ?>
-                            <option>Insumo</option>
+                            <option value="None" disabled selected required>Seleccione</option>
                             <?php
                              while ($row = mysqli_fetch_array($ins)) {
                                            
@@ -108,37 +122,19 @@ include_once '../plantilla/menu_lateral.php';
                                     </div>
 
                                     <div class="col-lg-3">
-                                        <label style="color: white">Caducidad<small class="text-muted"></small></label>
-                                        <select class="custom-select" name="tipoCaducidad" id="tipoCaducidad" style="width: 100%; height:36px;" >
-
-                                            <option value="0" selected>Tiene Caducidad</option>
-                                            <option value="1">No tiene Caducidad</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Fecha de Caducidad:</label>
+                                        <label style="color: white">Fecha de Caducidad</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control mydatepicker" name="fecha" id="fecha" placeholder="Ingrese fecha de Caducidad.">
+                                            <input type="text" class="form-control mydatepicker" name="fecha" id="fecha" placeholder="Ingrese">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>
                                         </div>
                                     </div>
 
-                                     <div class="col-lg-3">
-                                        <label style="color: white">Tipo de Insumo<small class="text-muted"></small></label>
-                                        <select class="custom-select" name="tipo" id="tipo" style="width: 100%; height:36px;" >
-
-                                            <option value="Contable" selected>Contable</option>
-                                            <option value="No contable">No contable</option>
-                                        </select>
-                                    </div>
-
-
                                     <div class="col-lg-3">
-                                        <label style="color: white">Cantidad de paquete<small class="text-muted" ></small></label>
+                                        <label style="color: white">Cantidad<small class="text-muted" ></small></label>
                                           <div class="input-group">                         
-                                        <input type="number" min="0" class="form-control" id="Cpaquete" name="Cpaquete" placeholder="Paquetes" value="" required>
+                                        <input type="number" min="0" class="form-control" id="Cpaquete" name="Cpaquete" placeholder="Ingrese" value="" required>
                                         <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                                             </div> 
@@ -148,22 +144,14 @@ include_once '../plantilla/menu_lateral.php';
                                     <div class="col-lg-3">
                                         <label style="color: white">Unidad por paquete<small class="text-muted" ></small></label>     
                                         <div class="input-group">                                  
-                                        <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Unidades" value="" required >
+                                        <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Ingrese" value="" required >
                                         <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                                             </div> 
                                     </div>
                                     </div>
 
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Presentación<small class="text-muted" ></small></label>
-                                         <div class="input-group">                                   
-                                        <input type="text" class="form-control" id="lname" name="presentacion" placeholder="Presentación del insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>
-                                        <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-desktop"></i></span>
-                                            </div>
-                                        </div>                                     
-                                    </div>
+                                   
 
                                      <div class="col-lg-3">
                                         <label style="color: white">Precio por paquete<small class="text-muted" ></small></label>     
@@ -176,7 +164,7 @@ include_once '../plantilla/menu_lateral.php';
                                     </div>
 
                                      <div class="col-lg-3">
-                                        <label style="color: white">Total a pagar<small class="text-muted" ></small></label>  
+                                        <label style="color: white">Total<small class="text-muted" ></small></label>  
                                          <div class="input-group">
                                              <input type="text" class="form-control" id="Tpagar"  name="Tpagar" placeholder="Total" disabled>
                                          <div class="input-group-append">
@@ -186,30 +174,69 @@ include_once '../plantilla/menu_lateral.php';
 
                                     </div>
                                     
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Fecha de Compra<small class="text-muted" ></small></label>  
-                                         <div class="input-group">
-                                             <?php
-                                             date_default_timezone_set('America/El_Salvador');
-                                             ?>
-                                             <input type="text" class="form-control" id="FeActual"  name="FeActual" placeholder="Fecha Actual" value="<?=date('d/m/y g:ia');?>" disabled>
-                                         <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    
+
+                                    <div class="col-lg-7" >
+
+
+                                      <div class="col-md-1 pull-right">
+                                            <input type="submit" class="btn btn-info" name="btnCancelar" id="boton" value="Cancelar">
                                         </div>
-                                    </div>
 
-                                    </div>
-
-                                    <div class="col-lg-12">
-
-                                        <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                            <input type="submit" class="btn btn-info" name="btnGuardar" id="boton" value="Guardar">
+                                        <div class="col-md-2 pull-right">
+                                            <input type="submit" class="btn btn-info" name="btnComprar" id="boton" value="Comprar">
                                         </div>
-                                        <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                            <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
+                                        
+                                        <div class="col-md-2 pull-right">
+                                            <input type="submit" class="btn btn-info" name="btnAgregar" id="boton" value="Agregar">
                                         </div>
 
                                     </div> 
+
+                                    <!-- Tabla de compra -->
+                                    <table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Proveedor</th>
+      <th>Insumo</th>
+      <th>Cantidad</th>
+      <th>Costo</th>
+      <th>Total</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Apple</td>
+      <td>Red</td>
+      <td>These are red.</td>
+      <td>AAAAAAA</td>
+      <td>BBBBBBB</td>
+      <td>CCCCCCC</td>
+      <td>DDDDDDD</td>
+    </tr>
+    <tr>
+      <td>Pear</td>
+      <td>Green</td>
+      <td>These are green.</td>
+       <td>AAAAAAA</td>
+      <td>BBBBBBB</td>
+      <td>CCCCCCC</td>
+      <td>DDDDDDD</td>
+    </tr>
+     <tr>
+      <td>Pear</td>
+      <td>Green</td>
+      <td>These are green.</td>
+       <td>AAAAAAA</td>
+      <td>BBBBBBB</td>
+      <td>CCCCCCC</td>
+      <td>DDDDDDD</td>
+    </tr>
+    
+  </tbody>
+</table>
                                 </div>
                         </div>
                     </form>

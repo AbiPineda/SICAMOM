@@ -17,6 +17,7 @@
             <link href="../dist/css/style.min.css" rel="stylesheet">
             <link href="../dist/css/style.min.css" rel="stylesheet">
             <link href="../dist/css/styleSearch.css" rel="stylesheet">
+            <link href="../dist/css/tablaCompra.css" rel="stylesheet">
             <link href="../dist/css/style.css" rel="stylesheet">
              <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
