@@ -180,21 +180,21 @@ include_once '../plantilla/menu_lateral.php';
 
 
                                       <div class="col-md-1 pull-right">
-                                            <input type="submit" class="btn btn-info" name="btnCancelar" id="boton" value="Cancelar">
+                                            <input type="submit" class="btn btn-info" name="btnCancelar" id="botonCan" value="Cancelar">
                                         </div>
 
                                         <div class="col-md-2 pull-right">
-                                            <input type="submit" class="btn btn-info" name="btnComprar" id="boton" value="Comprar">
+                                            <input type="submit" class="btn btn-info" name="btnComprar" id="botonCom" value="Comprar">
                                         </div>
                                         
                                         <div class="col-md-2 pull-right">
-                                            <input type="submit" class="btn btn-info" name="btnAgregar" id="boton" value="Agregar">
+                                            <input type="submit" class="btn btn-info" name="btnAgregar" id="botonA"  value="Agregar">
                                         </div>
 
                                     </div> 
 
                                     <!-- Tabla de compra -->
-                                    <table>
+                                    <table id="tabla">
   <thead>
     <tr>
       <th>Código</th>
@@ -251,44 +251,44 @@ include_once '../plantilla/menu_lateral.php';
 
             <?php
             include_once '../plantilla/pie.php';
-        if (isset($_REQUEST['tirar'])) {
-         include_once '../Conexion/conexion.php';
-         $prove=$_REQUEST['proveedor'];
-         $insumo=$_REQUEST['insumo'];
-         $caducidad=$_REQUEST['tipoCaducidad'];
-         $tipo=$_REQUEST['tipo'];
-          $cantidad=$_REQUEST['Cpaquete'];
-          //tira un error por que el campo viene vacio
-          if (isset($_REQUEST['unidad'])!=null){
-          $uni=$_REQUEST['unidad'];
-          }else{
-              $uni=0;
-          }
-          $presen=$_REQUEST['presentacion'];
-          $precio=$_REQUEST['precioPa'];
-          $total=$_REQUEST['Tpagar'];
-          
-           if ($caducidad == '0') {
-        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
-    } else {
-        $fecha = '0000-00-00';
-    }
-          mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,presentacion,fecha_caducidad,precio_unitario,cantidad,unidad,total) "
-                  . "VALUES('$prove','$insumo','$presen','$fecha','$precio','$cantidad','$uni','$total')");
-        echo '<script>swal({
-                    title: "Registro",
-                    text: "Guardado!",
-                    type: "success",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="registroCompraInsumo.php";
-                    
-                });</script>';
-         
-        }
-        ?>
+//        if (isset($_REQUEST['tirar'])) {
+//         include_once '../Conexion/conexion.php';
+//         $prove=$_REQUEST['proveedor'];
+//         $insumo=$_REQUEST['insumo'];
+//         $caducidad=$_REQUEST['tipoCaducidad'];
+//         $tipo=$_REQUEST['tipo'];
+//          $cantidad=$_REQUEST['Cpaquete'];
+//          //tira un error por que el campo viene vacio
+//          if (isset($_REQUEST['unidad'])!=null){
+//          $uni=$_REQUEST['unidad'];
+//          }else{
+//              $uni=0;
+//          }
+//          $presen=$_REQUEST['presentacion'];
+//          $precio=$_REQUEST['precioPa'];
+//          $total=$_REQUEST['Tpagar'];
+//          
+//           if ($caducidad == '0') {
+//        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
+//    } else {
+//        $fecha = '0000-00-00';
+//    }
+//          mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,presentacion,fecha_caducidad,precio_unitario,cantidad,unidad,total) "
+//                  . "VALUES('$prove','$insumo','$presen','$fecha','$precio','$cantidad','$uni','$total')");
+//        echo '<script>swal({
+//                    title: "Registro",
+//                    text: "Guardado!",
+//                    type: "success",
+//                    confirmButtonText: "Aceptar",
+//                    closeOnConfirm: false
+//                },
+//                function () {
+//                    location.href="registroCompraInsumo.php";
+//                    
+//                });</script>';
+//         
+//        }
+//        ?>
             <script type="text/javascript">
                 function totalPrecio(){
         var Cpaquete=document.getElementById("Cpaquete").value;

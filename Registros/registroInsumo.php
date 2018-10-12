@@ -10,8 +10,11 @@ if (isset($_REQUEST['btnGuardar'])) {
     $nombre = $_REQUEST['nombreCom'];
     $marca = $_REQUEST['marca'];
     $descripcion = $_REQUEST['descripcion'];
+    $presentacion = $_REQUEST['presentacion'];
+    $unidad = $_REQUEST['unidad'];
+    $minimo = $_REQUEST['minimo'];
 //    $caducidad = $_REQUEST['tipoCaducidad'];
-//    $presentacion = $_REQUEST['presentacion'];
+    
 //    if ($caducidad == '0') {
 //        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
 //    } else {
@@ -28,7 +31,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
 
-    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo) VALUES('$nombre','$marca','$descripcion','$esta','$codigo')");
+    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo,presentacion,unidad,minimo) VALUES('$nombre','$marca','$descripcion','$esta','$codigo','$presentacion','$unidad','$minimo')");
 //    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
 //    while ($row = mysqli_fetch_array($insumo)) {
 //        $id = $row['ins_codigo'];
@@ -108,6 +111,39 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         <label style="color: white">Descripción<small class="text-muted" ></small></label>
                                         <div class="input-group">                                    
                                         <input type="text" onkeyup="campos()" class="form-control" id="lname" name="descripcion" placeholder="Descripción de insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                        </div>
+                                        </div>  
+                                        
+                                    </div>
+                                    <div class="col-lg-4">
+                                         
+                                        <label style="color: white">Presentación<small class="text-muted" ></small></label>
+                                        <div class="input-group">                                    
+                                        <input type="text" onkeyup="campos()" class="form-control" id="lname" name="presentacion" placeholder="Presentación de insumo" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                        </div>
+                                        </div>  
+                                        
+                                    </div>
+                                    <div class="col-lg-4">
+                                         
+                                        <label style="color: white">Unidades<small class="text-muted" ></small></label>
+                                        <div class="input-group">                                    
+                                            <input type="number" min="0" onkeyup="campos()" class="form-control" id="lname" name="unidad" placeholder="Cantidad de Unidades" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                        </div>
+                                        </div>  
+                                        
+                                    </div>
+                                    <div class="col-lg-4">
+                                         
+                                        <label style="color: white">Stock Minimo<small class="text-muted" ></small></label>
+                                        <div class="input-group">                                    
+                                            <input type="number" min="0" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="Cantidad de Stock Minimo" onkeypress="return sinCaracterEspecial(event)" value="" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
                                         </div>

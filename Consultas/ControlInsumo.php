@@ -6,7 +6,7 @@ include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
 
 ?>
-
+ 
 <html lang="en" >
 
 <head>
