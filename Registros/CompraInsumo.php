@@ -54,7 +54,7 @@ include_once '../plantilla/menu_lateral.php';
 //    //$usuario_insertado = $sentencia->execute();
 //}
     ?>
-    <div class="page-wrapper">
+    <div class="page-wrapper" style="height: 671px;">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 
@@ -65,133 +65,76 @@ include_once '../plantilla/menu_lateral.php';
 
 
                 <div class="card-body wizard-content">
-                    <h3 class="card-title" style="color: white">Registro de Compra</h3>
-                    <form id="f1" name="f1" action="" class="m-t-40" method="POST" autocomplete="off">
-                        <input type="hidden" name="tirar" id="pase"/>
-                        <div>
-                            <section>
+                    
+                   <div class="row col-md-12">
 
-                                <div class="row mb-12"> 
+                  <div class="col-md-4">
+                    <table id="tabla">
+                          <thead>
+                            <tr>
+                              <th>Código</th> 
+                              <th>Nombre</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Apple</td>
+                              <td>Red</td>
+                            </tr>
+                           
+                            
+                          </tbody>
+                        </table>
+                  </div>
+                  
 
-                                  <div class="col-lg-3">
-                                        <label style="color: white">Fecha de Compra<small class="text-muted" ></small></label>  
-                                         <div class="input-group">
-                                             <?php
-                                             date_default_timezone_set('America/El_Salvador');
-                                             ?>
-                                             <input type="text" class="form-control" id="FeActual"  name="FeActual" placeholder="Fecha Actual" value="<?=date('d/m/y g:ia');?>" >
-                                         <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                        </div>
-                                    </div>
+                  <div class="col-md-1">
+                    <label style="color: white;" for="gender"># Factura</label>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" required>
+                    </div>
+                  </div>
 
-                                    </div>
-                                    
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Proveedor<small class="text-muted"></small></label>
-                                        <select class="custom-select" name="proveedor" id="proveedor" style="width: 100%; height:36px;" >
-                                             <?php
-                                          include_once '../Conexion/conexion.php';
-                                          $pro= mysqli_query($conexion,"SELECT*from t_proveedor WHERE estado=1");
-                              ?>
-                            <option value="None" disabled selected required>Seleccione</option>
-                            <?php
-                             while ($row = mysqli_fetch_array($pro)) {
-                                         $prove=$row['id_proveedor'];
-                                           echo '<option value='."$row[0]".'>'.$row['1'].'</option>';
-                                    }
-                                    ?>
-                                        </select>
-                                    </div>
+                   <div class="col-md-1">
+                    <label style="color: white;" for="gender">Feccha de compra</label>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" required>
+                    </div>
+                  </div>
 
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Insumo<small class="text-muted"></small></label>
-                                        <select class="custom-select" name="insumo" id="insumo" style="width: 100%; height:36px;" >
-                                             <?php
-                                          include_once '../Conexion/conexion.php';
-                                          $ins= mysqli_query($conexion,"SELECT*from t_insumo WHERE estado=1");
-                              ?>
-                            <option value="None" disabled selected required>Seleccione</option>
-                            <?php
-                             while ($row = mysqli_fetch_array($ins)) {
-                                           
-                                           echo '<option value='."$row[0]".'>'.$row['1'].' '.$row['3'].'</option>';
-                                    }
-                                    ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Fecha de Caducidad</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control mydatepicker" name="fecha" id="fecha" placeholder="Ingrese">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Cantidad<small class="text-muted" ></small></label>
-                                          <div class="input-group">                         
-                                        <input type="number" min="0" class="form-control" id="Cpaquete" name="Cpaquete" placeholder="Ingrese" value="" required>
-                                        <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-box"></i></span>
-                                            </div> 
-                                           </div>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <label style="color: white">Unidad por paquete<small class="text-muted" ></small></label>     
-                                        <div class="input-group">                                  
-                                        <input type="number" min="0" class="form-control" id="unidad" name="unidad" placeholder="Ingrese" value="" required >
-                                        <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-box"></i></span>
-                                            </div> 
-                                    </div>
-                                    </div>
-
-                                   
-
-                                     <div class="col-lg-3">
-                                        <label style="color: white">Precio por paquete<small class="text-muted" ></small></label>     
-                                        <div class="input-group">                                  
-                                            <input type="number" placeholder="0.00" required name="price" min="0" value="0" step="0.01" class="form-control" id="precioPa" name="precioPa" onChange="javascript:totalPrecio()" placeholder="Precio" value="" required >
-                                        <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                            </div> 
-                                    </div>
-                                    </div>
-
-                                     <div class="col-lg-3">
-                                        <label style="color: white">Total<small class="text-muted" ></small></label>  
-                                         <div class="input-group">
-                                             <input type="text" class="form-control" id="Tpagar"  name="Tpagar" placeholder="Total" disabled>
-                                         <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                                        </div>
-                                    </div>
-
-                                    </div>
-                                    
-                                    
-
-                                    <div class="col-lg-7" >
+                   <div class="col-md-1">
+                    <label style="color: white;" for="gender">Código</label>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" required>
+                    </div>
+                  </div>
 
 
-                                      <div class="col-md-1 pull-right">
-                                            <input type="submit" class="btn btn-info" name="btnCancelar" id="botonCan" value="Cancelar">
-                                        </div>
+                  <div class="col-md-1">
+                    <label style="color: white;" for="gender">Cantidad</label>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <select class="form-control" id="gender" required >
+                        <option value="None" disabled selected required>Seleccione</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                    </div>
+                  </div>
 
-                                        <div class="col-md-2 pull-right">
-                                            <input type="submit" class="btn btn-info" name="btnComprar" id="botonCom" value="Comprar">
-                                        </div>
-                                        
-                                        <div class="col-md-2 pull-right">
-                                            <input type="submit" class="btn btn-info" name="btnAgregar" id="botonA"  value="Agregar">
-                                        </div>
 
-                                    </div> 
+                </div>
+
+                <div class="row col-md-12">
+
+               
 
                                     <!-- Tabla de compra -->
                                     <table id="tabla">
@@ -237,14 +180,14 @@ include_once '../plantilla/menu_lateral.php';
     
   </tbody>
 </table>
-                                </div>
+                              
                         </div>
-                    </form>
+              
                 </div>
 
             </div>
 
-
+          </div>
 
 
             <!-- ============================================================== --> 

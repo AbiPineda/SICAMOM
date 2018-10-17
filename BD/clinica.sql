@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2018 a las 05:15:31
+-- Tiempo de generación: 14-10-2018 a las 05:30:54
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 7.0.9
 
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `clinica`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_compra`
+--
+
+CREATE TABLE `detalle_compra` (
+  `iddetalleCompra` int(11) NOT NULL,
+  `idcompra` int(11) NOT NULL,
+  `valor` decimal(10,0) DEFAULT NULL,
+  `cantidad` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -151,7 +164,7 @@ CREATE TABLE `t_insumo` (
 --
 
 INSERT INTO `t_insumo` (`ins_codigo`, `ins_cnombre_comercial`, `ins_cmarca`, `ins_cdescripcion`, `estado`, `codigo`, `presentacion`, `unidad`, `minimo`) VALUES
-(1, 'Torundas', 'MediLab', 'Algodon no Esteril', 1, 'TOR303', 'Caja', 100, 50);
+(1, 'Baja Lengua', 'Cramberry', 'de 15 cm x 2 cm Madera', 1, 'BAJ613', 'Caja', 100, 25);
 
 -- --------------------------------------------------------
 
@@ -246,6 +259,13 @@ CREATE TABLE `t_proveedor` (
   `justificacion` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `t_proveedor`
+--
+
+INSERT INTO `t_proveedor` (`id_proveedor`, `pro_cnombre_empresa`, `pro_cnombre_responsable`, `pro_cdireccion`, `pro_ctelefono`, `estado`, `justificacion`) VALUES
+(1, 'Lab Lopez ', 'Blanca Lainez', 'San Vicente', '7943-3432', 1, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -298,6 +318,13 @@ CREATE TABLE `t_vacunacion` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `detalle_compra`
+--
+ALTER TABLE `detalle_compra`
+  ADD PRIMARY KEY (`iddetalleCompra`),
+  ADD KEY `fk_detalle_compra_t_compra1_idx` (`idcompra`);
 
 --
 -- Indices de la tabla `t_bitacora`
@@ -422,6 +449,11 @@ ALTER TABLE `t_vacunacion`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `detalle_compra`
+--
+ALTER TABLE `detalle_compra`
+  MODIFY `iddetalleCompra` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `t_bitacora`
 --
 ALTER TABLE `t_bitacora`
@@ -490,7 +522,7 @@ ALTER TABLE `t_prenatal`
 -- AUTO_INCREMENT de la tabla `t_proveedor`
 --
 ALTER TABLE `t_proveedor`
-  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `t_responsable`
 --
@@ -509,6 +541,12 @@ ALTER TABLE `t_vacunacion`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `detalle_compra`
+--
+ALTER TABLE `detalle_compra`
+  ADD CONSTRAINT `fk_detalle_compra_t_compra1` FOREIGN KEY (`idcompra`) REFERENCES `t_compra` (`id_compra`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `t_bitacora`
