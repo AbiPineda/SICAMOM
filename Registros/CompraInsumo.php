@@ -3,6 +3,7 @@
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
+include_once '../Conexion/conexion.php';
 //$codigo1 = '';
 //if (isset($_REQUEST['btnGuardar'])) {
 //    include_once '../Conexion/conexion.php';
@@ -62,30 +63,51 @@ include_once '../plantilla/menu_lateral.php';
 
         <div class="container-fluid">
             <div class="card" style="background: rgba(0, 101, 191,0.6)">
+                
+                <div class="wrap">
+              <script src="../html/js/jquery.min.js" ></script>
+            <script src="../html/js/buscaresc.js"></script>
+         <div class="search" center>
+            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
+            <button type="submit" class="searchButton">
+              <i class="fa fa-search"></i>
+           </button>
+         </div>
+      </div>
+                <div class="col-md-20">
+                <table id="tabla" center>
+                        <thead>
+                        <th><div>Código</div></th>
+                        <th><div>Nombre</div></th>
+                        </thead>
+                   <tbody  class="buscar"> 
+    <?php
+        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo WHERE estado=1");
+            while ($fila = mysqli_fetch_array($sacar1)) {
+                $cod=$fila['codigo'];
+                $nom=$fila['ins_cnombre_comercial'];  
+                      
 
+        ?> 
+        <tr>
+                <td data-title="Releaseda"><?php echo $cod; ?></td>
+                <th scope="row"><?php echo $nom; ?></th>
+                
+                </td>
+
+       <?php  }?>
+      
+      </tr>
+
+    </tbody>
+  </table>
+                </div>
 
                 <div class="card-body wizard-content">
                     
                    <div class="row col-md-12">
 
-                  <div class="col-md-4">
-                    <table id="tabla">
-                          <thead>
-                            <tr>
-                              <th>Código</th> 
-                              <th>Nombre</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Apple</td>
-                              <td>Red</td>
-                            </tr>
-                           
-                            
-                          </tbody>
-                        </table>
-                  </div>
+                  
                   
 
                   <div class="col-md-1">
