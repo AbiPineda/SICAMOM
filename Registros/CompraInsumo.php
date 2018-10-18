@@ -111,29 +111,40 @@ include_once '../Conexion/conexion.php';
                   
 
                   <div class="col-md-1">
+                      <?php
+                                          include_once '../Conexion/conexion.php';
+                                         // $result=$conexion->query("SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'clinica' AND TABLE_NAME = 'compras'");
+				   
+                                          $pro= mysqli_query($conexion,"SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'clinica' AND TABLE_NAME = 't_compra'");
+                                           $row = $pro->fetch_array();
+                          
+                                    ?>
                     <label style="color: white;" for="gender"># Factura</label>
                   </div>
                   <div class="col-md-1">
                     <div class="form-group">
-                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" required>
+                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" value="<?php echo $row['AUTO_INCREMENT'] ?>" readonly>
                     </div>
                   </div>
 
-                   <div class="col-md-1">
-                    <label style="color: white;" for="gender">Feccha de compra</label>
+                   <div class="col-md-2">
+                    <label style="color: white;" for="gender">Fecha de compra</label>
+                    <?php
+                    date_default_timezone_set('America/El_Salvador');
+                    ?>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" required>
+                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="FeActual" value="<?=date('d/m/y g:ia');?>" disabled>
                     </div>
                   </div>
 
                    <div class="col-md-1">
                     <label style="color: white;" for="gender">Código</label>
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" required>
+                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="codigo" required>
                     </div>
                   </div>
 
@@ -141,13 +152,9 @@ include_once '../Conexion/conexion.php';
                   <div class="col-md-1">
                     <label style="color: white;" for="gender">Cantidad</label>
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-1">
                     <div class="form-group">
-                      <select class="form-control" id="gender" required >
-                        <option value="None" disabled selected required>Seleccione</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                      </select>
+                      <input type="numeric" class="form-control" aria-describedby="basic-addon1" id="country" required>
                     </div>
                   </div>
 
@@ -363,4 +370,13 @@ include_once '../Conexion/conexion.php';
             }
         </script>
        
-        
+        <script>
+            var table = document.getElementById('tabla');
+            for(var i = 1; i<table.rows.length; i++)
+            {
+                table.rows[i].onclick = function()
+                {
+                    document.getElementById("codigo").value = this.cells[0].innerHTML;
+               };
+            }
+            </script>
