@@ -8,6 +8,7 @@ table {
 
 thead {
   background-color: #fff;
+  color: black;
   box-shadow: inset 0px -1px 0px #eee, 0px 5px 5px -5px rgba(0, 0, 0, 0.1);
   position: relative;
 }
@@ -15,18 +16,43 @@ thead {
 thead tr {
   display: block;
   position: relative;
+   text-align: left;
 }
 
 td:nth-child(1),
 th:nth-child(1) {
-  min-width: 100px;
+  min-width: 60px;
 }
 
 td:nth-child(2),
 th:nth-child(2) {
-  min-width: 170px;
+  min-width: 120px;
 }
 
+td:nth-child(3),
+th:nth-child(3) {
+  min-width: 130px;
+}
+
+td:nth-child(4),
+th:nth-child(4) {
+  min-width: 50px;
+}
+
+td:nth-child(5),
+th:nth-child(5) {
+  min-width: 70px;
+}
+
+td:nth-child(6),
+th:nth-child(6) {
+  min-width: 100px;
+}
+
+td:nth-child(7),
+th:nth-child(7) {
+  min-width: 160px;
+}
 
 
 th, td {
@@ -38,12 +64,13 @@ tbody {
   display: block;
   overflow: auto;
   width: 100%;
-  height: calc(68vh - 50px);
+  height: calc(42vh - 50px);
+
 }
 
 tbody tr:nth-child(2n) {
   background-color: #dddddd;
 }
 tbody tr:nth-child(1n) {
-  background-color: orange;
+  background-color: #dddddd;
 }

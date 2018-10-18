@@ -54,7 +54,7 @@ include_once '../plantilla/menu_lateral.php';
 //    //$usuario_insertado = $sentencia->execute();
 //}
     ?>
-    <div class="page-wrapper">
+    <div class="page-wrapper" style="height: 671px;">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 

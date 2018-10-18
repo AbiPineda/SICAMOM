@@ -3,56 +3,6 @@
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
-//$codigo1 = '';
-//if (isset($_REQUEST['btnGuardar'])) {
-//    include_once '../Conexion/conexion.php';
-//    $codigo = $_REQUEST['codigo'];
-//    $nombre = $_REQUEST['nombreCom'];
-//    $marca = $_REQUEST['marca'];
-//    $descripcion = $_REQUEST['descripcion'];
-//    $caducidad = $_REQUEST['tipoCaducidad'];
-//    $presentacion = $_REQUEST['presentacion'];
-//    if ($caducidad == '0') {
-//        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
-//    } else {
-//        $fecha = '0000-00-00';
-//    }
-//    // $partes = explode('-', $fecha);
-//    // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
-//    $esta = 1;
-//    //$numero = rand(100,1000);
-//    //$codigo1 = (strtoupper((substr($nombre, 0, 3))) . $numero); 
-//    // $anio = date("y");
-//
-//
-//    Conexion::abrir_conexion();
-//    $conexionx = Conexion::obtener_conexion();
-//
-//    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,ins_cpresentacion,ins_ffecha_caducidad,estado,codigo) VALUES('$nombre','$marca','$descripcion','$presentacion','$fecha','$esta','$codigo')");
-//    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
-//    while ($row = mysqli_fetch_array($insumo)) {
-//        $id = $row['ins_codigo'];
-//        $paquete = $_REQUEST['paquete'];
-//        $unidad = $_REQUEST['unidad'];
-//    }
-//    mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
-//    echo '<script>swal({
-//                    title: "Exito",
-//                    text: "Insumo Guardado!",
-//                    type: "success",
-//                    confirmButtonText: "Aceptar",
-//                    closeOnConfirm: false
-//                },
-//                function () {
-//                    location.href="registroInsumo.php";
-//                    
-//                });</script>';
-//
-//
-//
-//    //  $sentencia = $conexionx->prepare($sql);
-//    //$usuario_insertado = $sentencia->execute();
-//}
     ?>
     <div class="page-wrapper" style="height: 671px;">
 
@@ -61,131 +11,180 @@ include_once '../plantilla/menu_lateral.php';
 
 
         <div class="container-fluid">
-            <div class="card" style="background: rgba(0, 101, 191,0.6)">
+        <div class="signup__container">
+  <div class="container__child signup__thumbnail">
+    <div class="thumbnail__logo">
+      
+      <h2 class="heading--secondary">Registro de compra</h2>
+      <form>
 
+        <div class="row mb-12"> 
 
-                <div class="card-body wizard-content">
-                    
-                   <div class="row col-md-12">
+        <div class="col-lg-3">
+         <label style="color: black">Factura #<small class="text-muted" ></small></label>
+          <div class="input-group">                         
+          <input type="text" class="form-control" id="Cpaquete" name="Cpaquete" value="" required>
+         <div class="input-group-append">
+      <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
+        </div> 
+       </div>
+           </div>
 
-                  <div class="col-md-4">
-                    <table id="tabla">
+       <div class="col-lg-4">
+      <label style="color: black">Fecha</label>
+        <div class="input-group">
+      <input type="text" class="form-control mydatepicker" name="fecha" id="fecha" placeholder="Ingrese">
+       <div class="input-group-append">
+      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+       </div>
+        </div>
+        </div>
+
+        <div class="col-lg-4">
+         <label style="color: black">Proveedor<small class="text-muted" ></small></label>
+          <div class="input-group">                         
+          <input type="text" class="form-control" id="Cpaquete" name="Cpaquete" value="" required>
+         <div class="input-group-append">
+      <span class="input-group-text"><i class="fas fa-user"></i></span>
+        </div> 
+       </div>
+           </div>
+
+           <div class="col-lg-3">
+         <label style="color: black">Insumo<small class="text-muted" ></small></label>
+          <div class="input-group">                         
+          <input type="text" class="form-control" id="Cpaquete" name="Cpaquete" value="" required>
+         <div class="input-group-append">
+      <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
+        </div> 
+       </div>
+           </div>
+
+      <div class="col-lg-4">
+      <label style="color: black">Fecha de Caducidad</label>
+        <div class="input-group">
+      <input type="text" class="form-control mydatepicker" name="fecha" id="fecha" placeholder="Ingrese">
+       <div class="input-group-append">
+      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+       </div>
+        </div>
+        </div>
+
+        <div class="col-lg-2">
+         <label style="color: black">Cantidad<small class="text-muted" ></small></label>
+          <div class="input-group">                         
+          <input type="text" class="form-control" id="Cpaquete" name="Cpaquete" value="" required>
+         <div class="input-group-append">
+      <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
+        </div> 
+       </div>
+           </div>
+
+           <div class="col-lg-2">
+         <label style="color: black">TOTAL<small class="text-muted" ></small></label>
+          <div class="input-group">                         
+          <input type="text" class="form-control" id="Cpaquete" name="Cpaquete" value="" required>
+         <div class="input-group-append">
+      <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+        </div> 
+       </div>
+           </div>
+
+           <div class="m-t-lg">
+        <ul class="list-inline">
+          <li>
+            <input class="btn btn--form" type="submit" value="Agregar" />
+          </li>
+          
+        </ul>
+      </div>
+
+    </div>
+      </form>
+    </div>
+    <div class="thumbnail__content text-center">
+      
+      
+    </div>
+    <div class="thumbnail__links">
+      <ul class="list-inline m-b-0 text-center">
+        
+        <table id="tabla" >
                           <thead>
                             <tr>
                               <th>Código</th> 
-                              <th>Nombre</th>
+                              <th>Proveedor</th>
+                              <th>Insumo</th> 
+                              <th>Cant</th>
+                              <th>Costo</th>
+                              <th>Sub Total</th>
+                              <th>Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
-                              <td>Apple</td>
-                              <td>Red</td>
+                              <td>BL281</td>
+                              <td>La. Lopez</td>
+                              <td>Baja lenguas</td>
+                              <td>15</td>
+                              <td>$22.37</td>
+                              <td>$335.55</td>
+                              <td>---</td>
                             </tr>
                            
                             
                           </tbody>
                         </table>
-                  </div>
-                  
+      </ul>
+    </div>
+    <div class="signup__overlay"></div>
+  </div>
 
-                  <div class="col-md-1">
-                    <label style="color: white;" for="gender"># Factura</label>
-                  </div>
-                  <div class="col-md-1">
-                    <div class="form-group">
-                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" required>
-                    </div>
-                  </div>
+  <div class="container__child signup__form">
+   
+     <div class="scroll-window">
+  <table class="table table-striped table-hover user-list fixed-header">
+    <thead>
+      <th><div>Código</div></th>
+      <th><div>Nombre</div></th>
+      
+      <th><div></div></th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AH754</td>
+        <td>Baja lengua</td>
+        
+      </tr>
 
-                   <div class="col-md-1">
-                    <label style="color: white;" for="gender">Feccha de compra</label>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" required>
-                    </div>
-                  </div>
+      <tr>
+        <td>AH754</td>
+        <td>Gel antibacterial</td>
+        
+      </tr>
 
-                   <div class="col-md-1">
-                    <label style="color: white;" for="gender">Código</label>
-                  </div>
-                  <div class="col-md-1">
-                    <div class="form-group">
-                      <input type="text" class="form-control" aria-describedby="basic-addon1" id="country" required>
-                    </div>
-                  </div>
+      <tr>
+        <td>MY843</td>
+        <td>Guantes</td>
+        
+      </tr>
+      
+    </tbody>
+  </table>
+  </div>
 
-
-                  <div class="col-md-1">
-                    <label style="color: white;" for="gender">Cantidad</label>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="form-group">
-                      <select class="form-control" id="gender" required >
-                        <option value="None" disabled selected required>Seleccione</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                      </select>
-                    </div>
-                  </div>
-
-
-                </div>
-
-                <div class="row col-md-12">
-
-               
-
-                                    <!-- Tabla de compra -->
-                                    <table id="tabla">
-  <thead>
-    <tr>
-      <th>Código</th>
-      <th>Proveedor</th>
-      <th>Insumo</th>
-      <th>Cantidad</th>
-      <th>Costo</th>
-      <th>Total</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Apple</td>
-      <td>Red</td>
-      <td>These are red.</td>
-      <td>AAAAAAA</td>
-      <td>BBBBBBB</td>
-      <td>CCCCCCC</td>
-      <td>DDDDDDD</td>
-    </tr>
-    <tr>
-      <td>Pear</td>
-      <td>Green</td>
-      <td>These are green.</td>
-       <td>AAAAAAA</td>
-      <td>BBBBBBB</td>
-      <td>CCCCCCC</td>
-      <td>DDDDDDD</td>
-    </tr>
-     <tr>
-      <td>Pear</td>
-      <td>Green</td>
-      <td>These are green.</td>
-       <td>AAAAAAA</td>
-      <td>BBBBBBB</td>
-      <td>CCCCCCC</td>
-      <td>DDDDDDD</td>
-    </tr>
-    
-  </tbody>
-</table>
-                              
-                        </div>
-              
-                </div>
-
-            </div>
+  <div class="col-lg-12">
+          <div class="input-group">                         
+          <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="Buscar.." class="form-control">
+         <div class="input-group-append">
+      <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div> 
+       </div>
+           </div>
+      
+      
+  </div>
+</div>
 
           </div>
 
@@ -194,44 +193,9 @@ include_once '../plantilla/menu_lateral.php';
 
             <?php
             include_once '../plantilla/pie.php';
-//        if (isset($_REQUEST['tirar'])) {
-//         include_once '../Conexion/conexion.php';
-//         $prove=$_REQUEST['proveedor'];
-//         $insumo=$_REQUEST['insumo'];
-//         $caducidad=$_REQUEST['tipoCaducidad'];
-//         $tipo=$_REQUEST['tipo'];
-//          $cantidad=$_REQUEST['Cpaquete'];
-//          //tira un error por que el campo viene vacio
-//          if (isset($_REQUEST['unidad'])!=null){
-//          $uni=$_REQUEST['unidad'];
-//          }else{
-//              $uni=0;
-//          }
-//          $presen=$_REQUEST['presentacion'];
-//          $precio=$_REQUEST['precioPa'];
-//          $total=$_REQUEST['Tpagar'];
-//          
-//           if ($caducidad == '0') {
-//        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
-//    } else {
-//        $fecha = '0000-00-00';
-//    }
-//          mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,presentacion,fecha_caducidad,precio_unitario,cantidad,unidad,total) "
-//                  . "VALUES('$prove','$insumo','$presen','$fecha','$precio','$cantidad','$uni','$total')");
-//        echo '<script>swal({
-//                    title: "Registro",
-//                    text: "Guardado!",
-//                    type: "success",
-//                    confirmButtonText: "Aceptar",
-//                    closeOnConfirm: false
-//                },
-//                function () {
-//                    location.href="registroCompraInsumo.php";
-//                    
-//                });</script>';
-//         
-//        }
+
 //        ?>
+
             <script type="text/javascript">
                 function totalPrecio(){
         var Cpaquete=document.getElementById("Cpaquete").value;
