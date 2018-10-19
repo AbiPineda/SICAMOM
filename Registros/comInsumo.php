@@ -76,7 +76,17 @@ include_once '../Conexion/conexion.php';
        </div>
            </div>
 
-      <div class="col-lg-3">
+           <div class="col-lg-2">
+         <label style="color: black">Cantidad<small class="text-muted" ></small></label>
+          <div class="input-group">                         
+          <input type="text" class="form-control" id="insumo" name="insumo">
+         <div class="input-group-append">
+      <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
+        </div> 
+       </div>
+           </div>
+
+      <div class="col-lg-4">
           <?php
            date_default_timezone_set('America/El_Salvador');
            ?>
