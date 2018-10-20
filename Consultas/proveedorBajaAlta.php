@@ -14,13 +14,13 @@ if($llego!=null){
 <div class="page-wrapper" style="height: 671px;">
     <br>
     <div class="container-fluid">
-        <div class="card" style="background: rgba(0, 101, 191,0.3)">
-            <!-- MODAL-->
-            <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="card" style="background: rgba(0, 101, 191,0.3)">div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
 
+            <!-- MODAL-->
+            <
                             <h4>Justificación</h4>
                             
                             <h4 class="modal-title" id="myModalLabel"></h4>

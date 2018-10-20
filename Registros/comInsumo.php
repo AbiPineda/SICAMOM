@@ -3,8 +3,28 @@
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
-include_once '../Conexion/conexion.php';
-    ?>
+
+
+if (isset($_REQUEST['btnGuardar'])) {
+    include_once '../Conexion/conexion.php';
+    
+//    $factura = $_REQUEST['factura'];
+//    $feActual = $_REQUEST['FeActual'];
+    $proveedor = $_REQUEST['proveedor'];
+    echo $proveedor;
+    $insumo = $_REQUEST['insumo'];
+    $precio = $_REQUEST['precio'];
+    $caducidad = $_REQUEST['caducidad'];
+    $cantidad = $_REQUEST['cantidad'];
+    
+      Conexion::abrir_conexion();
+    $conexionx = Conexion::obtener_conexion();
+
+    mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad')");
+} else {
+
+?>
+
     <div class="page-wrapper" style="height: 671px;">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
@@ -42,7 +62,7 @@ include_once '../Conexion/conexion.php';
            ?>
       <label style="color: black">Fecha</label>
         <div class="input-group">
-      <input type="text" class="form-control" aria-describedby="basic-addon1" id="FeActual" value="<?=date('d/m/y g:ia');?>" disabled>
+      <input type="text" class="form-control" aria-describedby="basic-addon1" id="FeActual" name="FeActual" value="<?=date('d/m/y g:ia');?>" disabled>
        <div class="input-group-append">
       <span class="input-group-text"><i class="fa fa-calendar"></i></span>
        </div>
@@ -52,18 +72,18 @@ include_once '../Conexion/conexion.php';
         <div class="col-lg-4">
          <label style="color: black">Proveedor<small class="text-muted" ></small></label>
          <select class="custom-select" name="proveedor" id="proveedor">
-                                             <?php
-                                          include_once '../Conexion/conexion.php';
-                                          $pro= mysqli_query($conexion,"SELECT*from t_proveedor WHERE estado=1");
-                              ?>
-                            <option>Proveedor</option>
-                            <?php
-                             while ($row = mysqli_fetch_array($pro)) {
-                                         $prove=$row['id_proveedor'];
-                                           echo '<option value='."$row[0]".'>'.$row['1'].'</option>';
-                                    }
-                                    ?>
-                                        </select>
+             <?php
+             include_once '../Conexion/conexion.php';
+             $pro = mysqli_query($conexion, "SELECT*from t_proveedor WHERE estado=1");
+             ?>
+             <option>Proveedor</option>
+             <?php
+             while ($row = mysqli_fetch_array($pro)) {
+                 $prove = $row['id_proveedor'];
+                 echo '<option value=' . "$row[0]" . '>' . $row['1'] . '</option>';
+             }
+             ?>
+         </select>
            </div>
 
            <div class="col-lg-4">
@@ -77,9 +97,9 @@ include_once '../Conexion/conexion.php';
            </div>
 
            <div class="col-lg-2">
-         <label style="color: black">Cantidad<small class="text-muted" ></small></label>
+         <label style="color: black">Precio<small class="text-muted" ></small></label>
           <div class="input-group">                         
-          <input type="text" class="form-control" id="insumo" name="insumo">
+          <input type="text" class="form-control" id="precio" name="precio">
          <div class="input-group-append">
       <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
         </div> 
@@ -92,8 +112,7 @@ include_once '../Conexion/conexion.php';
            ?>
           <label style="color: black">Fecha de Caducidad<small class="text-muted"></small></label>
           <div class="input-group">
-              <!--<input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">-->
-              <input type="date" name="user_date" class="form-control" id="user_date" max="2020-01-01" min="<?=date('d/m/y g:ia');?>" onChange="javascript:calcularEdad();"/>
+              <input type="date" name="caducidad" class="form-control" id="caducidad" max="2020-01-01" min="<?=date('d/m/y g:ia');?>"/>
               <div class="input-group-append">
                   <span class="input-group-text"><i class="fa fa-calendar"></i></span>
               </div>
@@ -104,7 +123,7 @@ include_once '../Conexion/conexion.php';
         <div class="col-lg-2">
          <label style="color: black">Cantidad<small class="text-muted" ></small></label>
           <div class="input-group">                         
-          <input type="text" class="form-control" id="Cpaquete" name="Cpaquete" value="" required>
+          <input type="text" class="form-control" id="cantidad" name="cantidad" value="">
          <div class="input-group-append">
       <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
         </div> 
@@ -114,21 +133,30 @@ include_once '../Conexion/conexion.php';
            <div class="col-lg-2">
          <label style="color: black">TOTAL<small class="text-muted" ></small></label>
           <div class="input-group">                         
-          <input type="text" class="form-control" id="Cpaquete" name="Cpaquete" value="" required>
+          <input type="text" class="form-control" id="total" name="total" value="" >
          <div class="input-group-append">
       <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
         </div> 
        </div>
            </div>
 
-           <div class="m-t-lg">
-        <ul class="list-inline">
+            <div class="col-lg-12">
+
+                <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                    <button type="button" class="btn btn-info" id="agregar" name="agregar" onClick="agregarTabla()">Agregar</button>
+                </div>
+                <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                    <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Finalizar</button>
+                </div>
+            </div>
+<!--           <div class="m-t-lg">
+          <ul class="list-inline">
           <li>
             <input class="btn btn--form" type="submit" value="Agregar" />
           </li>
-          
         </ul>
-      </div>
+      
+      </div>-->
 
     </div>
       </form>
@@ -140,7 +168,7 @@ include_once '../Conexion/conexion.php';
     <div class="thumbnail__links">
       <ul class="list-inline m-b-0 text-center">
         
-        <table id="tablaCompra" >
+        <table id="tablaCompra">
                           <thead>
                             <tr>
                               <th>Código</th> 
@@ -153,18 +181,9 @@ include_once '../Conexion/conexion.php';
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>BL281</td>
-                              <td>La. Lopez</td>
-                              <td>Baja lenguas</td>
-                              <td>15</td>
-                              <td>$22.37</td>
-                              <td>$335.55</td>
-                              <td>---</td>
-                            </tr>
-                           
-                            
+                              
                           </tbody>
+                          
                         </table>
       </ul>
     </div>
@@ -220,10 +239,10 @@ include_once '../Conexion/conexion.php';
 
             <!-- ============================================================== --> 
 
-            <?php
+           <?php
             include_once '../plantilla/pie.php';
-
-//        ?>
+        }
+        ?>
 
             <script type="text/javascript">
                 function totalPrecio(){
@@ -245,3 +264,40 @@ include_once '../Conexion/conexion.php';
             }
             </script>
         
+             <script type="text/javascript">
+                function subTotal(){
+        var cantidad=document.getElementById("cantidad").value;
+        var precio=document.getElementById("precio").value;
+        var calculo=cantidad*precio;
+        document.f1.Tpagar.value =calculo;
+                }
+                </script>
+            
+            <script>
+               function agregarTabla(){
+                   //alert('si');
+                    var factura = $('#factura').val();
+                    var FeActual = $('#FeActual').val();
+                    var proveedor = $('#proveedor').val();
+                    var insumo = $('#insumo').val();
+                    var precio = $('#precio').val();
+                    var caducidad = $('#caducidad').val();
+                    var cantidad = $('#cantidad').val();
+                    var tabla = $('#tablaCompra');
+                    
+                    var datos = "<tr>"+
+                            "<td>"+"1"+"</td>"+
+                            "<td>"+proveedor+"</td>"+
+                            "<td>"+insumo+"</td>"+
+                            "<td>"+cantidad+"</td>"+
+                            "<td>"+precio+"</td>"+
+                            "<td>"+"subTotal()"+"</td>"+
+                            "<td>"+"acciones"+"</td>"+
+                            "</tr>";
+                    
+                    tabla.append(datos);
+                            
+                    
+                    }
+                    
+                </script>
