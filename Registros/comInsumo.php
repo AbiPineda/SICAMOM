@@ -42,14 +42,14 @@ if (isset($_REQUEST['btnGuardar'])) {
         <div class="row mb-12"> 
 
         <div class="col-lg-3">
-            <?php
-            include_once '../Conexion/conexion.php';
-            $pro = mysqli_query($conexion, "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'clinica' AND TABLE_NAME = 't_compra'");
-            $row = $pro->fetch_array();
-            ?>
+            //<?php
+//            include_once '../Conexion/conexion.php';
+//            $pro = mysqli_query($conexion, "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'clinica' AND TABLE_NAME = 't_compra'");
+//            $row = $pro->fetch_array();
+//            ?>
          <label style="color: black">Factura #<small class="text-muted" ></small></label>
           <div class="input-group">                         
-          <input type="text" class="form-control" id="factura" name="factura" value="<?php echo $row['AUTO_INCREMENT'] ?>" disabled>
+          <input type="text" class="form-control" id="factura" name="factura" >
          <div class="input-group-append">
       <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
         </div> 
@@ -80,7 +80,7 @@ if (isset($_REQUEST['btnGuardar'])) {
              <?php
              while ($row = mysqli_fetch_array($pro)) {
                  $prove = $row['id_proveedor'];
-                 echo '<option value=' . "$row[0]" . '>' . $row['1'] . '</option>';
+                 echo '<option value=' . "$row[1]" . '>' . $row['1'] . '</option>';
              }
              ?>
          </select>
@@ -133,10 +133,18 @@ if (isset($_REQUEST['btnGuardar'])) {
            <div class="col-lg-2">
          <label style="color: black">TOTAL<small class="text-muted" ></small></label>
           <div class="input-group">                         
-          <input type="text" class="form-control" id="total" name="total" value="" >
+          <input type="text" class="form-control" id="total" name="total" value= >
          <div class="input-group-append">
       <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
         </div> 
+       </div>
+           </div>
+            
+            <div class="col-lg-2">
+         <div class="input-group">                         
+              <input type="hidden" class="form-control" id="codInsumo" name="codInsumo" >
+         <div class="input-group-append">
+         </div> 
        </div>
            </div>
 
@@ -146,7 +154,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                     <button type="button" class="btn btn-info" id="agregar" name="agregar" onClick="agregarTabla()">Agregar</button>
                 </div>
                 <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                    <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Finalizar</button>
+                    <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar" onClick="total()">Finalizar</button>
                 </div>
             </div>
 <!--           <div class="m-t-lg">
@@ -176,14 +184,18 @@ if (isset($_REQUEST['btnGuardar'])) {
                               <th>Insumo</th> 
                               <th>Cant</th>
                               <th>Costo</th>
-                              <th>Sub Total</th>
+                              <th class="subTotal" id="subTotal">Sub Total</th>
                               <th>Acciones</th>
                             </tr>
                           </thead>
                           <tbody>
                               
                           </tbody>
-                          
+                          <tfoot>
+                              <tr>
+                        <th class="Tot" id="Tot">Total</th>
+                        </tr>
+                </tfoot>
                         </table>
       </ul>
     </div>
@@ -259,13 +271,16 @@ if (isset($_REQUEST['btnGuardar'])) {
             {
                 table.rows[i].onclick = function()
                 {
+                    document.getElementById("codInsumo").value = this.cells[0].innerHTML;
                     document.getElementById("insumo").value = this.cells[1].innerHTML;
                };
             }
             </script>
+            
+            
         
              <script type="text/javascript">
-                function subTotal(){
+                function Total(){
         var cantidad=document.getElementById("cantidad").value;
         var precio=document.getElementById("precio").value;
         var calculo=cantidad*precio;
@@ -283,16 +298,21 @@ if (isset($_REQUEST['btnGuardar'])) {
                     var precio = $('#precio').val();
                     var caducidad = $('#caducidad').val();
                     var cantidad = $('#cantidad').val();
+                    var resul = $('#cantidad').val() * $('#precio').val();
+                    var codigo =$('#codInsumo').val();
+                   
+                  
+                   
                     var tabla = $('#tablaCompra');
                     
                     var datos = "<tr>"+
-                            "<td>"+"1"+"</td>"+
+                            "<td>"+codigo+"</td>"+
                             "<td>"+proveedor+"</td>"+
                             "<td>"+insumo+"</td>"+
                             "<td>"+cantidad+"</td>"+
                             "<td>"+precio+"</td>"+
-                            "<td>"+"subTotal()"+"</td>"+
-                            "<td>"+"acciones"+"</td>"+
+                            "<td>"+resul+"</td>"+
+                            "<td>"+"tot"+"</td>"+
                             "</tr>";
                     
                     tabla.append(datos);
@@ -301,3 +321,20 @@ if (isset($_REQUEST['btnGuardar'])) {
                     }
                     
                 </script>
+<!--             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+
+<script>
+$(document).ready(function() {
+    var re;
+    var valor = 0
+    $('form').find('.subTotal').each(function(){
+        re = $(this).val();
+        valor += parseFloat(re)
+    });
+    $('#total').val(valor.toFixed(2));
+});
+</script>
+                
+                
+                
+                
