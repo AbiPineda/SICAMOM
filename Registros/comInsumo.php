@@ -133,7 +133,7 @@ if (isset($_REQUEST['btnGuardar'])) {
            <div class="col-lg-2">
          <label style="color: black">TOTAL<small class="text-muted" ></small></label>
           <div class="input-group">                         
-          <input type="text" class="form-control" id="total" name="total" value= >
+          <input type="text" class="form-control" id="total" name="total" value="" >
          <div class="input-group-append">
       <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
         </div> 
@@ -300,6 +300,13 @@ if (isset($_REQUEST['btnGuardar'])) {
                     var cantidad = $('#cantidad').val();
                     var resul = $('#cantidad').val() * $('#precio').val();
                     var codigo =$('#codInsumo').val();
+                    var cond =$('#total').val();
+                    if(cond == 0.00){
+                        var valor = 0;
+                    }else{       
+                        var valor = parseFloat(cond);
+                    }
+                    
                    
                   
                    
@@ -316,6 +323,8 @@ if (isset($_REQUEST['btnGuardar'])) {
                             "</tr>";
                     
                     tabla.append(datos);
+                    valor += parseFloat(resul);
+                    $('#total').val(valor.toFixed(2));
                             
                     
                     }
@@ -330,6 +339,7 @@ $(document).ready(function() {
     $('form').find('.subTotal').each(function(){
         re = $(this).val();
         valor += parseFloat(re)
+        alert("valor");
     });
     $('#total').val(valor.toFixed(2));
 });
