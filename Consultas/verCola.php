@@ -4,7 +4,6 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
- $modi1 = $_GET['ir2'];
 ?>
 
 <html lang="en" >
@@ -59,24 +58,6 @@ include_once '../Conexion/conexion.php';
       <div class="col-md-12">
     <input type="hidden" name="tirar" value="<?php echo $modi1; ?>" id="pase"/>
           <div id="bodywrap">
-
-<?php
-date_default_timezone_set('America/El_Salvador');
-$d1 = date("d");
-$m1 = date("m");
-$y1 = date("Y");
-    include_once '../Conexion/conexion.php';
-   // $estado='Espera';
-
-   /*$sacar = mysqli_query($conexion,"SELECT * FROM t_expediente");
-                while ($fila = mysqli_fetch_array($sacar)) {
-                      $expediente=$fila['id_expediente']; */
-       mysqli_query($conexion, "INSERT INTO t_llegada(fk_expediente,lleg_ffecha_atiende,estado) VALUES('$modi1','$y1-$m1-$d1','esperando')");
-
-            
-
-
- ?>
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
@@ -112,7 +93,7 @@ $y = date("Y");
       <tr>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $nomdoc . " " . $apedoc;?></td>
-        <td class="text"><a href="../Consultas/registroConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Consulta</a>
+        <td class="text"><a href="../Consultas/registroConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Dar de Baja</a>
         </td>
 
        <?php  }?>

@@ -194,6 +194,10 @@
                                     <div class="col-lg-12">
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
                                                 <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar" ></div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                            <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="cola" onclick="location.href='verCola.php'" ></div>
                                     </div>   
                                   </div>
                         </section>
@@ -233,32 +237,41 @@
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
-      <th><div>N° de Expediente</div></th>
-      <th><div>Paciente</div></th>
-      <th><div>Doctor</div></th>
-      <th><div>Acción</div></th>
-      <th><div>Fecha de nacimiento</div></th>     
+     <th><div>N° de Expediente</div></th> 
+     <th><div>Paciente</div></th>
+     <th><div>Doctor que atiende</div></th>
+     <th><div>Accion</div></th>
+    
+      
+      
+      
     </thead>
     <tbody  class="buscar"> 
-    <?php
-        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE estado=1");
+<?php
+date_default_timezone_set('America/El_Salvador');
+$d = date("d");
+$m = date("m");
+$y = date("Y");
+
+        $sacar = mysqli_query($conexion, "SELECT*FROM t_medico, t_paciente, t_expediente WHERE fk_medico=idMedico AND fk_paciente=id_paciente");
             while ($fila = mysqli_fetch_array($sacar)) {
-                 
+                   $modificar1=$fila['id_expediente'];
+                 $codigo=$fila['codigo'];
                  $ape=$fila['pac_capellidos'];  
                  $nom=$fila['pac_cnombre'];  
-                 $dui=$fila['pac_cdui'];  
-                 $tel=$fila['pac_ctelefono'];  
-                  $fe=$fila['pac_ffecha_nac']; 
-                $partes = explode('-', $fe);
-                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
-            
+                 $apedoc=$fila['med_capellidos'];  
+                 $nomdoc=$fila['med_cnombre'];
+                   
+                 // $fe=$fila['pac_ffecha_nac']; 
+               // $partes = explode('-', $fe);
+              //  $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+             
         ?>
       <tr>
-        <th scope="row"><?php echo $nom;?></th>
-        <td data-title="Released"><?php echo $ape;?></td>
-        <td data-title="Studio"><?php echo $dui;?></td>
-        <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
-        <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
+        <th scope="row"><?php echo $codigo;?></th>
+        <th scope="row"><?php echo $nom . " " . $ape;?></th>
+        <td data-title="Worldwide Gross" data-type="currency"><?php echo $nomdoc . " " . $apedoc;?></td>
+        <td class="text"><a href="../Consultas/controlConsultaDiariaUsuario.php?ir2=<?php echo $modificar1; ?>" class="btn btn-success fas fa-edit">Cola</a>
         </td>
 
        <?php  }?>
@@ -267,6 +280,7 @@
 
     </tbody>
   </table>
+
   </div> <!-- Div scroll-window -->
 </div> <!-- Div scroll-window-wrapper-->
 
