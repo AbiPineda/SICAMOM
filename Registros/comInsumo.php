@@ -10,6 +10,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     include_once '../Conexion/conexion.php';
 
 
+    $FeActual = $_REQUEST['FeActual'];
     $proveedor = $_REQUEST['proveedor'];
 
     $insumo = $_REQUEST['insumo'];
@@ -17,11 +18,13 @@ if (isset($_REQUEST['btnGuardar'])) {
     $caducidad = $_REQUEST['caducidad'];
     $cantidad = $_REQUEST['cantidad'];
     $factura = $_REQUEST['factura'];
+    $subTotal = $_REQUEST['precio']*$_REQUEST['cantidad'];
+    $total += $_REQUEST['precio']*$_REQUEST['cantidad'];
     echo $factura;
 
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,factura) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$factura')");
+    mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,total,fecha_actual,factura,subtotal) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$total','$FeActual','$factura','$subTotal')");
 
    
     
@@ -105,7 +108,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         <option>Insumo</option>
                                         <?php
                                         while ($row = mysqli_fetch_array($pro)) {
-                                               echo '<option value=' . "$row[0]" . '>' . $row[1] . '</option>';
+                                               echo '<option value=' . "$row[0]" . '>' . $row[5] . " - " . $row[1]. " " . $row[3] . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -187,14 +190,20 @@ if (isset($_REQUEST['btnGuardar'])) {
                         <ul class="list-inline m-b-0 text-center">
 
                             <table id="tablaCompra" >
+                                
+                                
                                 <thead>
+                                    <tr>
+                                        <th>Fecha de Compra:</th>
+                                    </tr>
                                     <tr>
                                         <th>Código</th> 
                                         <th>Proveedor</th>
                                         <th>Insumo</th> 
-                                        <th>Cant</th>
-                                        <th>Costo</th>
-                                        <th class="subTotal" id="subTotal">Sub Total</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio Unitario</th>
+                                        <th>Sub Total</th>
+                                        <th>Total</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -206,7 +215,9 @@ if (isset($_REQUEST['btnGuardar'])) {
                                                                             ins_codigo,
                                                                             pro_cnombre_empresa,
                                                                             ins_cnombre_comercial,
+                                                                            precio_unitario,
                                                                             cantidad,
+                                                                            total,
                                                                             subtotal
                                                                             FROM
                                                                             t_insumo
@@ -214,20 +225,23 @@ if (isset($_REQUEST['btnGuardar'])) {
                                                                             INNER JOIN t_proveedor ON fk_proveedor = id_proveedor
                                                                             WHERE factura = '$facturaActual'");
                                         while ($fila = mysqli_fetch_array($sacar)) {
-                                            $facturaTabla = $fila['ins_codigo'];
+                                            $codigoTabla = $fila['ins_codigo'];
                                             $proveedirTabla = $fila['pro_cnombre_empresa'];
                                             $insumoTabla = $fila['ins_cnombre_comercial'];
+                                            $precioTab = $fila['precio_unitario'];
                                             $canatidadTab = $fila['cantidad'];
-                                            $subTotalTabla = $fila['subtotal'];
+                                            $subTotalTabla = $fila['precio_unitario']*$fila['cantidad'];
+                                            $total += $subTotalTabla;
                                             ?>
                                             <tr>
-                                                <th scope="row"><?php echo $facturaTabla; ?></th>
+                                                <th scope="row"><?php echo $codigoTabla; ?></th>
 
                                                 <td data-title="Worldwide Gross" data-type="currency"><?php echo $proveedirTabla; ?></td>
                                                 <td data-title="Domestic Gross" data-type="currency"><?php echo $insumoTabla; ?></td>
                                                 <td data-title="Domestic Gross" data-type="currency"><?php echo $canatidadTab; ?></td>
-                                                <td data-title="Domestic Gross" data-type="currency"><?php echo 1000; ?></td>
+                                                <td data-title="Domestic Gross" data-type="currency"><?php echo $precioTab; ?></td>
                                                  <td data-title="Domestic Gross" data-type="currency"><?php echo $subTotalTabla; ?></td>
+                                                  <td data-title="Domestic Gross" data-type="currency"><?php echo $total; ?></td>
         <?php } ?>
 
                                         </tr>
