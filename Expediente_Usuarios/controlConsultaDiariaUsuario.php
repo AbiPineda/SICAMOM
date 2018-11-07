@@ -30,7 +30,7 @@ include_once '../Conexion/conexion.php';
                 <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
                   <div class="col-lg-12">
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Registro" onclick="location.href='registroExpediente.php'" ></div>
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Registro" onclick="location.href='../Expediente_Usuarios/verExpediente.php'" ></div>
                                     </div>   
                        </div>
 
@@ -102,7 +102,7 @@ date_default_timezone_set('America/El_Salvador');
 $d = date("d");
 $m = date("m");
 $y = date("Y");                
-          $sacar = mysqli_query($conexion, "SELECT*FROM t_medico, t_paciente, t_expediente, t_llegada WHERE fk_expediente=id_paciente AND fk_medico=idMedico AND fk_paciente=id_paciente AND fk_expediente=id_expediente AND (lleg_ffecha_atiende='$y-$m-$d') ORDER BY id_llegada");
+          $sacar = mysqli_query($conexion, "SELECT*FROM t_medico, t_paciente, t_expediente, t_llegada WHERE fk_expediente=id_expediente AND fk_medico=idMedico AND fk_paciente=id_paciente AND (lleg_ffecha_atiende='$y-$m-$d') AND t_llegada.estado=1 ORDER BY id_llegada");
             while ($fila = mysqli_fetch_array($sacar)) {
                    $modificar=$fila['id_paciente'];
                          $ape=$fila['pac_capellidos'];  
@@ -129,11 +129,11 @@ $y = date("Y");
          <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
      <?php 
         if($fe==0){ ?>
-        <td class="text"><a href="../Consultas/ProcesoDarBajaAltaCola.php?ir=<?php echo $modi_llegada; ?>"  class="btn btn-success fas fa-arrow-circle-up">Dar Alta</a></td>
+        <td class="text"><a href="../Expediente_Usuarios/ProcesoDarBajaAltaCola.php?ir=<?php echo $modi_llegada; ?>"  class="btn btn-success fas fa-arrow-circle-up">Dar Alta</a></td>
         <?php
         }else{
         ?>
-        <td class="text"><a href="../Consultas/ProcesoDarBajaAltaCola.php?ir=<?php echo $modi_llegada; ?>" class="btn btn-warning fas fa-arrow-circle-down" >Dar Baja</a></td>
+        <td class="text"><a href="../Expediente_Usuarios/ProcesoDarBajaAltaCola.php?ir=<?php echo $modi_llegada; ?>" class="btn btn-warning fas fa-arrow-circle-down" >Dar Baja</a></td>
 
       <?php  }
             }?>

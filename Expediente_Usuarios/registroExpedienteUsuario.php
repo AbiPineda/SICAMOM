@@ -3,6 +3,7 @@
     include_once '../plantilla/cabecera.php';
     include_once '../plantilla/menu.php';
     include_once '../plantilla/menu_lateral.php';
+     $modi1 = $_GET['ir2'];
     ?>
 
     <script type="text/javascript">
@@ -114,17 +115,24 @@
                     <h3 class="card-title" style="color: white">Registro de Expediente | Datos generales</h3>
                     <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
                     <form action="" id="f1" name="f1" method="post" class="form-register" >
+                          <input type="hidden" name="tirar" value="<?php echo $modi1; ?>" id="pase"/>
                         <input type="hidden" name="tirar" id="pase"/>
                         <div>
                                 <br/>
                             <section>
+                                                                    <?php
+                                    include_once '../Conexion/conexion.php';
+                                    $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE id_paciente='$modi1'");
+                                    while ($fila = mysqli_fetch_array($sacar)) {
+                                        $modificar = $fila['id_paciente'];
+                                        $ape = $fila['pac_capellidos'];
+                                        $nom = $fila['pac_cnombre'];
+                                        $dui=$fila['pac_cdui'];                      
+                                        ?>
+
                                                                                                     
                                 <div class="row mb-12">
-                                        <div class="col-lg-12">
-                                            <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                              <button type="reset" class="btn btn-info" name="nameCancelar">Nuevo Paciente </button></div>
-                                        </div> 
-                                                                            <div class="col-lg-2">
+                                            <div class="col-lg-2">
                                             <label style="color: white">Código<small class="text-muted" ></small></label>  
                                              <div class="input-group">
                                             <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código">
@@ -137,7 +145,7 @@
                                     <div class="col-lg-4">
                                         <label style="color: white">Nombres <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="text" name="nombreExpe"  class="form-control" id="nombreCom" placeholder="Ingrese nombres" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                            <input type="text" name="nombreExpe"  class="form-control" id="nombreCom" placeholder="Ingrese nombres" autocomplete="off" value="<?php echo $nom; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
@@ -146,23 +154,13 @@
                                     <div class="col-lg-4">
                                         <label style="color: white">Apellidos<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="text" name="apellidoExpe"  class="form-control" id="fnamep" placeholder="Ingrese apellidos" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                            <input type="text" name="apellidoExpe"  class="form-control" id="fnamep" placeholder="Ingrese apellidos" autocomplete="off" value="<?php echo $ape; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
                                         </div>                                    
                                     </div>
-                                  <div class="col-lg-3">
-                                        <label style="color: white">DUI<small class="text-muted"> 99999999-9</small></label>
-                                        <div class="input-group">
-                                            <input type="text" name="duiExpe"  class="form-control phone-inputmask" id="dui" placeholder="Ingrese DUI" autocomplete="off" value=""> 
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="far fa-id-card"></i></span>
-                                            </div>
-                                        </div> 
-                                    </div>
-                                    <br/><br>
- <div class="col-lg-4">
+                                  <div class="col-lg-4">
                                     <?php
                                         include_once '../Conexion/conexion.php';
                                         $sacar = mysqli_query($conexion, "SELECT*FROM t_medico");
@@ -184,7 +182,7 @@
                                                                   <div class="col-lg-3">
                                         <label style="color: white">Alergias<small class="text-muted"></small></label>
          <div class="input-group">
-                                            <input type="text" name="alergias"  class="form-control" id="fnamep" placeholder="Ingrese apellidos" autocomplete="off" value="" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                            <input type="text" name="alergias"  class="form-control" id="fnamep" placeholder="" autocomplete="off" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
@@ -197,9 +195,12 @@
                                     </div>
                                     <div class="col-lg-12">
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                                <input type="button" class="btn btn-info" name="" id="su"  value="cola" onclick="location.href='verCola.php'" ></div>
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="cola" onclick="location.href='../Expediente_Usuarios/verColaUsuario.php'" ></div>
                                     </div>   
                                   </div>
+                                    <?php
+                                }
+                                ?>
                         </section>
 
                 </div>
@@ -271,7 +272,7 @@ $y = date("Y");
         <th scope="row"><?php echo $codigo;?></th>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $nomdoc . " " . $apedoc;?></td>
-        <td class="text"><a href="../Consultas/controlConsultaDiariaUsuario.php?ir2=<?php echo $modificar1; ?>" class="btn btn-success fas fa-edit">Cola</a>
+        <td class="text"><a href="../Expediente_Usuarios/controlConsultaDiariaUsuario.php?ir2=<?php echo $modificar1; ?>" class="btn btn-success fas fa-edit">Cola</a>
         </td>
 
        <?php  }?>
@@ -332,7 +333,7 @@ $y = date("Y");
                         closeOnConfirm: false
                     },
                     function () {
-                        location.href="registroExpediente.php";
+                        location.href="../Expediente_Usuarios/verExpediente.php";
                         
                     });</script>';
                 }}}
@@ -346,7 +347,7 @@ $y = date("Y");
                         closeOnConfirm: false
                     },
                     function () {
-                        location.href="registroExpediente.php";
+                        location.href="../Expediente_Usuarios/expedienteUsuario.php";
                         
                     });</script>';
     }
