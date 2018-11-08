@@ -81,11 +81,11 @@ include_once '../Conexion/conexion.php';
       
     </thead>
     <tbody  class="buscar"> 
-    <?php
-$d = date("d");
-$m = date("m");
-$y = date("Y");
-$ym=$y-18;
+        <?php
+        $d = date("d");
+        $m = date("m");
+        $y = date("Y");
+        $ym = $y - 18;
 
 //echo "$d-$m-$ym";
         $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente WHERE (pac_ffecha_nac<='$ym-$m-$d') AND estado=1");

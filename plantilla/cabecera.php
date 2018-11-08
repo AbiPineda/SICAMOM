@@ -17,11 +17,11 @@
             <link href="../dist/css/style.min.css" rel="stylesheet">
             <link href="../dist/css/style.min.css" rel="stylesheet">
             <link href="../dist/css/styleSearch.css" rel="stylesheet">
-            <link href="../dist/css/tablaCompra.css" rel="stylesheet">
-            <link href="../dist/css/tablaCompra2.css" rel="stylesheet">
+<!--            <link href="../dist/css/tablaCompra.css" rel="stylesheet">
+            <link href="../dist/css/tablaCompra2.css" rel="stylesheet">-->
 
             <link href="../dist/css/style2.css" rel="stylesheet">
-            <link href="../dist/css/tablaCompra3.css" rel="stylesheet">
+<!--            <link href="../dist/css/tablaCompra3.css" rel="stylesheet">-->
             <link href="../dist/css/tableScroll.css" rel="stylesheet">
             <link href="../dist/css/compras.css" rel="stylesheet">
 
