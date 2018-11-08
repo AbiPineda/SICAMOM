@@ -83,7 +83,7 @@ $y1 = date("Y");
      <thead>
      <th><div>N° de Expediente</div></th> 
      <th><div>Paciente</div></th>
-     <th><div>Esperando...</div></th>
+     <th><div>Estado</div></th>
      <th><div>Accion</div></th>
     
       

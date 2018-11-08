@@ -5,6 +5,7 @@
     include_once '../plantilla/menu_lateral.php';
         $modi = $_GET['ir'];
         ?>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link href="../dist/css/styleconsulta.css" rel="stylesheet">
     <div class="page-wrapper" style="height: 671px;">
@@ -14,36 +15,67 @@
                <div class="card-body wizard-content">
                     <h3 class="card-title" style="color: white">Consulta General</h3>
                     
-                      <form action="registroConsultaDiaria.php" method="post">
+                      <form action="" method="post">
                     <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
-    <div class="row">
-                                <div class="col-md-12">
-                                                                    <?php
+   <h5 class="card-title" style="color:white">Datos Generales del Paciente</h5> 
+   <div class="row">
+        
+                                <div class="row">                               
+                                    <div class="col-md-7">       
+                                    <?php
                                         include_once '../Conexion/conexion.php';
                                         $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente,t_expediente WHERE id_expediente='$modi' AND fk_paciente=id_paciente");
-                                        while ($fila = mysqli_fetch_array($sacar)) {
+                                         while ($fila = mysqli_fetch_array($sacar)) {
                                             $modificar = $fila['id_expediente'];
                                             $ape = $fila['pac_capellidos'];
                                             $nom = $fila['pac_cnombre'];
-                                            $dui = $fila['pac_cdui'];
+                                            $alergias = $fila['alergias'];
                                             $tel = $fila['pac_ctelefono'];
                                             $fe = $fila['pac_ffecha_nac'];
-                                            ?>
-                                <h5 class="card-title" style="color:white">Datos Generales del Paciente</h5>
-                                    <div class="col-md-7">
+                                             $partes = explode('-', $fe);
+                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
 
-                                       
-                                        <div>
+//fecha actual
+    date_default_timezone_set('America/El_Salvador');
+    $dia = date("d");
+    $mes = date("m");
+    $ano = date("Y");
+
+//fecha de nacimiento
+
+//si el mes es el mismo pero el día inferior aun no ha cumplido años, le quitaremos un año al actual
+
+if (($partes[1] == $mes) && ($partes[2] > $dia)) {
+$ano=($ano-1); }
+
+//si el mes es superior al actual tampoco habrá cumplido años, por eso le quitamos un año al actual
+
+if ($partes[1] > $mes) {
+$ano=($ano-1);}
+
+//ya no habría mas condiciones, ahora simplemente restamos los años y mostramos el resultado como su edad
+
+$edad=($ano-$partes[0]);
+
+//print $edad;
+                                            ?>                             
+                                        <div lass="input-group">
                                         <label style="color: white" >Paciente: <small class="text-muted"></small></label>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="<?php echo $nom . " " . $ape; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="35">  
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="<?php echo $nom . " " . $ape; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
                                         </div> 
                                     </div>  
                                     <div class="col-md-5">
                                     <div>
-                                        <label style="color: white" >DUI: <small class="text-muted"></small></label>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $dui; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="10">  
+                                        <label style="color: white" >Edad: <small class="text-muted"></small></label>
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $edad." años"; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="10">  
                                         </div> 
-                                    </div>                    
+                                    </div> 
+                                    <div class="col-md-5">
+                                    <div>
+                                        <label style="color: white" >Alergias: <small class="text-muted"></small></label>
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $alergias; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="10">  
+                                        </div> 
+                                    </div> 
                                 </div>
     </div>
     <br/>
@@ -109,7 +141,7 @@
                                     <div class="col-md-12">
                                         <label style="color: white">Síntomas y Diagnóstico: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" id="comment"></textarea> 
+                                             <textarea class="form-control" rows="3" id="comment" name="diagnostico"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -138,27 +170,27 @@
                                     <div class="col-md-2">
                                         <div class="input-group">
                                             <label style="color: white">Torundas:<small class="text-muted"></small></label>
-                                               <input type="number" min="1" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="1" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                               <input type="number" min="1" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="1" onkeypress="return sinCaracterEspecial(event)" value="">
                                         </div> 
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="input-group">
                                             <label style="color: white">Guantes:<small class="text-muted"></small></label>
-                                               <input type="number" min="1" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="1" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                               <input type="number" min="1" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="1" onkeypress="return sinCaracterEspecial(event)" value="">
                                         </div> 
                                     </div>
                             
                                     <div class="col-md-2">
                                         <div class="input-group">
                                             <label style="color: white">Isopo:<small class="text-muted"></small></label>
-                                              <input type="number" min="0" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="0" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                              <input type="number" min="0" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="0" onkeypress="return sinCaracterEspecial(event)" value="">
                                                                                 </div> 
                                     </div>
                                                                         <div class="col-md-2">
                                         <div class="input-group">
                                             <label style="color: white">Jeringas:<small class="text-muted"></small></label>
-                                              <input type="number" min="0" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="0" onkeypress="return sinCaracterEspecial(event)" value="" required>
+                                              <input type="number" min="0" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="0" onkeypress="return sinCaracterEspecial(event)" value="">
                                                                                </div> 
                                     </div>
                                 </div>
@@ -196,11 +228,9 @@
 
         if (isset($_REQUEST['btnEnviar'])) {
         include_once '../Conexion/conexion.php';
+         $diagnostico = $_REQUEST['diagnostico'];
      
-      $sacar1 = mysqli_query($conexion,"SELECT * FROM t_medico WHERE med_cnombre='$doctor'");
-                while ($fila1 = mysqli_fetch_array($sacar1)) {
-                      $medico=$fila1['idMedico']; 
-      mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_inventario,con_fecha_atiende,con_diagnostico) VALUES('$medico','$paciente','$codigo','$y1-$m1-$d1','$alergias')");
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_inventario,con_fecha_atiende,con_diagnostico) VALUES('$modi',1,'$y1-$m1-$d1','$diagnostico')");
            echo '<script>swal({
                         title: "Registro",
                         text: "Guardado!",
@@ -209,30 +239,10 @@
                         closeOnConfirm: false
                     },
                     function () {
-                        location.href="../Expediente_Usuarios/verExpediente.php";
+                        location.href="../Expediente_Admin/verCola.php";
                         
                     });</script>';
-               }
-
-
-      $sacar2 = mysqli_query($conexion,"SELECT * FROM t_medico WHERE med_cnombre='$doctor'");
-                while ($fila2 = mysqli_fetch_array($sacar2)) {
-                      $medico=$fila2['idMedico']; 
-      mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_inventario,con_fecha_atiende,con_diagnostico) VALUES('$medico','$paciente','$codigo','$y1-$m1-$d1','$alergias')");
-           echo '<script>swal({
-                        title: "Registro",
-                        text: "Guardado!",
-                        type: "success",
-                        confirmButtonText: "Aceptar",
-                        closeOnConfirm: false
-                    },
-                    function () {
-                        location.href="../Expediente_Usuarios/verExpediente.php";
-                        
-                    });</script>';
-               }
-
-
+            
 
               }
 
