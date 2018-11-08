@@ -6,7 +6,7 @@ include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
 
 ?>
- 
+
 <html lang="en" >
 
 <head>
@@ -40,7 +40,7 @@ include_once '../Conexion/conexion.php';
             <!--Fin Búsqueda-->
 
     <div class="card" >
-      <h3 class="card-title">Control Insumo</h3>
+      <h3 class="card-title">Preparar insumo</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -54,11 +54,13 @@ include_once '../Conexion/conexion.php';
       <th><div>Código</div></th>
       <th><div>Nombre</div></th>
       <th><div>Marca</div></th>
-      <th><div>Descripción</div></th>
-    <th><div>Compra</div></th>
-  <th><div>Presentacion</div></th>
-  <th><div>Paquete</div></th>
-  <th><div>Unidades</div></th>
+      <th><div>Existencia</div></th>
+      <th><div>Unidades</div></th>
+      <th><div>Stock </div></th>
+      <th><div>Sub Total</div></th>
+  
+  
+     
     
       
       
@@ -73,9 +75,12 @@ include_once '../Conexion/conexion.php';
                 $marca=$fila['ins_cmarca'];  
                 $desc=$fila['ins_cdescripcion']; 
                 $compra=$fila['fecha_caducidad']; 
-                $presentacion=$fila['presentacion']; 
+                $presen=$fila['presentacion'];
                 $paquete=$fila['cantidad']; 
-                $unidades=$fila['unidad']; 
+                $unidades=$fila['unidad'];
+                $cant=$fila['cantidad']; 
+                $stock=$fila['minimo'];
+                $TotalUnidades=$fila['cantidad'] * $fila['unidad'];
                 
 
         ?> 
@@ -83,12 +88,14 @@ include_once '../Conexion/conexion.php';
                 <td data-title="Releaseda"><?php echo $cod; ?></td>
                 <th scope="row"><?php echo $nom; ?></th>
                 <td data-title="Released"><?php echo $marca; ?></td>
-                <td data-title="Studio"><?php echo $desc; ?></td>
-                <td data-title="Studio1"><?php echo $compra; ?></td>
-                <td data-title="Studio2"><?php echo $presentacion; ?></td>
-                <td data-title="Studio3"><?php echo $paquete; ?></td>
-                <td data-title="Studio4"><?php echo $unidades; ?></td>
+                
+                <td data-title="Studio1"><?php echo $cant.$presen; ?></td>
+                <td data-title="Studio1"><?php echo $unidades; ?></td>
+                <td data-title="Studio1"><?php echo $stock; ?></td>
+                 <td data-title="Studio1"><?php echo $TotalUnidades; ?></td>
+                <!--<td class="text"><a href="../Consultas/proveedorBajaAlta.php?ir=<?php echo $modificar; ?>"  class="btn btn-success fas fa-notes-medical">  Preparar</a></td>
                 </td>
+                </td>-->
 
        <?php  }?>
       

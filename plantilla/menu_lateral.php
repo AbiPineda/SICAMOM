@@ -34,7 +34,7 @@
                         <li class="sidebar-item"><a href="../Consultas/darBajaAltaProveedor.php" class="sidebar-link"><i class="fas fa-arrows-alt-v"></i><span class="hide-menu">Dar Alta/Baja Proveedor</span></a></li>
                         
                         
-                             
+                        <li class="sidebar-item"><a href="../Registros/prepararInsumo.php" class="sidebar-link"><i class="fas fa-arrows-alt-v"></i><span class="hide-menu">Inventario de Insumos</span></a></li>
                         
 
                         <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="far fa-file"></i><span class="hide-menu">Reporte</span></a></li>

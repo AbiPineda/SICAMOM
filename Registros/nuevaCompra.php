@@ -221,19 +221,19 @@ if (isset($_REQUEST['btnGuardar'])) {
             if (isset($_REQUEST['Nfactura'])) {
                 $facturaActual = $_REQUEST['Nfactura'];
                 $sacar = mysqli_query($conexion, "SELECT
-                                                                            ins_codigo,
-                                                                            pro_cnombre_empresa,
-                                                                            ins_cnombre_comercial,
-                                                                            precio_unitario,
-                                                                            cantidad,
-                                                                            total,
-                                                                            fecha_actual,
-                                                                            subtotal
-                                                                            FROM
-                                                                            t_insumo
-                                                                            INNER JOIN t_compra ON fk_insumo = ins_codigo
-                                                                            INNER JOIN t_proveedor ON fk_proveedor = id_proveedor
-                                                                            WHERE factura = '$facturaActual'");
+                    ins_codigo,
+                    pro_cnombre_empresa,
+                    ins_cnombre_comercial,
+                    precio_unitario,
+                    cantidad,
+                    total,
+                    fecha_actual,
+                    subtotal
+                    FROM
+                    t_insumo
+                    INNER JOIN t_compra ON fk_insumo = ins_codigo
+                    INNER JOIN t_proveedor ON fk_proveedor = id_proveedor
+                    WHERE factura = '$facturaActual'");
                 while ($fila = mysqli_fetch_array($sacar)) {
                     $codigoTabla = $fila['ins_codigo'];
                     $proveedirTabla = $fila['pro_cnombre_empresa'];
