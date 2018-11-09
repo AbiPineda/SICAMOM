@@ -68,10 +68,10 @@ include_once '../Conexion/conexion.php';
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo, t_compra WHERE ins_codigo=id_compra AND estado=1");
+        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo, t_compra WHERE ins_codigo=id_compra AND estado=1 order by fecha_caducidad");
             while ($fila = mysqli_fetch_array($sacar1)) {
                 $cod=$fila['codigo'];
-                $nom=$fila['ins_cnombre_comercial'];  
+                $nom=$fila['fk_insumo'];  
                 $marca=$fila['ins_cmarca'];  
                 $desc=$fila['ins_cdescripcion']; 
                 $compra=$fila['fecha_caducidad']; 

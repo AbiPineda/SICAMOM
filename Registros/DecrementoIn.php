@@ -35,12 +35,12 @@ include_once '../Conexion/conexion.php';
                                       <select class="custom-select" name="insumo" id="insumo">
                                         <?php
                                         include_once '../Conexion/conexion.php';
-                                        $pro = mysqli_query($conexion, "SELECT DISTINCT * from  t_insumo");
+                                        $pro = mysqli_query($conexion, "SELECT  * from t_insumo");
                                         ?>
                                         <option>Marca</option>
                                         <?php
                                         while ($row = mysqli_fetch_array($pro)) {
-                                               echo '<option value=' . "$row[0]" . '>' . $row[9] . '</option>';
+                                               echo '<option value=' . "$row[2]" . '>' . $row[1] . '</option>';
                                         }
                                         ?>
                                     </select>

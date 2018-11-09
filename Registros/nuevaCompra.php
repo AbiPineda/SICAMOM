@@ -18,20 +18,49 @@ if (isset($_REQUEST['btnGuardar'])) {
     $cantidad = $_REQUEST['cantidad'];
     $factura = $_REQUEST['factura'];
     $subTotal = $_REQUEST['precio']*$_REQUEST['cantidad'];
-    $total += $_REQUEST['precio']*$_REQUEST['cantidad'];
+    
+   
     echo $factura;
 
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,total,fecha_actual,factura,subtotal) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$total','$FeActual','$factura','$subTotal')");
-
-   
     
+     $validar = mysqli_query($conexion, "SELECT factura FROM t_compra WHERE estado='EnProceso' AND factura='$factura'");
+     if (mysqli_num_rows($validar)>0) {
+         
+         $OtroNo = mysqli_query($conexion, "SELECT * FROM t_compra WHERE fk_insumo='$insumo' AND factura='$factura'");
+         if(mysqli_num_rows($OtroNo)>0){
+             //es porque ya hay uno
+         }else{
+              mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso')");
+     
+         }
+         }else{
+              mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso')");
+     
+         }
+           
+
+          
+    echo "<script>
+          location.href ='nuevaCompra.php?Nfactura=$factura ';
+        </script>";
+}
+if (isset($_REQUEST['Cancelar'])) {
+    include_once '../Conexion/conexion.php';
+ 
+    $factura = $_REQUEST['factura'];
+
+    Conexion::abrir_conexion();
+    $conexionx = Conexion::obtener_conexion();
+
+    mysqli_query($conexion, "UPDATE t_compra SET estado='Finalizado' WHERE factura='$factura' AND estado='EnProceso'");
 
     echo "<script>
           location.href ='nuevaCompra.php?Nfactura=$factura ';
         </script>";
-} else {
+} 
+else {
      if (isset($_REQUEST['Nfactura'])) {
          $valor = $_REQUEST['Nfactura'];
         
@@ -153,19 +182,19 @@ if (isset($_REQUEST['btnGuardar'])) {
 
                                 <div class="col-lg-2">
                                      <?php
-                                    include_once '../Conexion/conexion.php';
-                                    
-                                    $paciente = mysqli_query($conexion, "SELECT*FROM t_compra");
-                                    while ($row = mysqli_fetch_array($paciente)) {
-                                        $id = $row['factura'];
-                                        $subTotalTabla = $row['subtotal'];
-                                       
-                                        $total += $subTotalTabla;
-                                    }
+//                                    include_once '../Conexion/conexion.php';
+//                                    
+//                                    $paciente = mysqli_query($conexion, "SELECT*FROM t_compra");
+//                                    while ($row = mysqli_fetch_array($paciente)) {
+//                                        $id = $row['factura'];
+//                                        $subTotalTabla = $row['subtotal'];
+//                                       
+//                                        $total += $subTotalTabla;
+//                                    }
                                     ?>
                                     <label style="color: black">TOTAL<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
-                                        <input type="text" class="form-control" id="total" name="total" value="<?php echo "$total"; ?>" >
+                                        <input type="text" class="form-control" id="total" name="total">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                         </div> 
@@ -186,7 +215,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         <button type="submit" class="btn btn-info" value="OK" id="btnGuardar" name="btnGuardar" >Agregar</button>
                                     </div>
                                     <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                        <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar" onClick="location.href='http://www.google.com">Finalizar</button>
+                                        <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar">Finalizar</button>
                                     </div>
                                 </div>
 
@@ -221,6 +250,8 @@ if (isset($_REQUEST['btnGuardar'])) {
             if (isset($_REQUEST['Nfactura'])) {
                 $facturaActual = $_REQUEST['Nfactura'];
                 $sacar = mysqli_query($conexion, "SELECT
+                    id_compra,
+                    factura,
                     ins_codigo,
                     pro_cnombre_empresa,
                     ins_cnombre_comercial,
@@ -233,8 +264,10 @@ if (isset($_REQUEST['btnGuardar'])) {
                     t_insumo
                     INNER JOIN t_compra ON fk_insumo = ins_codigo
                     INNER JOIN t_proveedor ON fk_proveedor = id_proveedor
-                    WHERE factura = '$facturaActual'");
+                    WHERE factura = '$facturaActual' AND t_compra.estado='EnProceso'");
                 while ($fila = mysqli_fetch_array($sacar)) {
+                    $id=$fila['id_compra'];
+                    $fac=$fila['factura'];
                     $codigoTabla = $fila['ins_codigo'];
                     $proveedirTabla = $fila['pro_cnombre_empresa'];
                     $insumoTabla = $fila['ins_cnombre_comercial'];
@@ -242,7 +275,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                     $canatidadTab = $fila['cantidad'];
                     $fecCompra = $fila['fecha_actual'];
                     $subTotalTabla = $fila['precio_unitario'] * $fila['cantidad'];
-//                                            $total += $subTotalTabla;
+
                     ?>
                     <tr>
             <!--        <th scope="row"><?php echo $codigoTabla; ?></th>-->
@@ -251,8 +284,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $canatidadTab; ?></td>
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $precioTab; ?></td>
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $subTotalTabla; ?></td>
-            <!--                                                    <td data-title="Domestic Gross" data-type="currency"><?php echo $total; ?></td>-->
-                        <td class="text"><a href="" class="btn btn-success fas fa-edit">Modificar</a>
+                        <td class="text"><a href="../Registros/quitarProducto.php?id=<?php echo $id; ?>&fac=<?php echo $fac; ?>" class="btn btn-success fas fa-ban"></a>
 
                         <?php } ?>
 
