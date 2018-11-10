@@ -183,11 +183,13 @@ else {
                                 <div class="col-lg-2">
                                      <?php
                                         include_once '../Conexion/conexion.php';
+                                        if(isset($_GET['Nfactura'])){
                                         $factura = $_GET['Nfactura'];
                                         $pro = mysqli_query($conexion, "SELECT SUM(subtotal) as total FROM t_compra WHERE factura='$factura'");
                                     while ($row = mysqli_fetch_array($pro)) {
                                         $total = $row['total'];
                                     }
+                                        
                                     ?>
                                     <label style="color: black">TOTAL<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
@@ -196,6 +198,8 @@ else {
                                             <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                         </div> 
                                     </div>
+                                         <?php }?>
+                                        
                                 </div>
 
                                 <div class="col-lg-2">
