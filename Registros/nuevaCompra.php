@@ -19,7 +19,6 @@ if (isset($_REQUEST['btnGuardar'])) {
     $factura = $_REQUEST['factura'];
     $subTotal = $_REQUEST['precio']*$_REQUEST['cantidad'];
     
-   
     echo $factura;
 
     Conexion::abrir_conexion();
@@ -29,6 +28,7 @@ if (isset($_REQUEST['btnGuardar'])) {
      if (mysqli_num_rows($validar)>0) {
          
          $OtroNo = mysqli_query($conexion, "SELECT * FROM t_compra WHERE fk_insumo='$insumo' AND factura='$factura'");
+         
          if(mysqli_num_rows($OtroNo)>0){
              //es porque ya hay uno
          }else{
@@ -102,7 +102,7 @@ else {
                                     ?>
                                     <label style="color: black">Fecha de Compra</label>
                                     <div class="input-group">
-                                        <input type="date" name="FeActual" class="form-control" id="FeActual" min="<?= date('d/m/y g:ia'); ?>"/>
+                                        <input type="date" name="FeActual" class="form-control" id="FeActual" min="<?= date('d/m/y g:ia'); ?>" />
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -182,19 +182,16 @@ else {
 
                                 <div class="col-lg-2">
                                      <?php
-//                                    include_once '../Conexion/conexion.php';
-//                                    
-//                                    $paciente = mysqli_query($conexion, "SELECT*FROM t_compra");
-//                                    while ($row = mysqli_fetch_array($paciente)) {
-//                                        $id = $row['factura'];
-//                                        $subTotalTabla = $row['subtotal'];
-//                                       
-//                                        $total += $subTotalTabla;
-//                                    }
+                                        include_once '../Conexion/conexion.php';
+                                        $factura = $_GET['Nfactura'];
+                                        $pro = mysqli_query($conexion, "SELECT SUM(subtotal) as total FROM t_compra WHERE factura='$factura'");
+                                    while ($row = mysqli_fetch_array($pro)) {
+                                        $total = $row['total'];
+                                    }
                                     ?>
                                     <label style="color: black">TOTAL<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
-                                        <input type="text" class="form-control" id="total" name="total">
+                                        <input type="text" class="form-control" id="total" name="total" value="<?php echo "$total"; ?>">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
                                         </div> 
@@ -284,7 +281,7 @@ else {
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $canatidadTab; ?></td>
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $precioTab; ?></td>
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $subTotalTabla; ?></td>
-                        <td class="text"><a href="../Registros/quitarProducto.php?id=<?php echo $id; ?>&fac=<?php echo $fac; ?>" class="btn btn-success fas fa-ban"></a>
+                        <td class="text"><a href="../Registros/quitarProducto.php?id=<?php echo $id; ?>&fac=<?php echo $fac; ?>" class="btn btn-youtube fas fa-trash-alt"></a>
 
                         <?php } ?>
 
