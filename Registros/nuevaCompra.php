@@ -101,6 +101,22 @@ else {
                                     date_default_timezone_set('America/El_Salvador');
                                     ?>
                                     <label style="color: black">Fecha de Compra</label>
+                                    <?php if (isset($_GET['Nfactura'])){
+                                         include_once '../Conexion/conexion.php';
+                                        $Abi=$_GET['Nfactura'];
+                 $fechita= mysqli_query($conexion,"SELECT fecha_actual FROM t_compra WHERE factura='$Abi' LIMIT 1");
+                 while ($z= mysqli_fetch_array($fechita)){
+                     $fe=$z['fecha_actual'];
+                 }
+                                        ?>
+                                    <div class="input-group">
+                                        <input type="date" name="FeActual" value="<?php echo $fe;?>" class="form-control" id="FeActual" min="<?php echo $fe;?>" max="<?php echo $fe;?>" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+
+                                    </div>
+                                    <?php }else{?>
                                     <div class="input-group">
                                         <input type="date" name="FeActual" class="form-control" id="FeActual" min="<?= date('d/m/y g:ia'); ?>" />
                                         <div class="input-group-append">
@@ -108,7 +124,7 @@ else {
                                         </div>
 
                                     </div>
-
+                                    <?php }?>
                                 </div>
 
                                 <div class="col-lg-4">
@@ -161,6 +177,22 @@ else {
                                     date_default_timezone_set('America/El_Salvador');
                                     ?>
                                     <label style="color: black">Fecha de Caducidad<small class="text-muted"></small></label>
+                                    <?php if (isset($_GET['Nfactura'])){
+                                         include_once '../Conexion/conexion.php';
+                                        $Abi2=$_GET['Nfactura'];
+                 $fechita2= mysqli_query($conexion,"SELECT fecha_caducidad FROM t_compra WHERE factura='$Abi2' LIMIT 1");
+                 while ($z2= mysqli_fetch_array($fechita2)){
+                     $fe2=$z2['fecha_caducidad'];
+                 }
+                                        ?>
+                                    <div class="input-group">
+                                        <input type="date" name="caducidad" value="<?php echo $fe2;?>" class="form-control" id="caducidad" max="<?php echo $fe2;?>" min="<?php echo $fe2;?>" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+
+                                    </div>
+                                    <?php } else {?>
                                     <div class="input-group">
                                         <input type="date" name="caducidad" class="form-control" id="caducidad" max="2020-01-01" min="<?= date('d/m/y g:ia'); ?>"/>
                                         <div class="input-group-append">
@@ -168,6 +200,7 @@ else {
                                         </div>
 
                                     </div>
+                                    <?php }?>
                                 </div>
 
                                 <div class="col-lg-2">
