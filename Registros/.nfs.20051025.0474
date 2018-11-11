@@ -1,3 +1,4 @@
+
 <?php
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
@@ -222,3 +223,10 @@ if (isset($_REQUEST['btnGuardar'])) {
     include_once '../plantilla/pie.php';
 }
 ?>
+
+      
+
+
+        
+
+
