@@ -4,30 +4,7 @@ include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 
 
-
-if (isset($_REQUEST['btnGuardar'])) {
-    include_once '../Conexion/conexion.php';
-   
-    $uni_preparadas = $_REQUEST['preparadas'];
-    $insumo = $_REQUEST['insumo'];
-   
-    echo $factura;
-
-    Conexion::abrir_conexion();
-    $conexionx = Conexion::obtener_conexion();
-    mysqli_query($conexion, "INSERT INTO t_inventario(fk_insumo,inv_unidades_preparadas,insumo) VALUES('$insumo','$uni_preparadas)");
-
-    echo "<script>
-          location.href ='DecrementoIn.php?Nfactura=$factura ';
-        </script>";
-} else {
-     if (isset($_REQUEST['Nfactura'])) {
-         $valor = $_REQUEST['Nfactura'];
-        
-    }
-   
-    
-    ?>
+?>
 
     <div class="page-wrapper" style="height: 671px;">
 
@@ -57,7 +34,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                         <option>Insumo</option>
                                         <?php
                                         while ($row = mysqli_fetch_array($pro)) {
-                                               echo '<option value=' . "$row[0]" . '>' . $row[5] . " - " . $row[1]. " " . $row[3] . '</option>';
+                                               echo '<option value=' . "$row[1]" . '>' . $row[5] . " - " . $row[1]. " " . $row[3] . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -67,7 +44,7 @@ if (isset($_REQUEST['btnGuardar'])) {
 
                                 <div class="col-lg-3">
                                     <label style="color: black">Marca<small class="text-muted" ></small></label>
-                                    <select class="custom-select" name="proveedor" id="proveedor">
+                                    <select class="custom-select" name="marca" id="marca">
                                         <?php
                                         include_once '../Conexion/conexion.php';
                                         $pro = mysqli_query($conexion, "SELECT*from t_insumo WHERE estado=1");
@@ -85,7 +62,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                 <div class="col-lg-3">
                                     <label style="color: black">Existencia<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
-                                        <input type="text" class="form-control" id="precio" name="precio">
+                                        <input type="text" class="form-control" id="existencia" name="existencia">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
                                         </div> 
@@ -95,28 +72,22 @@ if (isset($_REQUEST['btnGuardar'])) {
                                 <div class="col-lg-3">
                                     <label style="color: black">Unidades a preparar<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
-                                        <input type="text" class="form-control" id="prparadas" name="preparadas">
+                                        <input type="text" class="form-control" id="preparadas" name="preparadas">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
                                         </div> 
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2">
-                                    <div class="input-group">                         
-                                        <input type="hidden" class="form-control" id="codInsumo" name="codInsumo" >
-                                        <div class="input-group-append">
-                                        </div> 
-                                    </div>
-                                </div>
+                              
 
                                 <div class="col-lg-12">
 
                                     <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                        <button type="submit" class="btn btn-info" value="OK" id="btnGuardar" name="btnGuardar" >Agregar</button>
+                                       <button type="button" class="btn btn-info" id="agregar" name="agregar" onClick="agregarTabla()">Agregar</button>
                                     </div>
                                     <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                        <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar" onClick="location.href='http://www.google.com">Finalizar</button>
+                                        <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar">Finalizar</button>
                                     </div>
                                 </div>
 
@@ -129,78 +100,36 @@ if (isset($_REQUEST['btnGuardar'])) {
 
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
-  <table class="table table-striped table-hover user-list fixed-header">
-    <thead>
-      
-<!--      <th><div>Código</div></th>-->
-      <th><div>Código</div></th>
-      <th><div>Insumo</div></th>
-      <th><div>Existencia</div></th>
-  <th><div>Unidades a preparar</div></th>
-<!--  <th><div>Unidades</div></th>-->
-    
-    </thead>
-    <tbody  class="buscar"> 
-   <?php
-            if (isset($_REQUEST['Nfactura'])) {
-                $facturaActual = $_REQUEST['Nfactura'];
-                $sacar = mysqli_query($conexion, "SELECT
-                    ins_codigo,
-                  
-                    ins_cnombre_comercial,
-                    ins_cmarca,
-                    existencia,
-                    preparar,
-                   
-                
-                    subtotal
-                    FROM
-                    t_insumo
-                    INNER JOIN t_compra ON fk_insumo = ins_codigo
-                  
-                    WHERE factura = '$facturaActual'");
-                while ($fila = mysqli_fetch_array($sacar)) {
-                    $codigoTabla = $fila['ins_codigo'];
-                  
-                    $insumoTabla = $fila['ins_cnombre_comercial'];
-                    $marcaTabla = $fila['ins_cmarca'];
-                    $exisTab = $fila['existencia'];
-                    $canatidadTab = $fila['preparar'];
-                   
-                  //  $subTotalTabla = $fila['precio_unitario'] * $fila['cantidad'];
-//                                            $total += $subTotalTabla;
-                    ?>
-                    <tr>
-            <!--        <th scope="row"><?php echo $codigoTabla; ?></th>-->
-                        
-                        <td data-title="Domestic Gross" data-type="currency"><?php echo $insumoTabla; ?></td>
-                        <td data-title="Domestic Gross" data-type="currency"><?php echo $marcaTabla; ?></td>                      
-                        <td data-title="Domestic Gross" data-type="currency"><?php echo $exisTab; ?></td>
-                        <td data-title="Domestic Gross" data-type="currency"><?php echo $canatidadTab; ?></td>
+      <table  id="tablaDecremento" class="table table-striped table-hover user-list fixed-header">
+          <thead>
+              <tr>
 
-                     
-            <!--                                                    <td data-title="Domestic Gross" data-type="currency"><?php echo $total; ?></td>-->
-                        <td class="text"><a href="" class="btn btn-success fas fa-edit">Modificar</a>
+                  <th>Insumo</th> 
+                  <th>Marca</th>
+                  <th>Existencia</th>
+                  <th>Unidades a Preparar</th>
 
-                        <?php } ?>
+              </tr>
+          </thead>
+          <tbody class="tabla_ajax">
+          <?php include('../Consultas/tablaDecremento.php') ?>
+          </tbody>
 
-                </tr>
-                <?php
-                    }
-                    ?>
 
-    </tbody>
-  </table>
+      </table>
   </div> <!-- Div scroll-window -->
-</div> <!-- Div scroll-window-wrapper-->
+  </div> <!-- Div scroll-window-wrapper-->
 
 
-</div> <!-- Div bodywrap -->
+                         </div> <!-- Div bodywrap -->
                     </div>
 
 
-                  
+
                 </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -218,7 +147,30 @@ if (isset($_REQUEST['btnGuardar'])) {
 
             <!-- ============================================================== --> 
 
-    <?php
-    include_once '../plantilla/pie.php';
-}
-?>
+            <?php
+            include_once '../plantilla/pie.php';
+            ?>
+
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
+
+        <script> 
+                
+          function agregarTabla(){
+                   //alert('si');
+                    var insumo = $('#insumo').val();
+                    var marca = $('#marca').val();
+                    var existencia = $('#existencia').val();
+                    var preparadas = $('#preparadas').val();
+                  var tabla = $('#tablaDecremento');
+                    
+                    var datos = "<tr>"+
+                            "<td>"+insumo+"</td>"+
+                            "<td>"+marca+"</td>"+
+                            "<td>"+existencia+"</td>"+
+                            "<td>"+preparadas+"</td>"+
+                            "</tr>";
+                    
+                    tabla.append(datos);
+                }
+                 </script>
