@@ -2,8 +2,12 @@
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
+include_once '../Conexion/conexion.php';
 
-
+$guardo  = $_REQUEST["guardo"];
+if($guardo==1){
+msg("Los datos fueron almacenados con exito");
+}
 ?>
 
     <div class="page-wrapper" style="height: 671px;">
@@ -18,7 +22,7 @@ include_once '../plantilla/menu_lateral.php';
                     <div class="thumbnail__logo">
 
                         <h2 class="heading--secondary">Decremento insumo</h2>
-                        <form action="DecrementoIn.php" method="POST" >
+                        <form action="../Registros/guardarDecremento.php" method="POST" >
 
                             <div class="row mb-12"> 
 
@@ -84,7 +88,7 @@ include_once '../plantilla/menu_lateral.php';
                                 <div class="col-lg-12">
 
                                     <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                       <button type="button" class="btn btn-info" id="agregar" name="agregar" onClick="agregarTabla()">Agregar</button>
+                                        <button type="submit" class="btn btn-info" id="guardar" name="guardar">Agregar</button>
                                     </div>
                                     <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                         <button type="submit" class="btn btn-info" name="Cancelar" id="Cancelar">Finalizar</button>
@@ -154,9 +158,9 @@ include_once '../plantilla/menu_lateral.php';
               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 
 
-        <script> 
+        <script type="text/javascript"> 
                 
-          function agregarTabla(){
+          $("#guardar").on('click',function(){
                    //alert('si');
                     var insumo = $('#insumo').val();
                     var marca = $('#marca').val();
@@ -174,3 +178,19 @@ include_once '../plantilla/menu_lateral.php';
                     tabla.append(datos);
                 }
                  </script>
+                 
+                 <?php
+function msg($texto)
+{
+    echo "<script type='text/javascript'>";
+    echo"alert('$texto');";
+    echo "</script>";
+}
+ function msgError($texto)
+{
+    echo "<script type='text/javascript'>";
+    echo "sweetConfirm('$texto');";
+    //echo "document.location.href='materias.php';";
+    echo "</script>";
+}
+ ?>
