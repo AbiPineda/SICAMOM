@@ -4,7 +4,11 @@ include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
 
-$guardo  = $_REQUEST["guardo"];
+if(isset($_REQUEST["guardo"])){
+    $guardo  = $_REQUEST["guardo"];
+}else{
+    $guardo=0;
+}
 if($guardo==1){
 msg("Los datos fueron almacenados con exito");
 }
@@ -33,12 +37,12 @@ msg("Los datos fueron almacenados con exito");
                                       <select class="custom-select" name="insumo" id="insumo">
                                         <?php
                                         include_once '../Conexion/conexion.php';
-                                        $pro = mysqli_query($conexion, "SELECT*from t_insumo");
+                                        $pro = mysqli_query($conexion, "SELECT*from t_insumo,t_compra WHERE ins_codigo = id_compra");
                                         ?>
                                         <option>Insumo</option>
                                         <?php
                                         while ($row = mysqli_fetch_array($pro)) {
-                                               echo '<option value=' . "$row[1]" . '>' . $row[5] . " - " . $row[1]. " " . $row[3] . '</option>';
+                                               echo '<option value=' . "$row[0]" . '>' . $row[2] . " - " . $row[1]. " " . $row[3] . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -51,13 +55,13 @@ msg("Los datos fueron almacenados con exito");
                                     <select class="custom-select" name="marca" id="marca">
                                         <?php
                                         include_once '../Conexion/conexion.php';
-                                        $pro = mysqli_query($conexion, "SELECT*from t_insumo WHERE estado=1");
+                                        $pro = mysqli_query($conexion, "SELECT*from t_insumo,t_compra WHERE ins_codigo = id_compra");
                                         ?>
                                         <option>Marca</option>
                                         <?php
                                         while ($row = mysqli_fetch_array($pro)) {
-                                            $prove = $row['id_proveedor'];
-                                            echo '<option value=' . "$row[0]" . '>' . $row[2] . '</option>';
+                                            //$prove = $row['id_proveedor'];
+                                            echo '<option value=' . "$row[1]" . '>' . $row[2] . '</option>';
                                         }
                                         ?>
                                     </select>
@@ -109,7 +113,6 @@ msg("Los datos fueron almacenados con exito");
               <tr>
 
                   <th>Insumo</th> 
-                  <th>Marca</th>
                   <th>Existencia</th>
                   <th>Unidades a Preparar</th>
 
