@@ -6,106 +6,6 @@
      $modi1 = $_GET['ir2'];
     ?>
 
-    <script type="text/javascript">
-        /**
-         * Funcion que devuelve true o false dependiendo de si la fecha es correcta.
-         * Tiene que recibir el dia, mes y año
-         */
-        function isValidDate(day, month, year)
-        {
-            var dteDate;
-            month = month - 1;
-            dteDate = new Date(year, month, day);
-
-
-            return ((day == dteDate.getDate()) && (month == dteDate.getMonth()) && (year == dteDate.getFullYear()));
-        }
-
-
-        function validate_fecha(fecha)
-        {
-            var patron = new RegExp("^(19|20)+([0-9]{2})([-])([0-9]{1,2})([-])([0-9]{1,2})$");
-
-            if (fecha.search(patron) == 0)
-            {
-                var values = fecha.split("-");
-                if (isValidDate(values[2], values[1], values[0]))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-
-        function calcularEdad()
-        {
-            var fecha = document.getElementById("user_date").value;
-            if (validate_fecha(fecha) == true)
-            {
-                // Si la fecha es correcta, calculamos la edad
-                var values = fecha.split("-");
-                var dia = values[2];
-                var mes = values[1];
-                var ano = values[0];
-
-                // cogemos los valores actuales
-                var fecha_hoy = new Date();
-                var ahora_ano = fecha_hoy.getYear();
-                var ahora_mes = fecha_hoy.getMonth() + 1;
-                var ahora_dia = fecha_hoy.getDate();
-
-                // realizamos el calculo
-                var edad = (ahora_ano + 1900) - ano;
-                if (ahora_mes < mes)
-                {
-                    edad--;
-                }
-                if ((mes == ahora_mes) && (ahora_dia < dia))
-                {
-                    edad--;
-                }
-                if (edad > 1900)
-                {
-                    edad -= 1900;
-                }
-
-                // calculamos los meses
-                var meses = 0;
-                if (ahora_mes > mes)
-                    meses = ahora_mes - mes;
-                if (ahora_mes < mes)
-                    meses = 12 - (mes - ahora_mes);
-                if (ahora_mes == mes && dia > ahora_dia)
-                    meses = 11;
-
-                // calculamos los dias
-                var dias = 0;
-                if (ahora_dia > dia)
-                    dias = ahora_dia - dia;
-                if (ahora_dia < dia)
-                {
-                    ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
-                    dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
-                }
-                //document.f1.inp.disabled=true;
-                document.f1.inp.value = edad;
-
-                if (edad <= 17) {
-                    document.f1.dui.disabled = true;
-                    document.f1.tel.disabled = true;
-                } else {
-                    document.f1.dui.disabled = false;
-                    document.f1.tel.disabled = false;
-                }
-
-                document.getElementById("result").innerHTML = "Tienes " + edad + " años, " + meses + " meses y " + dias + " días";
-            } else {
-
-                document.getElementById("result").innerHTML = "La fecha " + fecha + " es incorrecta";
-            }
-        }
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <div class="page-wrapper" style="height: 671px;">
 
@@ -135,7 +35,7 @@
                                             <div class="col-lg-2">
                                             <label style="color: white">Código<small class="text-muted" ></small></label>  
                                              <div class="input-group">
-                                            <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código">
+                                            <input type="text" class="form-control" id="fname"  name="codigo" placeholder="Código"  readonly="readonly">
                                              <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-barcode"></i></span>
                                             </div>
@@ -145,7 +45,7 @@
                                     <div class="col-lg-4">
                                         <label style="color: white">Nombres <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="text" name="nombreExpe"  class="form-control" id="nombreCom" placeholder="Ingrese nombres" autocomplete="off" value="<?php echo $nom; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                            <input type="text" name="nombreExpe"  class="form-control" id="nombreCom" placeholder="Ingrese nombres" autocomplete="off" value="<?php echo $nom; ?>" required onkeypress="return soloLetras(event);" class="mayusculas" maxlength="30"  readonly="readonly">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
@@ -154,7 +54,7 @@
                                     <div class="col-lg-4">
                                         <label style="color: white">Apellidos<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="text" name="apellidoExpe"  class="form-control" id="fnamep" placeholder="Ingrese apellidos" autocomplete="off" value="<?php echo $ape; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                            <input type="text" name="apellidoExpe"  class="form-control" id="apellido" placeholder="Ingrese apellidos" autocomplete="off" value="<?php echo $ape; ?>" required onkeypress="return soloLetras(event);" class="mayusculas" maxlength="30" autofocus  readonly="readonly">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
@@ -182,7 +82,7 @@
                                                                   <div class="col-lg-3">
                                         <label style="color: white">Alergias<small class="text-muted"></small></label>
          <div class="input-group">
-                                            <input type="text" name="alergias"  class="form-control" id="fnamep" placeholder="" autocomplete="off" value="" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30">  
+                                            <input type="text" name="alergias"  class="form-control" id="fnamep" placeholder="" autocomplete="off" value="" onkeypress="return soloLetras(event);" class="mayusculas" maxlength="30">  
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
@@ -400,11 +300,13 @@ $y = date("Y");
             <script src="http://code.jquery.com/jquery-1.0.4.js"></script>
             <script>
                 $(document).ready(function () {
-                    $("#nombreCom").keyup(function () {
+                  //  value = document.getElementsById("nombreCom");
+                   $("#apellido").focusout(function () {
+                       var value = $(this).val();
 
-                        var value = $(this).val();
-                        $cod = value.substr(0, 3).toUpperCase();
-                        if (value != "") {
+                  //      $cod = value.substr(0, 3).toUpperCase();
+                   $cod = value.substr(0, 4).toUpperCase();
+                         if (value != "") {
                             var numero = Math.floor(Math.random() * (999 - 100)) + 100;
                             $codigo = $cod + numero;
                             $("#fname").val($codigo);
@@ -412,6 +314,6 @@ $y = date("Y");
                             $("#fname").val("");
                         }
 
-                    });
+                   });
                 });
             </script>

@@ -94,7 +94,7 @@ $edad=($ano-$partes[0]);
                                         </div>
                                               <div class="col-md-5">
       
-      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group"><input type="date" oninput="this.className = ''" class="form-control" id="fnamep" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame" >       
+      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fnamep" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame" >       
                                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -363,8 +363,20 @@ $edad=($ano-$partes[0]);
          $diagnostico = $_REQUEST['diagnostico'];
          $tipoconsul = $_REQUEST['tipocon'];
          $amenorrea = $_REQUEST['fecha_ame'];
+         $peso = $_REQUEST['peso'];
+         $talla = $_REQUEST['talla'];
+         $temp = $_REQUEST['temp'];
+         $pulso = $_REQUEST['pulso'];
+
+         mysqli_query($conexion, "INSERT INTO t_enfermeria(enf_destatura,enf_dpeso,enf_dtemperatura,enf_cpresion) VALUES('$peso','$talla','$temp','$pulso')");
      
             mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_inventario,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi',1,'$y1-$m1-$d1','$diagnostico','$amenorrea','$tipoconsul')");
+
+                Conexion::abrir_conexion();
+    $conexionx = Conexion::obtener_conexion();
+    $sql = "UPDATE t_llegada SET estado=0 WHERE fk_expediente='$modi'";
+    $sentencia = $conexionx->prepare($sql);
+    $usuario_insertado = $sentencia->execute();
                        echo '<script>swal({
                         title: "Registro",
                         text: "Guardado!",
