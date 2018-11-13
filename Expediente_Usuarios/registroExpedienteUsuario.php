@@ -229,7 +229,7 @@ $y = date("Y");
                         title: "Registro",
                         text: "Guardado!",
                         type: "success",
-                        confirmButtonText: "Aceptar",
+                        confirmButtonText: "Aceptar ok",
                         closeOnConfirm: false
                     },
                     function () {
