@@ -68,7 +68,7 @@ include_once '../Conexion/conexion.php';
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo, t_compra WHERE ins_codigo=id_compra AND estado=1");
+        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo, t_compra WHERE ins_codigo=id_compra");
             while ($fila = mysqli_fetch_array($sacar1)) {
                 $cod=$fila['codigo'];
                 $nom=$fila['fk_insumo'];  
