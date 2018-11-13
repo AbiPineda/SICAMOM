@@ -41,7 +41,7 @@ include_once '../Conexion/conexion.php';
             <!--Fin Búsqueda-->
 <br/>
     <div class="card" >
-      <h3 class="card-title">Devolución de insumo</h3>
+      <h3 class="card-title">Devolución</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -52,28 +52,41 @@ include_once '../Conexion/conexion.php';
   <table class="table table-striped table-hover user-list fixed-header">
   
   <thead>  
-  <th><div>N factura</div></th>
-  <th><div>Fecha</div></th>
-  <th><div>Acción</div></th>
+  <th><div>Selec</div></th>
+  <th><div>Insumo</div></th>
+  <th><div>Comprado</div></th>
+  <th><div>Devolver</div></th>
+  <th><div>Razón</div></th>
+  <th><div>Tipo de devolicion</div></th>
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar = mysqli_query($conexion, "SELECT *FROM t_compra WHERE id_compra  ");
+        $sacar = mysqli_query($conexion, "SELECT *FROM t_insumo,t_compra WHERE ins_codigo = id_compra  ");
             while ($fila = mysqli_fetch_array($sacar)) {
-                 $modificar=$fila['id_compra']; 
-                 $numF=$fila['factura'];
-                 $fec=$fila['fecha_actual'];  
+                 $modificar=$fila['factura']; 
+                 $insumo=$fila['fk_insumo'];
+                 $cant=$fila['cantidad'];  
                   
                  
               
         ?>
       <tr>
-       
-        <td data-title="Released"><?php echo $numF;?></td>
-        <td data-title="Releaseda"><?php echo $fec;?></td>
-      
-        
-        <td class="text"><a href="../Consultas/darDevolucion.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Devolucion</a>
+       <td><input type="checkbox" name="checkbox[]"></td>
+        <td data-title="Released"><?php echo $insumo;?></td>
+        <td data-title="Releaseda"><?php echo $cant;?></td>
+        <td>  <input type="text" name="marca"""> </td>
+        <td> <select>
+            <option value="volvo">Dañado</option>
+            <option value="saab">Incompleto</option>
+            <option value="mercedes">No me gusta</option>
+            <option value="audi">Entre</option>
+          </select></td>
+        <td><select>
+            <option value="volvo">Por otro insumo</option>
+            <option value="saab">Por el mismo</option>
+          
+          </select></td>
+        <td class="text"><a href="../Consultas/modificarInsumo.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Efec</a>
         </td>
 
        <?php  }?>
