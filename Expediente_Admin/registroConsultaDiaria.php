@@ -18,10 +18,8 @@
                       <form action="" method="post">
                     <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
    <h5 class="card-title" style="color:white">Datos Generales del Paciente</h5> 
-   <div class="row">
-        
-                                <div class="row">                               
-                                    <div class="col-md-7">       
+   <div class="row">                              
+                                    <div class="col-md-5">       
                                     <?php
                                         include_once '../Conexion/conexion.php';
                                         $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente,t_expediente WHERE id_expediente='$modi' AND fk_paciente=id_paciente");
@@ -59,25 +57,24 @@ $edad=($ano-$partes[0]);
 
 //print $edad;
                                             ?>                             
-                                        <div lass="input-group">
+                                        <div>
                                         <label style="color: white" >Paciente: <small class="text-muted"></small></label>
                                             <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="<?php echo $nom . " " . $ape; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
                                         </div> 
                                     </div>  
-                                    <div class="col-md-5">
+                                    <div class="col-md-2">
                                     <div>
                                         <label style="color: white" >Edad: <small class="text-muted"></small></label>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $edad." años"; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="10">  
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $edad." años"; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="6">  
                                         </div> 
                                     </div> 
                                     <div class="col-md-5">
                                     <div>
                                         <label style="color: white" >Alergias: <small class="text-muted"></small></label>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $alergias; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="10">  
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $alergias; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
                                         </div> 
                                     </div> 
                                 </div>
-    </div>
     <br/>
     <div class="row">
                             <h5 class="card-title" style="color: white">Registro de Signos Vitales</h5>
@@ -176,7 +173,7 @@ $edad=($ano-$partes[0]);
 
                                     <div class="col-md-2">
                                         <div class="input-group">
-                                            <label style="color: white">Guantes:<small class="text-muted"></small></label>
+                                            <label style="color: white">Papel:<small class="text-muted"></small></label>
                                                <input type="number" min="1" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="1" onkeypress="return sinCaracterEspecial(event)" value="">
                                         </div> 
                                     </div>
@@ -203,9 +200,9 @@ $edad=($ano-$partes[0]);
                                             <div class="row mb-7" style="float: right;margin-right: 20px; margin-top: 15px;">
                                               <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button></div>
                                                  <div class="row mb-7" style="float: right; margin-right: 20px; margin-top: 15px;">
-                                                <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar" ></div>
+                                                <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Recetas" ></div>
                                             <div class="row mb-7" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                              <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button></div>
+                                              <button type="reset" class="btn btn-info" name="nameCancelar">Examenes </button></div>
                                     </div>
     </div>
         <br/>

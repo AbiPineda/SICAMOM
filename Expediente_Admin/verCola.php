@@ -65,7 +65,7 @@ include_once '../Conexion/conexion.php';
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
      <thead>
-     <th><div>N° de Expediente</div></th> 
+     <th><div>N° Expediente</div></th> 
      <th><div>Paciente</div></th>
      <th><div>Estado</div></th>
      <th><div>Accion</div></th>
@@ -104,7 +104,7 @@ $y = date("Y");
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $codigo;?></td>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
-        <td class="text"><a href="../Expediente_Admin/registroConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Consulta</a>
+        <td class="text"><a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Consulta</a>
         </td>
        <?php  }?>
       </tr>
