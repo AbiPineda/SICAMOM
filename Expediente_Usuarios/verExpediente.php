@@ -10,7 +10,7 @@
     <div class="page-wrapper" style="height: 671px;">
 
         <div class="container-fluid">
-            <div class="card" style="background: rgba(0, 101, 191,0.6)">        
+            <div class="card>        
                 <div class="card-body wizard-content">
                     <h3 class="card-title" style="color: white">Busqueda de Expediente </h3>
                     <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
@@ -79,11 +79,12 @@
 
     </tbody>
   </table>
-  <div class="col-lg-12">
+ 
+  </div> <!-- Div scroll-window -->
+   <div class="col-lg-12">
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
                                                 <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Expediente" onclick="location.href='../Expediente_Usuarios/expedienteUsuario.php'" ></div>
                                     </div> 
-  </div> <!-- Div scroll-window -->
 </div> <!-- Div scroll-window-wrapper-->
 
 

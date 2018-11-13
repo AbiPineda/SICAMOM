@@ -85,7 +85,7 @@ $edad=($ano-$partes[0]);
           <div class="col-md-5">
       
       <label style="color: white">Tipo de Consulta:<small class="text-muted"></small></label>
-      <div class="input-group"><select class="custom-select" name="tipocon" style="width: 100%; height:36px;" " oninput="this.className = ''">
+      <div class="input-group"><select class="custom-select" name="tipocon" style="width: 100%; height:36px;">
                                         <option>Seleccionar</option>
                                         <option value="Consulta General">Consulta general</option>
                                         <option value="Control de Embarazo">Control de embarazo</option>
@@ -107,44 +107,46 @@ $edad=($ano-$partes[0]);
     <div class="tab">
       <h5 class="card-title" style="color: white">Registro de Signos Vitales</h5>
       <div class="row">
-      <div class="col-md-2">
+       <div class="col-md-2">
+                                          
+        <label style="color: white">Talla:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Cm" autocomplete="off" maxlength="6" name="talla">
+        <div class="input-group-append">
+                                                  <span class="input-group-text"><i class="fas fa-child"></i></span>
+                                              </div>
+                                          </div> 
+                                      </div>      
+                                      <div class="col-md-2">
       
-      <label style="color: white">Peso:<small class="text-muted"></small></label><div class="input-group"><input type="text" oninput="this.className = ''" class="form-control" id="fnamep" placeholder="Kg" autocomplete="off" maxlength="6" name="peso" >       <div class="input-group-append">
+      <label style="color: white">Peso:<small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Kg" autocomplete="off" maxlength="6" name="peso" >       <div class="input-group-append">
                                                     <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
                                                 </div>
 
                                             </div> 
                                         </div>                                
-       <div class="col-md-2">
-                                          
-        <label style="color: white">Talla:  <small class="text-muted"></small></label><div class="input-group"><input oninput="this.className = ''" class="form-control" id="fnamep" placeholder="Cm" autocomplete="off" maxlength="6" name="talla">
-        <div class="input-group-append">
-                                                  <span class="input-group-text"><i class="fas fa-child"></i></span>
-                                              </div>
-                                          </div> 
-                                      </div>
+
                                       <div class="col-md-2">
                                           
-         <label style="color: white">Temperatura:  <small class="text-muted"></small></label><div class="input-group"><input oninput="this.className = ''" class="form-control" id="fnamep" placeholder="°C" autocomplete="off" maxlength="4" name="temp">
+         <label style="color: white">Temperatura:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="°C" autocomplete="off" maxlength="4" name="temp">
           <div class="input-group-append">
                                                   <span class="input-group-text"><i class="fas fa-thermometer-half"></i></span>
                                               </div>
                                           </div> 
                                       </div>
-                                       <div class="col-md-2">
-                                          
-          <label style="color: white">Pulso:  <small class="text-muted"></small></label><div class="input-group"><input oninput="this.className = ''" class="form-control" id="fnamep" placeholder="Lat/min" autocomplete="off" maxlength="3" name="pulso">
-            <div class="input-group-append">
-                                                  <span class="input-group-text"><i class="fas fa-stethoscope"></i></span>
-                                              </div>
-                                          </div> 
-                                      </div>
+                                       
                               
                                       <div class="col-md-3">
                                           
-     <label style="color: white">Presión:  <small class="text-muted"></small></label><div class="input-group"><input oninput="this.className = ''" class="form-control" id="fnamep" placeholder="mm de Hg" autocomplete="off" maxlength="3" name="presion">
+     <label style="color: white">Presión:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="mm de Hg" autocomplete="off" maxlength="7" name="presion">
        <div class="input-group-append">
                                                   <span class="input-group-text"><i class="fas fa-heartbeat"></i></span>
+                                              </div>
+                                          </div> 
+                                      </div>
+                                      <div class="col-md-2">
+                                          
+          <label style="color: white">Pulso:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Lat/min" autocomplete="off" maxlength="3" name="pulso">
+            <div class="input-group-append">
+                                                  <span class="input-group-text"><i class="fas fa-stethoscope"></i></span>
                                               </div>
                                           </div> 
                                       </div>
@@ -157,7 +159,7 @@ $edad=($ano-$partes[0]);
                                           <div class="col-md-2">
                                           <label style="color: white">Guantes:  <small class="text-muted"></small></label>
                                           <div class="input-group">
-                                                <input type="number" min="1" class="form-control" id="lname" name="guantes" placeholder="1" value="" size="10" oninput="this.className = ''">
+                                                <input type="number" min="1" class="form-control" id="lname" name="guantes" placeholder="1" value="" size="10" >
                                                 <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -167,7 +169,7 @@ $edad=($ano-$partes[0]);
                                     <div class="col-md-2">
                                         <label style="color: white">Paletas:<small class="text-muted"></small></label>                          
                                         <div class="input-group">   
-                                         <input type="number" min="1" class="form-control" id="lname" name="paletas" placeholder="1" value="" oninput="this.className = ''">
+                                         <input type="number" min="1" class="form-control" id="lname" name="paletas" placeholder="1" value="" >
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -177,7 +179,7 @@ $edad=($ano-$partes[0]);
                                     <div class="col-md-2">
                                          <label style="color: white">Torundas:<small class="text-muted"></small></label>
                                         <div class="input-group">      
-                                         <input type="number" min="1" class="form-control" id="lname" name="torundas" placeholder="1" value="" oninput="this.className = ''">
+                                         <input type="number" min="1" class="form-control" id="lname" name="torundas" placeholder="1" value="" >
                                                <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -188,7 +190,7 @@ $edad=($ano-$partes[0]);
                                         
                                         <label style="color: white">Papel:<small class="text-muted"></small></label>
                                         <div class="input-group">       
-                                          <input type="number" min="1" class="form-control" id="lname" name="papel" placeholder="1" value="" oninput="this.className = ''">
+                                          <input type="number" min="1" class="form-control" id="lname" name="papel" placeholder="1" value="" >
                                                <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -199,7 +201,7 @@ $edad=($ano-$partes[0]);
                                         
                                         <label style="color: white">Isopo:<small class="text-muted"></small></label>
                                         <div class="input-group">      
-                                          <input type="number" min="0" class="form-control" id="lname" name="isopo" placeholder="0" value="" oninput="this.className = ''">
+                                          <input type="number" min="0" class="form-control" id="lname" name="isopo" placeholder="0" value="" >
                                               <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -209,7 +211,7 @@ $edad=($ano-$partes[0]);
                                         
                                         <label style="color: white">Jeringas:<small class="text-muted"></small></label>
                                          <div class="input-group">     
-                                          <input type="number" min="0" class="form-control" id="lname" name="jeringas" placeholder="0" value="" oninput="this.className = ''">
+                                          <input type="number" min="0" class="form-control" id="lname" name="jeringas" placeholder="0" value="" >
                                               <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -223,7 +225,7 @@ $edad=($ano-$partes[0]);
                                         <div class="col-md-12">
                                         <label style="color: white">Síntomas y Diagnóstico: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="diagnostico" oninput="this.className = ''"></textarea> 
+                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -363,20 +365,22 @@ $edad=($ano-$partes[0]);
          $diagnostico = $_REQUEST['diagnostico'];
          $tipoconsul = $_REQUEST['tipocon'];
          $amenorrea = $_REQUEST['fecha_ame'];
-         $peso = $_REQUEST['peso'];
          $talla = $_REQUEST['talla'];
+         $peso = $_REQUEST['peso'];
          $temp = $_REQUEST['temp'];
-         $pulso = $_REQUEST['pulso'];
+         $presion = $_REQUEST['presion'];
 
-         mysqli_query($conexion, "INSERT INTO t_enfermeria(enf_destatura,enf_dpeso,enf_dtemperatura,enf_cpresion) VALUES('$peso','$talla','$temp','$pulso')");
-     
-            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_inventario,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi',1,'$y1-$m1-$d1','$diagnostico','$amenorrea','$tipoconsul')");
+          mysqli_query($conexion, "INSERT INTO t_enfermeria(enf_destatura,enf_dpeso,enf_dtempetarura,enf_cpresion) VALUES('$talla','$peso','$temp','$presion')");
+          $sacar = mysqli_query($conexion,"SELECT id_enfermeria FROM t_enfermeria ORDER by id_enfermeria DESC LIMIT 1");
+                while ($fila = mysqli_fetch_array($sacar)) {
+                      $enfermeria=$fila['id_enfermeria']; 
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,fk_InventarioUnidades,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi','$enfermeria',1,'$y1-$m1-$d1','$diagnostico','$amenorrea','$tipoconsul')");
 
                 Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
     $sql = "UPDATE t_llegada SET estado=0 WHERE fk_expediente='$modi'";
     $sentencia = $conexionx->prepare($sql);
-    $usuario_insertado = $sentencia->execute();
+    $usuario_insertado = $sentencia->execute(); 
                        echo '<script>swal({
                         title: "Registro",
                         text: "Guardado!",
@@ -390,7 +394,7 @@ $edad=($ano-$partes[0]);
                     });</script>';
             
 
-              }
+           }  } 
            include_once '../plantilla/pie.php';
 
       ?>

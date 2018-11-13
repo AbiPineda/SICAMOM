@@ -212,13 +212,7 @@ $y = date("Y");
         $alergias = $_REQUEST['alergias'];
                      
 
-    $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_paciente WHERE pac_cnombre='$nombre_pac'");
-    $verificar_insert1 = mysqli_query($conexion, "SELECT * FROM t_paciente WHERE pac_capellidos='$apellido'");
-    $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_paciente WHERE pac_cdui='$dui'");
-
-     
-    if (mysqli_num_rows($verificar_insert) > 0 && mysqli_num_rows($verificar_insert1) > 0 && mysqli_num_rows($verificar_insert2) > 0 ) {
-       $sacar = mysqli_query($conexion,"SELECT id_paciente FROM t_paciente WHERE pac_cnombre='$nombre_pac'");
+          $sacar = mysqli_query($conexion,"SELECT id_paciente FROM t_paciente WHERE pac_cnombre='$nombre_pac'");
                 while ($fila = mysqli_fetch_array($sacar)) {
                       $paciente=$fila['id_paciente']; 
       $sacar1 = mysqli_query($conexion,"SELECT idMedico FROM t_medico WHERE med_cnombre='$doctor'");
@@ -236,21 +230,8 @@ $y = date("Y");
                         location.href="../Expediente_Usuarios/verExpediente.php";
                         
                     });</script>';
-                }}}
-    else
-    {
-             echo '<script>swal({
-                        title: "Alerta",
-                        text: "El paciente no se encuentra Registrado",
-                        type: "warning",
-                        confirmButtonText: "Aceptar",
-                        closeOnConfirm: false
-                    },
-                    function () {
-                        location.href="../Expediente_Usuarios/expedienteUsuario.php";
-                        
-                    });</script>';
-    }
+                }}
+   
               }
         include_once '../plantilla/pie.php';
 
