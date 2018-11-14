@@ -51,42 +51,34 @@ include_once '../Conexion/conexion.php';
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
   
-  <thead>  
-  <th><div>Selec</div></th>
+  <thead> 
   <th><div>Insumo</div></th>
-  <th><div>Comprado</div></th>
-  <th><div>Devolver</div></th>
-  <th><div>Razón</div></th>
-  <th><div>Tipo de devolicion</div></th>
+  <th data-title="Released"><div>Comprado</div></th>
+  <th><div>Marca</div></th>
+  <th><div>Accion</div></th>
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar = mysqli_query($conexion, "SELECT *FROM t_insumo,t_compra WHERE ins_codigo = id_compra  ");
-            while ($fila = mysqli_fetch_array($sacar)) {
-                 $modificar=$fila['factura']; 
-                 $insumo=$fila['fk_insumo'];
+    $identificador=$_GET['ir'];
+        $sacar = mysqli_query($conexion, "SELECT i.ins_cnombre_comercial, c.cantidad, i.ins_cmarca FROM t_compra c 
+INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.factura='$identificador'");
+            while ($fila = mysqli_fetch_array($sacar)) { 
+                 $insumo=$fila['ins_cnombre_comercial'];
                  $cant=$fila['cantidad'];  
+                  $mar=$fila['ins_cmarca'];
                   
                  
               
         ?>
       <tr>
-       <td><input type="checkbox" name="checkbox[]"></td>
+       
         <td data-title="Released"><?php echo $insumo;?></td>
+        
         <td data-title="Releaseda"><?php echo $cant;?></td>
-        <td>  <input type="text" name="marca"""> </td>
-        <td> <select>
-            <option value="volvo">Dañado</option>
-            <option value="saab">Incompleto</option>
-            <option value="mercedes">No me gusta</option>
-            <option value="audi">Entre</option>
-          </select></td>
-        <td><select>
-            <option value="volvo">Por otro insumo</option>
-            <option value="saab">Por el mismo</option>
-          
-          </select></td>
-        <td class="text"><a href="../Consultas/modificarInsumo.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Efec</a>
+        <td data-title="Released"><?php echo $mar;?></td>
+        
+        
+          <td class="text"> <a href="#" data-toggle="modal" data-target="#miModal" onclick="mostrar_Modal('<?php echo $insumo; ?>','<?php echo $cant; ?>')">Efec</a>
         </td>
 
        <?php  }?>
@@ -95,6 +87,105 @@ include_once '../Conexion/conexion.php';
 
     </tbody>
   </table>
+      <!--******************-->
+      <!--******************************Dialog**************************-->  
+<!-- MODAL-->
+            <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <h4>Devolucion de insumo</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <!--<form id="example-form" action="" class="m-t-40" method="POST">-->
+                            <!-- **********MODIFICACION******************-->
+                            <!--FORMULARIO PARA GUARDAR--><form action="" id="" method="post" class="form-register" >
+
+                                <!--CAPTURA COMO LA ACCION PARA GUARDAR--><input type="hidden" name="guardar" id="pase"/>
+                                <!-- **********FIN MODIFICACION******************-->
+
+
+                                <div class="col-lg-12">
+                                   
+                                    <label>Insumo<small class="text-muted"></small></label><br>
+                                    <div class="input-group">
+                                        <input type="text" name="insumo" value="" class="form-control" id="insumo">  
+                                    </div> <br>
+
+                                    <label>Compra<small class="text-muted"></small></label>
+                                    <div class="input-group">
+                                        <input type="text" name="com" class="form-control" id="com">  
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        </div>
+                                    </div> 
+
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <label>Cantidad a devolver<small class="text-muted"></small></label>
+                                    <div class="input-group">
+                                        <input type="text" name="devolver" class="form-control" id="devolver" >  
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                
+                                 <div class="col-lg-12">
+                                    <label>Razón<small class="text-muted"></small></label>
+                                    <div class="input-group">
+                                        <select name="razon">
+                                        <option value="volvo">Dañado</option>
+                                        <option value="saab">Incompleto</option>
+                                        <option value="mercedes">No me gusta</option>
+                                        <option value="audi">Entre</option>
+                                      </select>
+                                    </div>                                    
+                                </div>
+                                 <div class="col-lg-12">
+                                    <label>Tipo de devolucion<small class="text-muted"></small></label>
+                                    <div class="input-group">
+                                        <select name="tipo">
+                                        <option value="volvo">Por otro insumo</option>
+                                        <option value="saab">Por el mismo</option>
+
+                                      </select>
+                                    </div>                                    
+                                </div>
+
+
+                                
+
+
+                                 
+                                <!--ERROR COMUN Y LO DEJARE AQUI PARA QUE VEAS
+                                LA ETIQUETA </form> DETRO DE ELLA SIEMPRE TEIENE QUE ESTAR LOS BOTONES-->
+
+                                <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                    <!--yo lo utilizo tipo input porque asi me funciona--><input type="submit" class="btn btn-info" value="Guardar" name="modGuardar">
+
+                                </div>
+
+                                <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                    <button type="submit" class="btn btn-info" name="modCancelar">Cancelar </button>
+
+                                </div>
+                            </form>
+                           
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Div de modal-->
+      <!--*********//////************-->
   </div> <!-- Div scroll-window -->
 </div> <!-- Div scroll-window-wrapper-->
 
@@ -109,6 +200,12 @@ include_once '../Conexion/conexion.php';
 </body>
 
 </html>
+<script>
+function mostrar_Modal(insu,com){
+    $("#insumo").val(insu);
+    $("#com").val(com);
+}
+</script>
 
 <?php
     

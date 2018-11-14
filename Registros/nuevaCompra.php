@@ -49,10 +49,57 @@ if (isset($_REQUEST['btnGuardar'])) {
             //es porque ya hay uno
         } else {
             mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso')");
+        //*************Inventario********
+        //saco los datos para ir los a guardar en el inventario original
+    $paraInventario=mysqli_query($conexion, "SELECT id_compra,fk_insumo,cantidad FROM t_compra WHERE factura='$factura' AND estado='EnProceso' AND fk_insumo='$insumo'");
+    while ($A= mysqli_fetch_array($paraInventario)){
+        $invCom=$A['id_compra'];
+        $in=$A['fk_insumo'];
+        $can=$A['cantidad'];
+    }
+    //validar si ya esta el insumo en el inventario
+    $estasAki=mysqli_query($conexion, "SELECT*FROM t_inventario l WHERE l.insumo='$in'");
+    if (mysqli_num_rows($estasAki)>0) {
+        $sacar=mysqli_query($conexion, "SELECT*FROM t_inventario l WHERE l.insumo='$in'");
+        while ($e= mysqli_fetch_array($sacar)){
+            $actual=$e['inv_ecantidad_actual'];
+        }
+        $sustituir=$actual+$can;
+         mysqli_query($conexion, "UPDATE t_inventario SET inv_ecantidad_actual='$sustituir' WHERE insumo='$in'");
+  
+        } else {
+        mysqli_query($conexion, "INSERT INTO t_inventario(fk_compra,insumo,inv_ecantidad_actual) VALUES('$invCom','$in','$can')");  
+    }
+      
+        //*************Inventario********
+            
         }
     } else {
         mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso')");
+   //*************Inventario********
+        //saco los datos para ir los a guardar en el inventario original
+    $paraInventario=mysqli_query($conexion, "SELECT id_compra,fk_insumo,cantidad FROM t_compra WHERE factura='$factura' AND estado='EnProceso' AND fk_insumo='$insumo'");
+    while ($A= mysqli_fetch_array($paraInventario)){
+        $invCom=$A['id_compra'];
+        $in=$A['fk_insumo'];
+        $can=$A['cantidad'];
     }
+    //validar si ya esta el insumo en el inventario
+    $estasAki=mysqli_query($conexion, "SELECT*FROM t_inventario l WHERE l.insumo='$in'");
+    if (mysqli_num_rows($estasAki)>0) {
+        $sacar=mysqli_query($conexion, "SELECT*FROM t_inventario l WHERE l.insumo='$in'");
+        while ($e= mysqli_fetch_array($sacar)){
+            $actual=$e['inv_ecantidad_actual'];
+        }
+        $sustituir=$actual+$can;
+         mysqli_query($conexion, "UPDATE t_inventario SET inv_ecantidad_actual='$sustituir' WHERE insumo='$in'");
+  
+        } else {
+        mysqli_query($conexion, "INSERT INTO t_inventario(fk_compra,insumo,inv_ecantidad_actual) VALUES('$invCom','$in','$can')");  
+    }
+      
+        //*************Inventario********
+        }
 
 
 
@@ -68,8 +115,33 @@ if (isset($_REQUEST['Cancelar'])) {
 
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
+    //recorrer para guardarlos
 
-    mysqli_query($conexion, "UPDATE t_compra SET estado='Finalizado' WHERE factura='$factura' AND estado='EnProceso'");
+////saco los datos para ir los a guardar en el inventario original
+//    $paraInventario=mysqli_query($conexion, "SELECT id_compra,fk_insumo,cantidad FROM t_compra WHERE factura='$factura' AND estado='EnProceso'");
+//    while ($A= mysqli_fetch_array($paraInventario)){
+//        $invCom=$A['id_compra'];
+//        $in=$A['fk_insumo'];
+//        $can=$A['cantidad'];
+//    }
+//    //validar si ya esta el insumo en el inventario
+//    $estasAki=mysqli_query($conexion, "SELECT*FROM t_inventario l WHERE l.insumo='$in'");
+//    if (mysqli_num_rows($estasAki)>0) {
+////        $sacar=mysqli_query($conexion, "SELECT*FROM t_inventario l WHERE l.insumo='$in'");
+////        while ($e= mysqli_fetch_array($sacar)){
+////            $actual=$e['inv_ecantidad_actual'];
+////        }
+////        $sustituir=$actual+$can;
+////         mysqli_query($conexion, "UPDATE t_inventario SET inv_ecantidad_actual='$sustituir' WHERE factura='$factura' AND estado='EnProceso'");
+//  
+//        } else {
+//        mysqli_query($conexion, "INSERT INTO t_inventario(fk_compra,insumo,inv_ecantidad_actual) VALUES('$invCom','$in','$can')");  
+//    }
+//      
+  
+/////*************************************
+    
+  mysqli_query($conexion, "UPDATE t_compra SET estado='Finalizado' WHERE factura='$factura' AND estado='EnProceso'");
 //    echo "<script>
 //          location.href ='nuevaCompra.php';
 //        </script>";
