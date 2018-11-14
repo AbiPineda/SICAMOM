@@ -60,12 +60,13 @@ include_once '../Conexion/conexion.php';
     <tbody  class="buscar"> 
     <?php
     $identificador=$_GET['ir'];
-        $sacar = mysqli_query($conexion, "SELECT i.ins_cnombre_comercial, c.cantidad, i.ins_cmarca FROM t_compra c 
-INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.factura='$identificador'");
+        $sacar = mysqli_query($conexion, "SELECT c.fk_insumo,i.ins_cnombre_comercial, c.cantidad, i.ins_cmarca FROM t_compra c 
+INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.id_compra='$identificador'");
             while ($fila = mysqli_fetch_array($sacar)) { 
                  $insumo=$fila['ins_cnombre_comercial'];
                  $cant=$fila['cantidad'];  
                   $mar=$fila['ins_cmarca'];
+                  $insumito=$fila['fk_insumo'];
                   
                  
               
@@ -141,29 +142,14 @@ INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.factura='$identificado
                                     <label>Razón<small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <select name="razon">
-                                        <option value="volvo">Dañado</option>
-                                        <option value="saab">Incompleto</option>
-                                        <option value="mercedes">No me gusta</option>
-                                        <option value="audi">Entre</option>
+                                        <option value="Dañado">Dañado</option>
+                                        <option value="Incompleto">Incompleto</option>
+                                        <option value="No me gusta">No me gusta</option>
+                                        <option value="Otro">Otra</option>
                                       </select>
                                     </div>                                    
                                 </div>
-                                 <div class="col-lg-12">
-                                    <label>Tipo de devolucion<small class="text-muted"></small></label>
-                                    <div class="input-group">
-                                        <select name="tipo">
-                                        <option value="volvo">Por otro insumo</option>
-                                        <option value="saab">Por el mismo</option>
-
-                                      </select>
-                                    </div>                                    
-                                </div>
-
-
                                 
-
-
-                                 
                                 <!--ERROR COMUN Y LO DEJARE AQUI PARA QUE VEAS
                                 LA ETIQUETA </form> DETRO DE ELLA SIEMPRE TEIENE QUE ESTAR LOS BOTONES-->
 
@@ -210,5 +196,33 @@ function mostrar_Modal(insu,com){
 <?php
     
     include_once '../plantilla/pie.php';
+     if (isset($_REQUEST['guardar'])) {
+                                // aqui vamos a guardar la informacion que contiene el modal.
+                                include_once '../Conexion/conexion.php';
+
+                                $devolver= $_POST['devolver'];
+                                $razon = $_REQUEST['razon'];
+  mysqli_query($conexion, "INSERT INTO t_devolucion(fk_compra,devolver,razon)VALUES('$identificador','$devolver','$razon')");
+     
+  $decrementar= mysqli_query($conexion,"SELECT * FROM t_inventario WHERE insumo='$insumito'");
+  while ($Za= mysqli_fetch_array($decrementar)){
+      $act=$Za['inv_ecantidad_actual'];
+  }
+  $Decre=$act-$devolver;
+  mysqli_query($conexion, "UPDATE t_inventario SET inv_ecantidad_actual='$Decre' WHERE insumo='$insumito'");
+     
+  echo '<script>swal({
+                    title: "Error",
+                    text: "Esta factura ya fue registrada",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="devolucionInsumo.php";
+                    
+                });</script>';
+  
+  }
 
 ?>
