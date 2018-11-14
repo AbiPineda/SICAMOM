@@ -6,56 +6,18 @@ CREATE SCHEMA IF NOT EXISTS `default_schema` ;
 USE `default_schema` ;
 
 -- -----------------------------------------------------
--- Table `default_schema`.`t_usuario`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `default_schema`.`t_usuario` (
-  `id_usuario` INT(11) NULL AUTO_INCREMENT ,
-  `usu_cnombre` VARCHAR(20) NULL DEFAULT NULL ,
-  `usu_capellido` VARCHAR(20) NULL DEFAULT NULL ,
-  `usu_ccorreo` VARCHAR(45) NULL DEFAULT NULL ,
-  `usu_cusuario` VARCHAR(10) NULL DEFAULT NULL ,
-  `usu_ccontrasena` VARCHAR(10) NULL DEFAULT NULL ,
-  `usu_ctipo_usuario` VARCHAR(15) NULL DEFAULT NULL ,
-  `estado` INT(11) NULL DEFAULT NULL ,
-  PRIMARY KEY (`id_usuario`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `default_schema`.`t_bitacora`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `default_schema`.`t_bitacora` (
-  `id_bitacora` INT(11) NULL AUTO_INCREMENT ,
-  `fk_usuario` INT(11) NOT NULL ,
-  `bit_cusuario` VARCHAR(10) NULL DEFAULT NULL ,
-  `bit_cactividad` VARCHAR(45) NULL DEFAULT NULL ,
-  `bit_ffecha` DATE NULL DEFAULT NULL ,
-  `bit_hhora` TIME NULL DEFAULT NULL ,
-  PRIMARY KEY (`id_bitacora`) ,
-  INDEX `fk_t_bitacora_t_usuario1_idx` (`fk_usuario` ASC) ,
-  CONSTRAINT `fk_t_bitacora_t_usuario1`
-    FOREIGN KEY (`fk_usuario` )
-    REFERENCES `default_schema`.`t_usuario` (`id_usuario` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `default_schema`.`t_insumo`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_insumo` (
-  `ins_codigo` INT(11) NULL AUTO_INCREMENT ,
+  `ins_codigo` INT(11) NOT NULL AUTO_INCREMENT ,
   `ins_cnombre_comercial` VARCHAR(30) NULL DEFAULT NULL ,
   `ins_cmarca` VARCHAR(25) NULL DEFAULT NULL ,
   `ins_cdescripcion` TEXT NULL DEFAULT NULL ,
   `estado` INT(11) NULL DEFAULT NULL ,
   `codigo` VARCHAR(7) NULL DEFAULT NULL ,
-  `presentacion` VARCHAR(25) NULL ,
-  `unidad` INT(11) NULL ,
-  `minimo` INT(11) NULL ,
+  `presentacion` VARCHAR(25) NULL DEFAULT NULL ,
+  `unidad` INT(11) NULL DEFAULT NULL ,
+  `minimo` INT(11) NULL DEFAULT NULL ,
   PRIMARY KEY (`ins_codigo`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -65,7 +27,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_proveedor`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_proveedor` (
-  `id_proveedor` INT(11) NULL AUTO_INCREMENT ,
+  `id_proveedor` INT(11) NOT NULL AUTO_INCREMENT ,
   `pro_cnombre_empresa` VARCHAR(30) NULL DEFAULT NULL ,
   `pro_cnombre_responsable` VARCHAR(30) NULL DEFAULT NULL ,
   `pro_cdireccion` VARCHAR(45) NULL DEFAULT NULL ,
@@ -81,18 +43,18 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_compra`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_compra` (
-  `id_compra` INT(11) NULL AUTO_INCREMENT ,
+  `id_compra` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_proveedor` INT(11) NOT NULL ,
   `fk_insumo` INT(11) NOT NULL ,
   `fecha_caducidad` DATE NULL DEFAULT NULL ,
   `precio_unitario` DOUBLE NULL DEFAULT NULL ,
   `cantidad` INT(11) NULL DEFAULT NULL ,
   `total` DOUBLE NULL DEFAULT NULL ,
-  `fecha_actual` DATE NULL ,
-  `factura` VARCHAR(10) NULL ,
-  `subtotal` DOUBLE NULL ,
-  `codigo` VARCHAR(10) NULL ,
-  `estado` VARCHAR(25) NULL ,
+  `fecha_actual` DATE NULL DEFAULT NULL ,
+  `factura` VARCHAR(10) NULL DEFAULT NULL ,
+  `subtotal` DOUBLE NULL DEFAULT NULL ,
+  `codigo` VARCHAR(10) NULL DEFAULT NULL ,
+  `estado` VARCHAR(25) NULL DEFAULT NULL ,
   PRIMARY KEY (`id_compra`) ,
   INDEX `fk_t_compra_t_insumo1_idx` (`fk_insumo` ASC) ,
   INDEX `fk_t_compra_t_proveedor1_idx` (`fk_proveedor` ASC) ,
@@ -111,10 +73,81 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
+-- Table `default_schema`.`inventario_unidades`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `default_schema`.`inventario_unidades` (
+  `idInventario_Unidades` INT(11) NOT NULL AUTO_INCREMENT ,
+  `fk_compra` INT(11) NOT NULL ,
+  `decremento` INT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`idInventario_Unidades`) ,
+  INDEX `fk_inventario_unidades_t_compra1_idx` (`fk_compra` ASC) ,
+  CONSTRAINT `fk_inventario_unidades_t_compra1`
+    FOREIGN KEY (`fk_compra` )
+    REFERENCES `default_schema`.`t_compra` (`id_compra` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `default_schema`.`t_usuario`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `default_schema`.`t_usuario` (
+  `id_usuario` INT(11) NOT NULL AUTO_INCREMENT ,
+  `usu_cnombre` VARCHAR(20) NULL DEFAULT NULL ,
+  `usu_capellido` VARCHAR(20) NULL DEFAULT NULL ,
+  `usu_ccorreo` VARCHAR(45) NULL DEFAULT NULL ,
+  `usu_cusuario` VARCHAR(10) NULL DEFAULT NULL ,
+  `usu_ccontrasena` VARCHAR(10) NULL DEFAULT NULL ,
+  `usu_ctipo_usuario` VARCHAR(15) NULL DEFAULT NULL ,
+  `estado` INT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id_usuario`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `default_schema`.`t_bitacora`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `default_schema`.`t_bitacora` (
+  `id_bitacora` INT(11) NOT NULL AUTO_INCREMENT ,
+  `fk_usuario` INT(11) NOT NULL ,
+  `bit_cusuario` VARCHAR(10) NULL DEFAULT NULL ,
+  `bit_cactividad` VARCHAR(45) NULL DEFAULT NULL ,
+  `bit_ffecha` DATE NULL DEFAULT NULL ,
+  `bit_hhora` TIME NULL DEFAULT NULL ,
+  PRIMARY KEY (`id_bitacora`) ,
+  INDEX `fk_t_bitacora_t_usuario1_idx` (`fk_usuario` ASC) ,
+  CONSTRAINT `fk_t_bitacora_t_usuario1`
+    FOREIGN KEY (`fk_usuario` )
+    REFERENCES `default_schema`.`t_usuario` (`id_usuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `default_schema`.`t_enfermeria`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `default_schema`.`t_enfermeria` (
+  `id_enfermeria` INT(11) NOT NULL AUTO_INCREMENT ,
+  `enf_destatura` DOUBLE NULL DEFAULT NULL ,
+  `enf_dpeso` DOUBLE NULL DEFAULT NULL ,
+  `enf_dtempetarura` DOUBLE NULL DEFAULT NULL ,
+  `enf_cpresion` VARCHAR(20) NULL DEFAULT NULL ,
+  `enf_cpulso` VARCHAR(20) NULL ,
+  PRIMARY KEY (`id_enfermeria`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
 -- Table `default_schema`.`t_medico`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_medico` (
-  `idMedico` INT(11) NULL AUTO_INCREMENT ,
+  `idMedico` INT(11) NOT NULL AUTO_INCREMENT ,
   `t_usuario` INT(11) NOT NULL ,
   `med_cnombre` VARCHAR(20) NULL DEFAULT NULL ,
   `med_capellidos` VARCHAR(20) NULL DEFAULT NULL ,
@@ -134,7 +167,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_paciente`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_paciente` (
-  `id_paciente` INT(11) NULL AUTO_INCREMENT ,
+  `id_paciente` INT(11) NOT NULL AUTO_INCREMENT ,
   `pac_cnombre` VARCHAR(20) NULL DEFAULT NULL ,
   `pac_capellidos` VARCHAR(20) NULL DEFAULT NULL ,
   `pac_cdui` VARCHAR(10) NULL DEFAULT NULL ,
@@ -150,12 +183,12 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_expediente`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_expediente` (
-  `id_expediente` INT(11) NULL AUTO_INCREMENT ,
+  `id_expediente` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_medico` INT(11) NOT NULL ,
   `fk_paciente` INT(11) NOT NULL ,
-  `codigo` VARCHAR(10) NULL ,
-  `fecha_registro` DATE NULL ,
-  `alergias` VARCHAR(100) NULL ,
+  `codigo` VARCHAR(10) NULL DEFAULT NULL ,
+  `fecha_registro` DATE NULL DEFAULT NULL ,
+  `alergias` VARCHAR(100) NULL DEFAULT NULL ,
   PRIMARY KEY (`id_expediente`) ,
   INDEX `fk_t_expediente_t_medico1_idx` (`fk_medico` ASC) ,
   INDEX `fk_t_expediente_t_paciente1_idx` (`fk_paciente` ASC) ,
@@ -174,87 +207,37 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `default_schema`.`t_inventario`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `default_schema`.`t_inventario` (
-  `id_inventario` INT(11) NULL AUTO_INCREMENT ,
-  `fk_compra` INT(11) NOT NULL ,
-  `inv_ecantidad_actual` INT(11) NULL DEFAULT NULL ,
-  `inv_ecantidad_saliente` INT(11) NULL DEFAULT NULL ,
-  PRIMARY KEY (`id_inventario`) ,
-  INDEX `fk_t_inventario_t_compra1_idx` (`fk_compra` ASC) ,
-  CONSTRAINT `fk_t_inventario_t_compra1`
-    FOREIGN KEY (`fk_compra` )
-    REFERENCES `default_schema`.`t_compra` (`id_compra` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `default_schema`.`Inventario_Unidades`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `default_schema`.`Inventario_Unidades` (
-  `idInventario_Unidades` INT NULL AUTO_INCREMENT ,
-  `fk_inventarioGeneral` INT(11) NOT NULL ,
-  `decremento` INT NULL ,
-  PRIMARY KEY (`idInventario_Unidades`) ,
-  INDEX `fk_Inventario_Unidades_t_inventario1_idx` (`fk_inventarioGeneral` ASC) ,
-  CONSTRAINT `fk_Inventario_Unidades_t_inventario1`
-    FOREIGN KEY (`fk_inventarioGeneral` )
-    REFERENCES `default_schema`.`t_inventario` (`id_inventario` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `default_schema`.`t_enfermeria`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `default_schema`.`t_enfermeria` (
-  `id_enfermeria` INT(11) NULL AUTO_INCREMENT ,
-  `enf_destatura` DOUBLE NULL DEFAULT NULL ,
-  `enf_dpeso` DOUBLE NULL DEFAULT NULL ,
-  `enf_dtempetarura` DOUBLE NULL DEFAULT NULL ,
-  `enf_cpresion` VARCHAR(20) NULL DEFAULT NULL ,
-  PRIMARY KEY (`id_enfermeria`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `default_schema`.`t_consulta`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_consulta` (
-  `idconsulta` INT(11) NULL AUTO_INCREMENT ,
+  `idconsulta` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_expediente` INT(11) NOT NULL ,
   `fk_enfermeria` INT(11) NOT NULL ,
-  `fk_InventarioUnidades` INT NOT NULL ,
+  `fk_InventarioUnidades` INT(11) NOT NULL ,
   `con_fecha_atiende` DATE NULL DEFAULT NULL ,
   `con_diagnostico` TEXT NULL DEFAULT NULL ,
   `con_ref_medica` TEXT NULL DEFAULT NULL ,
   `con_cons_medica` TEXT NULL DEFAULT NULL ,
-  `con_receta` TEXT NULL ,
+  `con_receta` TEXT NULL DEFAULT NULL ,
   `con_fecha_amenorrea` DATE NULL DEFAULT NULL ,
   `con_ctipo_consulta` VARCHAR(45) NULL DEFAULT NULL ,
   PRIMARY KEY (`idconsulta`) ,
   INDEX `fk_t_consulta_t_expediente1_idx` (`fk_expediente` ASC) ,
   INDEX `fk_t_consulta_Inventario_Unidades1_idx` (`fk_InventarioUnidades` ASC) ,
   INDEX `fk_t_consulta_t_enfermeria1_idx` (`fk_enfermeria` ASC) ,
-  CONSTRAINT `fk_t_consulta_t_expediente1`
-    FOREIGN KEY (`fk_expediente` )
-    REFERENCES `default_schema`.`t_expediente` (`id_expediente` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_t_consulta_Inventario_Unidades1`
     FOREIGN KEY (`fk_InventarioUnidades` )
-    REFERENCES `default_schema`.`Inventario_Unidades` (`idInventario_Unidades` )
+    REFERENCES `default_schema`.`inventario_unidades` (`idInventario_Unidades` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_t_consulta_t_enfermeria1`
     FOREIGN KEY (`fk_enfermeria` )
     REFERENCES `default_schema`.`t_enfermeria` (`id_enfermeria` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_t_consulta_t_expediente1`
+    FOREIGN KEY (`fk_expediente` )
+    REFERENCES `default_schema`.`t_expediente` (`id_expediente` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -265,7 +248,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_devolucion`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_devolucion` (
-  `id_devolucion` INT(11) NULL AUTO_INCREMENT ,
+  `id_devolucion` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_compra` INT(11) NOT NULL ,
   PRIMARY KEY (`id_devolucion`) ,
   INDEX `fk_t_devolucion_t_compra1_idx` (`fk_compra` ASC) ,
@@ -282,7 +265,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_enfermeria_fetal`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_enfermeria_fetal` (
-  `id_enfermeria_fetal` INT(11) NULL AUTO_INCREMENT ,
+  `id_enfermeria_fetal` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_consulta` INT(11) NOT NULL ,
   `fet_dfcf` DOUBLE NULL DEFAULT NULL ,
   `fet_cactividad_fetal` VARCHAR(45) NULL DEFAULT NULL ,
@@ -302,9 +285,9 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_examenes`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_examenes` (
-  `id_examenes` INT(11) NULL AUTO_INCREMENT ,
+  `id_examenes` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_consulta` INT(11) NOT NULL ,
-  `exa_cclasificacion` VARCHAR(45) NULL ,
+  `exa_cclasificacion` VARCHAR(45) NULL DEFAULT NULL ,
   `exa_ctipo` VARCHAR(25) NULL DEFAULT NULL ,
   `exa_cresultado` TEXT NULL DEFAULT NULL ,
   PRIMARY KEY (`id_examenes`) ,
@@ -319,13 +302,25 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
+-- Table `default_schema`.`t_inventario`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `default_schema`.`t_inventario` (
+  `id_inventario` INT(11) NOT NULL AUTO_INCREMENT ,
+  `inv_ecantidad_actual` INT(11) NULL DEFAULT NULL ,
+  `inv_ecantidad_saliente` INT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id_inventario`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
 -- Table `default_schema`.`t_llegada`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_llegada` (
-  `id_llegada` INT(11) NULL AUTO_INCREMENT ,
+  `id_llegada` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_expediente` INT(11) NOT NULL ,
-  `lleg_ffecha_atiende` DATE NULL ,
-  `estado` VARCHAR(12) NULL ,
+  `lleg_ffecha_atiende` DATE NULL DEFAULT NULL ,
+  `estado` VARCHAR(12) NULL DEFAULT NULL ,
   PRIMARY KEY (`id_llegada`) ,
   INDEX `fk_t_llegada_t_expediente` (`fk_expediente` ASC) ,
   CONSTRAINT `fk_t_llegada_t_expediente`
@@ -341,7 +336,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_medicamentos`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_medicamentos` (
-  `id_medicamentos` INT(11) NULL AUTO_INCREMENT ,
+  `id_medicamentos` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_consulta` INT(11) NOT NULL ,
   `med_cnombre` VARCHAR(25) NULL DEFAULT NULL ,
   `med_claboratorio` VARCHAR(25) NULL DEFAULT NULL ,
@@ -362,7 +357,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_prenatal`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_prenatal` (
-  `idprenatal` INT(11) NULL AUTO_INCREMENT ,
+  `idprenatal` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_consulta` INT(11) NOT NULL ,
   `pre_cfactores_riesgo` TEXT NULL DEFAULT NULL ,
   `pre_cantecedentes_personales` TEXT NULL DEFAULT NULL ,
@@ -387,7 +382,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_responsable`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_responsable` (
-  `idresponsable` INT(11) NULL AUTO_INCREMENT ,
+  `idresponsable` INT(11) NOT NULL AUTO_INCREMENT ,
   `t_paciente` INT(11) NOT NULL ,
   `res_cnombre` VARCHAR(20) NULL DEFAULT NULL ,
   `res_capellidos` VARCHAR(20) NULL DEFAULT NULL ,
@@ -409,7 +404,7 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `default_schema`.`t_vacunacion`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `default_schema`.`t_vacunacion` (
-  `id_vacunacion` INT(11) NULL AUTO_INCREMENT ,
+  `id_vacunacion` INT(11) NOT NULL AUTO_INCREMENT ,
   `fk_consulta` INT(11) NOT NULL ,
   `vac_ctipo_vacuna` VARCHAR(25) NULL DEFAULT NULL ,
   `vac_cnombre` VARCHAR(25) NULL DEFAULT NULL ,
