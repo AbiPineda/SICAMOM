@@ -19,10 +19,26 @@ if (isset($_REQUEST['btnGuardar'])) {
     $factura = $_REQUEST['factura'];
     $subTotal = $_REQUEST['precio']*$_REQUEST['cantidad'];
     
-    echo $factura;
+   
 
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
+   
+    
+    $bandera = mysqli_query($conexion, "SELECT factura FROM t_compra WHERE estado='Finalizado' AND factura='$factura'");
+    if (mysqli_num_rows($bandera) > 0) {
+         echo '<script>swal({
+                    title: "Error",
+                    text: "Esta factura ya fue registrada",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="nuevaCompra.php";
+                    
+                });</script>';
+    }else{
     
      $validar = mysqli_query($conexion, "SELECT factura FROM t_compra WHERE estado='EnProceso' AND factura='$factura'");
      if (mysqli_num_rows($validar) > 0) {
@@ -43,6 +59,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     echo "<script>
           location.href ='nuevaCompra.php?Nfactura=$factura ';
         </script>";
+}
 }
 if (isset($_REQUEST['Cancelar'])) {
     include_once '../Conexion/conexion.php';
@@ -89,7 +106,7 @@ else {
                     <div class="thumbnail__logo">
 
                         <h2 class="heading--secondary">Registro de compra</h2>
-                        <form action="nuevaCompra.php" method="POST" >
+                        <form action="nuevaCompra.php" method="get" >
 
                             <div class="row mb-12"> 
 
