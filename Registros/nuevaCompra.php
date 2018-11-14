@@ -25,23 +25,21 @@ if (isset($_REQUEST['btnGuardar'])) {
     $conexionx = Conexion::obtener_conexion();
     
      $validar = mysqli_query($conexion, "SELECT factura FROM t_compra WHERE estado='EnProceso' AND factura='$factura'");
-     if (mysqli_num_rows($validar)>0) {
-         
-         $OtroNo = mysqli_query($conexion, "SELECT * FROM t_compra WHERE fk_insumo='$insumo' AND factura='$factura'");
-         
-         if(mysqli_num_rows($OtroNo)>0){
-             //es porque ya hay uno
-         }else{
-              mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso')");
-     
-         }
-         }else{
-              mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso')");
-     
-         }
-           
+     if (mysqli_num_rows($validar) > 0) {
 
-          
+        $OtroNo = mysqli_query($conexion, "SELECT * FROM t_compra WHERE fk_insumo='$insumo' AND factura='$factura'");
+
+        if (mysqli_num_rows($OtroNo) > 0) {
+            //es porque ya hay uno
+        } else {
+            mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso')");
+        }
+    } else {
+        mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso')");
+    }
+
+
+
     echo "<script>
           location.href ='nuevaCompra.php?Nfactura=$factura ';
         </script>";
@@ -55,10 +53,20 @@ if (isset($_REQUEST['Cancelar'])) {
     $conexionx = Conexion::obtener_conexion();
 
     mysqli_query($conexion, "UPDATE t_compra SET estado='Finalizado' WHERE factura='$factura' AND estado='EnProceso'");
-
-    echo "<script>
-          location.href ='nuevaCompra.php?Nfactura=$factura ';
-        </script>";
+//    echo "<script>
+//          location.href ='nuevaCompra.php';
+//        </script>";
+      echo '<script>swal({
+                    title: "Exito",
+                    text: "Compra Guardada!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="nuevaCompra.php";
+                    
+                });</script>';
 } 
 else {
      if (isset($_REQUEST['Nfactura'])) {
@@ -177,31 +185,14 @@ else {
                                     date_default_timezone_set('America/El_Salvador');
                                     ?>
                                     <label style="color: black">Fecha de Caducidad<small class="text-muted"></small></label>
-                                    <?php if (isset($_GET['Nfactura'])){
-                                         include_once '../Conexion/conexion.php';
-                                        $Abi2=$_GET['Nfactura'];
-                 $fechita2= mysqli_query($conexion,"SELECT fecha_caducidad FROM t_compra WHERE factura='$Abi2' LIMIT 1");
-                 while ($z2= mysqli_fetch_array($fechita2)){
-                     $fe2=$z2['fecha_caducidad'];
-                 }
-                                        ?>
-                                    <div class="input-group">
-                                        <input type="date" name="caducidad" value="<?php echo $fe2;?>" class="form-control" id="caducidad" max="<?php echo $fe2;?>" min="<?php echo $fe2;?>" />
+                                   <div class="input-group">
+                                        <input type="date" name="caducidad" class="form-control" id="caducidad" min="<?= date('d/m/y g:ia'); ?>"/>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
 
                                     </div>
-                                    <?php } else {?>
-                                    <div class="input-group">
-                                        <input type="date" name="caducidad" class="form-control" id="caducidad" max="2020-01-01" min="<?= date('d/m/y g:ia'); ?>"/>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                                        </div>
-
-                                    </div>
-                                    <?php }?>
-                                </div>
+                                 </div>
 
                                 <div class="col-lg-2">
                                     <label style="color: black">Cantidad<small class="text-muted" ></small></label>
