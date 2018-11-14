@@ -93,7 +93,7 @@
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
                                                 <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar" ></div>
                                             <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-                                                <input type="button" class="btn btn-info" name="" id="su"  value="Lista de Espera" onclick="location.href='../Expediente_Usuarios/verColaUsuario.php'" ></div>
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="Lista de Espera" onclick="location.href='../Expediente_Admin/verCola.php'" ></div>
                                     </div>   
                                   </div>
                                     <?php
@@ -170,7 +170,7 @@ $y = date("Y");
         <th scope="row"><?php echo $codigo;?></th>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $nomdoc . " " . $apedoc;?></td>
-        <td class="text"><a href="../Expediente_Usuarios/controlConsultaDiariaUsuario.php?ir2=<?php echo $modificar1; ?>" class="btn btn-success fas fa-edit">Cola</a>
+        <td class="text"><a href="../Expediente_Admin/controlConsultaDiariaAdmin.php?ir2=<?php echo $modificar1; ?>" class="btn btn-success fas fa-edit">Lista de Espera</a>
         </td>
 
        <?php  }?>
@@ -225,7 +225,7 @@ $y = date("Y");
                         closeOnConfirm: false
                     },
                     function () {
-                        location.href="../Expediente_Usuarios/verExpediente.php";
+                        location.href="../Expediente_Admin/verExpedienteAdmin.php";
                         
                     });</script>';
                 }}

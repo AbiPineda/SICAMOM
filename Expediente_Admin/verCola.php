@@ -29,7 +29,7 @@ include_once '../Conexion/conexion.php';
                 <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
                   <div class="col-lg-12">
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Registro" onclick="location.href='../Expediente_Usuarios/verExpediente.php'" ></div>
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Registro" onclick="location.href='../Expediente_Admin/verExpedienteAdmin.php'" ></div>
                                     </div>   
                        </div>
 

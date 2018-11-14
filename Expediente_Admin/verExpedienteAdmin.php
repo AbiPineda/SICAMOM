@@ -16,7 +16,7 @@
                    <h3 class="card-title" style="color: white">Busqueda de Expediente </h3> 
                     <div class="col-lg-12">
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Expediente" onclick="location.href='../Expediente_Usuarios/expedienteUsuario.php'" ></div>
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Expediente" onclick="location.href='../Expediente_Admin/expedienteAdmin.php'" ></div>
                                     </div> 
                                   </div>
                    
@@ -56,7 +56,6 @@
     <thead>
      <th><div>N° de Expediente</div></th> 
      <th><div>Paciente</div></th>
-     <th><div>Doctor que atiende</div></th>
      <th><div>Accion</div></th>
     
       
@@ -71,9 +70,7 @@
                  $codigo=$fila['codigo'];
                  $ape=$fila['pac_capellidos'];  
                  $nom=$fila['pac_cnombre'];  
-                 $apedoc=$fila['med_capellidos'];  
-                 $nomdoc=$fila['med_cnombre'];
-                   
+                                 
                  // $fe=$fila['pac_ffecha_nac']; 
                // $partes = explode('-', $fe);
               //  $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
@@ -82,8 +79,7 @@
       <tr>
         <th scope="row"><?php echo $codigo;?></th>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
-        <td data-title="Worldwide Gross" data-type="currency"><?php echo $nomdoc . " " . $apedoc;?></td>
-        <td class="text"><a href="../Expediente_Usuarios/controlConsultaDiariaUsuario.php?ir2=<?php echo $modificar1; ?>" class="btn btn-success fas fa-edit">Cola</a>
+        <td class="text"><a href="../Expediente_Admin/controlConsultaDiariaAdmin.php?ir2=<?php echo $modificar1; ?>" class="btn btn-success fas fa-edit">Lista de Espera</a>
         </td>
 
        <?php  }?>

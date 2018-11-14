@@ -7,37 +7,25 @@ include_once '../Conexion/conexion.php';
 
 ?>
 
-<html lang="en" >
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <div class="page-wrapper" style="height: 671px;">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Responsive & Accessible Data Table</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-   <!-- Estilo de la tabla-->
-   <link href="../dist/css/styleTabla.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="page-wrapper" style="height: 671px;">
-  <div class="container-fluid">
-    <div class="card"  style="background: rgba(0, 101, 191,0.6)">        
+        <div class="container-fluid">
+            <div class="card"  style="background: rgba(0, 101, 191,0.6)">        
                 <div class="card-body wizard-content">
-<div class="row">
+                  <div class="row">
                    <h3 class="card-title" style="color: white">Buscar Paciente </h3> 
  <div class="col-lg-12">
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
                                                 <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Paciente" onclick="location.href='../Registros/registroPaciente.php'" ></div>
                                       
                                               <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-                                                <input type="button" class="btn btn-info" name="" id="su"  value="Ver Expediente" onclick="location.href='../Expediente_Usuarios/verExpediente.php'" ></div>
-                                    </div>   
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="Ver Expediente" onclick="location.href='../Expediente_Admin/verExpedienteAdmin.php'" ></div>
+                                    </div>
                                   </div>
-
-       <div class="row">                                             
+                   
+                    <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
+         <div class="row">                                             
   <div class="row mb-12">   
              <div class="wrap">
                 <div class="col-lg-12">
@@ -54,8 +42,9 @@ include_once '../Conexion/conexion.php';
                 
       </div>
        </div>
-    </div>    
-</div><!--Fin Búsqueda-->
+    </div>
+            <!--Fin Búsqueda-->
+</div>
 </br>
 </br>
 <div class="card" >
@@ -68,7 +57,7 @@ include_once '../Conexion/conexion.php';
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
-    <thead>
+        <thead>
       
      <th><div>Nombre</div></th>
       <th><div>Apellido</div></th>
@@ -102,7 +91,7 @@ include_once '../Conexion/conexion.php';
         <td data-title="Studio"><?php echo $dui;?></td>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $tel;?></td>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $_fecha;?></td>
-         <td class="text"><a href="../Expediente_Usuarios/registroExpedienteUsuario.php?ir2=<?php echo $modificar1; ?>" class="btn btn-success fas fa-edit">Crear Expediente</a>
+         <td class="text"><a href="../Expediente_Admin/registroExpedienteAdmin.php?ir2=<?php echo $modificar1; ?>" class="btn btn-success fas fa-edit">Crear Expediente</a>
         </td>
 
        <?php  }?>
@@ -127,10 +116,6 @@ include_once '../Conexion/conexion.php';
 
         </div>
     </div>
-
-</body>
-
-</html>
 
 <?php
              

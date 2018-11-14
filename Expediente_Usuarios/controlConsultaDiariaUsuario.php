@@ -7,21 +7,7 @@ include_once '../Conexion/conexion.php';
  $modi1 = $_GET['ir2'];
 ?>
 
-<html lang="en" >
-
-<head>
-  <meta charset="UTF-8">
-  <title>Responsive & Accessible Data Table</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-   <!-- Estilo de la tabla-->
    <link href="../dist/css/styleTabla.css" rel="stylesheet">
-</head>
-
-<body>
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
 <div class="card" style="background: rgba(0, 101, 191,0.6)">        
@@ -153,9 +139,6 @@ $y = date("Y");
   </div> <!-- Div page-wrapper -->
   </div> <!-- Div page-wrapper -->
 
-</body>
-
-</html>
 
 <?php
 

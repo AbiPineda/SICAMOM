@@ -7,27 +7,17 @@ include_once '../Conexion/conexion.php';
  $modi1 = $_GET['ir2'];
 ?>
 
-<html lang="en" >
-
-<head>
-  <meta charset="UTF-8">
-  <title>Responsive & Accessible Data Table</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-   <!-- Estilo de la tabla-->
    <link href="../dist/css/styleTabla.css" rel="stylesheet">
-</head>
-
-<body>
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
 <div class="card" style="background: rgba(0, 101, 191,0.6)">        
             <div class="card-body wizard-content">
                 <h3 class="card-title" style="color: white">Registrar Consulta</h3>
                 <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
+                  <div class="col-lg-12">
+                                            <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Registro" onclick="location.href='../Expediente_Admin/verExpedienteAdmin.php'" ></div>
+                                    </div>   
                        </div>
 
 
@@ -65,15 +55,41 @@ date_default_timezone_set('America/El_Salvador');
 $d1 = date("d");
 $m1 = date("m");
 $y1 = date("Y");
+ $esta=1;
     include_once '../Conexion/conexion.php';
-   // $estado='Espera';
 
-   /*$sacar = mysqli_query($conexion,"SELECT * FROM t_expediente");
-                while ($fila = mysqli_fetch_array($sacar)) {
-                      $expediente=$fila['id_expediente']; */
-       mysqli_query($conexion, "INSERT INTO t_llegada(fk_expediente,lleg_ffecha_atiende,estado) VALUES('$modi1','$y1-$m1-$d1','esperando')");
+ $verificar_insert  = mysqli_query($conexion, "SELECT * FROM t_llegada WHERE fk_expediente='$modi1'");
+ $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_llegada WHERE lleg_ffecha_atiende='$y1-$m1-$d1'");
+        if (mysqli_num_rows($verificar_insert) > 0 && mysqli_num_rows($verificar_insert2) > 0 ) {
+            echo '<script>swal({
+                    title: "Error",
+                    text: "Paciente ya ingresado a la Lista de Espera de este dia",
+                    type: "warning",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="verExpedienteAdmin.php";
+                    
+               });</script>';
+                }else {
+       mysqli_query($conexion, "INSERT INTO t_llegada(fk_expediente,lleg_ffecha_atiende,estado) VALUES('$modi1','$y1-$m1-$d1','$esta')");
+           echo '<script>swal({
+                    title: "Exito",
+                    text: "Guardado!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="verCola.php";
+                    
+                });</script>';
 
-            
+
+
+            //fin
+        } 
 
 
  ?>
@@ -81,13 +97,11 @@ $y1 = date("Y");
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
      <thead>
-     <th><div>N° de Expediente</div></th> 
+      <th><div>N° Expediente</div></th> 
      <th><div>Paciente</div></th>
      <th><div>Estado</div></th>
      <th><div>Accion</div></th>
-    
-      
-      
+     
       
     </thead>
     <tbody  class="buscar"> 
@@ -96,18 +110,19 @@ date_default_timezone_set('America/El_Salvador');
 $d = date("d");
 $m = date("m");
 $y = date("Y");                
-          $sacar = mysqli_query($conexion, "SELECT*FROM t_medico, t_paciente, t_expediente, t_llegada WHERE fk_expediente=id_paciente AND fk_medico=idMedico AND fk_paciente=id_paciente AND fk_expediente=id_expediente AND (lleg_ffecha_atiende='$y-$m-$d') ORDER BY id_llegada");
+          $sacar = mysqli_query($conexion, "SELECT*FROM t_medico, t_paciente, t_expediente, t_llegada WHERE fk_expediente=id_expediente AND fk_medico=idMedico AND fk_paciente=id_paciente AND (lleg_ffecha_atiende='$y-$m-$d') AND t_llegada.estado=1 ORDER BY id_llegada");
             while ($fila = mysqli_fetch_array($sacar)) {
-                   $modificar=$fila['id_paciente'];
-                   $codigo=$fila['codigo'];
+                   $modificar=$fila['id_expediente'];
+                        $codigo=$fila['codigo'];
                    $nom=$fila['pac_cnombre']; 
                    $ape=$fila['pac_capellidos'];  
+                   $modi_llegada=$fila['id_llegada'];
                    $fe=$fila['estado']; 
                  
                  if ($fe==0) {
                      $estado="Desactivado";
                  } else {
-                     $estado="Esperando";
+                     $estado="Esperando...";
                  }
                //  $tipo=$fila['con_ctipo_consulta'];  
                  // $fe=$fila['pac_ffecha_nac']; 
@@ -118,11 +133,17 @@ $y = date("Y");
       <tr>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $codigo;?></td>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
-        <td data-title="Worldwide Gross" data-type="currency"><?php echo $estado;?></td>
-        <td class="text"><a href="../Consultas/registroConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Consulta</a>
-        </td>
+        <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
+     <?php 
+        if($fe==0){ ?>
+        <td class="text"><a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit" style="margin-right:50px">Consulta</a><a href="../Expediente_Admin/ProcesoDarBajaAltaColaAdmin.php?ir=<?php echo $modi_llegada; ?>"  class="btn btn-success fas fa-arrow-circle-up" style="margin-right:10px">Dar Alta</a></td>
+        <?php
+        }else{
+        ?>
+        <td class="text"><a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit" style="margin-right:50px">Consulta</a><a href="../Expediente_Admin/ProcesoDarBajaAltaColaAdmin.php?ir=<?php echo $modi_llegada; ?>" class="btn btn-warning fas fa-arrow-circle-down" style="margin-right:10px">Dar Baja</a></td>
 
-       <?php  }?>
+      <?php  }
+            }?>
       
       </tr>
 
@@ -139,9 +160,6 @@ $y = date("Y");
   </div> <!-- Div page-wrapper -->
   </div> <!-- Div page-wrapper -->
 
-</body>
-
-</html>
 
 <?php
 

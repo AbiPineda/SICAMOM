@@ -117,7 +117,7 @@ $edad=($ano-$partes[0]);
                                       </div>      
                                       <div class="col-md-2">
       
-      <label style="color: white">Peso:<small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Kg" autocomplete="off" maxlength="6" name="peso" >       <div class="input-group-append">
+      <label style="color: white">Peso:<small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Lb" autocomplete="off" maxlength="6" name="peso" >       <div class="input-group-append">
                                                     <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
                                                 </div>
 
@@ -126,7 +126,7 @@ $edad=($ano-$partes[0]);
 
                                       <div class="col-md-2">
                                           
-         <label style="color: white">Temperatura:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="°C" autocomplete="off" maxlength="4" name="temp">
+         <label style="color: white">Temperatura:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="°C" autocomplete="off" maxlength="5" name="temp">
           <div class="input-group-append">
                                                   <span class="input-group-text"><i class="fas fa-thermometer-half"></i></span>
                                               </div>
@@ -369,8 +369,9 @@ $edad=($ano-$partes[0]);
          $peso = $_REQUEST['peso'];
          $temp = $_REQUEST['temp'];
          $presion = $_REQUEST['presion'];
+         $pulso = $_REQUEST['pulso'];
 
-          mysqli_query($conexion, "INSERT INTO t_enfermeria(enf_destatura,enf_dpeso,enf_dtempetarura,enf_cpresion) VALUES('$talla','$peso','$temp','$presion')");
+          mysqli_query($conexion, "INSERT INTO t_enfermeria(enf_destatura,enf_dpeso,enf_dtempetarura,enf_cpresion,enf_cpulso) VALUES('$talla','$peso','$temp','$presion','$pulso')");
           $sacar = mysqli_query($conexion,"SELECT id_enfermeria FROM t_enfermeria ORDER by id_enfermeria DESC LIMIT 1");
                 while ($fila = mysqli_fetch_array($sacar)) {
                       $enfermeria=$fila['id_enfermeria']; 

@@ -21,24 +21,23 @@ include_once '../Conexion/conexion.php';
 </head>
 
 <body>
-    <div class="page-wrapper" style="height: 671px;">
-  <div class="container-fluid">
-<div class="card" style="background: rgba(0, 101, 191,0.6)">        
-            <div class="card-body wizard-content">
-                <h3 class="card-title" style="color: white">Registrar Consulta</h3>
-                <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
-                  <div class="col-lg-12">
+ <div class="page-wrapper" style="height: 671px;">
+
+        <div class="container-fluid">
+            <div class="card"  style="background: rgba(0, 101, 191,0.6)">        
+                <div class="card-body wizard-content">
+                  <div class="row">
+                   <h3 class="card-title" style="color: white">Lista de Espera </h3> 
+                    <div class="col-lg-12">
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Registro" onclick="location.href='../Expediente_Usuarios/verExpediente.php'" ></div>
-                                    </div>   
-                       </div>
-
-
-
-    </div>
-       <div class="row mb-12">   
-        
-            <div class="wrap">
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Expediente" onclick="location.href='../Expediente_Usuarios/verExpediente.php'" ></div>
+                                    </div> 
+                                  </div>
+                   
+                    <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
+         <div class="row">                                             
+  <div class="row mb-12">   
+             <div class="wrap">
                 <div class="col-lg-12">
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
@@ -55,12 +54,16 @@ include_once '../Conexion/conexion.php';
        </div>
     </div>
             <!--Fin Búsqueda-->
+</div>
+</br>
+</br>
+<div class="card" >
+<div class="row">
+  
+  <div class="col-md-12">
+  <div id="bodywrap">
 
 
-    <div class="card" >
-      <h3 class="card-title" style="color: black">Consulta</h3>
-      <div class="col-md-12">
-          <div id="bodywrap">
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
@@ -121,20 +124,22 @@ $y = date("Y");
 
     </tbody>
   </table>
+ 
   </div> <!-- Div scroll-window -->
+
 </div> <!-- Div scroll-window-wrapper-->
 
-
+</div>
 </div> <!-- Div bodywrap -->
+</div>
+</div>
 
   </div> <!-- Div col-md-12 -->
   </div> <!-- Div card -->
-  </div> <!-- Div page-wrapper -->
-  </div> <!-- Div page-wrapper -->
 
-</body>
 
-</html>
+        </div>
+    </div>
 
 <?php
 
