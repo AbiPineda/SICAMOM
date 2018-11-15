@@ -9,14 +9,15 @@
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fas fa-briefcase"></i><span class="hide-menu">Expediente </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
 
-                        <li class="sidebar-item"><a href="../Expediente_Usuarios/expedienteUsuario.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Crear Expediente </span></a></li>
+                        <li class="sidebar-item"><a href="../Expediente_Admin/expedienteAdmin.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Crear Expediente </span></a></li>
+                         <li class="sidebar-item"><a href="../Expediente_Admin/verCola.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Lista de Espera </span></a></li>
                     </ul>
                 </li>
 
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-user"></i><span class="hide-menu">Paciente</span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
 
-                        <li class="sidebar-item"><a href="../Registros/registroPaciente.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Registrar </span></a></li>
+                        <li class="sidebar-item"><a href="../Registros/registroPaciente.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Registrar Paciente</span></a></li>
                         <li class="sidebar-item"><a href="../Consultas/modificarMayoresdeEdad.php" class="sidebar-link"><i class="fas fa-pencil-alt"></i><span class="hide-menu">Modificar paciente</span></a></li>
                         <li class="sidebar-item"><a href="../Consultas/buscarPaciente.php" class="sidebar-link"><i class="fas fa-search"></i><span class="hide-menu">Buscar paciente</span></a></li>
                         <li class="sidebar-item"><a href="../Consultas/darBajaAlta.php" class="sidebar-link"><i class="fas fa-arrows-alt-v"></i><span class="hide-menu">Dar alta/baja</span></a></li>

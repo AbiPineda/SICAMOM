@@ -159,7 +159,7 @@ $edad=($ano-$partes[0]);
                                           <div class="col-md-2">
                                           <label style="color: white">Guantes:  <small class="text-muted"></small></label>
                                           <div class="input-group">
-                                                <input type="number" min="1" class="form-control" id="lname" name="guantes" placeholder="1" value="" size="10" >
+                                                <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="1" value="" size="10" >
                                                 <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -169,7 +169,7 @@ $edad=($ano-$partes[0]);
                                     <div class="col-md-2">
                                         <label style="color: white">Paletas:<small class="text-muted"></small></label>                          
                                         <div class="input-group">   
-                                         <input type="number" min="1" class="form-control" id="lname" name="paletas" placeholder="1" value="" >
+                                         <input type="number" min="0" class="form-control" id="lname" name="paletas" placeholder="1" value="" >
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -179,7 +179,7 @@ $edad=($ano-$partes[0]);
                                     <div class="col-md-2">
                                          <label style="color: white">Torundas:<small class="text-muted"></small></label>
                                         <div class="input-group">      
-                                         <input type="number" min="1" class="form-control" id="lname" name="torundas" placeholder="1" value="" >
+                                         <input type="number" min="0" class="form-control" id="lname" name="torundas" placeholder="1" value="" >
                                                <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -190,7 +190,7 @@ $edad=($ano-$partes[0]);
                                         
                                         <label style="color: white">Papel:<small class="text-muted"></small></label>
                                         <div class="input-group">       
-                                          <input type="number" min="1" class="form-control" id="lname" name="papel" placeholder="1" value="" >
+                                          <input type="number" min="0" class="form-control" id="lname" name="papel" placeholder="1" value="" >
                                                <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -370,12 +370,15 @@ $edad=($ano-$partes[0]);
          $temp = $_REQUEST['temp'];
          $presion = $_REQUEST['presion'];
          $pulso = $_REQUEST['pulso'];
+         $algodon = $_REQUEST['torundas'];
 
           mysqli_query($conexion, "INSERT INTO t_enfermeria(enf_destatura,enf_dpeso,enf_dtempetarura,enf_cpresion,enf_cpulso) VALUES('$talla','$peso','$temp','$presion','$pulso')");
           $sacar = mysqli_query($conexion,"SELECT id_enfermeria FROM t_enfermeria ORDER by id_enfermeria DESC LIMIT 1");
                 while ($fila = mysqli_fetch_array($sacar)) {
                       $enfermeria=$fila['id_enfermeria']; 
             mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,fk_InventarioUnidades,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi','$enfermeria',1,'$y1-$m1-$d1','$diagnostico','$amenorrea','$tipoconsul')");
+
+            
 
                 Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();

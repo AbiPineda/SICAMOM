@@ -70,7 +70,6 @@ $y1 = date("Y");
                 },
                 function () {
                     location.href="verExpedienteAdmin.php";
-                    
                });</script>';
                 }else {
        mysqli_query($conexion, "INSERT INTO t_llegada(fk_expediente,lleg_ffecha_atiende,estado) VALUES('$modi1','$y1-$m1-$d1','$esta')");
