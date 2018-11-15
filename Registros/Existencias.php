@@ -51,7 +51,8 @@ include_once '../Conexion/conexion.php';
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
       
-      <th><div>Insumo</div></th>  
+      <th><div>Insumo</div></th>
+      <th><div>Marca</div></th> 
       <th><div>Existencia</div></th>
       <th><div>Acción</div></th>
   
@@ -59,18 +60,21 @@ include_once '../Conexion/conexion.php';
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_inventario, t_insumo WHERE insumo=ins_codigo");
+        $sacar1 = mysqli_query($conexion, "SELECT *FROM t_inventario i INNER JOIN t_insumo m ON i.insumo=m.ins_codigo");
             while ($fila = mysqli_fetch_array($sacar1)) {
                 
                 $insumo=$fila['ins_cnombre_comercial'];  
-                $cantidad=$fila['inv_ecantidad_actual'];  
+                $cantidad=$fila['inv_ecantidad_actual'];
+                $marca=$fila['ins_cmarca'];
+                $id=$fila['insumo'];
                 
         ?> 
         <tr>
                 
                 <th scope="row"><?php echo $insumo; ?></th>
+                <th scope="row"><?php echo $marca; ?></th>
                 <td data-title="Released"><?php echo $cantidad; ?></td>
-                <td class="text"><a href="../Registros/Existencia-Reducion.php" class="btn btn-success fas fa-eye"> Utilizar</a>
+                <td class="text"><a href="../Registros/Existencia-Reducion.php?ir=<?php echo $id;?>" class="btn btn-success fas fa-eye"> Utilizar</a>
 
                 </td>
 

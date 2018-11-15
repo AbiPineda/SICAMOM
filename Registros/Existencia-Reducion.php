@@ -4,7 +4,7 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
-
+$insumoExi=$_GET['ir'];
 ?>
 
 <html lang="en" >
@@ -40,7 +40,14 @@ include_once '../Conexion/conexion.php';
             <!--Fin Búsqueda-->
 
     <div class="card" >
-      <h3 class="card-title">Existencias</h3>
+         <?php
+        $sacar1 = mysqli_query($conexion, "SELECT *FROM t_inventario i INNER JOIN t_insumo m ON i.insumo=m.ins_codigo  WHERE m.ins_codigo='$insumoExi'");
+            while ($fila = mysqli_fetch_array($sacar1)) {
+                
+                $insumo=$fila['ins_cnombre_comercial'];
+            }
+        ?> 
+        <h3 class="card-title">Existencias de <?php echo $insumo;?></h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -48,40 +55,33 @@ include_once '../Conexion/conexion.php';
 
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
+      
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
-      
-      <th><div>Insumo</div></th>  
-      <th><div>Cantidad</div></th>
+       
+      <th><div>Cantidad Comprada</div></th>
       <th><div>Fecha de Caducidad</div></th>
+      <th><div>Disponible para uso</div></th>
       <th><div>Acción</div></th>
   
       
     </thead>
     <tbody  class="buscar"> 
-    <?php
-    $sacar1 = mysqli_query($conexion, "SELECT
-t_insumo.ins_cnombre_comercial,
-t_inventario.inv_ecantidad_actual,
-t_compra.fecha_caducidad
-FROM
-t_insumo
-INNER JOIN t_compra ON t_compra.fk_insumo = t_insumo.ins_codigo
-INNER JOIN t_inventario ON t_inventario.fk_compra = t_compra.id_compra AND t_inventario.insumo = t_insumo.ins_codigo
-");
-            while ($fila = mysqli_fetch_array($sacar1)) {
-                
-                $insumo=$fila['ins_cnombre_comercial'];  
-                $cantidad=$fila['inv_ecantidad_actual'];  
-                $caducidad=$fila['fecha_caducidad']; 
+         <?php
+    $sacar1 = mysqli_query($conexion, "SELECT *FROM t_compra WHERE fk_insumo='$insumoExi' AND reduccion >0");
+            while ($fila = mysqli_fetch_array($sacar1)) { 
+                $cantidad=$fila['cantidad'];
+                $reducir=$fila['reduccion'];
+                $caducidad=$fila['fecha_caducidad'];
+                $factori=$fila['factura'];
                 
         ?> 
+  
         <tr>
-                
-                <th scope="row"><?php echo $insumo; ?></th>
                 <td data-title="Released"><?php echo $cantidad; ?></td>
                 <td data-title="Released"><?php echo $caducidad; ?></td>
-                 <td class="text"><a class="btn btn-success fas fa-eye"> Reducir</a>
+                <td data-title="Released"><?php echo $reducir;?></td>
+                <td class="text"><a href="../Registros/Exitencias-Proceso.php?in=<?php echo $insumoExi;?>&voy=<?php echo $factori;?>"class="btn btn-success fas fa-eye"> Reducir</a>
 
                 </td>
 
