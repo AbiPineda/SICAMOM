@@ -60,7 +60,15 @@ include_once '../Conexion/conexion.php';
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar1 = mysqli_query($conexion, "SELECT * FROM t_compra, t_insumo, t_inventario WHERE insumo=ins_codigo");
+    $sacar1 = mysqli_query($conexion, "SELECT
+t_insumo.ins_cnombre_comercial,
+t_inventario.inv_ecantidad_actual,
+t_compra.fecha_caducidad
+FROM
+t_insumo
+INNER JOIN t_compra ON t_compra.fk_insumo = t_insumo.ins_codigo
+INNER JOIN t_inventario ON t_inventario.fk_compra = t_compra.id_compra AND t_inventario.insumo = t_insumo.ins_codigo
+");
             while ($fila = mysqli_fetch_array($sacar1)) {
                 
                 $insumo=$fila['ins_cnombre_comercial'];  
