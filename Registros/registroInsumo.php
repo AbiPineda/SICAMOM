@@ -13,6 +13,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     $presentacion = $_REQUEST['presentacion'];
     $unidad = $_REQUEST['unidad'];
     $minimo = $_REQUEST['minimo'];
+    $tInsumo = $_REQUEST['tipoInsumo'];
 //    $caducidad = $_REQUEST['tipoCaducidad'];
     
 //    if ($caducidad == '0') {
@@ -31,7 +32,7 @@ if (isset($_REQUEST['btnGuardar'])) {
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
 
-    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo,presentacion,unidad,minimo) VALUES('$nombre','$marca','$descripcion','$esta','$codigo','$presentacion','$unidad','$minimo')");
+    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo,presentacion,unidad,minimo,tipo) VALUES('$nombre','$marca','$descripcion','$esta','$codigo','$presentacion','$unidad','$minimo','$tInsumo')");
 //    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
 //    while ($row = mysqli_fetch_array($insumo)) {
 //        $id = $row['ins_codigo'];
@@ -148,6 +149,16 @@ if (isset($_REQUEST['btnGuardar'])) {
                                             <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
                                         </div>
                                         </div>  
+                                        
+                                    </div>
+                                     <div class="col-lg-4">
+                                         <label style="padding-top: 12px; color: white" >Tipo de Insumo<small class="text-muted"></small></label>
+                                        <select class="custom-select" name="tipoInsumo" style="width: 100%; height:36px;">
+                                            <option>Seleccionar</option>
+                                            <option value="Contable">Contable</option>
+                                            <option value="NoContable">No Contable</option>
+                                        </select> 
+                                         
                                         
                                     </div>
                                     <br>
