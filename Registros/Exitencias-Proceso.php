@@ -2,10 +2,11 @@
 include_once '../Conexion/conexion.php';
 $auxInsumo=$_GET['in'];
 $factura=$_GET['voy'];
-//unidades a insertar
+  //unidades a insertar
 $unidades= mysqli_query($conexion,"SELECT *FROM t_insumo WHERE ins_codigo='$auxInsumo'");
 while ($U= mysqli_fetch_array($unidades)){
     $un=$U['unidad'];
+    $ayuda=$U['ins_cnombre_comercial'];
 }
 //*************
 
@@ -17,17 +18,17 @@ while ($U1= mysqli_fetch_array($idInv)){
 }
 //validar para que solo cuando no este ese registro lo ingrese y 
 //si ya esta que solo lo actualice
-$invalido= mysqli_query($conexion,"SELECT *FROM inventario_unidades WHERE fk_inventarioGeneral='$id'");
+$invalido= mysqli_query($conexion,"SELECT *FROM inventario_unidades WHERE tipo='$ayuda'");
 if (mysqli_num_rows($invalido)>0) {
     //por si hay todavia algunos en el inventario y kiere decrementar otro
-    $otroSi=mysqli_query($conexion,"SELECT *FROM inventario_unidades WHERE fk_inventarioGeneral='$id'");
+    $otroSi=mysqli_query($conexion,"SELECT *FROM inventario_unidades WHERE tipo='$ayuda'");
     while ($yes= mysqli_fetch_array($otroSi)){
         $unidadesExistente=$yes['decremento'];
     }
     $suma=$un+$unidadesExistente;
-    mysqli_query($conexion, "UPDATE inventario_unidades SET decremento='$suma' WHERE fk_inventarioGeneral='$id'");
+    mysqli_query($conexion, "UPDATE inventario_unidades SET decremento='$suma' WHERE tipo='$ayuda'");
 }else{
- mysqli_query($conexion, "INSERT INTO inventario_unidades(fk_inventarioGeneral,decremento) VALUES('$id','$un')");
+ mysqli_query($conexion, "INSERT INTO inventario_unidades(fk_inventarioGeneral,decremento,tipo) VALUES('$id','$un','$ayuda')");
 }  
 
 //decrementar en el inventario original el paquete que se utilizo

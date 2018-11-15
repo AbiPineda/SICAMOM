@@ -60,7 +60,7 @@ include_once '../Conexion/conexion.php';
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar1 = mysqli_query($conexion, "SELECT *FROM t_inventario i INNER JOIN t_insumo m ON i.insumo=m.ins_codigo");
+        $sacar1 = mysqli_query($conexion, "SELECT *FROM t_inventario i INNER JOIN t_insumo m ON i.insumo=m.ins_codigo WHERE m.tipo='Contable'");
             while ($fila = mysqli_fetch_array($sacar1)) {
                 
                 $insumo=$fila['ins_cnombre_comercial'];  
