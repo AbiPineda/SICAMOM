@@ -3,9 +3,7 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 
-
-
-if (isset($_REQUEST['btnGuardar'])) {
+    if (isset($_REQUEST['btnGuardar'])) {
     include_once '../Conexion/conexion.php';
 
     $FeActual = $_REQUEST['FeActual'];
@@ -19,11 +17,9 @@ if (isset($_REQUEST['btnGuardar'])) {
     $subTotal = $_REQUEST['precio']*$_REQUEST['cantidad'];
     
    
-
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
    
-    
     $bandera = mysqli_query($conexion, "SELECT factura FROM t_compra WHERE estado='Finalizado' AND factura='$factura'");
     if (mysqli_num_rows($bandera) > 0) {
          echo '<script>swal({
@@ -99,11 +95,8 @@ if (isset($_REQUEST['btnGuardar'])) {
       
         //*************Inventario********
         }
-
-
-
     echo "<script>
-          location.href ='nuevaCompra.php?Nfactura=$factura ';
+          location.href ='nuevaCompra.php?Nfactura=$factura&proveedorActual=$proveedor';
         </script>";
 }
 }
@@ -114,6 +107,21 @@ if (isset($_REQUEST['Cancelar'])) {
 
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
+      mysqli_query($conexion, "UPDATE t_compra SET estado='Finalizado' WHERE factura='$factura' AND estado='EnProceso'");
+//    echo "<script>
+//          location.href ='nuevaCompra.php';
+//        </script>";
+      echo '<script>swal({
+                    title: "Exito",
+                    text: "Compra Guardada!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="nuevaCompra.php";
+                    
+                });</script>';
     //recorrer para guardarlos
 
 ////saco los datos para ir los a guardar en el inventario original
@@ -139,30 +147,12 @@ if (isset($_REQUEST['Cancelar'])) {
 //      
   
 /////*************************************
-    
-  mysqli_query($conexion, "UPDATE t_compra SET estado='Finalizado' WHERE factura='$factura' AND estado='EnProceso'");
-//    echo "<script>
-//          location.href ='nuevaCompra.php';
-//        </script>";
-      echo '<script>swal({
-                    title: "Exito",
-                    text: "Compra Guardada!",
-                    type: "success",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="nuevaCompra.php";
-                    
-                });</script>';
 } 
 else {
      if (isset($_REQUEST['Nfactura'])) {
          $valor = $_REQUEST['Nfactura'];
         
     }
-   
-    
     ?>
 
     <div class="page-wrapper" style="height: 671px;">
@@ -177,7 +167,7 @@ else {
                     <div class="thumbnail__logo">
 
                         <h2 class="heading--secondary" style="color: white">Registro de compra</h2>
-                        <form action="nuevaCompra.php" method="get" >
+                        <form action="nuevaCompra.php" method="get" autocomplete="off">
                             <br>
                             <div class="row mb-12"> 
 
@@ -185,7 +175,7 @@ else {
                                    
                                     <label style="color: white">Factura #<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
-                                        <input type="text" class="form-control" id="factura" name="factura"  <?php if (isset($_REQUEST['Nfactura'])) {?> value="<?php echo "$valor"; ?> "  <?php }?> >
+                                        <input type="text" class="form-control" id="factura" name="factura"  <?php if (isset($_REQUEST['Nfactura'])) {?> value="<?php echo "$valor"; ?> "  <?php }?> value="" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
                                         </div> 
@@ -228,6 +218,20 @@ else {
                                     <select class="custom-select" name="proveedor" id="proveedor">
                                         <?php
                                         include_once '../Conexion/conexion.php';
+                                        
+                                        
+                                        if (isset($_REQUEST['proveedorActual'])) { /// si el proveedor existe 
+                                            $seleccionado = $_REQUEST['proveedorActual'];
+                                            
+                                            $pro = mysqli_query($conexion, "SELECT*from t_proveedor WHERE id_proveedor=$seleccionado");
+                                             while ($row = mysqli_fetch_array($pro)) {
+                                            $prove = $row['id_proveedor'];
+                                            echo '<option value=' . "$row[0]" . '>' . $row[1] . '</option>';
+                                        }
+                                            
+                                        }else{
+                                        
+                                        
                                         $pro = mysqli_query($conexion, "SELECT*from t_proveedor WHERE estado=1");
                                         ?>
                                         <option>Proveedor</option>
@@ -235,6 +239,7 @@ else {
                                         while ($row = mysqli_fetch_array($pro)) {
                                             $prove = $row['id_proveedor'];
                                             echo '<option value=' . "$row[0]" . '>' . $row[1] . '</option>';
+                                        }
                                         }
                                         ?>
                                     </select>
@@ -285,7 +290,7 @@ else {
                                 <div class="col-lg-2">
                                     <label style="color: white">Cant. por paquete<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
-                                        <input type="text" class="form-control" id="cantidad" name="cantidad" value="">
+                                        <input type="text" class="form-control" id="cantidad" name="cantidad">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
                                         </div> 
@@ -345,7 +350,7 @@ else {
     <thead>
       
 <!--      <th><div>CÛdigo</div></th>-->
-      <th><div>Proveedor</div></th>
+<!--      <th><div>Proveedor</div></th>-->
       <th><div>Insumo</div></th>
       <th><div>Cant. Unitario</div></th>
   <th><div>Precio Unitario</div></th>
@@ -392,7 +397,7 @@ else {
                     ?>
                     <tr>
             <!--        <th scope="row"><?php echo $codigoTabla; ?></th>-->
-                        <td data-title="Worldwide Gross" data-type="currency"><?php echo $proveedirTabla; ?></td>
+<!--                        <td data-title="Worldwide Gross" data-type="currency"><?php echo $proveedirTabla; ?></td>-->
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $insumoTabla; ?></td>
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $canatidadTab; ?></td>
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $precioTab; ?></td>
@@ -436,8 +441,8 @@ else {
             <!-- ============================================================== --> 
 
     <?php
+ }  
     include_once '../plantilla/pie.php';
-}
 ?>
 
       
