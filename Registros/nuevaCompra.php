@@ -74,7 +74,7 @@ if (isset($_REQUEST['btnGuardar'])) {
             
         }
     } else {
-        mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso')");
+        mysqli_query($conexion, "INSERT INTO t_compra(fk_proveedor,fk_insumo,fecha_caducidad,precio_unitario,cantidad,fecha_actual,factura,subtotal,estado,reduccion) VALUES('$proveedor','$insumo','$caducidad','$precio','$cantidad','$FeActual','$factura','$subTotal','EnProceso','$cantidad')");
    //*************Inventario********
         //saco los datos para ir los a guardar en el inventario original
     $paraInventario=mysqli_query($conexion, "SELECT id_compra,fk_insumo,cantidad FROM t_compra WHERE factura='$factura' AND estado='EnProceso' AND fk_insumo='$insumo'");
