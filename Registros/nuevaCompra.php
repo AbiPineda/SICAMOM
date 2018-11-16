@@ -177,7 +177,7 @@ else {
                     <div class="thumbnail__logo">
 
                         <h2 class="heading--secondary" style="color: white">Registro de compra</h2>
-                        <form action="nuevaCompra.php" method="get" >
+                        <form action="nuevaCompra.php" method="get" autocomplete="off">
                             <br>
                             <div class="row mb-12"> 
 
@@ -185,7 +185,7 @@ else {
                                    
                                     <label style="color: white">Factura #<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
-                                        <input type="text" class="form-control" id="factura" name="factura"  <?php if (isset($_REQUEST['Nfactura'])) {?> value="<?php echo "$valor"; ?> "  <?php }?> >
+                                        <input type="text" class="form-control" id="factura" name="factura"  <?php if (isset($_REQUEST['Nfactura'])) {?> value="<?php echo "$valor"; ?> "  <?php }?> value="" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
                                         </div> 
@@ -300,7 +300,7 @@ else {
                                 <div class="col-lg-2">
                                     <label style="color: white">Cant. por paquete<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
-                                        <input type="text" class="form-control" id="cantidad" name="cantidad" value="">
+                                        <input type="text" class="form-control" id="cantidad" name="cantidad">
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fas fa-ticket-alt"></i></span>
                                         </div> 
