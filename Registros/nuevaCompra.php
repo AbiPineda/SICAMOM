@@ -350,7 +350,7 @@ else {
     <thead>
       
 <!--      <th><div>CÛdigo</div></th>-->
-      <th><div>Proveedor</div></th>
+<!--      <th><div>Proveedor</div></th>-->
       <th><div>Insumo</div></th>
       <th><div>Cant. Unitario</div></th>
   <th><div>Precio Unitario</div></th>
@@ -397,7 +397,7 @@ else {
                     ?>
                     <tr>
             <!--        <th scope="row"><?php echo $codigoTabla; ?></th>-->
-                        <td data-title="Worldwide Gross" data-type="currency"><?php echo $proveedirTabla; ?></td>
+<!--                        <td data-title="Worldwide Gross" data-type="currency"><?php echo $proveedirTabla; ?></td>-->
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $insumoTabla; ?></td>
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $canatidadTab; ?></td>
                         <td data-title="Domestic Gross" data-type="currency"><?php echo $precioTab; ?></td>
