@@ -385,21 +385,21 @@ $edad=($ano-$partes[0]);
                 while ($fila = mysqli_fetch_array($sacar)) {
                       $enfermeria=$fila['id_enfermeria']; 
                     }
-            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,fk_InventarioUnidades,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi','$enfermeria',6,'$y1-$m1-$d1','$diagnostico','$amenorrea','$tipoconsul')");
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','$tipoconsul')");
 
             
 
                 Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
 
-/* $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
+$validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
    if (mysqli_num_rows($validarguantes)>0) {
      $sacar1 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
                 while ($fila1 = mysqli_fetch_array($sacar1)) {
                       $guantes_dec=$fila1['decremento'];
                     }
                       $desc_guantes=$guantes_dec-$guantes; 
-    $sql = "UPDATE inventario_unidades SET decremento='$desc_guantes' WHERE tipo='Guantes'";
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_guantes' WHERE tipo='Guantes'");
   }
 //////////////////
    $validarpaletas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Paletas'");
@@ -409,10 +409,11 @@ $edad=($ano-$partes[0]);
                       $paletas_dec=$fila2['decremento'];
                     }
                       $desc_paletas=$paletas_dec-$paletas; 
-    $sql = "UPDATE inventario_unidades SET decremento='$desc_paletas' WHERE tipo='Paletas'";
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_paletas' WHERE tipo='Paletas'");
   }
 ///////////////*/
- 
+  $validaralgodon = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Algodon'");
+   if (mysqli_num_rows($validaralgodon)>0) {
  $sacar3 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Algodon'");
                 while ($fila3 = mysqli_fetch_array($sacar3)) {
                       $algodon_dec=$fila3['decremento'];
@@ -420,18 +421,18 @@ $edad=($ano-$partes[0]);
                       $desc_algodon=$algodon_dec-$algodon; 
    mysqli_query($conexion, "UPDATE inventario_unidades SET decremento='$desc_algodon' WHERE tipo='Algodon'");
   
-
+}
 /////////////
- /*  $validarpapel = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel'");
+   $validarpapel = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel'");
    if (mysqli_num_rows($validarpapel)>0) {
      $sacar4 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel'");
                 while ($fila4 = mysqli_fetch_array($sacar4)) {
                       $papel_dec=$fila4['decremento'];
                     }
                       $desc_papel=$papel_dec-$papel; 
-    $sql = "UPDATE inventario_unidades SET decremento='$desc_papel' WHERE tipo='Papel'";
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_papel' WHERE tipo='Papel'");
   }
-*/
+
    $validarisopo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopo'");
    if (mysqli_num_rows($validarisopo)>0) {
     $sacar5 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
