@@ -103,7 +103,7 @@ if (isset($_REQUEST['btnGuardar'])) {
 
 
     echo "<script>
-          location.href ='nuevaCompra.php?Nfactura=$factura ';
+          location.href ='nuevaCompra.php?Nfactura=$factura&proveedorActual=$proveedor';
         </script>";
 }
 }
@@ -228,6 +228,20 @@ else {
                                     <select class="custom-select" name="proveedor" id="proveedor">
                                         <?php
                                         include_once '../Conexion/conexion.php';
+                                        
+                                        
+                                        if (isset($_REQUEST['proveedorActual'])) { /// si el proveedor existe 
+                                            $seleccionado = $_REQUEST['proveedorActual'];
+                                            
+                                            $pro = mysqli_query($conexion, "SELECT*from t_proveedor WHERE id_proveedor=$seleccionado");
+                                             while ($row = mysqli_fetch_array($pro)) {
+                                            $prove = $row['id_proveedor'];
+                                            echo '<option value=' . "$row[0]" . '>' . $row[1] . '</option>';
+                                        }
+                                            
+                                        }else{
+                                        
+                                        
                                         $pro = mysqli_query($conexion, "SELECT*from t_proveedor WHERE estado=1");
                                         ?>
                                         <option>Proveedor</option>
@@ -235,6 +249,7 @@ else {
                                         while ($row = mysqli_fetch_array($pro)) {
                                             $prove = $row['id_proveedor'];
                                             echo '<option value=' . "$row[0]" . '>' . $row[1] . '</option>';
+                                        }
                                         }
                                         ?>
                                     </select>
