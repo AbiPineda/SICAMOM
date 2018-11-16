@@ -4,59 +4,6 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 $codigo1 = '';
-if (isset($_REQUEST['btnGuardar'])) {
-    include_once '../Conexion/conexion.php';
-    $codigo = $_REQUEST['codigo'];
-    $nombre = $_REQUEST['nombreCom'];
-    $marca = $_REQUEST['marca'];
-    $descripcion = $_REQUEST['descripcion'];
-    $presentacion = $_REQUEST['presentacion'];
-    $unidad = $_REQUEST['unidad'];
-    $minimo = $_REQUEST['minimo'];
-    $tInsumo = $_REQUEST['tipoInsumo'];
-//    $caducidad = $_REQUEST['tipoCaducidad'];
-    
-//    if ($caducidad == '0') {
-//        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
-//    } else {
-//        $fecha = '0000-00-00';
-//    }
-//    // $partes = explode('-', $fecha);
-//    // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
-    $esta = 1;
-    //$numero = rand(100,1000);
-    //$codigo1 = (strtoupper((substr($nombre, 0, 3))) . $numero); 
-    // $anio = date("y");
-
-
-    Conexion::abrir_conexion();
-    $conexionx = Conexion::obtener_conexion();
-
-    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo,presentacion,unidad,minimo,tipo) VALUES('$nombre','$marca','$descripcion','$esta','$codigo','$presentacion','$unidad','$minimo','$tInsumo')");
-//    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
-//    while ($row = mysqli_fetch_array($insumo)) {
-//        $id = $row['ins_codigo'];
-//        $paquete = $_REQUEST['paquete'];
-//        $unidad = $_REQUEST['unidad'];
-//    }
-//    mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
-    echo '<script>swal({
-                    title: "Exito",
-                    text: "Insumo Guardado!",
-                    type: "success",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="registroInsumo.php";
-                    
-                });</script>';
-
-
-
-    //  $sentencia = $conexionx->prepare($sql);
-    //$usuario_insertado = $sentencia->execute();
-} else {
     ?>
     <div class="page-wrapper" style="height: 671px;">
 
@@ -186,9 +133,61 @@ if (isset($_REQUEST['btnGuardar'])) {
             <!-- ============================================================== --> 
 
             <?php
+            if (isset($_REQUEST['btnGuardar'])) {
+    include_once '../Conexion/conexion.php';
+    $codigo = $_REQUEST['codigo'];
+    $nombre = $_REQUEST['nombreCom'];
+    $marca = $_REQUEST['marca'];
+    $descripcion = $_REQUEST['descripcion'];
+    $presentacion = $_REQUEST['presentacion'];
+    $unidad = $_REQUEST['unidad'];
+    $minimo = $_REQUEST['minimo'];
+    $tInsumo = $_REQUEST['tipoInsumo'];
+//    $caducidad = $_REQUEST['tipoCaducidad'];
+    
+//    if ($caducidad == '0') {
+//        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
+//    } else {
+//        $fecha = '0000-00-00';
+//    }
+//    // $partes = explode('-', $fecha);
+//    // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
+    $esta = 1;
+    //$numero = rand(100,1000);
+    //$codigo1 = (strtoupper((substr($nombre, 0, 3))) . $numero); 
+    // $anio = date("y");
+
+
+    Conexion::abrir_conexion();
+    $conexionx = Conexion::obtener_conexion();
+
+    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo,presentacion,unidad,minimo,tipo) VALUES('$nombre','$marca','$descripcion','$esta','$codigo','$presentacion','$unidad','$minimo','$tInsumo')");
+//    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
+//    while ($row = mysqli_fetch_array($insumo)) {
+//        $id = $row['ins_codigo'];
+//        $paquete = $_REQUEST['paquete'];
+//        $unidad = $_REQUEST['unidad'];
+//    }
+//    mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
+    echo '<script>swal({
+                    title: "Exito",
+                    text: "Insumo Guardado!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroInsumo.php";
+                    
+                });</script>';
+
+
+
+    //  $sentencia = $conexionx->prepare($sql);
+    //$usuario_insertado = $sentencia->execute();
+} 
             include_once '../plantilla/pie.php';
-        }
-        ?>
+          ?>
         <script type="text/javascript">
             /**
              * Funcion que devuelve true o false dependiendo de si la fecha es correcta.

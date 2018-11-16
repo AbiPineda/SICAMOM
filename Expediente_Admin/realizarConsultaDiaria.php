@@ -454,7 +454,7 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
 }
   
   
-mysqli_query($conexion,"UPDATE t_llegada SET estado=1 WHERE fk_expediente='$modi'");
+mysqli_query($conexion,"UPDATE t_llegada SET estado=0 WHERE fk_expediente='$modi'");
 
                        echo '<script>swal({
                         title: "Registro",
