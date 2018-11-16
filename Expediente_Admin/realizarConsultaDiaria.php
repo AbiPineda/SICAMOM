@@ -159,7 +159,7 @@ $edad=($ano-$partes[0]);
                                           <div class="col-md-2">
                                           <label style="color: white">Guantes:  <small class="text-muted"></small></label>
                                           <div class="input-group">
-                                                <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="1" value="" size="10" >
+                                                <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="0" value="" size="10" >
                                                 <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -169,7 +169,7 @@ $edad=($ano-$partes[0]);
                                     <div class="col-md-2">
                                         <label style="color: white">Paletas:<small class="text-muted"></small></label>                          
                                         <div class="input-group">   
-                                         <input type="number" min="0" class="form-control" id="lname" name="paletas" placeholder="1" value="" >
+                                         <input type="number" min="0" class="form-control" id="lname" name="paletas" placeholder="0" value="" >
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -177,9 +177,9 @@ $edad=($ano-$partes[0]);
                                     </div>
                          
                                     <div class="col-md-2">
-                                         <label style="color: white">Torundas:<small class="text-muted"></small></label>
+                                         <label style="color: white">Algodón:<small class="text-muted"></small></label>
                                         <div class="input-group">      
-                                         <input type="number" min="0" class="form-control" id="lname" name="torundas" placeholder="1" value="" >
+                                         <input type="number" min="0" class="form-control" id="lname" name="algodon" placeholder="0" value="" >
                                                <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -190,7 +190,7 @@ $edad=($ano-$partes[0]);
                                         
                                         <label style="color: white">Papel:<small class="text-muted"></small></label>
                                         <div class="input-group">       
-                                          <input type="number" min="0" class="form-control" id="lname" name="papel" placeholder="1" value="" >
+                                          <input type="number" min="0" class="form-control" id="lname" name="papel" placeholder="0" value="" >
                                                <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
@@ -370,19 +370,88 @@ $edad=($ano-$partes[0]);
          $temp = $_REQUEST['temp'];
          $presion = $_REQUEST['presion'];
          $pulso = $_REQUEST['pulso'];
-         $algodon = $_REQUEST['torundas'];
+
+         $guantes = $_REQUEST['guantes'];
+         $paletas = $_REQUEST['paletas'];
+         $algodon = $_REQUEST['algodon'];
+         $papel = $_REQUEST['papel'];
+         $isopo = $_REQUEST['isopo'];
+         $jeringa = $_REQUEST['jeringa'];
+         
+         
 
           mysqli_query($conexion, "INSERT INTO t_enfermeria(enf_destatura,enf_dpeso,enf_dtempetarura,enf_cpresion,enf_cpulso) VALUES('$talla','$peso','$temp','$presion','$pulso')");
           $sacar = mysqli_query($conexion,"SELECT id_enfermeria FROM t_enfermeria ORDER by id_enfermeria DESC LIMIT 1");
                 while ($fila = mysqli_fetch_array($sacar)) {
                       $enfermeria=$fila['id_enfermeria']; 
-            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,fk_InventarioUnidades,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi','$enfermeria',1,'$y1-$m1-$d1','$diagnostico','$amenorrea','$tipoconsul')");
+                    }
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,fk_InventarioUnidades,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi','$enfermeria',6,'$y1-$m1-$d1','$diagnostico','$amenorrea','$tipoconsul')");
 
             
 
                 Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-    $sql = "UPDATE t_llegada SET estado=0 WHERE fk_expediente='$modi'";
+
+/* $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
+   if (mysqli_num_rows($validarguantes)>0) {
+     $sacar1 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
+                while ($fila1 = mysqli_fetch_array($sacar1)) {
+                      $guantes_dec=$fila1['decremento'];
+                    }
+                      $desc_guantes=$guantes_dec-$guantes; 
+    $sql = "UPDATE inventario_unidades SET decremento='$desc_guantes' WHERE tipo='Guantes'";
+  }
+//////////////////
+   $validarpaletas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Paletas'");
+   if (mysqli_num_rows($validarpaletas)>0) {
+     $sacar2 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Paletas'");
+                while ($fila2 = mysqli_fetch_array($sacar2)) {
+                      $paletas_dec=$fila2['decremento'];
+                    }
+                      $desc_paletas=$paletas_dec-$paletas; 
+    $sql = "UPDATE inventario_unidades SET decremento='$desc_paletas' WHERE tipo='Paletas'";
+  }
+///////////////*/
+ 
+ $sacar3 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Algodon'");
+                while ($fila3 = mysqli_fetch_array($sacar3)) {
+                      $algodon_dec=$fila3['decremento'];
+                    }
+                      $desc_algodon=$algodon_dec-$algodon; 
+    $sql = "UPDATE inventario_unidades SET decremento='$desc_algodon' WHERE tipo='Algodon'";
+
+/////////////
+ /*  $validarpapel = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel'");
+   if (mysqli_num_rows($validarpapel)>0) {
+     $sacar4 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel'");
+                while ($fila4 = mysqli_fetch_array($sacar4)) {
+                      $papel_dec=$fila4['decremento'];
+                    }
+                      $desc_papel=$papel_dec-$papel; 
+    $sql = "UPDATE inventario_unidades SET decremento='$desc_papel' WHERE tipo='Papel'";
+  }
+///////////
+   $validarisopo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopo'");
+   if (mysqli_num_rows($validarisopo)>0) {
+    $sacar5 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
+                while ($fila5 = mysqli_fetch_array($sacar5)) {
+                      $isopo_dec=$fila5['decremento'];
+                    }
+                      $desc_isopo=$isopo_dec-$isopo; 
+    $sql = "UPDATE inventario_unidades SET decremento='$desc_isopo' WHERE tipo='Isopos'";
+  }
+////////////
+  $validarjeringas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Jeringa'");
+   if (mysqli_num_rows($validarjeringas)>0) {
+    $sacar6 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Jeringa'");
+                while ($fila6 = mysqli_fetch_array($sacar6)) {
+                      $jeringa_dec=$fila6['decremento'];
+                    }
+                      $desc_jeringa=$jeringa_dec-$jeringa; 
+    $sql = "UPDATE inventario_unidades SET decremento='$desc_jeringa' WHERE tipo='Jeringa'";
+  }
+    ////////// */
+     $sql = "UPDATE t_llegada SET estado=1 WHERE fk_expediente='$modi'";
     $sentencia = $conexionx->prepare($sql);
     $usuario_insertado = $sentencia->execute(); 
                        echo '<script>swal({
@@ -398,7 +467,7 @@ $edad=($ano-$partes[0]);
                     });</script>';
             
 
-           }  } 
+            } 
            include_once '../plantilla/pie.php';
 
       ?>

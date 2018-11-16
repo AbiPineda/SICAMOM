@@ -2,86 +2,6 @@
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
-
-
-if (isset($_REQUEST['btnGuardar'])) {
-    include_once '../Conexion/conexion.php';
-
-    $nombre = $_REQUEST['nombre'];
-    echo $nombre;
-    $apellido = $_REQUEST['apellido'];
-    $email = $_REQUEST['email'];
-    $nusuario = $_REQUEST['nusuario'];
-    $contrasena = $_REQUEST['contrasena'];
-    $tusuario = $_REQUEST['tusuario'];
-    $esta = 1;
-    Conexion::abrir_conexion();
-    $conexionx = Conexion::obtener_conexion();
-
-
-    $numero_correo = 0;
-    $numero_usuario = 0;
-
-
-    $sql = "SELECT * FROM t_usuario WHERE usu_ccorreo = '$email'";
-    foreach ($conexion->query($sql) as $row) {
-        $numero_correo++;
-    }
-
-    $sql = "SELECT * FROM t_usuario WHERE usu_cusuario = '$nusuario'";
-    foreach ($conexion->query($sql) as $row) {
-        $numero_usuario++;
-    }
-
-
-    if ($numero_correo) {
-        echo '<script>swal({
-                    title: "¡Atención!",
-                    text: "El correo ingresado ya existe!",
-                    type: "info",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="registroUsuario.php";
-                    
-                });</script>';
-    }if ($numero_usuario) {
-        echo '<script>swal({
-                    title: "¡Atención!",
-                    text: "El usuario ingresado ya existe!",
-                    type: "info",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="registroUsuario.php";
-                    
-                });</script>';
-    }
-
-    if (!$numero_correo && !$numero_usuario) {
-        mysqli_query($conexion, "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario,estado) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario','$esta')");
-
-        echo '<script>swal({
-                    title: "Registro",
-                    text: "Guardado!",
-                    type: "success",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="registroUsuario.php";
-                    
-                });</script>';
-    }
-
-    //$sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
-
-
-    $sentencia = $conexionx->prepare($sql);
-    $usuario_insertado = $sentencia->execute();
-} else {
     ?>
 
     <link rel="stylesheet" href="../js/toastr.min.css">
@@ -201,9 +121,89 @@ if (isset($_REQUEST['btnGuardar'])) {
 
     </div>
 
+    <?php
+    if (isset($_REQUEST['btnGuardar'])) {
+    include_once '../Conexion/conexion.php';
+
+    $nombre = $_REQUEST['nombre'];
+    echo $nombre;
+    $apellido = $_REQUEST['apellido'];
+    $email = $_REQUEST['email'];
+    $nusuario = $_REQUEST['nusuario'];
+    $contrasena = $_REQUEST['contrasena'];
+    $tusuario = $_REQUEST['tusuario'];
+    $esta = 1;
+    Conexion::abrir_conexion();
+    $conexionx = Conexion::obtener_conexion();
 
 
-    <script>
+    $numero_correo = 0;
+    $numero_usuario = 0;
+
+
+    $sql = "SELECT * FROM t_usuario WHERE usu_ccorreo = '$email'";
+    foreach ($conexion->query($sql) as $row) {
+        $numero_correo++;
+    }
+
+    $sql = "SELECT * FROM t_usuario WHERE usu_cusuario = '$nusuario'";
+    foreach ($conexion->query($sql) as $row) {
+        $numero_usuario++;
+    }
+
+
+    if ($numero_correo) {
+        echo '<script>swal({
+                    title: "¡Atención!",
+                    text: "El correo ingresado ya existe!",
+                    type: "info",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroUsuario.php";
+                    
+                });</script>';
+    }if ($numero_usuario) {
+        echo '<script>swal({
+                    title: "¡Atención!",
+                    text: "El usuario ingresado ya existe!",
+                    type: "info",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroUsuario.php";
+                    
+                });</script>';
+    }
+
+    if (!$numero_correo && !$numero_usuario) {
+        mysqli_query($conexion, "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario,estado) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario','$esta')");
+
+        echo '<script>swal({
+                    title: "Registro",
+                    text: "Guardado!",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="registroUsuario.php";
+            });</script>';
+    }
+
+    //$sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
+
+
+    $sentencia = $conexionx->prepare($sql);
+    $usuario_insertado = $sentencia->execute();
+ } 
+    
+    include_once '../plantilla/pie.php';
+
+?>
+ <script>
         function Habilitar() {
             var camp1 = document.getElementById("campo1");
             var camp2 = document.getElementById("campo2");
@@ -265,11 +265,6 @@ if (isset($_REQUEST['btnGuardar'])) {
     <script
         src="../js/jquery.min.js">
     </script>
-
-    <?php
-    include_once '../plantilla/pie.php';
-}
-?>
 <script>
 function campos(){
   var validado = true;
