@@ -35,6 +35,10 @@
                      
 
                         <li class="sidebar-item"><a href="../Consultas/devolucionInsumo.php" class="sidebar-link"><i class="fas fa-undo-alt"></i><span class="hide-menu">Devolución de insumo</span></a></li>
+
+                        <li class="sidebar-item"><a href="../Consultas/detalleDevolucion.php" class="sidebar-link"><i class="fas fa-undo-alt"></i><span class="hide-menu">Lista de devolución</span></a></li>
+
+
                         <li class="sidebar-item"><a href="../Consultas/buscarInsumo.php" class="sidebar-link"><i class="fas fa-search"></i><span class="hide-menu"> Buscar Insumo </span></a></li>
                         <li class="sidebar-item"><a href="../Consultas/consultaInsumoMod.php" class="sidebar-link"><i class="fas fa-pencil-alt"></i><span class="hide-menu">Modificar Insumo</span></a></li>
                         

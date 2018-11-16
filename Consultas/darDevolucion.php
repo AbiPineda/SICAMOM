@@ -155,7 +155,7 @@ INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.id_compra='$identifica
                                         <select name="razon">
                                         <option value="Dañado">Dañado</option>
                                         <option value="Incompleto">Incompleto</option>
-                                        <option value="No me gusta">Vencimiento</option>
+                                        <option value="Vencimiento">Vencimiento</option>
                                         <option value="Otro">Otro</option>
                                       </select>
                                     </div>                                    

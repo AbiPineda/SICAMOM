@@ -31,16 +31,16 @@ include_once '../Conexion/conexion.php';
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
          <div class="search">
-            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
+            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que est· buscando?">
             <button type="submit" class="searchButton">
               <i class="fa fa-search"></i>
            </button>
          </div>
       </div>
-            <!--Fin Búsqueda-->
+            <!--Fin B˙squeda-->
 
     <div class="card" >
-      <h3 class="card-title">Existencias</h3>
+      <h3 class="card-title">Detalle devoluciones</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -50,39 +50,50 @@ include_once '../Conexion/conexion.php';
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
-      
-      <th><div>Código</div></th>
-      <th><div>Insumo</div></th>
-      <th><div>Marca</div></th> 
-      <th><div>Existencia</div></th>
-      
-      <th><div>Acción</div></th>
+     
+      <thead>  
+  <th><div>N factura</div></th>
+  <th><div>Insumo</div></th>
+  <th><div>Cantidad devuelta</div></th>
+  <th><div>Razon de la devoluciÛn</div></th>
+     
   
+  
+     
+    
+      
+      
       
     </thead>
     <tbody  class="buscar"> 
     <?php
-        $sacar1 = mysqli_query($conexion, "SELECT *FROM t_inventario i INNER JOIN t_insumo m ON i.insumo=m.ins_codigo WHERE m.tipo='Contable'");
-            while ($fila = mysqli_fetch_array($sacar1)) {
-                
-                $cod=$fila['codigo'];
-                $insumo=$fila['ins_cnombre_comercial']; 
-                $marca=$fila['ins_cmarca']; 
-                $cantidad=$fila['inv_ecantidad_actual'];
+        $sacar = mysqli_query($conexion, "SELECT
+            t_insumo.ins_cnombre_comercial,
+            t_compra.factura,
+            t_devolucion.devolver,
+            t_devolucion.razon
+            FROM t_compra INNER JOIN t_insumo ON t_compra.fk_insumo = t_insumo.ins_codigo
+                INNER JOIN t_devolucion ON t_devolucion.fk_compra = t_compra.id_compra ");
+            while ($fila = mysqli_fetch_array($sacar)) {
                
-                $id=$fila['insumo'];
+                 $numF=$fila['factura'];
+                $nomInsumo=$fila['ins_cnombre_comercial'];
+                 $devolucion=$fila['devolver'];  
+                 $razon=$fila['razon']; 
                 
-        ?> 
+                  
+                 
+              
+        ?>
         <tr>
                 
-                <th scope="row"><?php echo $cod; ?></th>
-                <th scope="row"><?php echo $insumo; ?></th>
-                 <th scope="row"><?php echo $marca; ?></th>
-                 <td data-title="Released"><?php echo $cantidad; ?></td>
+                 <td data-title="Released"><?php echo $numF;?></td>
+                 <td data-title="Releaseda"><?php echo $nomInsumo;?></td>
+                 <td data-title="Releaseda"><?php echo $devolucion;?></td>
+                 <td data-title="Releaseda"><?php echo $razon;?></td>
                 
-                
-                <td class="text"><a href="../Registros/Existencia-Reducion.php?ir=<?php echo $id;?>" class="btn btn-success "> Utilizar</a>
 
+                </td>
                 </td>
 
        <?php  }?>
