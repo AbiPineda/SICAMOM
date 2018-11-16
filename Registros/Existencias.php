@@ -51,9 +51,11 @@ include_once '../Conexion/conexion.php';
   <table class="table table-striped table-hover user-list fixed-header">
     <thead>
       
+      <th><div>Código</div></th>
       <th><div>Insumo</div></th>
       <th><div>Marca</div></th> 
       <th><div>Existencia</div></th>
+      
       <th><div>Acción</div></th>
   
       
@@ -63,17 +65,22 @@ include_once '../Conexion/conexion.php';
         $sacar1 = mysqli_query($conexion, "SELECT *FROM t_inventario i INNER JOIN t_insumo m ON i.insumo=m.ins_codigo WHERE m.tipo='Contable'");
             while ($fila = mysqli_fetch_array($sacar1)) {
                 
-                $insumo=$fila['ins_cnombre_comercial'];  
+                $cod=$fila['codigo'];
+                $insumo=$fila['ins_cnombre_comercial']; 
+                $marca=$fila['ins_cmarca']; 
                 $cantidad=$fila['inv_ecantidad_actual'];
-                $marca=$fila['ins_cmarca'];
+               
                 $id=$fila['insumo'];
                 
         ?> 
         <tr>
                 
+                <th scope="row"><?php echo $cod; ?></th>
                 <th scope="row"><?php echo $insumo; ?></th>
-                <th scope="row"><?php echo $marca; ?></th>
-                <td data-title="Released"><?php echo $cantidad; ?></td>
+                 <th scope="row"><?php echo $marca; ?></th>
+                 <td data-title="Released"><?php echo $cantidad; ?></td>
+                
+                
                 <td class="text"><a href="../Registros/Existencia-Reducion.php?ir=<?php echo $id;?>" class="btn btn-success fas fa-eye"> Utilizar</a>
 
                 </td>

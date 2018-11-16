@@ -142,7 +142,7 @@ if (isset($_REQUEST['btnGuardar'])) {
                                     </div>
                                     <div class="col-lg-4">
                                          
-                                        <label style="color: white">Stock Minimo<small class="text-muted" ></small></label>
+                                        <label style="color: white">Stock Minimo por paquete<small class="text-muted" ></small></label>
                                         <div class="input-group">                                    
                                             <input type="number" min="0" onkeyup="campos()" class="form-control" id="lname" name="minimo" placeholder="Cantidad de Stock Minimo" onkeypress="return sinCaracterEspecial(event)" value="" required>
                                         <div class="input-group-append">

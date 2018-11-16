@@ -172,18 +172,18 @@ else {
 
 
         <div class="container-fluid">
-            <div class="signup__container">
+            <div class="signup__container"  style="background: rgba(0, 101, 191,0.6)">
                 <div class="container__child signup__thumbnail">
                     <div class="thumbnail__logo">
 
-                        <h2 class="heading--secondary">Registro de compra</h2>
+                        <h2 class="heading--secondary" style="color: white">Registro de compra</h2>
                         <form action="nuevaCompra.php" method="get" >
-
+                            <br>
                             <div class="row mb-12"> 
 
                                 <div class="col-lg-3">
                                    
-                                    <label style="color: black">Factura #<small class="text-muted" ></small></label>
+                                    <label style="color: white">Factura #<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
                                         <input type="text" class="form-control" id="factura" name="factura"  <?php if (isset($_REQUEST['Nfactura'])) {?> value="<?php echo "$valor"; ?> "  <?php }?> >
                                         <div class="input-group-append">
@@ -196,7 +196,7 @@ else {
                                     <?php
                                     date_default_timezone_set('America/El_Salvador');
                                     ?>
-                                    <label style="color: black">Fecha de Compra</label>
+                                    <label style="color: white">Fecha de Compra</label>
                                     <?php if (isset($_GET['Nfactura'])){
                                          include_once '../Conexion/conexion.php';
                                         $Abi=$_GET['Nfactura'];
@@ -224,7 +224,7 @@ else {
                                 </div>
 
                                 <div class="col-lg-4">
-                                    <label style="color: black">Proveedor<small class="text-muted" ></small></label>
+                                    <label style="color:white">Proveedor<small class="text-muted" ></small></label>
                                     <select class="custom-select" name="proveedor" id="proveedor">
                                         <?php
                                         include_once '../Conexion/conexion.php';
@@ -241,7 +241,7 @@ else {
                                 </div>
 
                                 <div class="col-lg-4">
-                                    <label style="color: black">Insumo<small class="text-muted" ></small></label>
+                                    <label style="color:white">Insumo<small class="text-muted" ></small></label>
                                       <select class="custom-select" name="insumo" id="insumo">
                                         <?php
                                         include_once '../Conexion/conexion.php';
@@ -259,7 +259,7 @@ else {
                                 </div>
 
                                 <div class="col-lg-2">
-                                    <label style="color: black">Precio<small class="text-muted" ></small></label>
+                                    <label style="color: white">Precio por paquete<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
                                         <input type="text" class="form-control" id="precio" name="precio">
                                         <div class="input-group-append">
@@ -272,7 +272,7 @@ else {
                                     <?php
                                     date_default_timezone_set('America/El_Salvador');
                                     ?>
-                                    <label style="color: black">Fecha de Caducidad<small class="text-muted"></small></label>
+                                    <label style="color: white">Fecha de Caducidad<small class="text-muted"></small></label>
                                    <div class="input-group">
                                         <input type="date" name="caducidad" class="form-control" id="caducidad" min="<?= date('d/m/y g:ia'); ?>"/>
                                         <div class="input-group-append">
@@ -283,7 +283,7 @@ else {
                                  </div>
 
                                 <div class="col-lg-2">
-                                    <label style="color: black">Cantidad<small class="text-muted" ></small></label>
+                                    <label style="color: white">Cant. por paquete<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
                                         <input type="text" class="form-control" id="cantidad" name="cantidad" value="">
                                         <div class="input-group-append">
@@ -303,7 +303,7 @@ else {
                                     }
                                         
                                     ?>
-                                    <label style="color: black">TOTAL<small class="text-muted" ></small></label>
+                                    <label style="color: white">TOTAL<small class="text-muted" ></small></label>
                                     <div class="input-group">                         
                                         <input type="text" class="form-control" id="total" name="total" value="<?php echo "$total"; ?>">
                                         <div class="input-group-append">
@@ -335,19 +335,19 @@ else {
 
                             </div>
                         </form>
-
+                       
                          <div id="bodywrap">
 
 
-  <div class="scroll-window-wrapper">
+  <div class="scroll-window-wrapper" style="background-color:white;">
   <div class="scroll-window">
-  <table class="table table-striped table-hover user-list fixed-header">
+  <table class="table table-striped table-hover user-list fixed-header" >
     <thead>
       
-<!--      <th><div>Código</div></th>-->
+<!--      <th><div>CÛdigo</div></th>-->
       <th><div>Proveedor</div></th>
       <th><div>Insumo</div></th>
-      <th><div>Cantidad Unitaria</div></th>
+      <th><div>Cant. Unitario</div></th>
   <th><div>Precio Unitario</div></th>
   <th><div>Sub Total</div></th>
   <th><div>Acciones</div></th>

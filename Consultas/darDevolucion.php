@@ -78,9 +78,12 @@ INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.id_compra='$identifica
         <td data-title="Releaseda"><?php echo $cant;?></td>
         <td data-title="Released"><?php echo $mar;?></td>
         
-        
-          <td class="text"> <a href="#" data-toggle="modal" data-target="#miModal" onclick="mostrar_Modal('<?php echo $insumo; ?>','<?php echo $cant; ?>')">Efec</a>
+      
+          <td class="text"> <a href="#" data-toggle="modal" data-target="#miModal" class="btn btn-success"
+            onclick="mostrar_Modal('<?php echo $insumo; ?>','<?php echo $cant; ?>')">Efectuar</a>
         </td>
+
+
 
        <?php  }?>
       
@@ -107,54 +110,61 @@ INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.id_compra='$identifica
                             <!-- **********MODIFICACION******************-->
                             <!--FORMULARIO PARA GUARDAR--><form action="" id="" method="post" class="form-register" >
 
-                                <!--CAPTURA COMO LA ACCION PARA GUARDAR--><input type="hidden" name="guardar" id="pase"/>
-                                <!-- **********FIN MODIFICACION******************-->
+                                <!--captura para guardar--><input type="hidden" name="guardar" id="pase"/>
+                               
 
 
                                 <div class="col-lg-12">
                                    
-                                    <label>Insumo<small class="text-muted"></small></label><br>
+                                    <label style="color: black;">Insumo<small class="text-muted"></small></label><br>
                                     <div class="input-group">
-                                        <input type="text" name="insumo" value="" class="form-control" id="insumo">  
+                                        <input type="text" name="insumo" value="" class="form-control" id="insumo"> 
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-box"></i></span>
+                                        </div> 
                                     </div> <br>
 
-                                    <label>Compra<small class="text-muted"></small></label>
+                                    <label style="color: black;">Compra<small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <input type="text" name="com" class="form-control" id="com">  
                                         <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-box"></i></span>
                                         </div>
                                     </div> 
 
                                 </div>
 
+
+
                                 <div class="col-lg-12">
-                                    <label>Cantidad a devolver<small class="text-muted"></small></label>
+
+                                    <label style="color: black;">Cantidad a devolver<small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <input type="text" name="devolver" class="form-control" id="devolver" >  
                                         <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-undo"></i></span>
                                         </div>
-                                    </div>                                    
+                                    </div>  
+
+                                                                     
                                 </div>
                                 
                                  <div class="col-lg-12">
-                                    <label>Razón<small class="text-muted"></small></label>
+                                    <label style="color: black;">Razón<small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <select name="razon">
                                         <option value="Dañado">Dañado</option>
                                         <option value="Incompleto">Incompleto</option>
-                                        <option value="No me gusta">No me gusta</option>
-                                        <option value="Otro">Otra</option>
+                                        <option value="No me gusta">Vencimiento</option>
+                                        <option value="Otro">Otro</option>
                                       </select>
                                     </div>                                    
                                 </div>
                                 
-                                <!--ERROR COMUN Y LO DEJARE AQUI PARA QUE VEAS
-                                LA ETIQUETA </form> DETRO DE ELLA SIEMPRE TEIENE QUE ESTAR LOS BOTONES-->
+                              
 
                                 <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                    <!--yo lo utilizo tipo input porque asi me funciona--><input type="submit" class="btn btn-info" value="Guardar" name="modGuardar">
+                                    <!--Para guardar--><input type="submit" class="btn btn-info" value="Guardar" name="modGuardar">
 
                                 </div>
 
@@ -197,12 +207,14 @@ function mostrar_Modal(insu,com){
     
     include_once '../plantilla/pie.php';
      if (isset($_REQUEST['guardar'])) {
-                                // aqui vamos a guardar la informacion que contiene el modal.
+                                // guardar la informacion que contiene el modal
                                 include_once '../Conexion/conexion.php';
 
                                 $devolver= $_POST['devolver'];
                                 $razon = $_REQUEST['razon'];
-  mysqli_query($conexion, "INSERT INTO t_devolucion(fk_compra,devolver,razon)VALUES('$identificador','$devolver','$razon')");
+
+            if ($devolver<=$cant) {
+                                   mysqli_query($conexion, "INSERT INTO t_devolucion(fk_compra,devolver,razon)VALUES('$identificador','$devolver','$razon')");
      
   $decrementar= mysqli_query($conexion,"SELECT * FROM t_inventario WHERE insumo='$insumito'");
   while ($Za= mysqli_fetch_array($decrementar)){
@@ -212,8 +224,8 @@ function mostrar_Modal(insu,com){
   mysqli_query($conexion, "UPDATE t_inventario SET inv_ecantidad_actual='$Decre' WHERE insumo='$insumito'");
      
   echo '<script>swal({
-                    title: "Error",
-                    text: "Esta factura ya fue registrada",
+                    title: "Éxito",
+                    text: "Se ha efectuado la devolución correctamente",
                     type: "success",
                     confirmButtonText: "Aceptar",
                     closeOnConfirm: false
@@ -223,6 +235,23 @@ function mostrar_Modal(insu,com){
                     
                 });</script>';
   
+  } else {
+
+    echo '<script>swal({
+                    title: "Error",
+                    text: "La canridad ha devolver es mayor a la cantidad comprada",
+                    type: "error",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="devolucionInsumo.php";
+                    
+                });</script>';
+
   }
+                                }
+
+  
 
 ?>
