@@ -239,7 +239,7 @@ function mostrar_Modal(insu,com){
 
     echo '<script>swal({
                     title: "Error",
-                    text: "La canridad ha devolver es mayor a la cantidad comprada",
+                    text: "La cantidad ha devolver es mayor a la cantidad comprada",
                     type: "error",
                     confirmButtonText: "Aceptar",
                     closeOnConfirm: false

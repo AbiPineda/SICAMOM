@@ -94,9 +94,9 @@ include_once '../Conexion/conexion.php';
 }?>
 
   <?php
-   $validarisopo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopo'");
+   $validarisopo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
    if (mysqli_num_rows($validarisopo)>0) {
-      $sacar5 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopo'");
+      $sacar5 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
                 while ($fila5 = mysqli_fetch_array($sacar5)) {
                       $isopo_dec=$fila5['decremento'];
                     } 

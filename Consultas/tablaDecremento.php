@@ -12,7 +12,7 @@ if ($result) {
         echo "<tr>";
         echo "<td>" . $fila->insumo . "</td>";
         echo "<td>" . $fila->inv_ecantidad_actual . "</td>";
-        echo "<td>" . $fila->inv_ecantidad_saliente . "</td>";
+//        echo "<td>" . $fila->inv_ecantidad_saliente . "</td>";
         
      echo "</tr>";
 

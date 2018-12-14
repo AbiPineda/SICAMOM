@@ -6,8 +6,8 @@
           ?>
    <link href="../css/multiform.css" rel="stylesheet">
                     <div class="page-wrapper" style="height: 671px;">
-                  <div class="container-fluid">
-                  <div class="card" style="background: rgba(0, 101, 191,0.3)">
+                        <div class="container-fluid" >
+                  <div class="card" style="background: rgba(0,101,191,0.6)">
                   <div class="card-body wizard-content">
                            <h3 class="card-title" style="color: white" align="center">Consulta General</h3>
                            </br>
@@ -433,7 +433,7 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_papel' WHERE tipo='Papel'");
   }
 
-   $validarisopo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopo'");
+   $validarisopo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
    if (mysqli_num_rows($validarisopo)>0) {
     $sacar5 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
                 while ($fila5 = mysqli_fetch_array($sacar5)) {
