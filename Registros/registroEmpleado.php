@@ -3,6 +3,19 @@
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
+
+//sacar usuarios para bitacora
+
+include_once '../Conexion/conexion.php';
+$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id_usuario'];
+    $NombreUsuario = $row['usu_cusuario'];
+}
+//sacar usuarios para bitacora
+
+
+
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
@@ -106,7 +119,10 @@ if (isset($_REQUEST['tirar'])) {
                     location.href="registroEmpleado.php";
                     
                 });</script>';
-       
+       //bitacora
+     mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha)"
+                                        . " VALUES('$id','$NombreUsuario','Registro Empleado',now())");
+     //bitacora 
     } 
 
             //fin
