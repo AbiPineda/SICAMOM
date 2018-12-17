@@ -69,8 +69,12 @@ include_once '../Conexion/conexion.php';
                 $insumo=$fila['ins_cnombre_comercial']; 
                 $marca=$fila['ins_cmarca']; 
                 $cantidad=$fila['inv_ecantidad_actual'];
-               
+                $presen=$fila['presentacion'];
                 $id=$fila['insumo'];
+                $unidad=$fila['unidad'];
+                $espace=' ';
+                $uni='unidades';
+                $de='de';
                 
         ?> 
         <tr>
@@ -78,7 +82,7 @@ include_once '../Conexion/conexion.php';
                 <th scope="row"><?php echo $cod; ?></th>
                 <th scope="row"><?php echo $insumo; ?></th>
                  <th scope="row"><?php echo $marca; ?></th>
-                 <td data-title="Released"><?php echo $cantidad; ?></td>
+                 <td data-title="Released"><?php echo $cantidad; echo $espace; echo $presen; echo $espace; echo $de; echo $espace; echo $unidad; echo $espace; echo $uni; ?></td>
                 
                 
                 <td class="text"><a href="../Registros/Existencia-Reducion.php?ir=<?php echo $id;?>" class="btn btn-success "> Utilizar</a>
