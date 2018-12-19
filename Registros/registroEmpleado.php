@@ -13,9 +13,6 @@ while ($row = mysqli_fetch_array($usuario)) {
     $NombreUsuario = $row['usu_cusuario'];
 }
 //sacar usuarios para bitacora
-
-
-
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
@@ -119,10 +116,12 @@ if (isset($_REQUEST['tirar'])) {
                     location.href="registroEmpleado.php";
                     
                 });</script>';
-       //bitacora
-     mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha)"
-                                        . " VALUES('$id','$NombreUsuario','Registro Empleado',now())");
-     //bitacora 
+        //bitacora
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Registro Empleado',now(),'$hora')");
+        //bitacora
     } 
 
             //fin

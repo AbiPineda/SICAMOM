@@ -3,6 +3,16 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 
+//sacar usuarios para bitacora
+
+include_once '../Conexion/conexion.php';
+$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id_usuario'];
+    $NombreUsuario = $row['usu_cusuario'];
+}
+//sacar usuarios para bitacora
+
     if (isset($_REQUEST['btnGuardar'])) {
     include_once '../Conexion/conexion.php';
 
@@ -33,6 +43,13 @@ include_once '../plantilla/menu_lateral.php';
                     location.href="nuevaCompra.php";
                     
                 });</script>';
+         
+          //bitacora
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Intento agregar una factura ya registrada anteriormente',now(),'$hora')");
+        //bitacora
     }else{
     
      $validar = mysqli_query($conexion, "SELECT factura FROM t_compra WHERE estado='EnProceso' AND factura='$factura'");
@@ -122,6 +139,13 @@ if (isset($_REQUEST['Cancelar'])) {
                     location.href="nuevaCompra.php";
                     
                 });</script>';
+      
+        //bitacora
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Se guardaron datos de una nueva compra|',now(),'$hora')");
+        //bitacora
     //recorrer para guardarlos
 
 ////saco los datos para ir los a guardar en el inventario original

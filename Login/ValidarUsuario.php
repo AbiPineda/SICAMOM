@@ -31,9 +31,13 @@ if ($filas>0) {
         /// lo redirecciona al index administraqdor
       
      //bitacora
+            date_default_timezone_set('America/El_Salvador');
+            $fechActual = date("Y/m/d");
             
-     mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha)"
-                                        . " VALUES('$id','$NombreUsuario','Inicio de Sesion',now())");
+            ini_set('date.timezone','America/El_Salvador'); 
+            $hora = date("H:i:s");
+     mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                                        . " VALUES('$id','$NombreUsuario','Inicio de Sesion',now(),'$hora')");
      //bitacora
      
       header("location:../html/ltr/index.html");  

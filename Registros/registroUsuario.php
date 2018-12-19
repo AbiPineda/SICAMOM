@@ -2,6 +2,17 @@
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
+
+
+//sacar usuarios para bitacora
+
+include_once '../Conexion/conexion.php';
+$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id_usuario'];
+    $NombreUsuario = $row['usu_cusuario'];
+}
+//sacar usuarios para bitacora
     ?>
 
     <link rel="stylesheet" href="../js/toastr.min.css">
@@ -191,6 +202,13 @@ include_once '../plantilla/menu_lateral.php';
                 function () {
                     location.href="registroUsuario.php";
             });</script>';
+        
+        //bitacora
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Registro de Usuario',now(),'$hora')");
+        //bitacora
     }
 
     //$sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
