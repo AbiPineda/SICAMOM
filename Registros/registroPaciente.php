@@ -3,6 +3,17 @@
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
+
+//sacar usuarios para bitacora
+
+include_once '../Conexion/conexion.php';
+$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id_usuario'];
+    $NombreUsuario = $row['usu_cusuario'];
+}
+//sacar usuarios para bitacora
+
 ?>
 
 <script type="text/javascript">
@@ -243,6 +254,14 @@ if (isset($_REQUEST['tirar'])) {
                     location.href="modal.php";
                     
                 });</script>';
+        
+        //bitacora
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Registro de Paciente Menor de Edad',now(),'$hora')");
+        //bitacora
+        //
         //sigue la sentencia php para validar sino es menor de edad    
     } else { // como no es menor de edad solo recarcargara la pagina
         $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_paciente WHERE pac_cdui='$dui'");
@@ -268,6 +287,12 @@ if (isset($_REQUEST['tirar'])) {
                 });</script>';
 
 
+            //bitacora
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Registro de Paciente',now(),'$hora')");
+        //bitacora
 
             //fin
         }

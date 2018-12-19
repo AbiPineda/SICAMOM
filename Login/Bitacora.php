@@ -53,24 +53,32 @@ include_once '../Conexion/conexion.php';
       
       <th><div>Usuario</div></th>
       <th><div>Acción Realizada</div></th>
-      <th><div>Ultima Modificación</div></th>
+      <th><div>Fecha</div></th>
+       <th><div>Hora</div></th>
       
       
     </thead>
     <tbody  class="buscar"> 
     <?php
         $sacar1 = mysqli_query($conexion, "SELECT * FROM t_bitacora");
+        
             while ($fila = mysqli_fetch_array($sacar1)) {
                 $usu=$fila['bit_cusuario'];
                 $actividad=$fila['bit_cactividad'];  
-                $fecha=$fila['bit_ffecha'];  
+                $fecha=$fila['bit_ffecha']; 
+                 $partes = explode('-', $fecha);
+                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+                
+                $hora=$fila['bit_hhora']; 
                 
                
         ?> 
         <tr>
                 <td data-title="Releaseda"><?php echo $usu; ?></td>
                 <th scope="row"><?php echo $actividad; ?></th>
-                <td data-title="Released"><?php echo $fecha; ?></td>
+                <td data-title="Released"><?php echo $_fecha; ?></td>
+                <td data-title="Released"><?php echo $hora; ?></td>
+                
                
                 </td>
 

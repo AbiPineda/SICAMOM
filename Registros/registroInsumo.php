@@ -4,6 +4,18 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 $codigo1 = '';
+
+
+//sacar usuarios para bitacora
+
+include_once '../Conexion/conexion.php';
+$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id_usuario'];
+    $NombreUsuario = $row['usu_cusuario'];
+}
+//sacar usuarios para bitacora
+
     ?>
     <div class="page-wrapper" style="height: 671px;">
 
@@ -181,7 +193,12 @@ $codigo1 = '';
                     
                 });</script>';
 
-
+     //bitacora
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Registro de Insumo Médico',now(),'$hora')");
+        //bitacora  
 
     //  $sentencia = $conexionx->prepare($sql);
     //$usuario_insertado = $sentencia->execute();
