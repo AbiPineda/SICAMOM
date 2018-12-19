@@ -40,7 +40,7 @@ include_once '../Conexion/conexion.php';
             <!--Fin Búsqueda-->
 
     <div class="card" >
-      <h3 class="card-title">Existencias</h3>
+      <h3 class="card-title">Existencias de insumos</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -75,12 +75,14 @@ include_once '../Conexion/conexion.php';
                 $espace=' ';
                 $uni='unidades';
                 $de='de';
+                $descrip=$fila['ins_cdescripcion'];
+              
                 
         ?> 
         <tr>
                 
                 <th scope="row"><?php echo $cod; ?></th>
-                <th scope="row"><?php echo $insumo; ?></th>
+                <th scope="row"><?php echo $insumo; echo $espace; echo $descrip;?></th>
                  <th scope="row"><?php echo $marca; ?></th>
                  <td data-title="Released"><?php echo $cantidad; echo $espace; echo $presen; echo $espace; echo $de; echo $espace; echo $unidad; echo $espace; echo $uni; ?></td>
                 
