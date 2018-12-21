@@ -73,7 +73,12 @@
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="consult_Bitacora.html" class="sidebar-link"><i class="fas fa-book"></i><span class="hide-menu"> Bitácora </span></a></li>
 
+                        <li class="sidebar-item"><a href="../php/index.php" class="sidebar-link"><i class="fas fa-book"></i><span class="hide-menu"> Backup / Restore </span></a></li>
+
+
                     </ul>
+
+
                 </li>
 
 
