@@ -4,15 +4,120 @@
       include_once '../plantilla/menu_lateral.php';
          $modi = $_GET['ir'];
           ?>
+          <script src="http://momentjs.com/downloads/moment.min.js"></script>
+          <script type="text/javascript">
+    /**
+     * Funcion que devuelve true o false dependiendo de si la fecha es correcta.
+     * Tiene que recibir el dia, mes y año
+     */
+    function isValidDate(day, month, year)
+    {
+        var dteDate;
+        month = month - 1;
+        dteDate = new Date(year, month, day);
+
+
+        return ((day == dteDate.getDate()) && (month == dteDate.getMonth()) && (year == dteDate.getFullYear()));
+    }
+
+
+    function validate_fecha(fecha)
+    {
+        var patron = new RegExp("^(19|20)+([0-9]{2})([-])([0-9]{1,2})([-])([0-9]{1,2})$");
+
+        if (fecha.search(patron) == 0)
+        {
+            var values = fecha.split("-");
+            if (isValidDate(values[2], values[1], values[0]))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    function calcularEdad()
+    {
+        var fecha = document.getElementById("user_date").value;
+        if (validate_fecha(fecha) == true)
+        {
+            // Si la fecha es correcta, calculamos la edad
+            var values = fecha.split("-");
+            var dia = values[2];
+            var mes = values[1];
+            var ano = values[0];
+			var fecha_anterior = ano.concat("-"+mes).concat("-"+dia);
+            // cogemos los valores actuales
+            var fecha_hoy = new Date();
+            var ahora_ano = fecha_hoy.getYear();
+            var ahora_mes = fecha_hoy.getMonth() + 1;
+            var ahora_dia = fecha_hoy.getDate();
+            var fecha_actual = ahora_ano.concat("-"+ahora_mes).concat("-"+ahora_dia);
+            // realizamos el calculo
+            var edad = (ahora_ano + 1900) - ano;
+            if (ahora_mes < mes)
+            {
+                edad--;
+            }
+            if ((mes == ahora_mes) && (ahora_dia < dia))
+            {
+                edad--;
+            }
+            if (edad > 1900)
+            {
+                edad -= 1900;
+            }
+
+            // calculamos los meses
+            var meses = 0;
+            if (ahora_mes > mes)
+                meses = ahora_mes - mes;
+            if (ahora_mes < mes)
+                meses = 12 - (mes - ahora_mes);
+            if (ahora_mes == mes && dia > ahora_dia)
+                meses = 11;
+
+            // calculamos los dias
+            var dias = 0;
+            if (ahora_dia > dia)
+                dias = ahora_dia - dia;
+            if (ahora_dia < dia)
+            {
+                ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
+                dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
+            }
+            //document.f1.inp.disabled=true;
+            var fecha1 = moment('2018-12-22');
+var fecha2 = moment('2018-12-31');
+
+var fechas=(fecha2.diff(fecha1, 'week'));
+
+                document.regForm.fech_ame.value = edad;
+            if (edad <= 17) {
+                document.f1.dui.disabled = true;
+                document.f1.tel.disabled = true;
+            } else {
+                document.f1.dui.disabled = false;
+                document.f1.tel.disabled = false;
+            }
+
+            document.getElementById("result").innerHTML = "Tienes " + edad + " años, " + meses + " meses y " + dias + " días";
+        } else {
+
+            document.getElementById("result").innerHTML = "La fecha " + fecha + " es incorrecta";
+        }
+    }
+</script>
    <link href="../css/multiform.css" rel="stylesheet">
-                    <div class="page-wrapper" style="height: 671px;">
+                    <div class="page-wrapper" style="height: 971px;">
                         <div class="container-fluid" >
                   <div class="card" style="background: rgba(0,101,191,0.6)">
                   <div class="card-body wizard-content">
-                           <h3 class="card-title" style="color: white" align="center">Consulta Ginecológica</h3>
+                           <h3 class="card-title" style="color: white" align="center">Control Prenatal</h3>
                            </br>
 </br>
-                          <form id="regForm" action="" method="post">
+                          <form id="regForm" name="regForm" action="" method="post">
 
  <!-- <h3 class="card-title" style="color: white">Register:</h3> -->
                   <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
@@ -55,6 +160,10 @@ $ano=($ano-1);}
 $edad=($ano-$partes[0]);
 
 //print $edad;
+
+
+
+//echo floor($sem).'  Semanas';
                                             ?>                             
                                        
                                         <label style="color: white" >Paciente: <small class="text-muted"></small></label> <div>
@@ -64,7 +173,7 @@ $edad=($ano-$partes[0]);
                                     <div class="col-md-2">
                                     
                                         <label style="color: white" >Edad: <small class="text-muted"></small></label><div>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $edad." años"; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="6">  
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $edad." Años"; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="6">  
                                         </div> 
                                     </div> 
                                     <div class="col-md-6">
@@ -73,6 +182,7 @@ $edad=($ano-$partes[0]);
                                             <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $alergias; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
                                         </div> 
                                     </div> 
+
                                 </div>
                                  <?php
                                     }
@@ -85,16 +195,59 @@ $edad=($ano-$partes[0]);
           <div class="col-md-5" style="align: center">
       
  
-      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fnamep" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame" >       
+      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group">
+      	 <input type="date" name="user_date" class="form-control" id="user_date" max="2018-12-22" min="1947-01-02" onChange="javascript:calcularEdad();">    
                                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
 
                                             </div> 
                                         </div>
+
+                                          <div class="col-md-6">
+                                    
+                                        <label style="color: white" >Edad Gestacional: <small class="text-muted"></small></label><div>
+                                          <input name="fech_ame" id="fech_ame" class="form-control" onChange="javascript:desabilitar();">      
+                                        </div> 
+                                    </div>
                                       </div>
 
   </div>
+   <div class="tab"><h5 class="card-title" style="color: white">Antecedentes</h5>
+  	<div class="row">                  
+                      <div class="col-md-12">
+                                        <label style="color: white">Familiares: <small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="row">                  
+                      <div class="col-md-12">
+                                        <label style="color: white">Personales: <small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                  	<div class="row">                  
+                      <div class="col-md-12">
+                                        <label style="color: white">Obstétricos: <small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </div>
+                       </div>
     <div class="tab">
       <h5 class="card-title" style="color: white">Registro de Signos Vitales</h5>
       <div class="row">
@@ -127,7 +280,7 @@ $edad=($ano-$partes[0]);
                               
                                       <div class="col-md-3">
                                           
-     <label style="color: white">Presión:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="mm de Hg" autocomplete="off" maxlength="7" name="presion">
+     <label style="color: white">Presión Arterial:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Mm de Hg" autocomplete="off" maxlength="7" name="presion">
        <div class="input-group-append">
                                                   <span class="input-group-text"><i class="fas fa-heartbeat"></i></span>
                                               </div>
@@ -135,18 +288,57 @@ $edad=($ano-$partes[0]);
                                       </div>
                                       <div class="col-md-2">
                                           
-          <label style="color: white">Pulso:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Lat/min" autocomplete="off" maxlength="3" name="pulso">
+          <label style="color: white">Pulso:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Lat/Min" autocomplete="off" maxlength="3" name="pulso">
             <div class="input-group-append">
                                                   <span class="input-group-text"><i class="fas fa-stethoscope"></i></span>
                                               </div>
                                           </div> 
                                       </div>
                   </div>
+                  <div class="row">
+       <div class="col-md-2">
+                                          
+        <label style="color: white">Altura Uterina:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Cm" autocomplete="off" maxlength="6" name="talla">
+        <div class="input-group-append">
+                                                  <span class="input-group-text"><i class="fas fa-child"></i></span>
+                                              </div>
+                                          </div> 
+                                      </div>      
+                                      <div class="col-md-2">
+      
+      <label style="color: white">Frec. Cardiaca Fetal:<small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="LPM" autocomplete="off" maxlength="6" name="peso" >       <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
+                                                </div>
+
+                                            </div> 
+                                        </div>                                
+
+                                      <div class="col-md-2">
+                                          
+         <label style="color: white">Movimientos Fetales:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="" autocomplete="off" maxlength="5" name="temp">
+          <div class="input-group-append">
+                                                  <span class="input-group-text"><i class="fas fa-thermometer-half"></i></span>
+                                              </div>
+                                          </div> 
+                                      </div>
+                                  </div>
     </div>
 
-  <div class="tab"><h5 class="card-title" style="color: white">Enfermedades y Afecciones</h5>
-
-                                        <div class="col-md-12">
+ 
+   <div class="tab"><h5 class="card-title" style="color: white">Enfermedades y Afecciones</h5>
+                       <div class="row">                  
+                      <div class="col-md-12">
+                                        <label style="color: white">Resultado de Exámenes: <small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </div>
+                                 <div class="row">                  
+                      <div class="col-md-12">
                                         <label style="color: white">Síntomas y Diagnóstico: <small class="text-muted"></small></label>
                                         <div class="input-group">
                                              <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
@@ -155,6 +347,7 @@ $edad=($ano-$partes[0]);
                                             </div>
                                         </div> 
                                     </div> 
+                                </div>
   </div>
 
   <div class="tab"> <h5 class="card-title" style="color: white">Registro de Insumos</h5>
@@ -449,4 +642,4 @@ mysqli_query($conexion,"UPDATE t_llegada SET estado=2 WHERE fk_expediente='$modi
            include_once '../plantilla/pie.php';
 
       ?>
-     
+         

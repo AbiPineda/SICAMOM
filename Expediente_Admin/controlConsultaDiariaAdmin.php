@@ -58,12 +58,11 @@ $y1 = date("Y");
  $esta=1;
     include_once '../Conexion/conexion.php';
 
- $verificar_insert  = mysqli_query($conexion, "SELECT * FROM t_llegada WHERE fk_expediente='$modi1'");
- $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_llegada WHERE lleg_ffecha_atiende='$y1-$m1-$d1'");
-        if (mysqli_num_rows($verificar_insert) > 0 && mysqli_num_rows($verificar_insert2) > 0 ) {
-            echo '<script>swal({
+ $verificar_insert  = mysqli_query($conexion, "SELECT * FROM t_llegada WHERE fk_expediente='$modi1' AND lleg_ffecha_atiende='$y1-$m1-$d1'");
+       if (mysqli_num_rows($verificar_insert) > 0) {
+                  echo '<script>swal({
                     title: "Error",
-                    text: "Paciente ya ingresado a la Lista de Espera de este dia",
+                    text: "Paciente ingresado a Lista de Espera de este dia",
                     type: "warning",
                     confirmButtonText: "Aceptar",
                     closeOnConfirm: false
@@ -71,7 +70,9 @@ $y1 = date("Y");
                 function () {
                     location.href="verExpedienteAdmin.php";
                });</script>';
-                }else {
+               }
+               else 
+               {
        mysqli_query($conexion, "INSERT INTO t_llegada(fk_expediente,lleg_ffecha_atiende,estado) VALUES('$modi1','$y1-$m1-$d1','$esta')");
            echo '<script>swal({
                     title: "Exito",
@@ -84,13 +85,7 @@ $y1 = date("Y");
                     location.href="verCola.php";
                     
                 });</script>';
-
-
-
-            //fin
-        } 
-
-
+       }
  ?>
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
@@ -131,7 +126,7 @@ $y = date("Y");
         ?>
       <tr>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $codigo;?></td>
-        <th scope="row"><?php echo $nom . " " . $ape;?></th>
+        <th scope="row"><?php echo $verificar_insert . " " . $verificar_insert2;?></th>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
      <?php 
         if($fe==0){ ?>
