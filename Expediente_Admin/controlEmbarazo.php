@@ -5,7 +5,7 @@
          $modi = $_GET['ir'];
           ?>
           <script src="http://momentjs.com/downloads/moment.min.js"></script>
-          <script type="text/javascript">
+ <script type="text/javascript">
     /**
      * Funcion que devuelve true o false dependiendo de si la fecha es correcta.
      * Tiene que recibir el dia, mes y año
@@ -47,13 +47,13 @@
             var dia = values[2];
             var mes = values[1];
             var ano = values[0];
-			var fecha_anterior = ano.concat("-"+mes).concat("-"+dia);
+
             // cogemos los valores actuales
             var fecha_hoy = new Date();
             var ahora_ano = fecha_hoy.getYear();
             var ahora_mes = fecha_hoy.getMonth() + 1;
             var ahora_dia = fecha_hoy.getDate();
-            var fecha_actual = ahora_ano.concat("-"+ahora_mes).concat("-"+ahora_dia);
+
             // realizamos el calculo
             var edad = (ahora_ano + 1900) - ano;
             if (ahora_mes < mes)
@@ -88,12 +88,8 @@
                 dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
             }
             //document.f1.inp.disabled=true;
-            var fecha1 = moment('2018-12-22');
-var fecha2 = moment('2018-12-31');
+            document.regForm.fech_ame.value = edad;
 
-var fechas=(fecha2.diff(fecha1, 'week'));
-
-                document.regForm.fech_ame.value = edad;
             if (edad <= 17) {
                 document.f1.dui.disabled = true;
                 document.f1.tel.disabled = true;
