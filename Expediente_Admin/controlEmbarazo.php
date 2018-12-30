@@ -39,7 +39,7 @@
 
     function calcularEdad()
     {
-        var fecha = document.getElementById("user_date").value;
+        var fecha = document.getElementById("fecha_amenorrea").value;
         if (validate_fecha(fecha) == true)
         {
             // Si la fecha es correcta, calculamos la edad
@@ -55,46 +55,11 @@
             var ahora_mes = fecha_hoy.getMonth() + 1;
             var ahora_dia = fecha_hoy.getDate();
             var fecha_ahora = ahora_ano+"-"+ahora_mes+"-"+ahora_dia;
-            // realizamos el calculo
-          /*  var edad = (ahora_ano + 1900) - ano;
-            if (ahora_mes < mes)
-            {
-                edad--;
-            }
-            if ((mes == ahora_mes) && (ahora_dia < dia))
-            {
-                edad--;
-            }
-            if (edad > 1900)
-            {
-                edad -= 1900;
-            }
 
-            // calculamos los meses
-            var meses = 0;
-            if (ahora_mes > mes)
-                meses = ahora_mes - mes;
-            if (ahora_mes < mes)
-                meses = 12 - (mes - ahora_mes);
-            if (ahora_mes == mes && dia > ahora_dia)
-                meses = 11;
+            var fecha1 = moment(fecha_anterior);
+			var fecha2 = moment(fecha_ahora);
 
-            // calculamos los dias
-            var dias = 0;
-            if (ahora_dia > dia)
-                dias = ahora_dia - dia;
-            if (ahora_dia < dia)
-            {
-                ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
-                dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
-            }
-            //document.f1.inp.disabled=true;*/
-                        var fecha1 = moment(fecha_anterior);
-var fecha2 = moment(fecha_ahora);
-
-
-
-var fechas=(fecha2.diff(fecha1, 'week'));
+			var fechas=(fecha2.diff(fecha1, 'week'));
 
             document.regForm.fech_ame.value = fechas;
 
@@ -173,17 +138,19 @@ $edad=($ano-$partes[0]);
                                         <label style="color: white" >Paciente: <small class="text-muted"></small></label> <div>
                                             <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="<?php echo $nom . " " . $ape; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
                                         </div> 
-                                    </div>  
+                                    </div>
+                                     <div class="col-md-1">
+                                     </div> 
                                     <div class="col-md-2">
-                                    
-                                        <label style="color: white" >Edad: <small class="text-muted"></small></label><div>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $edad." Años"; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="6">  
+                                    <label style="color: white" >Edad: <small class="text-muted"></small></label><div>
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="edad" id="fnamep" autocomplete="off" value="<?php echo $edad." Años"; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="6">  
                                         </div> 
                                     </div> 
-                                    <div class="col-md-6">
-                                    
+                                    <div class="col-md-1">
+                                     </div> 
+                                    <div class="col-md-4">
                                         <label style="color: white" >Alergias: <small class="text-muted"></small></label><div>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $alergias; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="alergias" id="fnamep" autocomplete="off" value="<?php echo $alergias; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
                                         </div> 
                                     </div> 
 
@@ -197,32 +164,32 @@ $edad=($ano-$partes[0]);
    <div class="tab">
     <div class="row">
           <div class="col-md-5" style="align: center">
-      
- 
-      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group">
-      	 <input type="date" name="user_date" class="form-control" id="user_date" max="2018-12-22" min="1947-01-02" onChange="javascript:calcularEdad();">    
-                                                 <div class="input-group-append">
+      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label>
+      <div class="input-group">
+      <input type="date" name="fecha_amenorrea" class="form-control" id="fecha_amenorrea" max="2018-12-22" min="1947-01-02" onChange="javascript:calcularEdad();">                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
-
                                             </div> 
                                         </div>
-
-                                          <div class="col-md-6">
-                                    
-                                        <label style="color: white" >Edad Gestacional: <small class="text-muted"></small></label><div>
-                                          <input name="fech_ame" id="fech_ame" class="form-control" onChange="javascript:desabilitar();">      
+<div class="col-md-2"> 
+</div>
+                                          <div class="col-md-5">                             
+                                        <label style="color: white" >Edad Gestacional (Semanas): <small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                          <input name="fech_ame" id="fech_ame" class="form-control" onChange="javascript:desabilitar();">    
+                                           <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
                                         </div> 
                                     </div>
-                                      </div>
-
-  </div>
+                                      </div>  
+          </div>
    <div class="tab"><h5 class="card-title" style="color: white">Antecedentes</h5>
   	<div class="row">                  
                       <div class="col-md-12">
                                         <label style="color: white">Familiares: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                             <textarea class="form-control" rows="3" name="familiares"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -233,7 +200,7 @@ $edad=($ano-$partes[0]);
                       <div class="col-md-12">
                                         <label style="color: white">Personales: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                             <textarea class="form-control" rows="3" name="personales"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -244,7 +211,7 @@ $edad=($ano-$partes[0]);
                       <div class="col-md-12">
                                         <label style="color: white">Obstétricos: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                             <textarea class="form-control" rows="3" name="obstetricos"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -302,7 +269,7 @@ $edad=($ano-$partes[0]);
                   <div class="row">
        <div class="col-md-2">
                                           
-        <label style="color: white">Altura Uterina:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Cm" autocomplete="off" maxlength="6" name="talla">
+        <label style="color: white">Altura Uterina:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Cm" autocomplete="off" maxlength="6" name="altura">
         <div class="input-group-append">
                                                   <span class="input-group-text"><i class="fas fa-child"></i></span>
                                               </div>
@@ -310,7 +277,7 @@ $edad=($ano-$partes[0]);
                                       </div>      
                                       <div class="col-md-2">
       
-      <label style="color: white">Frec. Cardiaca Fetal:<small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="LPM" autocomplete="off" maxlength="6" name="peso" >       <div class="input-group-append">
+      <label style="color: white">Frec. Cardiaca Fetal:<small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="LPM" autocomplete="off" maxlength="6" name="frecuencia" >       <div class="input-group-append">
                                                     <span class="input-group-text"><i class="fas fa-balance-scale"></i></span>
                                                 </div>
 
@@ -319,7 +286,7 @@ $edad=($ano-$partes[0]);
 
                                       <div class="col-md-2">
                                           
-         <label style="color: white">Movimientos Fetales:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="" autocomplete="off" maxlength="5" name="temp">
+         <label style="color: white">Movimientos Fetales:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="" autocomplete="off" maxlength="5" name="movimientos">
           <div class="input-group-append">
                                                   <span class="input-group-text"><i class="fas fa-thermometer-half"></i></span>
                                               </div>
@@ -334,7 +301,7 @@ $edad=($ano-$partes[0]);
                       <div class="col-md-12">
                                         <label style="color: white">Resultado de Exámenes: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                             <textarea class="form-control" rows="3" name="examenes"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -535,14 +502,22 @@ $edad=($ano-$partes[0]);
 
         if (isset($_REQUEST['btnEnviar'])) {
         include_once '../Conexion/conexion.php';
-         $diagnostico = $_REQUEST['diagnostico'];
-         $tipoconsul = $_REQUEST['tipocon'];
-         $amenorrea = $_REQUEST['fecha_ame'];
+         $familiares = $_REQUEST['familiares'];
+          $personales = $_REQUEST['personales'];
+           $obstetricos = $_REQUEST['obstetricos'];
+           $examenes = $_REQUEST['examenes'];
+            $diagnostico = $_REQUEST['diagnostico'];
+       //  $tipoconsul = $_REQUEST['tipocon'];
+         $amenorrea = $_REQUEST['fecha_amenorrea'];
          $talla = $_REQUEST['talla'];
          $peso = $_REQUEST['peso'];
          $temp = $_REQUEST['temp'];
          $presion = $_REQUEST['presion'];
          $pulso = $_REQUEST['pulso'];
+
+         $altura = $_REQUEST['altura'];
+         $frecuencia = $_REQUEST['frecuencia'];
+         $movimientos = $_REQUEST['movimientos'];
 
          $guantes = $_REQUEST['guantes'];
          $paletas = $_REQUEST['paletas'];
@@ -558,9 +533,20 @@ $edad=($ano-$partes[0]);
                 while ($fila = mysqli_fetch_array($sacar)) {
                       $enfermeria=$fila['id_enfermeria']; 
                     }
-            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','$tipoconsul')");
 
-            
+                     mysqli_query($conexion, "INSERT INTO t_enfermeria_fetal(fet_dfcf,fet_cactividad_fetal,fet_daltura_uterina) VALUES('$frecuencia','$movimientos','$altura')");
+          $sacar1 = mysqli_query($conexion,"SELECT id_enfermeria_fetal FROM t_enfermeria_fetal ORDER by id_enfermeria_fetal DESC LIMIT 1");
+                while ($fila1 = mysqli_fetch_array($sacar1)) {
+                      $enfermeria_fetal = $fila1['id_enfermeria_fetal']; 
+                    }
+
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,fk_enfermeria_fetal,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi','$enfermeria','$enfermeria_fetal','$y1-$m1-$d1','$diagnostico','$amenorrea','Control Prenatal')");
+		   $sacar2 = mysqli_query($conexion,"SELECT idconsulta FROM t_consulta ORDER by idconsulta DESC LIMIT 1");
+                while ($fila2 = mysqli_fetch_array($sacar2)) {
+                      $consulta = $fila2['idconsulta']; 
+                    }
+
+            mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_cantecedentes_personales,pre_cantecedentes_familiares,pre_ccirugias_previas,pre_cantecedentes_obstetricos,pre_ffecha_parto,pre_ctipo_riesgo) VALUES('$consulta','$personales','$familiares','si','$obstetricos','2018-12-20','Control Prenatal')");
 
                 Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
