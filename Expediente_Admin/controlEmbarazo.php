@@ -47,15 +47,16 @@
             var dia = values[2];
             var mes = values[1];
             var ano = values[0];
+            var fecha_anterior = ano.concat("-"+mes).concat("-"+dia);
 
             // cogemos los valores actuales
             var fecha_hoy = new Date();
-            var ahora_ano = fecha_hoy.getYear();
+            var ahora_ano = fecha_hoy.getFullYear();
             var ahora_mes = fecha_hoy.getMonth() + 1;
             var ahora_dia = fecha_hoy.getDate();
-
+            var fecha_ahora = ahora_ano+"-"+ahora_mes+"-"+ahora_dia;
             // realizamos el calculo
-            var edad = (ahora_ano + 1900) - ano;
+          /*  var edad = (ahora_ano + 1900) - ano;
             if (ahora_mes < mes)
             {
                 edad--;
@@ -87,8 +88,15 @@
                 ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
                 dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
             }
-            //document.f1.inp.disabled=true;
-            document.regForm.fech_ame.value = edad;
+            //document.f1.inp.disabled=true;*/
+                        var fecha1 = moment(fecha_anterior);
+var fecha2 = moment(fecha_ahora);
+
+
+
+var fechas=(fecha2.diff(fecha1, 'week'));
+
+            document.regForm.fech_ame.value = fechas;
 
             if (edad <= 17) {
                 document.f1.dui.disabled = true;
