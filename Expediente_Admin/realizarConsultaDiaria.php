@@ -9,7 +9,7 @@
                         <div class="container-fluid" >
                   <div class="card" style="background: rgba(0,101,191,0.6)">
                   <div class="card-body wizard-content">
-                           <h3 class="card-title" style="color: white" align="center">Consulta Ginecológica</h3>
+                           <h3 class="card-title" style="color: white" align="center">Consulta General</h3>
                            </br>
 </br>
                           <form id="regForm" action="" method="post">
@@ -58,19 +58,19 @@ $edad=($ano-$partes[0]);
                                             ?>                             
                                        
                                         <label style="color: white" >Paciente: <small class="text-muted"></small></label> <div>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="<?php echo $nom . " " . $ape; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:black" type="text" name="nombre" id="fnamep" placeholder="Ingrese nombre" autocomplete="off" value="<?php echo $nom . " " . $ape; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
                                         </div> 
                                     </div>  
                                     <div class="col-md-2">
                                     
                                         <label style="color: white" >Edad: <small class="text-muted"></small></label><div>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $edad." años"; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="6">  
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:black" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $edad." años"; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="6">  
                                         </div> 
                                     </div> 
                                     <div class="col-md-6">
                                     
                                         <label style="color: white" >Alergias: <small class="text-muted"></small></label><div>
-                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $alergias; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
+                                            <input style="background: rgba(0, 101, 191,0); border: 0; color:black" type="text" name="nombre" id="fnamep" autocomplete="off" value="<?php echo $alergias; ?>" required onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" readonly="readonly" size="30">  
                                         </div> 
                                     </div> 
                                 </div>
@@ -82,9 +82,18 @@ $edad=($ano-$partes[0]);
   <!-- One "tab" for each step in the form: -->
    <div class="tab">
     <div class="row">
-          <div class="col-md-5" style="align: center">
+          <div class="col-md-5">
       
- 
+      <label style="color: white">Tipo de Consulta:<small class="text-muted"></small></label>
+      <div class="input-group"><select class="custom-select" name="tipocon" style="width: 100%; height:36px;">
+                                        <option>Seleccionar</option>
+                                        <option value="Consulta General">Consulta general</option>
+                                        <option value="Control de Embarazo">Control de embarazo</option>
+                                    </select>
+                                         </div> 
+                                        </div>
+                                              <div class="col-md-5">
+      
       <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fnamep" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame" >       
                                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
@@ -143,19 +152,6 @@ $edad=($ano-$partes[0]);
                                       </div>
                   </div>
     </div>
-
-  <div class="tab"><h5 class="card-title" style="color: white">Enfermedades y Afecciones</h5>
-
-                                        <div class="col-md-12">
-                                        <label style="color: white">Síntomas y Diagnóstico: <small class="text-muted"></small></label>
-                                        <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
-                                            </div>
-                                        </div> 
-                                    </div> 
-  </div>
 
   <div class="tab"> <h5 class="card-title" style="color: white">Registro de Insumos</h5>
 
@@ -224,6 +220,34 @@ $edad=($ano-$partes[0]);
     </div>
   </div>
 
+  <div class="tab"><h5 class="card-title" style="color: white">Enfermedades y Afecciones</h5>
+
+                                        <div class="col-md-12">
+                                        <label style="color: white">Síntomas y Diagnóstico: <small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div> 
+  </div>
+
+  <div class="tab">
+        <div class="row" align="center">
+                                    <div class="col-md-12">
+                                                 <div class="row mb-7" style="float: right; margin-right: 300px; margin-top: 15px;">
+                                                  <button type="button" id="su" name="recetas" >Recetas</button>
+                                                  </div>
+                                            <div class="row mb-7" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                              <button type="button" id="su" name="examenes" >Examenes</button>
+                                              </div>
+                                               <div class="row mb-7" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                              <button type="button" id="su" name="referencias" >Referencias</button>
+                                              </div>
+                                    </div>
+                                       </div>
+  </div>
 </br>
 </br>
   <div style="overflow:auto;">
@@ -430,7 +454,7 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
 }
   
   
-mysqli_query($conexion,"UPDATE t_llegada SET estado=2 WHERE fk_expediente='$modi'");
+mysqli_query($conexion,"UPDATE t_llegada SET estado=0 WHERE fk_expediente='$modi'");
 
                        echo '<script>swal({
                         title: "Registro",
@@ -440,7 +464,7 @@ mysqli_query($conexion,"UPDATE t_llegada SET estado=2 WHERE fk_expediente='$modi
                         closeOnConfirm: false
                     },
                     function () {
-                        location.href="../Expediente_Admin/cont_consulta.php";
+                        location.href="../Expediente_Admin/verCola.php";
                         
                     });</script>';
             
