@@ -47,7 +47,7 @@
                         <li class="sidebar-item"><a href="../Registros/Existencias.php" class="sidebar-link"><i class="fas fa-arrows-alt-v"></i><span class="hide-menu">Inventario de Insumos</span></a></li>
                         
 
-                        <li class="sidebar-item"><a href="#" class="sidebar-link"><i class="far fa-file"></i><span class="hide-menu">Reporte</span></a></li>
+                        <li class="sidebar-item"><a href="../pdf/reporteInsumo.php" class="sidebar-link"><i class="far fa-file"></i><span class="hide-menu">Reporte</span></a></li>
                     </ul>
                 </li>
 
