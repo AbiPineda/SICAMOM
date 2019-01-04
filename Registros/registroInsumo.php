@@ -120,6 +120,25 @@ while ($row = mysqli_fetch_array($usuario)) {
                                          
                                         
                                     </div>
+                                    <div class="col-lg-4">
+                                         <label style="padding-top: 12px; color: white" >Categoria<small class="text-muted"></small></label>
+                                         <select class="custom-select" name="categoria" id="categoria" style="width: 100%; height:36px;">
+                                        <?php
+                                        include_once '../Conexion/conexion.php';
+                                        $pro = mysqli_query($conexion, "SELECT*from t_categoria_insumo");
+                                        ?>
+                                        <option>Seleccione:</option>
+                                        <?php
+                                        while ($row = mysqli_fetch_array($pro)) {
+                                               $prove = $row['idcategoria'];
+                                            echo '<option value=' . "$row[0]" . '>' . $row[1] . '</option>';
+                                        }
+                                       
+                                        ?>
+                                    </select>
+                                         
+                                        
+                                    </div>
                                     <br>
                                     <label style="color: white">*Observación: El botón "Guardar" se habilitará hasta que todos los campos sean completados</label>
                                     <div class="col-lg-12">
@@ -155,32 +174,14 @@ while ($row = mysqli_fetch_array($usuario)) {
     $unidad = $_REQUEST['unidad'];
     $minimo = $_REQUEST['minimo'];
     $tInsumo = $_REQUEST['tipoInsumo'];
-//    $caducidad = $_REQUEST['tipoCaducidad'];
-    
-//    if ($caducidad == '0') {
-//        $fecha = date('Y-m-d', strtotime($_REQUEST['fecha']));
-//    } else {
-//        $fecha = '0000-00-00';
-//    }
-//    // $partes = explode('-', $fecha);
-//    // $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
+    $categoria = $_REQUEST['categoria'];
+
     $esta = 1;
-    //$numero = rand(100,1000);
-    //$codigo1 = (strtoupper((substr($nombre, 0, 3))) . $numero); 
-    // $anio = date("y");
+   
 
+    
+    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo,presentacion,unidad,minimo,tipo,id_categoria) VALUES('$nombre','$marca','$descripcion','$esta','$codigo','$presentacion','$unidad','$minimo','$tInsumo','$categoria')");
 
-    Conexion::abrir_conexion();
-    $conexionx = Conexion::obtener_conexion();
-
-    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo,presentacion,unidad,minimo,tipo) VALUES('$nombre','$marca','$descripcion','$esta','$codigo','$presentacion','$unidad','$minimo','$tInsumo')");
-//    $insumo = mysqli_query($conexion, "SELECT*FROM t_insumo ORDER BY ins_codigo DESC LIMIT 1");
-//    while ($row = mysqli_fetch_array($insumo)) {
-//        $id = $row['ins_codigo'];
-//        $paquete = $_REQUEST['paquete'];
-//        $unidad = $_REQUEST['unidad'];
-//    }
-//    mysqli_query($conexion, "INSERT INTO detalle_insumo(fk_insumo,unidad,paquete) VALUES('$id','$unidad','$paquete')");
     echo '<script>swal({
                     title: "Exito",
                     text: "Insumo Guardado!",
@@ -200,8 +201,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                 . " VALUES('$id','$NombreUsuario','Registro de Insumo Médico',now(),'$hora')");
         //bitacora  
 
-    //  $sentencia = $conexionx->prepare($sql);
-    //$usuario_insertado = $sentencia->execute();
+  
 } 
             include_once '../plantilla/pie.php';
           ?>
