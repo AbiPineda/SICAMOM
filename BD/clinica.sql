@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-01-2019 a las 22:33:12
+-- Tiempo de generación: 04-01-2019 a las 23:22:36
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 5.6.39
 
@@ -35,13 +35,6 @@ CREATE TABLE `inventario_unidades` (
   `tipo` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `inventario_unidades`
---
-
-INSERT INTO `inventario_unidades` (`idInventario_Unidades`, `fk_inventarioGeneral`, `decremento`, `tipo`) VALUES
-(1, 11, 125, 'Paletas');
-
 -- --------------------------------------------------------
 
 --
@@ -56,6 +49,14 @@ CREATE TABLE `t_bitacora` (
   `bit_ffecha` date DEFAULT NULL,
   `bit_hhora` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `t_bitacora`
+--
+
+INSERT INTO `t_bitacora` (`id_bitacora`, `fk_usuario`, `bit_cusuario`, `bit_cactividad`, `bit_ffecha`, `bit_hhora`) VALUES
+(6, 1, 'CarolinaMo', 'Registro de Insumo MÃ©dico', '2019-01-04', '16:19:19'),
+(7, 1, 'CarolinaMo', 'Registro de Proveedor', '2019-01-04', '16:22:09');
 
 -- --------------------------------------------------------
 
@@ -90,15 +91,6 @@ CREATE TABLE `t_compra` (
   `reduccion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `t_compra`
---
-
-INSERT INTO `t_compra` (`id_compra`, `fk_proveedor`, `fk_insumo`, `fecha_caducidad`, `precio_unitario`, `cantidad`, `total`, `fecha_actual`, `factura`, `subtotal`, `codigo`, `estado`, `reduccion`) VALUES
-(23, 2, 9, '2019-01-17', 12.55, 2, NULL, '2018-12-17', '10', 25.1, NULL, 'Finalizado', 2),
-(24, 2, 10, '2019-01-30', 2.55, 3, NULL, '2018-12-17', '15', 7.65, NULL, 'Finalizado', 2),
-(25, 2, 11, '2019-01-29', 4.6, 3, NULL, '2018-12-17', '16', 13.8, NULL, 'Finalizado', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -132,15 +124,6 @@ CREATE TABLE `t_devolucion` (
   `razon` varchar(100) NOT NULL,
   `tipoDevolucion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `t_devolucion`
---
-
-INSERT INTO `t_devolucion` (`id_devolucion`, `fk_compra`, `devolver`, `razon`, `tipoDevolucion`) VALUES
-(1, 23, 1, 'DaÃ±ado', ''),
-(3, 24, 1, 'Incompleto', ''),
-(4, 24, 1, 'Incompleto', '');
 
 -- --------------------------------------------------------
 
@@ -233,17 +216,8 @@ CREATE TABLE `t_insumo` (
   `unidad` int(11) DEFAULT NULL,
   `minimo` int(11) DEFAULT NULL,
   `tipo` varchar(25) NOT NULL,
-  `id_categoria` int(10) NOT NULL
+  `categoria` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `t_insumo`
---
-
-INSERT INTO `t_insumo` (`ins_codigo`, `ins_cnombre_comercial`, `ins_cmarca`, `ins_cdescripcion`, `estado`, `codigo`, `presentacion`, `unidad`, `minimo`, `tipo`, `id_categoria`) VALUES
-(9, 'Torundas', 'Dalex', 'Bolitas de algodon', 1, 'TOR315', 'Bolsa', 100, 2, 'Contable', 0),
-(10, 'Paletas', 'Linsi', 'de madera pequena', 1, 'PAL603', 'Cajas', 75, 3, 'Contable', 0),
-(11, 'Paletas', 'Aux', 'de madera grande', 1, 'PAL202', 'Cajas', 50, 3, 'Contable', 0);
 
 -- --------------------------------------------------------
 
@@ -259,15 +233,6 @@ CREATE TABLE `t_inventario` (
   `insumo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `t_inventario`
---
-
-INSERT INTO `t_inventario` (`id_inventario`, `fk_compra`, `inv_ecantidad_actual`, `stock`, `insumo`) VALUES
-(10, 23, 1, NULL, 9),
-(11, 24, 1, NULL, 10),
-(12, 25, 2, NULL, 11);
-
 -- --------------------------------------------------------
 
 --
@@ -279,21 +244,6 @@ CREATE TABLE `t_llegada` (
   `fk_expediente` int(11) NOT NULL,
   `lleg_ffecha_atiende` date DEFAULT NULL,
   `estado` varchar(12) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `t_medicamentos`
---
-
-CREATE TABLE `t_medicamentos` (
-  `id_medicamentos` int(11) NOT NULL,
-  `fk_consulta` int(11) NOT NULL,
-  `med_cnombre` varchar(25) DEFAULT NULL,
-  `med_claboratorio` varchar(25) DEFAULT NULL,
-  `med_cdosis` varchar(25) DEFAULT NULL,
-  `med_cduracion` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -345,6 +295,14 @@ CREATE TABLE `t_paciente` (
   `pac_ffecha_nac` date DEFAULT NULL,
   `estado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `t_paciente`
+--
+
+INSERT INTO `t_paciente` (`id_paciente`, `pac_cnombre`, `pac_capellidos`, `pac_cdui`, `pac_ctelefono`, `pac_ffecha_nac`, `estado`) VALUES
+(1, 'Carmen Alicia', 'Najarro', '23123231-2', '2345-4343', '1990-04-23', 1),
+(2, 'Casey Alexandra', 'Mejia Ponce', '', '', '2015-03-30', 1);
 
 -- --------------------------------------------------------
 
@@ -411,7 +369,7 @@ CREATE TABLE `t_proveedor` (
 --
 
 INSERT INTO `t_proveedor` (`id_proveedor`, `pro_cnombre_empresa`, `pro_cnombre_responsable`, `pro_cdireccion`, `pro_ctelefono`, `estado`, `justificacion`) VALUES
-(2, 'Laboratorios Lopez', 'Jose Omar Arevalo ', 'San Vicente', '23412311 ', 1, NULL);
+(1, 'Medicad', 'Lorenzo Turcios', 'col san benito san salvador', '2345-6543', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -428,6 +386,13 @@ CREATE TABLE `t_responsable` (
   `res_ctelefono` varchar(9) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `t_responsable`
+--
+
+INSERT INTO `t_responsable` (`idresponsable`, `t_paciente`, `res_cnombre`, `res_capellidos`, `res_cdui`, `res_ctelefono`, `estado`) VALUES
+(1, 2, 'Beatriz', 'Ponce', '23234343-4', '2344-5435', 1);
 
 -- --------------------------------------------------------
 
@@ -446,21 +411,12 @@ CREATE TABLE `t_usuario` (
   `estado` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `t_vacunacion`
+-- Volcado de datos para la tabla `t_usuario`
 --
 
-CREATE TABLE `t_vacunacion` (
-  `id_vacunacion` int(11) NOT NULL,
-  `fk_consulta` int(11) NOT NULL,
-  `vac_ctipo_vacuna` varchar(25) DEFAULT NULL,
-  `vac_cnombre` varchar(25) DEFAULT NULL,
-  `vac_cperiodo` varchar(25) DEFAULT NULL,
-  `vac_cdosis` varchar(25) DEFAULT NULL,
-  `vac_ccomentario` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `t_usuario` (`id_usuario`, `usu_cnombre`, `usu_capellido`, `usu_ccorreo`, `usu_cusuario`, `usu_ccontrasena`, `usu_ctipo_usuario`, `estado`) VALUES
+(1, 'Carolina Evelyn', 'Montalvo de Monteneg', 'caromontalvo@gmail.com', 'CarolinaMo', 'montenegro', 'Administrador', 1);
 
 --
 -- Índices para tablas volcadas
@@ -548,7 +504,7 @@ ALTER TABLE `t_familiar`
 --
 ALTER TABLE `t_insumo`
   ADD PRIMARY KEY (`ins_codigo`),
-  ADD KEY `idcategoria` (`id_categoria`);
+  ADD KEY `fk_t_insumo_t_categoria_insumo1_idx` (`categoria`);
 
 --
 -- Indices de la tabla `t_inventario`
@@ -564,13 +520,6 @@ ALTER TABLE `t_inventario`
 ALTER TABLE `t_llegada`
   ADD PRIMARY KEY (`id_llegada`),
   ADD KEY `fk_t_llegada_t_expediente` (`fk_expediente`);
-
---
--- Indices de la tabla `t_medicamentos`
---
-ALTER TABLE `t_medicamentos`
-  ADD PRIMARY KEY (`id_medicamentos`),
-  ADD KEY `fk_t_medicamentos_t_consulta1_idx` (`fk_consulta`);
 
 --
 -- Indices de la tabla `t_medico`
@@ -627,13 +576,6 @@ ALTER TABLE `t_usuario`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
--- Indices de la tabla `t_vacunacion`
---
-ALTER TABLE `t_vacunacion`
-  ADD PRIMARY KEY (`id_vacunacion`),
-  ADD KEY `fk_t_vacunacion_t_consulta1_idx` (`fk_consulta`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -641,13 +583,13 @@ ALTER TABLE `t_vacunacion`
 -- AUTO_INCREMENT de la tabla `inventario_unidades`
 --
 ALTER TABLE `inventario_unidades`
-  MODIFY `idInventario_Unidades` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idInventario_Unidades` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `t_bitacora`
 --
 ALTER TABLE `t_bitacora`
-  MODIFY `id_bitacora` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `t_categoria_insumo`
@@ -659,7 +601,7 @@ ALTER TABLE `t_categoria_insumo`
 -- AUTO_INCREMENT de la tabla `t_compra`
 --
 ALTER TABLE `t_compra`
-  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `t_consulta`
@@ -671,7 +613,7 @@ ALTER TABLE `t_consulta`
 -- AUTO_INCREMENT de la tabla `t_devolucion`
 --
 ALTER TABLE `t_devolucion`
-  MODIFY `id_devolucion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_devolucion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `t_enfermeria`
@@ -707,25 +649,19 @@ ALTER TABLE `t_familiar`
 -- AUTO_INCREMENT de la tabla `t_insumo`
 --
 ALTER TABLE `t_insumo`
-  MODIFY `ins_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ins_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `t_inventario`
 --
 ALTER TABLE `t_inventario`
-  MODIFY `id_inventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_inventario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `t_llegada`
 --
 ALTER TABLE `t_llegada`
   MODIFY `id_llegada` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `t_medicamentos`
---
-ALTER TABLE `t_medicamentos`
-  MODIFY `id_medicamentos` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `t_medico`
@@ -743,7 +679,7 @@ ALTER TABLE `t_obstetricos`
 -- AUTO_INCREMENT de la tabla `t_paciente`
 --
 ALTER TABLE `t_paciente`
-  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `t_personales`
@@ -761,25 +697,19 @@ ALTER TABLE `t_prenatal`
 -- AUTO_INCREMENT de la tabla `t_proveedor`
 --
 ALTER TABLE `t_proveedor`
-  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `t_responsable`
 --
 ALTER TABLE `t_responsable`
-  MODIFY `idresponsable` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idresponsable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `t_usuario`
 --
 ALTER TABLE `t_usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `t_vacunacion`
---
-ALTER TABLE `t_vacunacion`
-  MODIFY `id_vacunacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -837,6 +767,12 @@ ALTER TABLE `t_expediente`
   ADD CONSTRAINT `fk_t_expediente_t_paciente1` FOREIGN KEY (`fk_paciente`) REFERENCES `t_paciente` (`id_paciente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `t_insumo`
+--
+ALTER TABLE `t_insumo`
+  ADD CONSTRAINT `fk_t_insumo_t_categoria_insumo1` FOREIGN KEY (`categoria`) REFERENCES `t_categoria_insumo` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `t_inventario`
 --
 ALTER TABLE `t_inventario`
@@ -848,12 +784,6 @@ ALTER TABLE `t_inventario`
 --
 ALTER TABLE `t_llegada`
   ADD CONSTRAINT `fk_t_llegada_t_expediente` FOREIGN KEY (`fk_expediente`) REFERENCES `t_expediente` (`id_expediente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `t_medicamentos`
---
-ALTER TABLE `t_medicamentos`
-  ADD CONSTRAINT `fk_t_medicamentos_t_consulta1` FOREIGN KEY (`fk_consulta`) REFERENCES `t_consulta` (`idconsulta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `t_medico`
@@ -875,12 +805,6 @@ ALTER TABLE `t_prenatal`
 --
 ALTER TABLE `t_responsable`
   ADD CONSTRAINT `fk_t_responsable_t_paciente1` FOREIGN KEY (`t_paciente`) REFERENCES `t_paciente` (`id_paciente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `t_vacunacion`
---
-ALTER TABLE `t_vacunacion`
-  ADD CONSTRAINT `fk_t_vacunacion_t_consulta1` FOREIGN KEY (`fk_consulta`) REFERENCES `t_consulta` (`idconsulta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

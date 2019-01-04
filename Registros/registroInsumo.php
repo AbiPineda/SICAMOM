@@ -291,7 +291,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                 }
             }
         </script>
-
+ 
         <script>
             function sinCaracterEspecial(e) {
                 tecla = (document.all) ? e.keyCode : e.which;
