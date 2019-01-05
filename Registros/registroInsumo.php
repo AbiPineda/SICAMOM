@@ -33,7 +33,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                   <div class="col-md-9 col-md-push-3">
                     <h3 class="card-title" style="color: white">Registro de Insumos | Datos generales</h3></div>
                   <div class="col-md-3 col-md-pull-9">
-                      <a href='#' data-toggle='modal' data-target='#confirm-imagen'><button type='button' title='Ver Foto' class='btn btn-success'>Modal</button></a>
+                      <a href='#' data-toggle='modal' data-target='#confirm-imagen'><button type='button' title='Ver Foto' class='btn btn-info'>Registrar Categoria</button></a>
                     </div>
 
                      <!-- MODAL -->
@@ -42,19 +42,29 @@ while ($row = mysqli_fetch_array($usuario)) {
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title" id="myModalLabel"><font font font font color="black">Modal.</font></h3> 
+                    <h3 class="modal-title" id="myModalLabel"><font font font font color="black"></font></h3> 
                 </div>
+             <form id="formAdd" method="POST" action="registroInsumo.php">
+                <div class="col-lg-16" align="center">
+                                        <label style="color: black">Nueva Categoria<small class="text-muted" ></small></label>   
+                                         <div class="input-group" align="center"><input type="text"class="form-control" id="nombreCa"  required name="nombreCa" placeholder="Digite nombre de categoria" autocomplete="off" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fas fa-notes-medical"></i></span>
+                                        </div>
+                                        </div>
+                                                                             
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-16" align="center">
+                                        <input type="submit" class="btn btn-info" value="Registrar" name="btnRegistrar">
 
-                <div class="panel-body" name="imagenRecuperada" id="imagenRecuperada">
-                        
-                                       
+                                    </div>
+                                    <br>
 
-                </div>
+                                </form>   
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning pull-right" data-dismiss="modal">Cerrar</button>
-                    
-                </div> 
+               
+                
             </div>
         </div> 
     </div>
@@ -235,8 +245,21 @@ while ($row = mysqli_fetch_array($usuario)) {
 
   
 } 
+
+
+
             include_once '../plantilla/pie.php';
           ?>
+
+
+          <?php 
+          if (isset($_REQUEST['btnRegistrar'])) {
+    include_once '../Conexion/conexion.php';
+    $nombreCa = $_REQUEST['nombreCa'];
+    
+    mysqli_query($conexion, "INSERT INTO t_categoria_insumo(nombreCategoria) VALUES('$nombreCa')");  
+} 
+           ?>
         <script type="text/javascript">
             /**
              * Funcion que devuelve true o false dependiendo de si la fecha es correcta.
