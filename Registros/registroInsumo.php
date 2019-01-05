@@ -28,7 +28,39 @@ while ($row = mysqli_fetch_array($usuario)) {
 
 
                 <div class="card-body wizard-content">
-                    <h3 class="card-title" style="color: white">Registro de Insumos | Datos generales</h3>
+                    
+                        <div class="row">
+                  <div class="col-md-9 col-md-push-3">
+                    <h3 class="card-title" style="color: white">Registro de Insumos | Datos generales</h3></div>
+                  <div class="col-md-3 col-md-pull-9">
+                      <a href='#' data-toggle='modal' data-target='#confirm-imagen'><button type='button' title='Ver Foto' class='btn btn-success'>Modal</button></a>
+                    </div>
+
+                     <!-- MODAL -->
+  <div class="modal fade" id="confirm-imagen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title" id="myModalLabel"><font font font font color="black">Modal.</font></h3> 
+                </div>
+
+                <div class="panel-body" name="imagenRecuperada" id="imagenRecuperada">
+                        
+                                       
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning pull-right" data-dismiss="modal">Cerrar</button>
+                    
+                </div> 
+            </div>
+        </div> 
+    </div>
+</div>
+
+
                     <form id="example-form" action="" class="m-t-40" method="POST" autocomplete="off">
                         <div>
                             <section>
