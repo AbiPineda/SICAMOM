@@ -5,6 +5,7 @@
          $modi = $_GET['ir'];
           ?>
           <script src="http://momentjs.com/downloads/moment.min.js"></script>
+          <link href="../css/check.css" rel="stylesheet">
  <script type="text/javascript">
     /**
      * Funcion que devuelve true o false dependiendo de si la fecha es correcta.
@@ -184,10 +185,92 @@ $edad=($ano-$partes[0]);
                                     </div>
                                       </div>  
           </div>
-   <div class="tab"><h5 class="card-title" style="color: white">Antecedentes</h5>
-  	<div class="row">                  
-                      <div class="col-md-12">
-                                        <label style="color: white">Familiares: <small class="text-muted"></small></label>
+   <div class="tab"><h4 class="card-title" style="color: white">ANTECEDENTES</h4>
+  	<div class="row">      
+    <div class="col-md-4">                 
+<h5 class="card-title" style="color:white">FAMILIARES</h5>
+  <label class="container1" >TBC
+  <input type="checkbox">
+   <span class="checkmark"></span>
+</label>
+<label class="container1">Diabetes
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+<label class="container1">Hipertensión 
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+<label class="container1">Preeclampsia 
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+  <label class="container1" >Eclampsia
+  <input type="checkbox">
+   <span class="checkmark"></span>
+</label>
+</div>
+<div class="col-md-1"> 
+	</div>
+ <div class="col-md-7">  
+ <div class="row">               
+<h5 class="card-title" style="color:white; align:center">PERSONALES</h5>
+</div>
+<div class="row">
+<div class="col-md-6">  
+  <label class="container1" >TBC
+  <input type="checkbox">
+   <span class="checkmark"></span>
+</label>
+<label class="container1">Diabetes
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+<label class="container1">Hipertensión 
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+<label class="container1">Preeclampsia 
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+  <label class="container1" >Eclampsia
+  <input type="checkbox">
+   <span class="checkmark"></span>
+</label>
+</div>
+<div class="col-md-6">                 
+  <label class="container1" >Cirugua Genito-Urinaria 
+  <input type="checkbox">
+   <span class="checkmark"></span>
+</label>
+<label class="container1">Infertibilidad 
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+<label class="container1">Cardiopatia 
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+<label class="container1">Nefropatía 
+  <input type="checkbox">
+  <span class="checkmark"></span>
+</label>
+  <label class="container1" >Violencia 
+  <input type="checkbox">
+   <span class="checkmark"></span>
+</label>
+ <label class="container1" >VIH+ 
+  <input type="checkbox">
+   <span class="checkmark"></span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="row"> 
+                <div class="col-md-4">
+                                        <label style="color: white">Otra condición médica grave: <small class="text-muted"></small></label>
                                         <div class="input-group">
                                              <textarea class="form-control" rows="3" name="familiares"></textarea> 
                                             <div class="input-group-append">
@@ -195,10 +278,10 @@ $edad=($ano-$partes[0]);
                                             </div>
                                         </div> 
                                     </div> 
-                                </div>
-                                <div class="row">                  
-                      <div class="col-md-12">
-                                        <label style="color: white">Personales: <small class="text-muted"></small></label>
+                                  <div class="col-md-1">
+                                  </div>
+                                <div class="col-md-5">
+                                        <label style="color: white">Otra condición médica grave: <small class="text-muted"></small></label>
                                         <div class="input-group">
                                              <textarea class="form-control" rows="3" name="personales"></textarea> 
                                             <div class="input-group-append">
@@ -206,18 +289,7 @@ $edad=($ano-$partes[0]);
                                             </div>
                                         </div> 
                                     </div> 
-                                </div>
-                                  	<div class="row">                  
-                      <div class="col-md-12">
-                                        <label style="color: white">Obstétricos: <small class="text-muted"></small></label>
-                                        <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="obstetricos"></textarea> 
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
-                                            </div>
-                                        </div> 
-                                    </div> 
-                                </div>
+</div>
                        </div>
     <div class="tab">
       <h5 class="card-title" style="color: white">Registro de Signos Vitales</h5>
