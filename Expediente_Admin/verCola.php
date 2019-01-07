@@ -19,6 +19,7 @@ include_once '../Conexion/conexion.php';
                        </div>
 
 <div class="col-lg-12">
+  <!--GUANTES-->
    <?php
    $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
    if (mysqli_num_rows($validarguantes)>0) {
@@ -31,17 +32,17 @@ include_once '../Conexion/conexion.php';
  <?php
  if($guantes_dec>10){
  ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-success" name="" id="su"  value="Guantes existencia:<?php echo $guantes_dec;?>"  ></div>
+          <input type="button" class="btn btn-success" name="" id="su"  value="Guantes:<?php echo $guantes_dec;?>"  ></div>
   <?php }else{?>
     <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-warning" name="" id="su"  value="Guantes existencia: <?php echo $guantes_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Guantes: <?php echo $guantes_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
-
+<!--BAJA LENGUA-->
    <?php
-   $validarpaletas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Paletas'");
+   $validarpaletas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Baja Lengua'");
    if (mysqli_num_rows($validarpaletas)>0) {
-      $sacar2 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Paletas'");
+      $sacar2 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Baja Lengua'");
                 while ($fila2 = mysqli_fetch_array($sacar2)) {
                       $paletas_dec=$fila2['decremento'];
                     } 
@@ -50,12 +51,14 @@ include_once '../Conexion/conexion.php';
  <?php
  if($paletas_dec>10){
  ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-success" name="" id="su"  value="Paletas existencia:<?php echo $paletas_dec;?>"  ></div>
+          <input type="button" class="btn btn-success" name="" id="su"  value="Baja Lengua:<?php echo $paletas_dec;?>"  ></div>
   <?php }else{?>
     <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-warning" name="" id="su"  value="Paletas existencia: <?php echo $paletas_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Baja Lengua: <?php echo $paletas_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
+
+<!--ALGODON-->
   <?php
   $validaralgodon = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Algodon'");
    if (mysqli_num_rows($validaralgodon)>0) {
@@ -67,13 +70,13 @@ include_once '../Conexion/conexion.php';
  <?php
  if($algodon_dec>10){
  ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-success" name="" id="su"  value="Algodón existencia:<?php echo $algodon_dec;?>"  ></div>
+          <input type="button" class="btn btn-success" name="" id="su"  value="Algodón:<?php echo $algodon_dec;?>"  ></div>
   <?php }else{?>
     <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-warning" name="" id="su"  value="Algodón existencia: <?php echo $algodon_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Algodón: <?php echo $algodon_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
-
+<!--PAPEL-->
   <?php
    $validarpapel = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel'");
    if (mysqli_num_rows($validarpapel)>0) {
@@ -86,17 +89,17 @@ include_once '../Conexion/conexion.php';
  <?php
  if($papel_dec>10){
  ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-success" name="" id="su"  value="Papel de Cama existencia:<?php echo $papel_dec;?>"  ></div>
+          <input type="button" class="btn btn-success" name="" id="su"  value="Papel de Cama:<?php echo $papel_dec;?>"  ></div>
   <?php }else{?>
     <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-warning" name="" id="su"  value="Papel de Cama existencia: <?php echo $papel_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Papel de Cama: <?php echo $papel_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
-
+<!--HISOPOS-->
   <?php
-   $validarisopo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
+   $validarisopo = mysqli_query($conexion,"SELECT t_categoria_insumo.nombreCategoria, inventario_unidades.decremento FROM inventario_unidades INNER JOIN t_categoria_insumo ON inventario_unidades.categoria = t_categoria_insumo.idcategoria WHERE t_categoria_insumo.idcategoria=3");
    if (mysqli_num_rows($validarisopo)>0) {
-      $sacar5 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
+      $sacar5 = mysqli_query($conexion,"SELECT t_categoria_insumo.nombreCategoria, inventario_unidades.decremento FROM inventario_unidades INNER JOIN t_categoria_insumo ON inventario_unidades.categoria = t_categoria_insumo.idcategoria WHERE t_categoria_insumo.idcategoria=3");
                 while ($fila5 = mysqli_fetch_array($sacar5)) {
                       $isopo_dec=$fila5['decremento'];
                     } 
@@ -105,12 +108,13 @@ include_once '../Conexion/conexion.php';
  <?php
  if($isopo_dec>10){
  ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-success" name="" id="su"  value="Isopos existencia:<?php echo $isopo_dec;?>"  ></div>
+          <input type="button" class="btn btn-success" name="" id="su"  value="Isopos:<?php echo $isopo_dec;?>"  ></div>
   <?php }else{?>
     <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-warning" name="" id="su"  value="Isopos existencia: <?php echo $isopo_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Isopos: <?php echo $isopo_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
+<!--JERINGAS-->
   <?php
    $validarjeringas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Jeringa'");
    if (mysqli_num_rows($validarjeringas)>0) {
@@ -123,12 +127,133 @@ include_once '../Conexion/conexion.php';
  <?php
  if($jeringa_dec>10){
  ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-success" name="" id="su"  value="Jeringas existencia:<?php echo $jeringa_dec;?>"  ></div>
+          <input type="button" class="btn btn-success" name="" id="su"  value="Jeringas:<?php echo $jeringa_dec;?>"  ></div>
   <?php }else{?>
     <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-warning" name="" id="su"  value="Jeringas existencia: <?php echo $jeringa_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Jeringas: <?php echo $jeringa_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
+<!--CURITAS-->
+  <?php
+   $validarcuritas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Curitas'");
+   if (mysqli_num_rows($validarcuritas)>0) {
+      $sacar7 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Curitas'");
+                while ($fila7 = mysqli_fetch_array($sacar7)) {
+                      $curitas_dec=$fila7['decremento'];
+                    } 
+
+ ?>   
+ <?php
+ if($curitas_dec>10){
+ ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-success" name="" id="su"  value="Curitas:<?php echo $curitas_dec;?>"  ></div>
+  <?php }else{?>
+    <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Curitas: <?php echo $curitas_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+  <?php }
+}?>
+
+<!--GASAS-->
+  <?php
+   $validargasas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Gasa'");
+   if (mysqli_num_rows($validargasas)>0) {
+      $sacar8 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Gasa'");
+                while ($fila8 = mysqli_fetch_array($sacar8)) {
+                      $gasas_dec=$fila8['decremento'];
+                    } 
+
+ ?>   
+ <?php
+ if($gasas_dec>10){
+ ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-success" name="" id="su"  value="Gasas:<?php echo $gasas_dec;?>"  ></div>
+  <?php }else{?>
+    <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Gasas: <?php echo $gasas_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+  <?php }
+}?>
+
+<!--ESPECULO-->
+  <?php
+   $validarespeculo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Especulo'");
+   if (mysqli_num_rows($validarespeculo)>0) {
+      $sacar9 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Especulo'");
+                while ($fila9 = mysqli_fetch_array($sacar9)) {
+                      $especulo_dec=$fila9['decremento'];
+                    } 
+
+ ?>   
+ <?php
+ if($especulo_dec>10){
+ ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-success" name="" id="su"  value="Especulos:<?php echo $especulo_dec;?>"  ></div>
+  <?php }else{?>
+    <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Especulos: <?php echo $especulo_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+  <?php }
+}?>
+
+<!--MASCARILLAS-->
+  <?php
+   $validarmascarilla = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Mascarilla'");
+   if (mysqli_num_rows($validarmascarilla)>0) {
+      $sacar10 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Mascarilla'");
+                while ($fila10 = mysqli_fetch_array($sacar10)) {
+                      $mascarilla_dec=$fila10['decremento'];
+                    } 
+
+ ?>   
+ <?php
+ if($mascarilla_dec>10){
+ ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-success" name="" id="su"  value="Mascarillas:<?php echo $mascarilla_dec;?>"  ></div>
+  <?php }else{?>
+    <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Mascarillas: <?php echo $mascarilla_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+  <?php }
+}?>
+
+<!--AGUJAS-->
+  <?php
+   $validaraguja = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Aguja'");
+   if (mysqli_num_rows($validaraguja)>0) {
+      $sacar11 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Aguja'");
+                while ($fila11 = mysqli_fetch_array($sacar11)) {
+                      $aguja_dec=$fila11['decremento'];
+                    } 
+
+ ?>   
+ <?php
+ if($aguja_dec>10){
+ ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-success" name="" id="su"  value="Agujas:<?php echo $aguja_dec;?>"  ></div>
+  <?php }else{?>
+    <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Agujas: <?php echo $aguja_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+  <?php }
+}?>
+
+<!--FOTOGRAFICO-->
+  <?php
+   $validarfotografico = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
+   if (mysqli_num_rows($validarfotografico)>0) {
+      $sacar12 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
+                while ($fila12 = mysqli_fetch_array($sacar12)) {
+                      $fotografico_dec=$fila12['decremento'];
+                    } 
+
+ ?>   
+ <?php
+ if($fotografico_dec>10){
+ ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-success" name="" id="su"  value="Papel Fotográfico:<?php echo $fotografico_dec;?>"  ></div>
+  <?php }else{?>
+    <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Papel Fotográfico: <?php echo $fotografico_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+  <?php }
+}?>
+
+
 
                                     </div>   
 

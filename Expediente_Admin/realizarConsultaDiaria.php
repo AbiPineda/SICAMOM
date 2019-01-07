@@ -156,6 +156,7 @@ $edad=($ano-$partes[0]);
   <div class="tab"> <h5 class="card-title" style="color: white">Registro de Insumos</h5>
 
     <div class="row">
+                                <!--Guantes-->
                                           <div class="col-md-2">
                                           <label style="color: white">Guantes:  <small class="text-muted"></small></label>
                                           <div class="input-group">
@@ -165,9 +166,9 @@ $edad=($ano-$partes[0]);
                                             </div>
                                                                                 </div> 
                                     </div>
-                                   
+                                   <!--BAJA LENGUA-->
                                     <div class="col-md-2">
-                                        <label style="color: white">Paletas:<small class="text-muted"></small></label>                          
+                                        <label style="color: white">Baja Lengua:<small class="text-muted"></small></label>                          
                                         <div class="input-group">   
                                          <input type="number" min="0" class="form-control" id="lname" name="paletas" placeholder="0" value="" >
                                             <div class="input-group-append">
@@ -175,7 +176,7 @@ $edad=($ano-$partes[0]);
                                             </div>
                                        </div> 
                                     </div>
-                         
+                         <!--ALGODON-->
                                     <div class="col-md-2">
                                          <label style="color: white">Algodón:<small class="text-muted"></small></label>
                                         <div class="input-group">      
@@ -185,10 +186,11 @@ $edad=($ano-$partes[0]);
                                             </div>
                                         </div> 
                                     </div>
+                                    <!--PAPEL-->
 
                                     <div class="col-md-2">
                                         
-                                        <label style="color: white">Papel:<small class="text-muted"></small></label>
+                                        <label style="color: white">Papel de Cama:<small class="text-muted"></small></label>
                                         <div class="input-group">       
                                           <input type="number" min="0" class="form-control" id="lname" name="papel" placeholder="0" value="" >
                                                <div class="input-group-append">
@@ -197,9 +199,10 @@ $edad=($ano-$partes[0]);
                                         </div> 
                                     </div>
                             
+                            <!--HISOPOS-->
                                     <div class="col-md-2">
                                         
-                                        <label style="color: white">Isopo:<small class="text-muted"></small></label>
+                                        <label style="color: white">Hisopos:<small class="text-muted"></small></label>
                                         <div class="input-group">      
                                           <input type="number" min="0" class="form-control" id="lname" name="isopo" placeholder="0" value="" >
                                               <div class="input-group-append">
@@ -207,7 +210,8 @@ $edad=($ano-$partes[0]);
                                             </div>
                                                                                 </div> 
                                     </div>
-                                                                        <div class="col-md-2">
+                                      <!--JERINGAS-->
+                                      <div class="col-md-2">
                                         
                                         <label style="color: white">Jeringas:<small class="text-muted"></small></label>
                                          <div class="input-group">     
@@ -216,6 +220,78 @@ $edad=($ano-$partes[0]);
                                                 <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
                                             </div>
                                                                                </div> 
+                                    </div>
+
+                                    <!--CURITAS-->
+                                    <div class="col-md-2">
+                                        
+                                        <label style="color: white">Curitas:<small class="text-muted"></small></label>
+                                         <div class="input-group">     
+                                          <input type="number" min="0" class="form-control" id="lname" name="curitas" placeholder="0" value="" >
+                                              <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <!--Gasas-->
+                                    <div class="col-md-2">
+                                        
+                                        <label style="color: white">Gasas:<small class="text-muted"></small></label>
+                                         <div class="input-group">     
+                                          <input type="number" min="0" class="form-control" id="lname" name="gasas" placeholder="0" value="" >
+                                              <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <!--Especulo-->
+                                    <div class="col-md-2">
+                                        
+                                        <label style="color: white">Espéculo Vaginal:<small class="text-muted"></small></label>
+                                         <div class="input-group">     
+                                          <input type="number" min="0" class="form-control" id="lname" name="especulo" placeholder="0" value="" >
+                                              <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <!--Mascarillas-->
+                                    <div class="col-md-2">
+                                        
+                                        <label style="color: white">Mascarillas:<small class="text-muted"></small></label>
+                                         <div class="input-group">     
+                                          <input type="number" min="0" class="form-control" id="lname" name="mascarillas" placeholder="0" value="" >
+                                              <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <!--Agujas-->
+                                    <div class="col-md-2">
+                                        
+                                        <label style="color: white">Agujas:<small class="text-muted"></small></label>
+                                         <div class="input-group">     
+                                          <input type="number" min="0" class="form-control" id="lname" name="agujas" placeholder="0" value="" >
+                                              <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <!--Papel Fotográfico-->
+                                    <div class="col-md-2">
+                                        
+                                        <label style="color: white">Papel Fotográfico:<small class="text-muted"></small></label>
+                                         <div class="input-group">     
+                                          <input type="number" min="0" class="form-control" id="lname" name="fotografico" placeholder="0" value="" >
+                                              <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                                            </div>
+                                        </div> 
                                     </div>
     </div>
   </div>
@@ -371,12 +447,21 @@ $edad=($ano-$partes[0]);
          $presion = $_REQUEST['presion'];
          $pulso = $_REQUEST['pulso'];
 
+         //insumos medicos a decrementar
+
          $guantes = $_REQUEST['guantes'];
          $paletas = $_REQUEST['paletas'];
          $algodon = $_REQUEST['algodon'];
          $papel = $_REQUEST['papel'];
          $isopo = $_REQUEST['isopo'];
          $jeringa = $_REQUEST['jeringas'];
+
+         $curitas = $_REQUEST['curitas'];
+         $gasas = $_REQUEST['gasas'];
+         $especulo = $_REQUEST['especulo'];
+         $mascarillas = $_REQUEST['mascarillas'];
+         $agujas = $_REQUEST['agujas'];
+         $fotografico = $_REQUEST['fotografico'];
          
          
 
@@ -392,6 +477,7 @@ $edad=($ano-$partes[0]);
                 Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
 
+///GUANTES
 $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
    if (mysqli_num_rows($validarguantes)>0) {
      $sacar1 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
@@ -401,17 +487,17 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                       $desc_guantes=$guantes_dec-$guantes; 
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_guantes' WHERE tipo='Guantes'");
   }
-//////////////////
-   $validarpaletas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Paletas'");
+///BAJA LENGUA
+   $validarpaletas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Baja Lengua'");
    if (mysqli_num_rows($validarpaletas)>0) {
-     $sacar2 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Paletas'");
+     $sacar2 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Baja Lengua'");
                 while ($fila2 = mysqli_fetch_array($sacar2)) {
                       $paletas_dec=$fila2['decremento'];
                     }
                       $desc_paletas=$paletas_dec-$paletas; 
- mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_paletas' WHERE tipo='Paletas'");
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_paletas' WHERE tipo='Baja Lengua'");
   }
-///////////////*/
+///ALGODON
   $validaralgodon = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Algodon'");
    if (mysqli_num_rows($validaralgodon)>0) {
  $sacar3 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Algodon'");
@@ -422,7 +508,7 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
    mysqli_query($conexion, "UPDATE inventario_unidades SET decremento='$desc_algodon' WHERE tipo='Algodon'");
   
 }
-/////////////
+///PAPEL DE CAMA
    $validarpapel = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel'");
    if (mysqli_num_rows($validarpapel)>0) {
      $sacar4 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel'");
@@ -432,17 +518,18 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                       $desc_papel=$papel_dec-$papel; 
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_papel' WHERE tipo='Papel'");
   }
-
-   $validarisopo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
+///HISOPOS
+   $validarisopo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Hisopos'");
    if (mysqli_num_rows($validarisopo)>0) {
-    $sacar5 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Isopos'");
+    $sacar5 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Hisopos'");
                 while ($fila5 = mysqli_fetch_array($sacar5)) {
                       $isopo_dec=$fila5['decremento'];
                     }
                       $desc_isopo=$isopo_dec-$isopo; 
-   mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_isopo' WHERE tipo='Isopos'");
+   mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_isopo' WHERE tipo='Hisopos'");
   }
 
+///JERINGAS
   $validarjeringas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Jeringa'");
    if (mysqli_num_rows($validarjeringas)>0) {
     $sacar6 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Jeringa'");
@@ -451,6 +538,72 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                     }
                       $desc_jeringa=$jeringa_dec-$jeringa; 
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_jeringa' WHERE tipo='Jeringa'");
+}
+
+///CURITAS
+  $validarcuritas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Curitas'");
+   if (mysqli_num_rows($validarcuritas)>0) {
+    $sacar7 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Curitas'");
+                while ($fila7 = mysqli_fetch_array($sacar7)) {
+                      $curitas_dec=$fila7['decremento'];
+                    }
+                      $desc_curitas=$curitas_dec-$curitas; 
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_curitas' WHERE tipo='Curitas'");
+}
+
+///GASAS
+  $validargasas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Gasa'");
+   if (mysqli_num_rows($validargasas)>0) {
+    $sacar8 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Gasa'");
+                while ($fila8 = mysqli_fetch_array($sacar8)) {
+                      $gasas_dec=$fila8['decremento'];
+                    }
+                      $desc_gasas=$gasas_dec-$gasas; 
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_gasas' WHERE tipo='Gasa'");
+}
+
+///ESPECULO
+  $validarespeculo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Especulo'");
+   if (mysqli_num_rows($validarespeculo)>0) {
+    $sacar9 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Especulo'");
+                while ($fila9 = mysqli_fetch_array($sacar9)) {
+                      $especulo_dec=$fila9['decremento'];
+                    }
+                      $desc_especulo=$especulo_dec-$especulo; 
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_especulo' WHERE tipo='Especulo'");
+}
+
+///MASCARILLAS
+  $validarmascarilla = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Mascarilla'");
+   if (mysqli_num_rows($validarmascarilla)>0) {
+    $sacar10 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Mascarilla'");
+                while ($fila10 = mysqli_fetch_array($sacar10)) {
+                      $mascarilla_dec=$fila10['decremento'];
+                    }
+                      $desc_mascarilla=$mascarilla_dec-$mascarillas; 
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_mascarilla' WHERE tipo='Mascarilla'");
+}
+
+///AGUJAS
+  $validaraguja = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Aguja'");
+   if (mysqli_num_rows($validaraguja)>0) {
+    $sacar11 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Aguja'");
+                while ($fila11 = mysqli_fetch_array($sacar11)) {
+                      $aguja_dec=$fila11['decremento'];
+                    }
+                      $desc_aguja=$aguja_dec-$agujas; 
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_aguja' WHERE tipo='Aguja'");
+}
+
+///PAPEL FOTOGRAFICO
+  $validarfotografico = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
+   if (mysqli_num_rows($validarfotografico)>0) {
+    $sacar12 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
+                while ($fila12 = mysqli_fetch_array($sacar12)) {
+                      $fotografico_dec=$fila12['decremento'];
+                    }
+                      $desc_fotografico=$fotografico_dec-$fotografico; 
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_fotografico' WHERE tipo='Papel Fotografico'");
 }
   
   

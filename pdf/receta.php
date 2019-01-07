@@ -7,7 +7,11 @@
      
      $fecha_actual=date("d/m/Y");                              
 
-	
+		
+        $sacar = mysqli_query($conexion, "SELECT * from receta");
+           
+ 
+
 	
 	
 	$pdf = new PDF();
@@ -25,15 +29,25 @@
 			$pdf->Cell(210,5, utf8_decode('TEL: 2352-5461  CEL: 7083-6625'),0,1,'C');
 
 			$pdf->Ln(5);
-			$pdf->Cell(100,5, utf8_decode('Paciente:___________________________________________________'),0,1,'L');
+			$pdf->Cell(100,5, utf8_decode('Paciente:'),0,1,'L');
+			while ($fila = mysqli_fetch_array($sacar)) {
+                 $id=$fila['idreceta'];
+                 $nom=$fila['paciente'];  
+                 
+                 $pdf->Ln(0.5);
+                 $pdf->Cell(30,5, utf8_decode($fila['paciente']),0,0,'C');
+                
+                                     
+	}
+
 			$pdf->Cell(100,12, utf8_decode('Médico:'),0,1,'L');
 
 			while ($fila = mysqli_fetch_array($sacar1)) {
                  $id=$fila['idMedico'];
                  $nom=$fila['med_cnombre'];  
                  $apellido=$fila['med_capellidos'];
-                 $pdf->Ln(-8.5);
-                 $pdf->Cell(35,5, utf8_decode($fila['med_cnombre']),0,0,'C');
+                 $pdf->Ln(0.5);
+                 $pdf->Cell(30,5, utf8_decode($fila['med_cnombre']),0,0,'C');
                  $pdf->Cell(1);
                  $pdf->Cell(-18,5, utf8_decode($fila['med_capellidos']),0,0,'C');                        
 	}
