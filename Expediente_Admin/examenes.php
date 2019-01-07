@@ -82,87 +82,88 @@ $edad=($ano-$partes[0]);
     <div class="col-md-3">                 
 <h5 class="card-title" style="color:white">HEMATOLOGIA</h5>
   <label class="container1" >Hemograma
-  <input type="checkbox" name="hematologia[]" value="Hemograma">
+  <input type="checkbox" name="hemograma" value="Hemograma">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Htc. y Hb.
-  <input type="checkbox" name="hematologia[]" value="Htc">
+  <input type="checkbox" name="htc" value="Htc">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Leucograma
-  <input type="checkbox" name="hematologia[]" value="Leucograma">
+  <input type="checkbox" name="leuco" value="Leucograma">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Plaquetas
-  <input type="checkbox" name="hematologia[]" value="Plaquetas">
+  <input type="checkbox" name="plaquetas" value="Plaquetas">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >Reticulocitos
-  <input type="checkbox" name="hematologia[]" value="Reticulocitos">
+  <input type="checkbox" name="reti" value="Reticulocitos">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Frotis Sangre Periférica
-  <input type="checkbox" name="hematologia[]" value="Frotis Sangre Periférica">
+  <input type="checkbox" name="frotis" value="Frotis Sangre Periferica">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Eritrosedimentación 
-  <input type="checkbox" name="hematologia[]" value="Eritrosedimentación">
+  <input type="checkbox" name="eritro" value="Eritrosedimentacion">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Celulas L.E.
-  <input type="checkbox" name="hematologia[]" value="Celulas L.E.">
+  <input type="checkbox" name="cel_le" value="Celulas L.E.">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >Celulas Falciformes
-  <input type="checkbox" name="hematologia[]" value="Celulas Falciformes">
+  <input type="checkbox" name="cel_falci" value="Celulas Falciformes">
    <span class="checkmark"></span>
 </label>
-<label class="container1">Recuento Eosinofilos Nasal
-  <input type="checkbox" name="hematologia[]" value="Recuento Eosinofilos Nasal ">
-  <span class="checkmark"></span>
-</label>
 <label class="container1">Recuento Eosinofilos en Sangre
-  <input type="checkbox" name="hematologia[]" value="Recuento Eosinofilos en Sangre ">
+  <input type="checkbox" name="recu_sangre" value="Recuento Eosinofilos en Sangre ">
   <span class="checkmark"></span>
 </label>
+<label class="container1">Recuento Eosinofilos Nasal
+  <input type="checkbox" name="recu_nasal" value="Recuento Eosinofilos Nasal ">
+  <span class="checkmark"></span>
+</label>
+
 <label class="container1">Tiempo Sangramiento
-  <input type="checkbox" name="hematologia[]" value="Tiempo Sangramiento ">
+  <input type="checkbox" name="sangramiento" value="Tiempo Sangramiento ">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >Retracción de Coágulo
-  <input type="checkbox" name="hematologia[]" value="Retracción de Coágulo ">
+  <input type="checkbox" name="coagulo" value="Retracción de Coágulo ">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Tiempo de Protrombina
-  <input type="checkbox" name="hematologia[]" value="Tiempo de Protrombina ">
+  <input type="checkbox" name="protrombina" value="Tiempo de Protrombina ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Tiempo de Trombina
-  <input type="checkbox" name="hematologia[]" value="Tiempo de Trombina ">
+  <input type="checkbox" name="trombina" value="Tiempo de Trombina ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Tiempo Parcial de Tromboplastina
-  <input type="checkbox" name="hematologia[]" value="Tiempo Parcial de Tromboplastina ">
+  <input type="checkbox" name="tromboplastina" value="Tiempo Parcial de Tromboplastina ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Tiempo de Coagulación 
-  <input type="checkbox" name="hematologia[]" value="Tiempo de Coagulación ">
+  <input type="checkbox" name="coagulacion" value="Tiempo de Coagulacion ">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >Fibrinógeno
-  <input type="checkbox" name="hematologia[]" value="Fibrinógeno ">
+  <input type="checkbox" name="fibrinogeno" value="Fibrinogeno ">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Grupo y RH.
-  <input type="checkbox" name="hematologia[]" value="Grupo y RH. ">
+  <input type="checkbox" name="rh" value="Grupo y RH. ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Prueba Cruzada 
-  <input type="checkbox" name="hematologia[]" value="Prueba Cruzada  ">
+  <input type="checkbox" name="p_cruzada" value="Prueba Cruzada  ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Prueba de Coombs Directo e Indirecto
-  <input type="checkbox" name="hematologia[]" value="Prueba de Coombs Directo e Indirecto">
+  <input type="checkbox" name="coombs" value="Prueba de Coombs Directo e Indirecto">
   <span class="checkmark"></span>
 </label>
 </br>
@@ -588,11 +589,33 @@ $edad=($ano-$partes[0]);
                                          while ($fila = mysqli_fetch_array($sacar)) {
                                             $consulta = $fila['idconsulta'];
                                           
-$checkBox = implode(',', $_POST['hematologia']);
+//$hematologia = implode(',', $_POST['hematologia']);
+$hemo = $_POST['hemograma'];
+$htc= $_POST['htc'];
+$leuco = $_POST['leuco'];
+$plaquetas = $_POST['plaquetas'];
+$reti = $_POST['reti'];
+$frotis = $_POST['frotis'];
+$eritro = $_POST['eritro'];
+$cel_le = $_POST['cel_le'];
+$cel_falci = $_POST['cel_falci'];
+$recu_nasal = $_POST['recu_nasal'];
+$recu_sangre = $_POST['recu_sangre'];
+$sangramiento = $_POST['sangramiento'];
+$coagulo = $_POST['coagulo'];
+$protrombina = $_POST['protrombina'];
+$trombina = $_POST['trombina'];
+$tromboplastina = $_POST['tromboplastina'];
+$coagulacion = $_POST['coagulacion'];
+$fibrinogeno = $_POST['fibrinogeno'];
+$rh = $_POST['rh'];
+$p_cruzada = $_POST['p_cruzada'];
+$coombs = $_POST['coombs'];
+
+$hematologia = $hemo.','.$htc.','.$leuco.','.$plaquetas.','.$reti.','.$frotis.','.$eritro.','.$cel_le.','.$cel_falci.','.$recu_sangre.','.$recu_nasal.','.$sangramiento.','.$coagulo.','.$protrombina.','.$trombina.','.$tromboplastina.','.$coagulacion.','.$fibrinogeno.','.$rh.','.$p_cruzada.','.$coombs; 
 
 
-     
-    mysqli_query($conexion,"INSERT INTO t_examenes(fk_consulta,exa_ctipo) VALUES ('$consulta','" . $checkBox . "')");     
+    mysqli_query($conexion,"INSERT INTO t_examenes(fk_consulta,hematologia) VALUES ('$consulta','$hematologia')");     
    echo '<script>swal({
                         title: "Registro",
                         text: "Guardado!",

@@ -167,6 +167,58 @@ $edad=($ano-$partes[0]);
           <div class="col-md-5" style="align: center">
       <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label>
       <div class="input-group">
+        <?php 
+        include_once '../Conexion/conexion.php';
+        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar'");
+        if (mysqli_num_rows($noMostrar)>0) { 
+           $Mostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar'");
+           while ($x=mysqli_fetch_array($Mostrar)) {
+             # code...
+            $fecha=$x['con_fecha_amenorrea'];
+           }
+
+           $x=explode("-",$fecha);
+           $anos=$x[0];
+           $mes=$x[1];
+           $dia=$x[2];
+
+           $actual=date('Y-m-d');
+
+           $x1=explode("-",$actual);
+           $anosx=$x1[0];
+           $mesx=$x1[1];
+           $diax=$x1[2];
+
+           $datetime1 = new DateTime($fecha);
+            $datetime2 = new DateTime($actual);
+            $interval = $datetime1->diff($datetime2);
+          
+
+
+          ?>
+
+           <input type="date" name="fecha_amenorrea" value="<?php echo $fecha; ?>" class="form-control" id="fecha_amenorrea" max="2018-12-22" min="1947-01-02" onChange="javascript:calcularEdad();" disabled>                                  <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                            </div> 
+                                        </div>
+<div class="col-md-2"> 
+</div>
+                                          <div class="col-md-5">                             
+                                        <label style="color: white" >Edad Gestacional (Semanas): <small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                          <input name="fech_ame" value="<?php   echo floor(($interval->format('%a') / 7)) . ' semanas con '
+                 . ($interval->format('%a') % 7) . ' días'; ?>" id="fech_ame" class="form-control" disabled >    
+                                           <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        </div> 
+                                    </div>
+
+
+
+
+       <?php }else{ ?>
       <input type="date" name="fecha_amenorrea" class="form-control" id="fecha_amenorrea" max="2018-12-22" min="1947-01-02" onChange="javascript:calcularEdad();">                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -183,30 +235,40 @@ $edad=($ano-$partes[0]);
                                         </div>
                                         </div> 
                                     </div>
+<?php } ?>
                                       </div>  
           </div>
-   <div class="tab"><h4 class="card-title" style="color: white">ANTECEDENTES</h4>
+<div class="tab"><h4 class="card-title" style="color: white">ANTECEDENTES</h4>
+          <?php 
+         
+          $val = mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
+                if (mysqli_num_rows($val)>0) {
+  
+          ?>
+aqui ponga una imagen
+          <?php }else{?>
+   
   	<div class="row">      
     <div class="col-md-4">                 
 <h5 class="card-title" style="color:white">FAMILIARES</h5>
   <label class="container1" >TBC
-  <input type="checkbox">
+  <input type="checkbox" name="familiares[]" value="TBC">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Diabetes
-  <input type="checkbox">
+  <input type="checkbox" name="familiares[]" value="Diabetes">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Hipertensión 
-  <input type="checkbox">
+  <input type="checkbox" name="familiares[]" value="Hipertension">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Preeclampsia 
-  <input type="checkbox">
+  <input type="checkbox" name="familiares[]" value="Preeclampsia">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >Eclampsia
-  <input type="checkbox">
+  <input type="checkbox" name="familiares[]" value="Eclampsia">
    <span class="checkmark"></span>
 </label>
 </div>
@@ -219,49 +281,49 @@ $edad=($ano-$partes[0]);
 <div class="row">
 <div class="col-md-6">  
   <label class="container1" >TBC
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="TBC">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Diabetes
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="Diabetes">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Hipertensión 
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="Hipertension">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Preeclampsia 
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="Preeclampsia">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >Eclampsia
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="Eclampsia">
    <span class="checkmark"></span>
 </label>
 </div>
 <div class="col-md-6">                 
-  <label class="container1" >Cirugua Genito-Urinaria 
-  <input type="checkbox">
+  <label class="container1" >Cirugia Genito-Urinaria 
+  <input type="checkbox" name="personales[]" value="Cirugia Genito-Uninaria">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Infertibilidad 
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="Infertibilidad">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Cardiopatia 
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="Cardiopatia">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Nefropatía 
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="Nefropatia">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >Violencia 
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="Violencia">
    <span class="checkmark"></span>
 </label>
  <label class="container1" >VIH+ 
-  <input type="checkbox">
+  <input type="checkbox" name="personales[]" value="VIH+">
    <span class="checkmark"></span>
 </label>
 </div>
@@ -272,7 +334,7 @@ $edad=($ano-$partes[0]);
                 <div class="col-md-4">
                                         <label style="color: white">Otra condición médica grave: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="familiares"></textarea> 
+                                             <textarea class="form-control" rows="3" name="otra_familiares"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -283,13 +345,14 @@ $edad=($ano-$partes[0]);
                                 <div class="col-md-5">
                                         <label style="color: white">Otra condición médica grave: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="personales"></textarea> 
+                                             <textarea class="form-control" rows="3" name="otra_personales"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
                                         </div> 
                                     </div> 
 </div>
+<?php }?>
                        </div>
     <div class="tab">
       <h5 class="card-title" style="color: white">Registro de Signos Vitales</h5>
@@ -574,8 +637,8 @@ $edad=($ano-$partes[0]);
 
         if (isset($_REQUEST['btnEnviar'])) {
         include_once '../Conexion/conexion.php';
-         $familiares = $_REQUEST['familiares'];
-          $personales = $_REQUEST['personales'];
+        $otra_familiares = $_REQUEST['otra_familiares'];
+         $otra_personales = $_REQUEST['otra_personales'];
            $obstetricos = $_REQUEST['obstetricos'];
            $examenes = $_REQUEST['examenes'];
             $diagnostico = $_REQUEST['diagnostico'];
@@ -599,6 +662,9 @@ $edad=($ano-$partes[0]);
          $jeringa = $_REQUEST['jeringas'];
          
          
+$familiares = implode(',', $_POST['familiares']);
+$personales = implode(',', $_POST['personales']);
+//'" . $hematologia . "'
 
           mysqli_query($conexion, "INSERT INTO t_enfermeria(enf_destatura,enf_dpeso,enf_dtempetarura,enf_cpresion,enf_cpulso) VALUES('$talla','$peso','$temp','$presion','$pulso')");
           $sacar = mysqli_query($conexion,"SELECT id_enfermeria FROM t_enfermeria ORDER by id_enfermeria DESC LIMIT 1");
@@ -611,14 +677,45 @@ $edad=($ano-$partes[0]);
                 while ($fila1 = mysqli_fetch_array($sacar1)) {
                       $enfermeria_fetal = $fila1['id_enfermeria_fetal']; 
                     }
+//0000000========
+                     $existe= mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
+                     if (mysqli_num_rows($existe)>0) {
+                    
+                     }else{
+                      mysqli_query($conexion, "INSERT INTO t_familiar(familiar,condGrave) VALUES('" . $familiares . "','$otra_familiares')");
 
-            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,fk_enfermeria_fetal,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta) VALUES('$modi','$enfermeria','$enfermeria_fetal','$y1-$m1-$d1','$diagnostico','$amenorrea','Control Prenatal')");
-		   $sacar2 = mysqli_query($conexion,"SELECT idconsulta FROM t_consulta ORDER by idconsulta DESC LIMIT 1");
+                        mysqli_query($conexion, "INSERT INTO t_personales(personal,condGrave) VALUES('" . $personales . "','$otra_personales')");
+
+                     }
+                     
+          $sacar2 = mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
                 while ($fila2 = mysqli_fetch_array($sacar2)) {
-                      $consulta = $fila2['idconsulta']; 
+                      $familiar_id = $fila2['idfamiliar']; 
                     }
 
-            mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_cantecedentes_personales,pre_cantecedentes_familiares,pre_ccirugias_previas,pre_cantecedentes_obstetricos,pre_ffecha_parto,pre_ctipo_riesgo) VALUES('$consulta','$personales','$familiares','si','$obstetricos','2018-12-20','Control Prenatal')");
+
+          $sacar3 = mysqli_query($conexion,"SELECT idpersonal FROM t_personales ORDER by idpersonal DESC LIMIT 1");
+                while ($fila3 = mysqli_fetch_array($sacar3)) {
+                      $personal_id = $fila3['idpersonal']; 
+                    }
+
+  ///consulta
+        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar'");
+        if (mysqli_num_rows($noMostrar)>0){
+ mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,enfermeria_fetal) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$enfermeria_fetal')");
+
+         }else{         
+
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,enfermeria_fetal) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','Control Prenatal','$enfermeria_fetal')");
+		   }
+
+       $sacar4 = mysqli_query($conexion,"SELECT idconsulta FROM t_consulta ORDER by idconsulta DESC LIMIT 1");
+                while ($fila4 = mysqli_fetch_array($sacar4)) {
+                      $consulta = $fila4['idconsulta']; 
+                    }
+
+            mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_ccirugias_previas,pre_ffecha_parto,pre_ctipo_riesgo,fk_idfamiliar,fk_idpersonales,fk_idobstetricos)
+             VALUES('$consulta','si','2018-12-20','Control Prenatal','$familiar_id','$personal_id','1')");
 
                 Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
