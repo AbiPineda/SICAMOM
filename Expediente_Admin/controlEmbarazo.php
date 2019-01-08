@@ -717,7 +717,7 @@ $personales = implode(',', $_POST['personales']);
                     }
                     
 ///**************************consulta
-        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar'");
+        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazo'");
         if (mysqli_num_rows($noMostrar)>0){
  mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$enfermeria_fetal','embarazo')");
 
