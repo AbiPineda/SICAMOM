@@ -62,7 +62,9 @@ include_once '../Conexion/conexion.php';
             while ($fila = mysqli_fetch_array($sacar)) {
                  $modificar=$fila['id_compra']; 
                  $numF=$fila['factura'];
-                 $fec=$fila['fecha_actual'];  
+                 $fec=$fila['fecha_actual']; 
+                 $partes=explode('-', $fec);
+                 $fecha="{$partes[2]} - {$partes[1]} - {$partes[0]}";
                   
                  
               
@@ -70,7 +72,7 @@ include_once '../Conexion/conexion.php';
       <tr>
        
         <td data-title="Released"><?php echo $numF;?></td>
-        <td data-title="Releaseda"><?php echo $fec;?></td>
+        <td data-title="Releaseda"><?php echo $fecha;?></td>
       
         
         <td class="text"><a href="../Consultas/darDevolucion.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Devolucion</a>

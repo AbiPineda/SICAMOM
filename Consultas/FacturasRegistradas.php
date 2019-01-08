@@ -63,13 +63,15 @@ include_once '../Conexion/conexion.php';
             while ($fila = mysqli_fetch_array($sacar1)) {
                 
                 $factura=$fila['factura'];  
-                $fechCompra=$fila['fecha_actual'];  
+                $fechCompra=$fila['fecha_actual'];
+                $partes=explode('-', $fechCompra);
+                $fecha="{$partes[2]} - {$partes[1]} - {$partes[0]}";  
                 
         ?> 
         <tr>
                 
                 <th scope="row"><?php echo $factura; ?></th>
-                <td data-title="Released"><?php echo $fechCompra; ?></td>
+                <td data-title="Released"><?php echo $fecha; ?></td>
                 <td class="text"><a href="../Consultas/modalFactura.php" class="btn btn-success fas fa-eye"> Detalle</a>
 
                 </td>
