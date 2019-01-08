@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-01-2019 a las 03:29:27
+-- Tiempo de generación: 08-01-2019 a las 05:34:48
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 5.6.39
 
@@ -124,7 +124,8 @@ INSERT INTO `t_bitacora` (`id_bitacora`, `fk_usuario`, `bit_cusuario`, `bit_cact
 (35, 1, 'CarolinaMo', 'Registro de Insumo MÃ©dico', '2019-01-07', '15:30:42'),
 (36, 1, 'CarolinaMo', 'Se guardaron datos de una nueva compra|', '2019-01-07', '15:31:25'),
 (37, 1, 'CarolinaMo', 'Registro de Insumo MÃ©dico', '2019-01-07', '15:42:56'),
-(38, 1, 'CarolinaMo', 'Se guardaron datos de una nueva compra|', '2019-01-07', '15:43:30');
+(38, 1, 'CarolinaMo', 'Se guardaron datos de una nueva compra|', '2019-01-07', '15:43:30'),
+(39, 1, 'CarolinaMo', 'Registro de Paciente', '2019-01-07', '21:45:54');
 
 -- --------------------------------------------------------
 
@@ -206,16 +207,17 @@ CREATE TABLE `t_consulta` (
   `con_fecha_amenorrea` date DEFAULT NULL,
   `con_ctipo_consulta` varchar(45) DEFAULT NULL,
   `con_resul_examen` varchar(100) DEFAULT NULL,
-  `enfermeria_fetal` int(10) DEFAULT NULL
+  `enfermeria_fetal` int(10) DEFAULT NULL,
+  `estado` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `t_consulta`
 --
 
-INSERT INTO `t_consulta` (`idconsulta`, `fk_expediente`, `fk_enfermeria`, `con_fecha_atiende`, `con_diagnostico`, `con_ref_medica`, `con_cons_medica`, `con_receta`, `con_fecha_amenorrea`, `con_ctipo_consulta`, `con_resul_examen`, `enfermeria_fetal`) VALUES
-(1, 1, 1, '2019-01-04', 'dolor de cabeza', NULL, NULL, NULL, '2018-12-30', 'Consulta General', NULL, NULL),
-(2, 4, 4, '2019-01-07', 'dolor de cabeza', NULL, NULL, NULL, '2018-10-20', 'Consulta General', NULL, NULL);
+INSERT INTO `t_consulta` (`idconsulta`, `fk_expediente`, `fk_enfermeria`, `con_fecha_atiende`, `con_diagnostico`, `con_ref_medica`, `con_cons_medica`, `con_receta`, `con_fecha_amenorrea`, `con_ctipo_consulta`, `con_resul_examen`, `enfermeria_fetal`, `estado`) VALUES
+(1, 1, 1, '2019-01-04', 'dolor de cabeza', NULL, NULL, NULL, '2018-12-30', 'Consulta General', NULL, NULL, NULL),
+(2, 4, 4, '2019-01-07', 'dolor de cabeza', NULL, NULL, NULL, '2018-10-20', 'Consulta General', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -314,7 +316,8 @@ INSERT INTO `t_expediente` (`id_expediente`, `fk_medico`, `fk_paciente`, `codigo
 (2, 1, 1, 'NAJA724', '2019-01-04', 'ninguna'),
 (3, 1, 3, 'ALAS137', '2019-01-07', 'penicilina'),
 (4, 1, 4, 'CAMP442', '2019-01-07', 'acetaminofen'),
-(5, 1, 5, 'GAVI861', '2019-01-07', 'mefformina');
+(5, 1, 5, 'GAVI861', '2019-01-07', 'mefformina'),
+(6, 1, 6, 'HENR535', '2019-01-07', 'ninguna');
 
 -- --------------------------------------------------------
 
@@ -325,7 +328,8 @@ INSERT INTO `t_expediente` (`id_expediente`, `fk_medico`, `fk_paciente`, `codigo
 CREATE TABLE `t_familiar` (
   `idfamiliar` int(10) NOT NULL,
   `familiar` varchar(5) DEFAULT NULL,
-  `condGrave` varchar(50) DEFAULT NULL
+  `condGrave` varchar(50) DEFAULT NULL,
+  `fk_idprenatal` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -418,7 +422,8 @@ INSERT INTO `t_llegada` (`id_llegada`, `fk_expediente`, `lleg_ffecha_atiende`, `
 (2, 2, '2019-01-04', '2'),
 (3, 3, '2019-01-07', '2'),
 (4, 4, '2019-01-07', '0'),
-(5, 5, '2019-01-07', '1');
+(5, 5, '2019-01-07', '1'),
+(6, 6, '2019-01-07', '1');
 
 -- --------------------------------------------------------
 
@@ -458,7 +463,8 @@ CREATE TABLE `t_obstetricos` (
   `muerto` varchar(5) DEFAULT NULL,
   `planeado` varchar(5) DEFAULT NULL,
   `anticonceptivos` varchar(100) DEFAULT NULL,
-  `fechaEmbarazoAnterior` date DEFAULT NULL
+  `fechaEmbarazoAnterior` date DEFAULT NULL,
+  `fk_idprenatal` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -486,7 +492,8 @@ INSERT INTO `t_paciente` (`id_paciente`, `pac_cnombre`, `pac_capellidos`, `pac_c
 (2, 'Casey Alexandra', 'Mejia Ponce', '', '', '2015-03-30', 1),
 (3, 'Laura Maria', 'Alas Palacios', '31231232-1', '7823-1231', '1990-04-12', 1),
 (4, 'Josefina Judith', 'Campos Estrada', '65756754-5', '7854-6434', '1966-02-27', 1),
-(5, 'Suyapa Azucena', 'Gavidia Martinez', '34543534-5', '7456-4565', '1990-02-14', 1);
+(5, 'Suyapa Azucena', 'Gavidia Martinez', '34543534-5', '7456-4565', '1990-02-14', 1),
+(6, 'Deysi', 'Henriquez', '70707070-7', '5858-5858', '1967-03-18', 1);
 
 -- --------------------------------------------------------
 
@@ -497,7 +504,8 @@ INSERT INTO `t_paciente` (`id_paciente`, `pac_cnombre`, `pac_capellidos`, `pac_c
 CREATE TABLE `t_personales` (
   `idpersonal` int(10) NOT NULL,
   `personal` varchar(5) DEFAULT NULL,
-  `condGrave` varchar(50) DEFAULT NULL
+  `condGrave` varchar(50) DEFAULT NULL,
+  `fk_idprenatal` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -516,10 +524,7 @@ CREATE TABLE `t_prenatal` (
   `pre_cantecedentes_obstetricos` text,
   `pre_ffecha_parto` date DEFAULT NULL,
   `pre_ctipo_riesgo` text,
-  `pre_iultra` blob,
-  `fk_idfamiliar` int(10) NOT NULL,
-  `fk_idpersonales` int(10) NOT NULL,
-  `fk_idobstetricos` int(10) NOT NULL
+  `pre_iultra` blob
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -678,7 +683,8 @@ ALTER TABLE `t_expediente`
 -- Indices de la tabla `t_familiar`
 --
 ALTER TABLE `t_familiar`
-  ADD PRIMARY KEY (`idfamiliar`);
+  ADD PRIMARY KEY (`idfamiliar`),
+  ADD KEY `fk_idprenatal` (`fk_idprenatal`);
 
 --
 -- Indices de la tabla `t_insumo`
@@ -712,7 +718,8 @@ ALTER TABLE `t_medico`
 -- Indices de la tabla `t_obstetricos`
 --
 ALTER TABLE `t_obstetricos`
-  ADD PRIMARY KEY (`idobstetricos`);
+  ADD PRIMARY KEY (`idobstetricos`),
+  ADD KEY `fk_idprenata` (`fk_idprenatal`);
 
 --
 -- Indices de la tabla `t_paciente`
@@ -724,17 +731,15 @@ ALTER TABLE `t_paciente`
 -- Indices de la tabla `t_personales`
 --
 ALTER TABLE `t_personales`
-  ADD PRIMARY KEY (`idpersonal`);
+  ADD PRIMARY KEY (`idpersonal`),
+  ADD KEY `fk_prenatal` (`fk_idprenatal`);
 
 --
 -- Indices de la tabla `t_prenatal`
 --
 ALTER TABLE `t_prenatal`
   ADD PRIMARY KEY (`idprenatal`),
-  ADD KEY `fk_t_prenatal_t_consulta1_idx` (`fk_consulta`),
-  ADD KEY `fk_idfamiliar` (`fk_idfamiliar`),
-  ADD KEY `fk_idpersonales` (`fk_idpersonales`),
-  ADD KEY `fk_idobstetricos` (`fk_idobstetricos`);
+  ADD KEY `fk_t_prenatal_t_consulta1_idx` (`fk_consulta`);
 
 --
 -- Indices de la tabla `t_proveedor`
@@ -775,7 +780,7 @@ ALTER TABLE `receta`
 -- AUTO_INCREMENT de la tabla `t_bitacora`
 --
 ALTER TABLE `t_bitacora`
-  MODIFY `id_bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `t_categoria_insumo`
@@ -823,7 +828,7 @@ ALTER TABLE `t_examenes`
 -- AUTO_INCREMENT de la tabla `t_expediente`
 --
 ALTER TABLE `t_expediente`
-  MODIFY `id_expediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_expediente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `t_familiar`
@@ -847,7 +852,7 @@ ALTER TABLE `t_inventario`
 -- AUTO_INCREMENT de la tabla `t_llegada`
 --
 ALTER TABLE `t_llegada`
-  MODIFY `id_llegada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_llegada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `t_medico`
@@ -865,7 +870,7 @@ ALTER TABLE `t_obstetricos`
 -- AUTO_INCREMENT de la tabla `t_paciente`
 --
 ALTER TABLE `t_paciente`
-  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `t_personales`
@@ -949,6 +954,12 @@ ALTER TABLE `t_expediente`
   ADD CONSTRAINT `fk_t_expediente_t_paciente1` FOREIGN KEY (`fk_paciente`) REFERENCES `t_paciente` (`id_paciente`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `t_familiar`
+--
+ALTER TABLE `t_familiar`
+  ADD CONSTRAINT `fk_idprenatal` FOREIGN KEY (`fk_idprenatal`) REFERENCES `t_prenatal` (`idprenatal`);
+
+--
 -- Filtros para la tabla `t_inventario`
 --
 ALTER TABLE `t_inventario`
@@ -968,12 +979,21 @@ ALTER TABLE `t_medico`
   ADD CONSTRAINT `fk_t_medico_t_usuario1` FOREIGN KEY (`t_usuario`) REFERENCES `t_usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `t_obstetricos`
+--
+ALTER TABLE `t_obstetricos`
+  ADD CONSTRAINT `fk_idprenata` FOREIGN KEY (`fk_idprenatal`) REFERENCES `t_prenatal` (`idprenatal`);
+
+--
+-- Filtros para la tabla `t_personales`
+--
+ALTER TABLE `t_personales`
+  ADD CONSTRAINT `fk_prenatal` FOREIGN KEY (`fk_idprenatal`) REFERENCES `t_prenatal` (`idprenatal`);
+
+--
 -- Filtros para la tabla `t_prenatal`
 --
 ALTER TABLE `t_prenatal`
-  ADD CONSTRAINT `fk_idfamiliar` FOREIGN KEY (`fk_idfamiliar`) REFERENCES `t_familiar` (`idfamiliar`),
-  ADD CONSTRAINT `fk_idobstetricos` FOREIGN KEY (`fk_idobstetricos`) REFERENCES `t_obstetricos` (`idobstetricos`),
-  ADD CONSTRAINT `fk_idpersonales` FOREIGN KEY (`fk_idpersonales`) REFERENCES `t_personales` (`idpersonal`),
   ADD CONSTRAINT `fk_t_prenatal_t_consulta1` FOREIGN KEY (`fk_consulta`) REFERENCES `t_consulta` (`idconsulta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
