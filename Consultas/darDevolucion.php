@@ -60,11 +60,12 @@ include_once '../Conexion/conexion.php';
     <tbody  class="buscar"> 
     <?php
     $identificador=$_GET['ir'];
-        $sacar = mysqli_query($conexion, "SELECT c.fk_insumo,i.ins_cnombre_comercial, c.cantidad, i.ins_cmarca FROM t_compra c 
+        $sacar = mysqli_query($conexion, "SELECT*FROM t_compra c 
 INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.id_compra='$identificador'");
             while ($fila = mysqli_fetch_array($sacar)) { 
                  $insumo=$fila['ins_cnombre_comercial'];
-                 $cant=$fila['cantidad'];  
+                 $cant=$fila['cantidad']; 
+                 $re=$fila['reduccion'];
                   $mar=$fila['ins_cmarca'];
                   $insumito=$fila['fk_insumo'];
                   
@@ -80,7 +81,7 @@ INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.id_compra='$identifica
         
       
           <td class="text"> <a href="#" data-toggle="modal" data-target="#miModal" class="btn btn-success"
-            onclick="mostrar_Modal('<?php echo $insumo; ?>','<?php echo $cant; ?>')">Efectuar</a>
+            onclick="mostrar_Modal('<?php echo $insumo; ?>','<?php echo $re; ?>')">Efectuar</a>
         </td>
 
 
@@ -124,7 +125,7 @@ INNER JOIN t_insumo i on c.fk_insumo=i.ins_codigo WHERE c.id_compra='$identifica
                                         </div> 
                                     </div> <br>
 
-                                    <label style="color: black;">Compra<small class="text-muted"></small></label>
+                                    <label style="color: black;">Existencia de Compra<small class="text-muted"></small></label>
                                     <div class="input-group">
                                         <input type="text" name="com" class="form-control" id="com">  
                                         <div class="input-group-append">
@@ -212,16 +213,34 @@ function mostrar_Modal(insu,com){
 
                                 $devolver= $_POST['devolver'];
                                 $razon = $_REQUEST['razon'];
+    if ($re==0) {
+        echo '<script>swal({
+                    title: "Error",
+                    text: "Ya has utilizado todo el producto o se devolvio",
+                    type: "error",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false
+                },
+                function () {
+                    location.href="devolucionInsumo.php";
+                    
+                });</script>';
+    }else{
 
-            if ($devolver<=$cant) {
-                                   mysqli_query($conexion, "INSERT INTO t_devolucion(fk_compra,devolver,razon)VALUES('$identificador','$devolver','$razon')");
+   if ($devolver<=$re) {
+   mysqli_query($conexion, "INSERT INTO t_devolucion(fk_compra,devolver,razon)VALUES('$identificador','$devolver','$razon')");
      
   $decrementar= mysqli_query($conexion,"SELECT * FROM t_inventario WHERE insumo='$insumito'");
   while ($Za= mysqli_fetch_array($decrementar)){
       $act=$Za['inv_ecantidad_actual'];
   }
   $Decre=$act-$devolver;
+  //para la compra
+  $decreCompra=$re-$devolver;
+  
   mysqli_query($conexion, "UPDATE t_inventario SET inv_ecantidad_actual='$Decre' WHERE insumo='$insumito'");
+  
+   mysqli_query($conexion, "UPDATE t_compra SET reduccion='$decreCompra' WHERE id_compra='$identificador'");
      
   echo '<script>swal({
                     title: "Éxito",
@@ -250,7 +269,8 @@ function mostrar_Modal(insu,com){
                 });</script>';
 
   }
-                                }
+ }//else si es  0 la reduccion para que no de negativo el inventario
+                                }//if isset
 
   
 
