@@ -18,7 +18,7 @@ include_once '../Conexion/conexion.php';
                                     </div>   
                        </div>
 
-<div class="col-lg-12">
+<div class="col-lg-20">
   <!--GUANTES-->
    <?php
    $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
@@ -235,23 +235,25 @@ include_once '../Conexion/conexion.php';
 
 <!--FOTOGRAFICO-->
   <?php
-   $validarfotografico = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
-   if (mysqli_num_rows($validarfotografico)>0) {
+   $validarFOTOGRAFICO = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
+   if (mysqli_num_rows($validarFOTOGRAFICO)>0) {
       $sacar12 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
                 while ($fila12 = mysqli_fetch_array($sacar12)) {
-                      $fotografico_dec=$fila12['decremento'];
+                      $FOTOGRAFICO_dec=$fila12['decremento'];
                     } 
 
  ?>   
  <?php
- if($fotografico_dec>10){
+ if($FOTOGRAFICO_dec>10){
  ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-success" name="" id="su"  value="Papel Fotográfico:<?php echo $fotografico_dec;?>"  ></div>
+          <input type="button" class="btn btn-success" name="" id="su"  value="Papel:<?php echo $FOTOGRAFICO_dec;?>"  ></div>
   <?php }else{?>
     <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-          <input type="button" class="btn btn-warning" name="" id="su"  value="Papel Fotográfico: <?php echo $fotografico_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Papel: <?php echo $FOTOGRAFICO_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
+
+
 
 
 

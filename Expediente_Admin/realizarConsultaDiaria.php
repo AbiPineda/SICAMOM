@@ -596,16 +596,17 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
 }
 
 ///PAPEL FOTOGRAFICO
-  $validarfotografico = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
-   if (mysqli_num_rows($validarfotografico)>0) {
+  $validarFOTOGRAFICO = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
+   if (mysqli_num_rows($validarFOTOGRAFICO)>0) {
     $sacar12 = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
                 while ($fila12 = mysqli_fetch_array($sacar12)) {
-                      $fotografico_dec=$fila12['decremento'];
+                      $FOTOGRAFICO_dec=$fila12['decremento'];
                     }
-                      $desc_fotografico=$fotografico_dec-$fotografico; 
- mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_fotografico' WHERE tipo='Papel Fotografico'");
+                      $desc_FOTOGRAFICO=$FOTOGRAFICO_dec-$fotografico; 
+ mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_FOTOGRAFICO' WHERE tipo='Papel Fotografico'");
 }
-  
+
+
   
 mysqli_query($conexion,"UPDATE t_llegada SET estado=0 WHERE fk_expediente='$modi'");
 
