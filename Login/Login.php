@@ -1,4 +1,28 @@
-
+<?php
+  require 'funcs/conexion.php';
+  include 'funcs/funcs.php';
+  
+  session_start(); //Iniciar una nueva sesión o reanudar la existente
+  
+  if(isset($_SESSION["id_usuario"])){ //En caso de existir la sesión redireccionamos
+    header("Location: welcome.php");
+  }
+  
+  $errors = array();
+  
+  if(!empty($_POST))
+  {
+    $usuario = $mysqli->real_escape_string($_POST['usuario']);
+    $password = $mysqli->real_escape_string($_POST['password']);
+    
+    if(isNullLogin($usuario, $password))
+    {
+      $errors[] = "Debe llenar todos los campos";
+    }
+    
+    $errors[] = login($usuario, $password); 
+  }
+?>
 <head>
  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <!-- 
@@ -31,7 +55,7 @@
           <input type="password" class="login__input pass" placeholder="Contraseña" name="clave" autocomplete="off"/>
         </div>
         <button type="submit" class="login__submit" name="Submit">Iniciar Sesión</button>
-        <p class="login__signup">¿Olvidó su contraseña? &nbsp;<a>¡Entra aqui!</a></p>
+        <p class="login__signup">¿Olvidó su contraseña? &nbsp;<a href="recupera.php">¡Entra aqui!</a></p>
       </div>
     </div>
 
