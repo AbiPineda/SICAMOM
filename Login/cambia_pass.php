@@ -25,6 +25,11 @@ exit;
 
 <html>
 	<head>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<!-- 
+      <link rel="stylesheet" href="css/styleLogin.css">
+      -->
+      <link href="../dist/css/styleLogin.css" rel="stylesheet">
 		<title>Cambiar Password</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css" >
@@ -34,7 +39,7 @@ exit;
 	</head>
 	
 	<body>
-		
+		<div class="cont" style="background-image: url(../assets/images/ecografia.jpg);">
 		<div class="container">    
 		<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
 		<div class="panel panel-info" >
@@ -73,6 +78,7 @@ exit;
 				</form>
 			</div>                     
 		</div>  
+		</div>
 		</div>
 		</div>
 	</body>
