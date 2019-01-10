@@ -136,7 +136,7 @@ while ($row = mysqli_fetch_array($usuario)) {
       </div>
       <div class="modal-body">
         <div style="text-align: center;">
-<iframe src="https://docs.google.com/document/d/1jMjGsbdD-66kiQZw1-Nfl4SbYpFkA0nQtjYP-yMzxOY/edit" 
+<iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
 style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>
