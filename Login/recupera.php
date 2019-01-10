@@ -44,13 +44,6 @@
 ?>
 <html>
 	<head>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-<!-- 
-      <link rel="stylesheet" href="css/styleLogin.css">
-      -->
-      <link href="../dist/css/styleLogin.css" rel="stylesheet">
-
-
 		<title>Recuperar Password</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css" >
@@ -60,14 +53,13 @@
 	</head>
 	
 	<body>
-		<div class="cont" style="background-image: url(../assets/images/ecografia.jpg);">
 		
 		<div class="container">    
 			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
 				<div class="panel panel-info" >
 					<div class="panel-heading">
 						<div class="panel-title">Recuperar Password</div>
-						<div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="login.php">Iniciar Sesi&oacute;n</a></div>
+						<div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="index.php">Iniciar Sesi&oacute;n</a></div>
 					</div>     
 					
 					<div style="padding-top:30px" class="panel-body" >
@@ -86,24 +78,18 @@
 									<button id="btn-login" type="submit" class="btn btn-success">Enviar</a>
 								</div>
 							</div>
-				<!--			
+							
 							<div class="form-group">
 								<div class="col-md-12 control">
 									<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
 										No tiene una cuenta! <a href="registro.php">Registrate aquí</a>
 									</div>
 								</div>
-							</div>
-				-->
+							</div>    
 						</form>
-
-						<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-    <script  src="js/index.js"></script>
 					</div>                     
 				</div>  
 			</div>
-		</div>
 		</div>
 	</body>
 </html>							
