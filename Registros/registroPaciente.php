@@ -141,7 +141,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerra</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       <!--  <button type="button" class="btn btn-primary">Save changes</button>  --> 
       </div>
     </div>

@@ -52,12 +52,14 @@ include_once '../Conexion/conexion.php';
                 
             </select>
         </div>
-
-   
+    
+    </div>
     
 
     </div>
             <!--Fin Búsqueda-->
+
+
 
     <div class="card" >
       <h3 class="card-title">Modificar Paciente Menor de Edad | Datos generales</h3>
