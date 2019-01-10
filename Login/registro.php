@@ -55,7 +55,7 @@
 				if($registro > 0 )
 				{
 					
-					$url = 'http://'.$_SERVER["SERVER_NAME"].'/SICAMOM/login/activar.php?id='.$registro.'&val='.$token;
+					$url = 'http://'.$_SERVER["SERVER_NAME"].'/SICAMOM/SICAMOM/login/activar.php?id='.$registro.'&val='.$token;
 					
 					$asunto = 'Activar Cuenta - Sistema de Usuarios';
 					$cuerpo = "Estimado $nombre: <br /><br />Para continuar con el proceso de registro, es indispensable dar click en el siguiente enlace <a href='$url'>Activar Cuenta</a>";

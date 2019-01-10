@@ -33,6 +33,11 @@ include_once '../Conexion/conexion.php';
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
        
+        <div class="col-md-3 col-md-pull-2">
+
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
+                    </div>
+
          <div class="search">
            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
             <button type="submit" class="searchButton">
@@ -52,9 +57,7 @@ include_once '../Conexion/conexion.php';
             </select>
         </div>
 
-   <div class="col-md-3 col-md-pull-9">
-                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
-                    </div>
+  
     
 
     </div>
