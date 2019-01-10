@@ -8,7 +8,7 @@
     <div class="page-wrapper" style="height: 671px;">
 
         <div class="container-fluid">
-            <div class="card" style="background: rgba(0, 101, 191,0.3)">
+            <div class="card" style="background: rgba(0, 101, 191,0.6)">
                 <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
                 </div>
 
@@ -72,10 +72,10 @@
                             
                                     <div class="col-lg-4">
 
-                                        <div class="row mb-12" style="float: left;margin-left: 1175px; margin-top: 25px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 975px; margin-top: 25px;">
                                             <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
                                         </div>
-                                        <div class="row mb-12" style="float: left;margin-left: 1070px; margin-top: -34px;">
+                                        <div class="row mb-12" style="float: left;margin-left: 875px; margin-top: -34px;">
                                             <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button>
                                         </div>
 

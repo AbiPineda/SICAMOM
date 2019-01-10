@@ -120,6 +120,34 @@ while ($row = mysqli_fetch_array($usuario)) {
 <div class="page-wrapper" style="height: 671px;">
 
     <div class="container-fluid">
+        <div class="col-md-3 col-md-pull-9">
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
+                    </div>
+                    <br>
+
+                    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de paciente.</h4> 
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;">
+<iframe src="https://docs.google.com/document/d/1jMjGsbdD-66kiQZw1-Nfl4SbYpFkA0nQtjYP-yMzxOY/edit" 
+style="width:700px; height:500px;" frameborder="0"></iframe>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerra</button>
+      <!--  <button type="button" class="btn btn-primary">Save changes</button>  --> 
+      </div>
+    </div>
+  </div>
+</div>
+
         <div class="card" style="background: rgba(0, 101, 191,0.6)">        
             <div class="card-body wizard-content">
                 <h3 class="card-title" style="color: white">Registro Paciente | Datos generales</h3>

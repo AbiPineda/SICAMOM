@@ -74,14 +74,16 @@ $insumoExi=$_GET['ir'];
                 $reducir=$fila['reduccion'];
                 $caducidad=$fila['fecha_caducidad'];
                 $factori=$fila['factura'];
+                $partes=explode('-', $caducidad);
+                $fecha="{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
                 
         ?> 
   
         <tr>
                 <td data-title="Released"><?php echo $cantidad; ?></td>
-                <td data-title="Released"><?php echo $caducidad; ?></td>
+                <td data-title="Released"><?php echo $fecha; ?></td>
                 <td data-title="Released"><?php echo $reducir;?></td>
-                <td class="text"><a href="../Registros/Exitencias-Proceso.php?in=<?php echo $insumoExi;?>&voy=<?php echo $factori;?>"class="btn btn-success fas fa-eye"> Reducir</a>
+                <td class="text"><a href="../Registros/Exitencias-Proceso.php?in=<?php echo $insumoExi;?>&voy=<?php echo $factori;?>"class="btn btn-success fas "> Reducir</a>
 
                 </td>
 
