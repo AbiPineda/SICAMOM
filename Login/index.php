@@ -25,6 +25,12 @@
 ?>
 <html>
 	<head>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<!-- 
+      <link rel="stylesheet" href="css/styleLogin.css">
+      -->
+      <link href="../dist/css/styleLogin.css" rel="stylesheet">
+
 		<title>Login</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css" >
@@ -34,7 +40,7 @@
 	</head>
 	
 	<body>
-		
+		<div class="cont" style="background-image: url(../assets/images/ecografia.jpg);">
 		<div class="container">    
 			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
 				<div class="panel panel-info" >
@@ -48,7 +54,9 @@
 						<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 						
 						<form id="loginform" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" autocomplete="off">
-							
+							<div class="login__check">
+        <img src="../assets/images/SICAMOM.png">
+      </div>
 							<div style="margin-bottom: 25px" class="input-group">
 								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 								<input id="usuario" type="text" class="form-control" name="usuario" value="" placeholder="usuario o email" required>                                        
@@ -78,5 +86,6 @@
 				</div>  
 			</div>
 		</div>
+	</div>
 	</body>
 </html>
