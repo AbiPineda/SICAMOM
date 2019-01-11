@@ -31,14 +31,14 @@ include_once '../Conexion/conexion.php';
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
          <div class="search">
-            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que est· buscando?">
+            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que esta buscando?" autocomplete="off">
             <button type="submit" class="searchButton">
               <i class="fa fa-search"></i>
            </button>
          </div>
       </div>
       <div class="col-md-3 col-md-pull-9">
-                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
                     <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -80,7 +80,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
   <th><div>N factura</div></th>
   <th><div>Insumo</div></th>
   <th><div>Cantidad devuelta</div></th>
-  <th><div>Razon de la devoluciÛn</div></th>
+  <th><div>Razon de la devolución</div></th>
      
   
   

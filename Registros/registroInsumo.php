@@ -25,7 +25,7 @@ while ($row = mysqli_fetch_array($usuario)) {
 
         <div class="container-fluid">
             <div class="col-md-3 col-md-pull-9">
-                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
                     <br>
 
@@ -40,7 +40,7 @@ while ($row = mysqli_fetch_array($usuario)) {
       </div>
       <div class="modal-body">
         <div style="text-align: center;">
-<iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
+<iframe src="https://issuu.com/abitho/docs/registrar_insumo_/1?ff" 
 style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>
@@ -59,9 +59,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                         <div class="row">
                   <div class="col-md-9 col-md-push-3">
                     <h3 class="card-title" style="color: white">Registro de Insumos | Datos generales</h3></div>
-                  <div class="col-md-3 col-md-pull-9">
-                      <a href='#' data-toggle='modal' data-target='#confirm-imagen'><button type='button' title='Ver Foto' class='btn btn-info'>Registrar Categoria</button></a>
-                    </div>
+                  
 
                      <!-- MODAL -->
   <div class="modal fade" id="confirm-imagen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -71,24 +69,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3 class="modal-title" id="myModalLabel"><font font font font color="black"></font></h3> 
                 </div>
-             <form id="formAdd" method="POST" action="registroInsumo.php">
-                <div class="col-lg-16" align="center">
-                                        <label style="color: black">Nueva Categoria<small class="text-muted" ></small></label>   
-                                         <div class="input-group" align="center"><input type="text"class="form-control" id="nombreCa"  required name="nombreCa" placeholder="Digite nombre de categoria" autocomplete="off" required>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text"><i class="fas fa-notes-medical"></i></span>
-                                        </div>
-                                        </div>
-                                                                             
-                                    </div>
-                                    <br>
-                                    <div class="col-lg-16" align="center">
-                                        <input type="submit" class="btn btn-info" value="Registrar" name="btnRegistrar">
-
-                                    </div>
-                                    <br>
-
-                                </form>   
+             
 
                
                 
@@ -189,25 +170,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                                          
                                         
                                     </div>
-                                    <div class="col-lg-4">
-                                         <label style="padding-top: 12px; color: white" >Categoria<small class="text-muted"></small></label>
-                                         <select class="custom-select" name="categoria" id="categoria" style="width: 100%; height:36px;">
-                                        <?php
-                                        include_once '../Conexion/conexion.php';
-                                        $pro = mysqli_query($conexion, "SELECT*from t_categoria_insumo");
-                                        ?>
-                                        <option>Seleccione:</option>
-                                        <?php
-                                        while ($row = mysqli_fetch_array($pro)) {
-                                               $prove = $row['idcategoria'];
-                                            echo '<option value=' . "$row[0]" . '>' . $row[1] . '</option>';
-                                        }
-                                       
-                                        ?>
-                                    </select>
-                                         
-                                        
-                                    </div>
+                                   
                                     <br>
                                     <label style="color: white">*Observación: El botón "Guardar" se habilitará hasta que todos los campos sean completados</label>
                                     <div class="col-lg-12">

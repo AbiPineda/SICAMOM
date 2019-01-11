@@ -34,7 +34,7 @@ include_once '../Conexion/conexion.php';
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de paciente.</h4> 
+        <h4 class="modal-title" id="myModalLabel">Ayuda | Dar Alta/Baja.</h4> 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         
       </div>

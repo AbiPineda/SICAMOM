@@ -193,13 +193,13 @@ else {
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de compra.</h4> 
+        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de Compra.</h4> 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         
       </div>
       <div class="modal-body">
         <div style="text-align: center;">
-<iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
+<iframe src="https://issuu.com/abitho/docs/registro_de_compra/1?ff" 
 style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>
@@ -218,8 +218,8 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
       <div class="col-lg-4">
         <h2 class="heading--secondary" style="color: white">Registro de compra</h2>
       </div>
-      <div class="col-lg-4 col-lg-offset-4">
-       <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
+      <div class="col-lg-8 col-lg-offset-8">
+       <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
       </div>
     </div>
 
