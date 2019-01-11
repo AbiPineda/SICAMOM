@@ -58,14 +58,23 @@ $y = date("Y");
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
         <td class="text"><a href="../Expediente_Admin/recetas.php?ir=<?php echo $modi_consulta; ?>" class="btn btn-success fas fa-edit">Recetas</a>
         <a href="../Expediente_Admin/examenes.php?ir=<?php echo $modi_consulta; ?>" class="btn btn-success fas fa-edit">Examenes</a>
-        <a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modi_consulta; ?>" class="btn btn-success fas fa-edit">Referencias Medicas</a>
-        <a href="../Expediente_Admin/verCola.php?ir=<?php echo $modi_consulta; ?>" class="btn btn-success fas fa-edit">Finalizar</a>
+        <a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modi_consulta; ?> "  class="btn btn-success fas fa-edit">Referencias Medicas</a>
         </td>
       
       </tr>
 
     </tbody>
   </table>
+
+<form action="" id="f1" name="f1" method="post" class="form-register" >
+  <br/><br>
+                                    <div class="col-lg-12">
+                                            <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+<input type="submit" class="btn btn-success fas fa-edit" name="btnEnviar" id="btnEnviar"  value="Guardar" >
+</div>
+</div>
+</form>
+
   </div> <!-- Div scroll-window -->
 </div> <!-- Div scroll-window-wrapper-->
 
@@ -78,7 +87,35 @@ $y = date("Y");
   </div> <!-- Div page-wrapper -->
 
 <?php
+    date_default_timezone_set('America/El_Salvador');
+    $d1 = date("d");
+    $m1 = date("m");
+    $y1 = date("Y");
 
+        if (isset($_REQUEST['btnEnviar'])) {
+        include_once '../Conexion/conexion.php';
+
+         Conexion::abrir_conexion();
+    $conexionx = Conexion::obtener_conexion();
+             
+         $sacar1 = mysqli_query($conexion, "SELECT * FROM t_llegada WHERE (lleg_ffecha_atiende='$y1-$m1-$d1') AND estado=2 ORDER BY id_llegada");
+            while ($fila1 = mysqli_fetch_array($sacar1)) {
+                   $modificar=$fila1['fk_expediente'];
+                 }
+mysqli_query($conexion,"UPDATE t_llegada SET estado = 0 WHERE fk_expediente='$modificar' AND (lleg_ffecha_atiende='$y1-$m1-$d1')");
+
+                     echo '<script>swal({
+                        title: "Exito",
+                        text: "¡Consulta Finalizada!",
+                        type: "success",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false
+                    },
+                    function () {
+                        location.href="../Expediente_Admin/verCola.php";
+                        
+                    });</script>';
+              }
     include_once '../plantilla/pie.php';
 
 ?>
