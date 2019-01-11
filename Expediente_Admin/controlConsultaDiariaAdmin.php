@@ -6,50 +6,6 @@ include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
  $modi1 = $_GET['ir2'];
 ?>
-
-   <link href="../dist/css/styleTabla.css" rel="stylesheet">
-    <div class="page-wrapper" style="height: 671px;">
-  <div class="container-fluid">
-<div class="card" style="background: rgba(0, 101, 191,0.6)">        
-            <div class="card-body wizard-content">
-                <h3 class="card-title" style="color: white">Registrar Consulta</h3>
-                <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
-                  <div class="col-lg-12">
-                                            <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Registro" onclick="location.href='../Expediente_Admin/verExpedienteAdmin.php'" ></div>
-                                    </div>   
-                       </div>
-
-
-
-    </div>
-       <div class="row mb-12">   
-        
-            <div class="wrap">
-                <div class="col-lg-12">
-              <script src="../html/js/jquery.min.js" ></script>
-            <script src="../html/js/buscaresc.js"></script>
-       
-         <div class="search">
-           <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
-            <button type="submit" class="searchButton">
-              <i class="fa fa-search"></i>
-           </button>
-
-         </div>
-                
-      </div>
-       </div>
-    </div>
-            <!--Fin Búsqueda-->
-
-
-    <div class="card" >
-      <h3 class="card-title" style="color: black">Consulta</h3>
-      <div class="col-md-12">
-    <input type="hidden" name="tirar" value="<?php echo $modi1; ?>" id="pase"/>
-          <div id="bodywrap">
-
 <?php
 date_default_timezone_set('America/El_Salvador');
 $d1 = date("d");
@@ -87,6 +43,31 @@ $y1 = date("Y");
                 });</script>';
        }
  ?>
+   <link href="../dist/css/styleTabla.css" rel="stylesheet">
+    <div class="page-wrapper" style="height: 671px;">
+  <div class="container-fluid">
+<div class="card" style="background: rgba(0, 101, 191,0.6)">        
+            <div class="card-body wizard-content">
+                <h3 class="card-title" style="color: white">Registrar Consulta</h3>
+                <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
+                  <div class="col-lg-12">
+                                            <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Registro" onclick="location.href='../Expediente_Admin/verExpedienteAdmin.php'" ></div>
+                                    </div>   
+                       </div>
+
+
+
+    </div>
+
+
+    <div class="card" >
+      <h3 class="card-title" style="color: black">Consulta</h3>
+      <div class="col-md-12">
+   <!-- <input type="hidden" name="tirar" value="<?php //echo $modi1; ?>" id="pase"/>-->
+          <div id="bodywrap">
+
+
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
   <table class="table table-striped table-hover user-list fixed-header">
@@ -126,7 +107,7 @@ $y = date("Y");
         ?>
       <tr>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $codigo;?></td>
-        <th scope="row"><?php echo $verificar_insert . " " . $verificar_insert2;?></th>
+        <th scope="row"><?php echo $nom . " " . $ape;?></th>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
      <?php 
         if($fe==0){ ?>
