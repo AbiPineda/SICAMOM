@@ -26,7 +26,7 @@ include_once '../Conexion/conexion.php';
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
     <div class="col-md-3 col-md-pull-9">
-                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
 
                     <!-- Modal -->
@@ -40,7 +40,7 @@ include_once '../Conexion/conexion.php';
       </div>
       <div class="modal-body">
         <div style="text-align: center;">
-<iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
+<iframe src="https://issuu.com/abitho/docs/dar_alta_baja_paciente/1?ff" 
 style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>

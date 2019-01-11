@@ -119,9 +119,9 @@ while ($row = mysqli_fetch_array($usuario)) {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <div class="page-wrapper" style="height: 671px;">
 
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div class="col-md-3 col-md-pull-9">
-                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
                     <br>
 

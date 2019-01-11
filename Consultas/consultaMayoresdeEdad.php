@@ -33,10 +33,12 @@ include_once '../Conexion/conexion.php';
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
        
-        <div class="col-md-3 col-md-pull-2">
+
+                    <div class="col-md-3 col-md-pull-2">
 
                       <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
+
 
          <div class="search">
            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
@@ -68,13 +70,13 @@ include_once '../Conexion/conexion.php';
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de paciente.</h4> 
+        <h4 class="modal-title" id="myModalLabel">Ayuda | Buscar Paciente.</h4> 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         
       </div>
       <div class="modal-body">
         <div style="text-align: center;">
-<iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
+<iframe src="https://issuu.com/abitho/docs/buscar_paciente/1?ff" 
 style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>
