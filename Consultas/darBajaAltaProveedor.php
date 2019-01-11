@@ -10,8 +10,9 @@ include_once '../Conexion/conexion.php';
     <div class="modal fade" id="modalJust" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-          <!--aqui va el codigo-->
-                 <!--FORMULARIO PARA GUARDAR--><form action="" id="" method="post" class="form-register" >
+        
+                 <!--FORMULARIO PARA GUARDAR-->
+                 <form action="" id="" method="post" class="form-register" >
 
                              <input type="hidden" name="pase" id="pase"/>
             <!-- Modal Header -->
@@ -90,8 +91,8 @@ include_once '../Conexion/conexion.php';
 <body>
     <div class="page-wrapper" style="height: 671px;">
   <div class="container-fluid">
-    <div class="col-md-3 col-md-pull-9">
-                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
+    <div class="col-md-12 col-md-pull-12" align="right">
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
                    
                     <!-- Modal -->
@@ -105,7 +106,7 @@ include_once '../Conexion/conexion.php';
       </div>
       <div class="modal-body">
         <div style="text-align: center;">
-<iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
+<iframe src="https://issuu.com/abitho/docs/dar_alta_baja_proveedor/1?ff" 
 style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>

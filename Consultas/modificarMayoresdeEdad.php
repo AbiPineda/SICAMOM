@@ -24,22 +24,18 @@ include_once '../Conexion/conexion.php';
 
 <body>
     <div class="page-wrapper" style="height: 671px;">
+      <div class="col-md-12 col-md-pull-12" align="right">
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
+                    </div>
   <div class="container-fluid">
-
-  
-     <!-- Búsqueda UTILIZO EL JQUERY buscaresc.js que es el que hace el proceso interno de buscar
-    funciona junto con jquery de lo contrario nada colocas el id="filtar" que con ese nombre lo reconoce
-    el buscaresc.js para hacer el proceso que keres buscar ya sea por letras,numeros,dui, nit, loq sea
-    solo eso necesitas para que busque-->
-
              <div class="row mb-12">   
         
             <div class="wrap">
-                <div class="col-lg-12">
+                <div>
               <script src="../html/js/jquery.min.js" ></script>
             <script src="../html/js/buscaresc.js"></script>
-       
-         <div class="search">
+       <br>
+         <div class="search col-lg-10">
            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
             <button type="submit" class="searchButton">
               <i class="fa fa-search"></i>
@@ -61,9 +57,7 @@ include_once '../Conexion/conexion.php';
 
         </div>
 
-    <div class="col-md-3 col-md-pull-9">
-                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
-                    </div>
+    
     
 
     </div>

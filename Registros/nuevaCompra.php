@@ -178,8 +178,11 @@ else {
         
     }
     ?>
-
+<div class="col-md-12 col-md-pull-12" align="right">
+       <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
+      </div>
     <div class="page-wrapper" style="height: 671px;">
+        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 
@@ -211,6 +214,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
   </div>
 </div>
             <div class="signup__container"  style="background: rgba(0, 101, 191,0.6)">
+
                 <div class="container__child signup__thumbnail">
                     <div class="thumbnail__logo">
 
@@ -218,9 +222,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
       <div class="col-lg-4">
         <h2 class="heading--secondary" style="color: white">Registro de compra</h2>
       </div>
-      <div class="col-lg-8 col-lg-offset-8">
-       <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
-      </div>
+      
     </div>
 
                        

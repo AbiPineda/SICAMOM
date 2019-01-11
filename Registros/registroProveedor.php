@@ -20,8 +20,8 @@ while ($row = mysqli_fetch_array($usuario)) {
     <div class="page-wrapper" style="height: 671px;">
           
             <div class="container-fluid">
-              <div class="col-md-3 col-md-pull-9">
-                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
+              <div class="col-md-12 col-md-pull-12" align="right">
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
                     <br>
 
@@ -30,13 +30,13 @@ while ($row = mysqli_fetch_array($usuario)) {
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de proveedor.</h4> 
+        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de Proveedor.</h4> 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         
       </div>
       <div class="modal-body">
         <div style="text-align: center;">
-<iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
+<iframe src="https://issuu.com/abitho/docs/registro_de_proveedor/1?ff" 
 style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>
