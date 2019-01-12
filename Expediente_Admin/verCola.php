@@ -329,7 +329,7 @@ $y = date("Y");
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
         <td class="text"><a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Consulta Ginecológica</a>
-          <a href="../Expediente_Admin/controlEmbarazo.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Control Embarazo</a>
+          <a href="../Expediente_Admin/controlEmbarazo.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Control Prenatal</a>
         </td>
        <?php  }?>
       </tr>

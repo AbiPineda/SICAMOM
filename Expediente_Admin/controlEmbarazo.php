@@ -678,7 +678,7 @@ aqui ponga una imagen
         $otra_familiares = $_REQUEST['otra_familiares'];
          $otra_personales = $_REQUEST['otra_personales'];
            $obstetricos = $_REQUEST['obstetricos'];
-           $examenes = $_REQUEST['examenes'];
+           $resul_examenes = $_REQUEST['examenes'];
             $diagnostico = $_REQUEST['diagnostico'];
        //  $tipoconsul = $_REQUEST['tipocon'];
          $amenorrea = $_REQUEST['fecha_amenorrea'];
@@ -719,11 +719,11 @@ $personales = implode(',', $_POST['personales']);
 ///**************************consulta
         $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazo'");
         if (mysqli_num_rows($noMostrar)>0){
- mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$enfermeria_fetal','embarazo')");
+ mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
 
          }else{         
 
-            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','Control Prenatal','$enfermeria_fetal','embarazo')");
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
 		   }
 
        $sacar4 = mysqli_query($conexion,"SELECT idconsulta FROM t_consulta ORDER by idconsulta DESC LIMIT 1");

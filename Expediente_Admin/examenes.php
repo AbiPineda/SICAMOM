@@ -168,385 +168,385 @@ $edad=($ano-$partes[0]);
 </label>
 </br>
 <h5 class="card-title" style="color:white">ORINA</h5>
-  <label class="container1" >Examen General
-  <input type="checkbox">
+  <label class="container1" >Examen General de Orina
+  <input type="checkbox" name="gene_orina" value="Examen General de Orina">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Proteínas en Orina
-  <input type="checkbox">
+  <input type="checkbox" name="prot_orina" value="Proteinas en Orina">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Proteínas en Orina 24 Hrs. 
-  <input type="checkbox">
+  <input type="checkbox" name="prot_orina_24h" value="Proteinas en Orina 24 Hrs.">
   <span class="checkmark"></span>
 </label>
 </div>
     <div class="col-md-3">                 
 <h5 class="card-title" style="color:white">HECES</h5>
-  <label class="container1" >Examen General
-  <input type="checkbox">
+  <label class="container1" >Examen General de Heces
+  <input type="checkbox" name="gene_heces" value="Examen General de Heces">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Sangre Oculta
-  <input type="checkbox">
+  <input type="checkbox" name="sangre_oculta" value="Sangre Oculta">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Grasa en Heces 24Hrs. Cuantitativa
-  <input type="checkbox">
+  <input type="checkbox" name="grasa_heces" value="Grasa en Heces 24Hrs. Cuantitativa">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Azul de Metileno en Heces
-  <input type="checkbox">
+  <input type="checkbox" name="azul_metileno_heces" value="Azul de Metileno en Heces">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Sustancias Reducoras
-  <input type="checkbox">
+  <input type="checkbox" name="sust_reducoras" value="Sustancias Reducoras">
   <span class="checkmark"></span>
 </label>
 <br/>
 <h5 class="card-title" style="color:white">INMUNOLOGIA</h5>
   <label class="container1" >Antigenos Febriles
-  <input type="checkbox">
+  <input type="checkbox" name="ant_febriles" value="Antigenos Febriles">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Antiestreptolisima
-  <input type="checkbox">
+  <input type="checkbox" name="antiestreptolisima" value="Antiestreptolisima">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Proteína C Reactiva 
-  <input type="checkbox">
+  <input type="checkbox" name="prot_c_reactiva" value="Proteína C Reactiva ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Latex R.A.
-  <input type="checkbox">
+  <input type="checkbox" name="latex_ra" value="Latex R.A.">
   <span class="checkmark"></span>
 </label>
  <label class="container1" >Latex L.E. 
-  <input type="checkbox">
+  <input type="checkbox" name="latex_le" value="Latex L.E.">
    <span class="checkmark"></span>
 </label>
 <label class="container1">V.D.R.L.
-  <input type="checkbox">
+  <input type="checkbox" name="vdrl" value="V.D.R.L.">
   <span class="checkmark"></span>
 </label>
 <label class="container1">FTA-ABS
-  <input type="checkbox">
+  <input type="checkbox" name="fta_abs" value="FTA-ABS">
   <span class="checkmark"></span>
 </label>
 <label class="container1">H.I.V.
-  <input type="checkbox">
+  <input type="checkbox" name="hiv" value="H.I.V.">
   <span class="checkmark"></span>
 </label>
  <label class="container1" >Gravindex
-  <input type="checkbox">
+  <input type="checkbox" name="gravindex" value="Gravindex">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Prueba de Embarazo en Sangre
-  <input type="checkbox">
+  <input type="checkbox" name="embarazo_sangre" value="Prueba de Embarazo en Sangre">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Anti RH
-  <input type="checkbox">
+  <input type="checkbox" name="anti_rh" value="Anti RH">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Anti Hepatitis C
-  <input type="checkbox">
+  <input type="checkbox" name="hepatitis_c" value="Anti Hepatitis C">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >Anti c. Antinucleares
-  <input type="checkbox">
+  <input type="checkbox" name="antinucleares" value="Anti c. Antinucleares">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Anti DNA
-  <input type="checkbox">
+  <input type="checkbox" name="anti_dna" value="Anti DNA">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Lupus Anticuagulante 
-  <input type="checkbox">
+  <input type="checkbox" name="lupus" value="Lupus Anticuagulante ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Antic. Anticardiolipinas
-  <input type="checkbox">
+  <input type="checkbox" name="anticardiolipinas" value="Antic. Anticardiolipinas">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Antitoxoplasmosis lgM
-  <input type="checkbox">
+  <input type="checkbox" name="toxo_lgm" value="Antitoxoplasmosis lgM">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Antitoxoplasmosis lgG
-  <input type="checkbox">
+  <input type="checkbox" name="toxo_lgg" value="Antitoxoplasmosis lgG">
   <span class="checkmark"></span>
 </label>
 <label class="container1">PSA
-  <input type="checkbox">
+  <input type="checkbox" name="psa" value="PSA">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Helicobacter Pylori en Sangre 
-  <input type="checkbox">
+  <input type="checkbox" name="helico_sangre" value="Helicobacter Pylori en Sangre">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Helicobacter Pylori en Heces 
-  <input type="checkbox">
+  <input type="checkbox" name="helico_heces" value="Helicobacter Pylori en Heces">
   <span class="checkmark"></span>
 </label>
 <br/>
 <h5 class="card-title" style="color:white">VARIOS</h5>
   <label class="container1" >Espermograma
-  <input type="checkbox">
+  <input type="checkbox" name="espermograma" value="Espermograma">
    <span class="checkmark"></span>
 </label>
 </div>
     <div class="col-md-3">                 
 <h5 class="card-title" style="color:white">ENDOCRINOLOGIA</h5>
   <label class="container1" >T3
-  <input type="checkbox">
+  <input type="checkbox" name="t3" value="T3">
    <span class="checkmark"></span>
 </label>
 <label class="container1">T4
-  <input type="checkbox">
+  <input type="checkbox" name="t4" value="T4">
   <span class="checkmark"></span>
 </label>
 <label class="container1">T.S.H.
-  <input type="checkbox">
+  <input type="checkbox" name="tsh" value="T.S.H.">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Hormona de Crecimiento
-  <input type="checkbox">
+  <input type="checkbox" name="hormona_crecimiento" value="Hormona de Crecimiento">
   <span class="checkmark"></span>
 </label>
  <label class="container1" >Hormona Paratiroidea  
-  <input type="checkbox">
+  <input type="checkbox" name="hormona_paratiroidea" value="Hormona Paratiroidea">
    <span class="checkmark"></span>
 </label>
 <label class="container1">C-Terminal
-  <input type="checkbox">
+  <input type="checkbox" name="c_terminal" value="C-Terminal">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Progesterona
-  <input type="checkbox">
+  <input type="checkbox" name="progesterona" value="Progesterona">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Estradiol
-  <input type="checkbox">
+  <input type="checkbox" name="estradiol" value="Estradiol">
   <span class="checkmark"></span>
 </label>
  <label class="container1" >Testosterona
-  <input type="checkbox">
+  <input type="checkbox" name="testosterona" value="Testosterona">
    <span class="checkmark"></span>
 </label>
 <label class="container1">LH
-  <input type="checkbox">
+  <input type="checkbox" name="lh" value="LH">
   <span class="checkmark"></span>
 </label>
 <label class="container1">FSH
-  <input type="checkbox">
+  <input type="checkbox" name="fsh" value="FSH">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Prolactina
-  <input type="checkbox">
+  <input type="checkbox" name="prolactina" value="Prolactina">
   <span class="checkmark"></span>
 </label>
 <br/>
 <h5 class="card-title" style="color:white">PERFIL PRENATAL</h5>
   <label class="container1" >Hemograma
-  <input type="checkbox">
+  <input type="checkbox" name="hemograma_pre" value="Hemograma">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Tipeo Sanguineo
-  <input type="checkbox">
+  <input type="checkbox" name="tipeo_sanguineo" value="Tipeo Sanguineo">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Glucosa
-  <input type="checkbox">
+  <input type="checkbox" name="glucosa" value="Glucosa">
   <span class="checkmark"></span>
 </label>
 <label class="container1">V.D.R.L.
-  <input type="checkbox">
+  <input type="checkbox" name="vdrl_pre" value="V.D.R.L.">
   <span class="checkmark"></span>
 </label>
 <label class="container1">V.I.H.
-  <input type="checkbox">
+  <input type="checkbox" name="vih" value="V.I.H.">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Toxoplasmosis lgM
-  <input type="checkbox">
+  <input type="checkbox" name="toxo_lgm_pre" value="Toxoplasmosis lgM">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Toxoplasmosis lgG
-  <input type="checkbox">
+  <input type="checkbox" name="toxo_lgg_pre" value="Toxoplasmosis lgG">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Urocultivo
-  <input type="checkbox">
+  <input type="checkbox" name="urocultivo" value="Urocultivo">
   <span class="checkmark"></span>
 </label>
 <br/>
 <h5 class="card-title" style="color:white">BACTERIOLOGIA</h5>
   <label class="container1" >Gram
-  <input type="checkbox">
+  <input type="checkbox" name="gram" value="Gram">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Frotis Faringeo
-  <input type="checkbox">
+  <input type="checkbox" name="frotis_faringeo" value="Frotis Faringeo">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Cultivo
-  <input type="checkbox">
+  <input type="checkbox" name="cultivo" value="Cultivo">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Hemocultivo
-  <input type="checkbox">
+  <input type="checkbox" name="hemocultivo" value="Hemocultivo">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Urocultivo 
-  <input type="checkbox">
+  <input type="checkbox" name="urocultivo_bac" value="Urocultivo">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Coprocultivo 
-  <input type="checkbox">
+  <input type="checkbox" name="coprocultivo" value="Coprocultivo">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Directo de Hongos (OH)
-  <input type="checkbox">
+  <input type="checkbox" name="hongos_oh" value="Directo de Hongos (OH)">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Cultivo de Hongos
-  <input type="checkbox">
+  <input type="checkbox" name="cultivo_hongos" value="Cultivo de Hongos">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Cultivo Secreción Vaginal
-  <input type="checkbox">
+  <input type="checkbox" name="sec_vaginal" value="Cultivo Secreción Vaginal">
   <span class="checkmark"></span>
 </label>
 </div>
 <div class="col-md-3">                 
 <h5 class="card-title" style="color:white">QUIMICA</h5>
   <label class="container1" >Glucosa
-  <input type="checkbox">
+  <input type="checkbox" name="glucosa_qui" value="Glucosa">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Tol. Glucosa 4 Horas (Hipoglicemia)
-  <input type="checkbox">
+  <input type="checkbox" name="glucosa_4h" value="Tol. Glucosa 4 Horas (Hipoglicemia)">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Glucosa Post Pandrial
-  <input type="checkbox">
+  <input type="checkbox" name="glucosa_pandrial" value="Glucosa Post Pandrial">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Albumina
-  <input type="checkbox">
+  <input type="checkbox" name="albumina" value="Albumina">
   <span class="checkmark"></span>
 </label>
  <label class="container1" >Tolerancia Post-Ingesta 75grs. de Glucosa 2 hrs.   
-  <input type="checkbox">
+  <input type="checkbox" name="glucosa_2h" value="Tolerancia Post-Ingesta 75grs. de Glucosa 2 hrs.  ">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Hb. Glicosilada AIC%
-  <input type="checkbox">
+  <input type="checkbox" name="glicosilada" value="Hb. Glicosilada AIC%">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Test O'Sullivan
-  <input type="checkbox">
+  <input type="checkbox" name="sullivan" value="Test O'Sullivan">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Nitrógeno Ureico 
-  <input type="checkbox">
+  <input type="checkbox" name="nitrogeno_ureico" value="Nitrógeno Ureico ">
   <span class="checkmark"></span>
 </label>
  <label class="container1" >Creatinina 
-  <input type="checkbox">
+  <input type="checkbox" name="creatinina" value="Creatinina ">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Depuración de Creatinina
-  <input type="checkbox">
+  <input type="checkbox" name="dep_creatinina" value="Depuración de Creatinina">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Acido Urico 
-  <input type="checkbox">
+  <input type="checkbox" name="acido_urico" value="Acido Urico ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Urea
-  <input type="checkbox">
+  <input type="checkbox" name="urea" value="Urea">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >Cloro
-  <input type="checkbox">
+  <input type="checkbox" name="cloro" value="Cloro">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Sodio
-  <input type="checkbox">
+  <input type="checkbox" name="sodio" value="Sodio">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Potasio 
-  <input type="checkbox">
+  <input type="checkbox" name="potasio" value="Potasio ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Calcio
-  <input type="checkbox">
+  <input type="checkbox" name="calcio" value="alcio">
   <span class="checkmark"></span>
 </label>
  <label class="container1" >Fosforo 
-  <input type="checkbox">
+  <input type="checkbox" name="fosforo" value="Fosforo ">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Magnesio
-  <input type="checkbox">
+  <input type="checkbox" name="magnesio" value="Magnesio">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Colesterol
-  <input type="checkbox">
+  <input type="checkbox" name="colesterol" value="Colesterol">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Trigliceridos
-  <input type="checkbox">
+  <input type="checkbox" name="trigliceridos" value="Trigliceridos">
   <span class="checkmark"></span>
 </label>
  <label class="container1" >Lipidos Totales
-  <input type="checkbox">
+  <input type="checkbox" name="lipidos" value="Lipidos Totales">
    <span class="checkmark"></span>
 </label>
 <label class="container1">Lipoproteinas Alta-Baja
-  <input type="checkbox">
+  <input type="checkbox" name="liporpoteinas" value="Lipoproteinas Alta-Baja">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Densidad HDL-LDL
-  <input type="checkbox">
+  <input type="checkbox" name="densidad_hdl_ldl" value="Densidad HDL-LDL">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Proteínas Totales 
-  <input type="checkbox">
+  <input type="checkbox" name="proteinas_tot" value="Proteínas Totales ">
   <span class="checkmark"></span>
 </label>
   <label class="container1" >TGO
-  <input type="checkbox">
+  <input type="checkbox" name="tgo" value="TGO">
    <span class="checkmark"></span>
 </label>
 <label class="container1">TGP
-  <input type="checkbox">
+  <input type="checkbox" name="tgp" value="TGP">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Bilirrubina  
-  <input type="checkbox">
+  <input type="checkbox" name="bilirrubina" value="Bilirrubina">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Fosfatasa Alcalina 
-  <input type="checkbox">
+  <input type="checkbox" name="fosfatasa_alcalina" value="Fosfatasa Alcalina ">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Amilasa
-  <input type="checkbox">
+  <input type="checkbox" name="amilasa" value="Amilasa">
   <span class="checkmark"></span>
 </label>
 <label class="container1">Lipasa
-  <input type="checkbox">
+  <input type="checkbox" name="lipasa" value="Lipasa">
   <span class="checkmark"></span>
 </label>
 <label class="container1">LDH
-  <input type="checkbox">
+  <input type="checkbox" name="ldh" value="LDH">
   <span class="checkmark"></span>
 </label>
 <label class="container1">CPK 
-  <input type="checkbox">
+  <input type="checkbox" name="cpk" value="CPK">
   <span class="checkmark"></span>
 </label>
 </div>
@@ -555,7 +555,7 @@ $edad=($ano-$partes[0]);
     <div class="col-md-12">                 
 <h5 class="card-title" style="color:white">OTROS EXAMENES:</h5>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="familiares"></textarea> 
+                                             <textarea class="form-control" rows="3" name="otros_examenes"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -613,9 +613,126 @@ $p_cruzada = $_POST['p_cruzada'];
 $coombs = $_POST['coombs'];
 
 $hematologia = $hemo.','.$htc.','.$leuco.','.$plaquetas.','.$reti.','.$frotis.','.$eritro.','.$cel_le.','.$cel_falci.','.$recu_sangre.','.$recu_nasal.','.$sangramiento.','.$coagulo.','.$protrombina.','.$trombina.','.$tromboplastina.','.$coagulacion.','.$fibrinogeno.','.$rh.','.$p_cruzada.','.$coombs; 
+///QUIMICA
+$glucosa_qui = $_POST['glucosa_qui']; 
+$glucosa_4h = $_POST['glucosa_4h'];
+$glucosa_pandrial = $_POST['glucosa_pandrial']; 
+$albumina = $_POST['albumina'];
+$glucosa_2h = $_POST['glucosa_2h'];
+$glicosilada = $_POST['glicosilada'];
+$sullivan = $_POST['sullivan'];
+$nitrogeno_ureico = $_POST['nitrogeno_ureico'];
+$creatinina = $_POST['creatinina'];
+$dep_creatinina = $_POST['dep_creatinina'];
+$acido_urico = $_POST['acido_urico'];
+$urea = $_POST['urea'];
+$cloro = $_POST['cloro'];
+$sodio = $_POST['sodio'];
+$potasio = $_POST['potasio'];
+$calcio = $_POST['calcio'];
+$fosforo = $_POST['fosforo'];
+$magnesio = $_POST['magnesio'];
+$colesterol = $_POST['colesterol'];
+$trigliceridos = $_POST['trigliceridos'];
+$lipidos = $_POST['lipidos'];
+$liporpoteinas = $_POST['liporpoteinas'];
+$densidad_hdl_ldl = $_POST['densidad_hdl_ldl'];
+$proteinas_tot = $_POST['proteinas_tot'];
+$tgo = $_POST['tgo'];
+$tgp = $_POST['tgp'];
+$bilirrubina = $_POST['bilirrubina'];
+$fosfatasa_alcalina = $_POST['fosfatasa_alcalina'];
+$amilasa = $_POST['amilasa'];
+$lipasa = $_POST['lipasa'];
+$ldh = $_POST['ldh'];
+$cpk = $_POST['cpk'];
 
+$quimica = $glucosa_qui.','.$glucosa_4h.','.$glucosa_pandrial.','.$albumina.','.$glucosa_2h.','.$glicosilada.','.$sullivan.','.$nitrogeno_ureico.','.$creatinina.','.$dep_creatinina.','.$acido_urico.','.$urea.','.$cloro.','.$sodio.','.$potasio.','.$calcio.','.$fosforo.','.$magnesio.','.$colesterol.','.$trigliceridos.','.$lipidos.','.$liporpoteinas.','.$densidad_hdl_ldl.','.$proteinas_tot.','.$tgo.','.$tgp.','.$bilirrubina.','.$fosfatasa_alcalina.','.$amilasa.','.$lipasa.','.$ldh.','.$cpk;
+///ENDOCRINOLOGIA
+$t3 = $_POST['t3'];
+$t4 = $_POST['t4'];
+$tsh = $_POST['tsh'];
+$hormona_crecimiento = $_POST['hormona_crecimiento'];
+$hormona_paratiroidea = $_POST['hormona_paratiroidea'];
+$c_terminal = $_POST['c_terminal'];
+$progesterona  = $_POST['progesterona'];
+$estradiol = $_POST['estradiol'];
+$testosterona = $_POST['testosterona'];
+$lh = $_POST['lh'];
+$fsh = $_POST['fsh'];
+$prolactina = $_POST['prolactina'];
 
-    mysqli_query($conexion,"INSERT INTO t_examenes(fk_consulta,hematologia) VALUES ('$consulta','$hematologia')");     
+$endocrinologia = $t3.','.$t4.','.$tsh.','.$hormona_crecimiento.','.$hormona_paratiroidea.','.$c_terminal.','.$progesterona.','.$estradiol.','.$testosterona.','.$lh.','.$fsh.','.$prolactina;  
+
+///INMUNOLOGIA
+$ant_febriles = $_POST['ant_febriles'];              
+$antiestreptolisima = $_POST['antiestreptolisima'];                  
+$prot_c_reactiva = $_POST['rot_c_reactiva'];              
+$latex_ra = $_POST['latex_ra'];              
+$latex_le = $_POST['latex_le'];              
+$vdrl = $_POST['vdrl'];              
+$fta_abs = $_POST['fta_abs'];              
+$hiv = $_POST['hiv'];              
+$gravindex = $_POST['gravindex'];              
+$embarazo_sangre = $_POST['embarazo_sangre'];                  
+$anti_rh = $_POST['anti_rh'];              
+$hepatitis_c = $_POST['hepatitis_c'];              
+$antinucleares = $_POST['antinucleares'];              
+$anti_dna = $_POST['anti_dna'];              
+$lupus = $_POST['lupus'];              
+$anticardiolipinas  = $_POST['anticardiolipinas'];                  
+$toxo_lgm = $_POST['toxo_lgm'];              
+$toxo_lgg = $_POST['toxo_lgg'];              
+$psa = $_POST['psa'];              
+$helico_sangre = $_POST['helico_sangre'];              
+$helico_heces = $_POST['elico_heces'];               
+
+$inmunologia = $ant_febriles.','.$antiestreptolisima.','.$prot_c_reactiva.','.$latex_ra.','.$latex_le.','.$vdrl.','.$fta_abs.','.$hiv.','.$gravindex.','.$embarazo_sangre.','.$anti_rh.','.$hepatitis_c.','.$antinucleares.','.$anti_dna.','.$lupus.','.$anticardiolipinas.','.$toxo_lgm.','.$toxo_lgg.','.$psa.','.$helico_sangre.','.$helico_heces; 
+///HECES
+$gene_heces = $_POST['gene_heces'];                    
+$sangre_oculta = $_POST['sangre_oculta'];                 
+$grasa_heces = $_POST['grasa_heces'];                   
+$azul_metileno_heces = $_POST['azul_metileno_heces'];           
+$sust_reducoras = $_POST['sust_reducoras'];                
+
+$heces = $gene_heces.','.$sangre_oculta.','.$grasa_heces.','.$azul_metileno_heces.','.$sust_reducoras;
+///ORINA
+$gene_orina = $_POST['gene_orina'];
+$prot_orina = $_POST['prot_orina'];
+$prot_orina_24h = $_POST['prot_orina_24h'];
+
+$orina = $gene_orina.','.$prot_orina.','.$prot_orina_24h;
+///PERFIL PRENATAL
+
+  $hemograma_pre = $_POST['hemograma_pre'];                
+  $tipeo_sanguineo = $_POST['tipeo_sanguineo'];              
+  $glucosa = $_POST['glucosa'];                      
+  $vdrl_pre = $_POST['vdrl_pre'];                     
+  $vih = $_POST['vih'];                          
+  $toxo_lgm_pre = $_POST['toxo_lgm_pre'];                 
+  $toxo_lgg_pre = $_POST['toxo_lgg_pre'];                 
+  $urocultivo = $_POST['urocultivo'];                   
+
+$perfil_prenatal = $hemograma_pre.','.$tipeo_sanguineo.','.$glucosa.','.$vdrl_pre.','.$vih.','.$toxo_lgm_pre.','.$toxo_lgg_pre.','.$urocultivo;
+
+///BACTERIOLOGIA
+$gram = $_POST['gram'];                        
+$frotis_faringeo = $_POST['frotis_faringeo'];             
+$cultivo = $_POST['cultivo'];                     
+$hemocultivo = $_POST['hemocultivo'];                 
+$urocultivo_bac = $_POST['urocultivo_bac'];              
+$coprocultivo = $_POST['coprocultivo'];                
+$hongos_oh = $_POST['hongos_oh'];                   
+$cultivo_hongos = $_POST['cultivo_hongos'];              
+$sec_vaginal = $_POST['sec_vaginal'];                 
+
+$bacteriologia = $gram.','.$frotis_faringeo.','.$cultivo.','.$hemocultivo.','.$urocultivo_bac.','.$coprocultivo.','.$hongos_oh.','.$cultivo_hongos.','.$sec_vaginal;
+
+///VARIOS Y OTROS
+$espermograma = $_POST['espermograma'];   
+$otros_examenes = $_POST['otros_examenes'];
+
+    mysqli_query($conexion,"INSERT INTO t_examenes(fk_consulta,hematologia,quimica,endocrinologia,inmunologia,heces,orina,perfil_prenatal,bacteriologia,varios,otros) VALUES ('$consulta','$hematologia','$quimica','$endocrinologia','$inmunologia','$heces','$orina','$perfil_prenatal','$bacteriologia','$espermograma','$otros_examenes')");     
    echo '<script>swal({
                         title: "Registro",
                         text: "Guardado!",

@@ -18,7 +18,7 @@ $y1 = date("Y");
        if (mysqli_num_rows($verificar_insert) > 0) {
                   echo '<script>swal({
                     title: "Error",
-                    text: "Paciente ingresado a Lista de Espera de este dia",
+                    text: "¡Paciente ingresado a lista de espera de este dia!",
                     type: "warning",
                     confirmButtonText: "Aceptar",
                     closeOnConfirm: false
@@ -32,7 +32,7 @@ $y1 = date("Y");
        mysqli_query($conexion, "INSERT INTO t_llegada(fk_expediente,lleg_ffecha_atiende,estado) VALUES('$modi1','$y1-$m1-$d1','$esta')");
            echo '<script>swal({
                     title: "Exito",
-                    text: "Guardado!",
+                    text: "¡Guardado!",
                     type: "success",
                     confirmButtonText: "Aceptar",
                     closeOnConfirm: false
