@@ -172,9 +172,9 @@ $edad=($ano-$partes[0]);
         include_once '../Conexion/conexion.php';
         
         //**********************modificar estado a las 40 semanas ****
-        $estado=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazada'");
+        $estado=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazo'");
         if (mysqli_num_rows($estado)>0) { 
-           $Mostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazada'");
+           $Mostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazo'");
            while ($x=mysqli_fetch_array($Mostrar)) {
              # code...
             $fecha=$x['con_fecha_amenorrea'];
@@ -206,9 +206,9 @@ $edad=($ano-$partes[0]);
         }
         
         //***********************
-        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazada'");
+        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazo'");
         if (mysqli_num_rows($noMostrar)>0) { 
-           $Mostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazada'");
+           $Mostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazo'");
            while ($x=mysqli_fetch_array($Mostrar)) {
              # code...
             $fecha=$x['con_fecha_amenorrea'];
@@ -244,7 +244,7 @@ $edad=($ano-$partes[0]);
                                           <div class="col-md-5">                             
                                         <label style="color: white" >Edad Gestacional (Semanas): <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                          <input name="fech_ame" value="<?php   echo $semanasVal; ?>" id="fech_ame" class="form-control" disabled >    
+                                          <input name="fech_ame" value="<?php   echo $semanasVal; ?>" id="fech_ameno" class="form-control" disabled >    
                                            <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -279,7 +279,7 @@ $edad=($ano-$partes[0]);
        
          $val =mysqli_query($conexion,"SELECT*FROM t_consulta INNER JOIN t_prenatal ON t_consulta.idconsulta=t_prenatal.fk_consulta
 INNER JOIN t_familiar ON t_prenatal.idprenatal=t_familiar.fk_idprenatal
-WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazada'");
+WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
                 if (mysqli_num_rows($val)>0) {
   
           ?>
