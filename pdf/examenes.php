@@ -2,7 +2,27 @@
 	include 'plantilla3.php';
 	include '../Conexion/conexion.php';
 
+$principal= mysqli_query($conexion,"SELECT*FROM t_examenes INNER JOIN t_consulta ON t_examenes.fk_consulta=t_consulta.idconsulta
+INNER JOIN t_expediente ON t_consulta.fk_expediente=t_expediente.id_expediente
+INNER JOIN t_paciente ON t_expediente.fk_paciente=t_paciente.id_paciente");
 
+while ($aux= mysqli_fetch_array($principal)){
+    //comenzar a sacar los de los examenes
+    $hema=$aux['hematologia'];
+    //********************
+    $paciente=$aux['pac_cnombre'];
+    $ape=$aux['pac_capellidos'];
+    
+}
+///que comience el juego*** para comenzar a sacar las pociones y comparar
+//para hematologia
+  $hemaPivote= explode(",",$hema);
+//  $hemaPivote[0];$hemaPivote[1];$hemaPivote[2];$hemaPivote[3];$hemaPivote[4];$hemaPivote[5];$hemaPivote[6];
+//  $hemaPivote[7];$hemaPivote[8];$hemaPivote[9];$hemaPivote[10];$hemaPivote[11];$hemaPivote[12];$hemaPivote[13];
+//  $hemaPivote[14];$hemaPivote[15];$hemaPivote[16];$hemaPivote[17];$hemaPivote[18];$hemaPivote[19];$hemaPivote[20];
+//  $hemaPivote[21];
+
+///
 	$sacar1 = mysqli_query($conexion, "SELECT * FROM t_medico");
      
      $fecha_actual=date("d/m/Y");                              
@@ -15,7 +35,7 @@
 	$pdf->AddPage();
 
 	$pdf->SetFont('Arial','B',11);
-	$pdf->Cell(100,5, utf8_decode('Paciente'),0,1,'L');		
+	$pdf->Cell(100,5, utf8_decode('Paciente: '.$paciente.' '.$ape),0,1,'L');		
    
 			$pdf->Cell(100,12, utf8_decode('Médico:'),0,1,'L');
 
@@ -36,7 +56,7 @@
 			$pdf->Ln(-5);
 			$pdf->Cell(335,5, utf8_decode($fecha_actual),0,1,'C');
 			$pdf->Ln(5);
-			$pdf->Cell(300,5, utf8_decode('Edad: '),0,1,'C');
+			$pdf->Cell(300,5, utf8_decode('Edad: '.$hemaPivote[7]),0,1,'C');
 			$pdf->Ln(5);
 			//Encabezado
 			$pdf->SetFillColor(0,186,211);
@@ -45,149 +65,157 @@
 			$pdf->Cell(48,6,utf8_decode('HEMATOLOGÍA'),1,1,'C',1);
 			//Lista de examenes
 			$pdf->SetFont('Arial','',8);
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Hemograma'),1,1,'C');
+			if ($hemaPivote[0]!=null) {
+				//$pdf->SetTextColor(182, 0, 61); esto tiene que quitar en lo demas xq da problemas
+                            //cuando entra el if pone todo del mismo color no pone el que queremos sino que todo
+                            //y mejor rellene el cuadro para indicar que examen se hizo SetFillColor tiene que usar
+                                $pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Hemograma'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Hemograma'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Htc. y Hb.'),1,1,'C');
+			if ($hemaPivote[1]!=null) {
+				 $pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Htc. y Hb.'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Htc. y Hb.'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Leucograma'),1,1,'C');
+			if ($hemaPivote[2]!=null) {
+				 $pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Leucograma'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Leucograma'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Plaquetas'),1,1,'C');
+			if ($hemaPivote[3]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Plaquetas'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Plaquetas'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Reticulocitos'),1,1,'C');
+			if ($hemaPivote[4]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Reticulocitos'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Reticulocitos'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Frotis Sangre Periférica'),1,1,'C');
+			if ($hemaPivote[5]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Frotis Sangre Periférica'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Frotis Sangre Periférica'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Eritrosedimentación'),1,1,'C');
+			if ($hemaPivote[6]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Eritrosedimentación'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Eritrosedimentación'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Celulas L.E'),1,1,'C');
+			if ($hemaPivote[7]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Celulas L.E'),1,1,'C',1);
+                                //aqui encontre en error kevin puso asi $pdf->Cell(48,6, utf8_decode('Celulas L.E'),1,1,'C');
+                                // en todos y por eso tiene que agregar un 1 al final para que le rrellene sino pasara como
+                                //yo buscando el error y no lo va hallar es asi $pdf->Cell(48,6, utf8_decode('Celulas L.E'),1,1,'C',1);
+                                //ojo pero ese 1 solo va donde queremos rrellenar en el otro dejelo como estaba
+                                //observe bien lo que e hecho y compare
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Celulas L.E'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Celulas Falciformes'),1,1,'C');
+			if ($hemaPivote[8]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Celulas Falciformes'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Celulas Falciformes'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Recuento Eosinofilos en Sangre'),1,1,'C');
+			if ($hemaPivote[9]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Recuento Eosinofilos en Sangre'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Recuento Eosinofilos en Sangre'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Recuento Eosinofilos Nasal'),1,1,'C');
+			if ($hemaPivote[10]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Recuento Eosinofilos Nasal'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Recuento Eosinofilos Nasal'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Tiempo Sangramiento'),1,1,'C');
+			if ($hemaPivote[11]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Tiempo Sangramiento'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Tiempo Sangramiento'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Retracción de Coágulo'),1,1,'C');
+			if ($hemaPivote[12]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Retracción de Coágulo'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Retracción de Coágulo'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Tiempo de Protrombina'),1,1,'C');
+			if ($hemaPivote[13]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Tiempo de Protrombina'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Tiempo de Protrombina'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Tiempo Parcial de Tromboplastina'),1,1,'C');
+			if ($hemaPivote[14]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Tiempo Parcial de Tromboplastina'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Tiempo Parcial de Tromboplastina'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Tiempo de Coagulación'),1,1,'C');
+			if ($hemaPivote[15]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Tiempo de Coagulación'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Tiempo de Coagulación'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Fibrinógeno'),1,1,'C');
+			if ($hemaPivote[16]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Fibrinógeno'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Fibrinógeno'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Grupo y HR'),1,1,'C');
+			if ($hemaPivote[17]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Grupo y HR'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Grupo y HR'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Prueba Cruzada'),1,1,'C');
+			if ($hemaPivote[18]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Prueba Cruzada'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Prueba Cruzada'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Prueba de Coombs'),1,1,'C');
+			if ($hemaPivote[19]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Prueba de Coombs'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Prueba de Coombs'),1,1,'C');
 			}
 
-			if ($tigre==2) {
-				$pdf->SetTextColor(182, 0, 61);
-				$pdf->Cell(48,6, utf8_decode('Directo e indirecto'),1,1,'C');
+			if ($hemaPivote[20]!=null) {
+				$pdf->SetFillColor(175, 122, 197 );
+				$pdf->Cell(48,6, utf8_decode('Directo e indirecto'),1,1,'C',1);
 			} else {
 				$pdf->Cell(48,6, utf8_decode('Directo e indirecto'),1,1,'C');
 			}
