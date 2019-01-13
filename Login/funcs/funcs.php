@@ -130,10 +130,10 @@
 		$mail->Host = 'smtp.gmail.com'; //Modificar
 		$mail->Port = 587; //Modificar
 		
-		$mail->Username = 'ticasalerxander@gmail.com'; //Modificar
-		$mail->Password = 'docsonprado1996'; //Modificar
+		$mail->Username = 'sicamoms@gmail.com'; //Modificar
+		$mail->Password = 'sicamom2019'; //Modificar
 		
-		$mail->setFrom('ticasalerxander@gmail.com', 'Erick Ticas'); //Modificar
+		$mail->setFrom('sicamoms@gmail.com', 'SICAMOM'); //Modificar
 		$mail->addAddress($email, $nombre);
 		
 		$mail->Subject = $asunto;
