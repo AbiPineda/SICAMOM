@@ -94,6 +94,7 @@
 							</div>  
 							 </div> 
 						</form>
+						<?php echo resultBlock($errors); ?>
 					    </div>                  
 				</div>  
 			</div>
