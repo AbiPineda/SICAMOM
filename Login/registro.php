@@ -84,15 +84,23 @@
 ?>
 <html>
 	<head>
+
+
 		<title>Registro</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css" >
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css" >
 		<script src="js/bootstrap.min.js" ></script>
+		 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<!-- 
+      <link rel="stylesheet" href="css/styleLogin.css">
+      -->
+      <link href="../dist/css/styleLogin.css" rel="stylesheet">
 		
 	</head>
 	
 	<body>
+		<div class="cont" style="background-image: url(../assets/images/ecografia.jpg);">
 		<div class="container">
 			<div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 				<div class="panel panel-info">
@@ -104,6 +112,8 @@
 					<div class="panel-body" >
 						
 						<form id="signupform" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+
+							
 							
 							<div id="signupalert" style="display:none" class="alert alert-danger">
 								<p>Error:</p>
@@ -152,11 +162,15 @@
 									<button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar</button> 
 								</div>
 							</div>
+
 						</form>
 						<?php echo resultBlock($errors); ?>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		</div>
 	</body>
+
 </html>															
