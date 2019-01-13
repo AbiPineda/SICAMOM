@@ -221,7 +221,7 @@
 					$_SESSION['id_usuario'] = $id;
 					$_SESSION['tipo_usuario'] = $id_tipo;
 					
-					header("location:../html/ltr/index.html");
+					header("location: welcome.php");
 					} else {
 					
 					$errors = "La contrase&ntilde;a es incorrecta";

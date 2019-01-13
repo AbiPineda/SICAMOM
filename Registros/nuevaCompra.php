@@ -186,11 +186,44 @@ else {
 
 
         <div class="container-fluid">
+           
+                   
+                    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de compra.</h4> 
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;">
+<iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
+style="width:700px; height:500px;" frameborder="0"></iframe>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      <!--  <button type="button" class="btn btn-primary">Save changes</button>  --> 
+      </div>
+    </div>
+  </div>
+</div>
             <div class="signup__container"  style="background: rgba(0, 101, 191,0.6)">
                 <div class="container__child signup__thumbnail">
                     <div class="thumbnail__logo">
 
-                        <h2 class="heading--secondary" style="color: white">Registro de compra</h2>
+                        <div class="row">
+      <div class="col-lg-4">
+        <h2 class="heading--secondary" style="color: white">Registro de compra</h2>
+      </div>
+      <div class="col-lg-4 col-lg-offset-4">
+       <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-success'>Ayuda</button></a>
+      </div>
+    </div>
+
+                       
                         <form action="nuevaCompra.php" method="get" autocomplete="off">
                             <br>
                             <div class="row mb-12"> 
