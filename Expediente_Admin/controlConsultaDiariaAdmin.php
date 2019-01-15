@@ -14,7 +14,7 @@ $y1 = date("Y");
  $esta=1;
     include_once '../Conexion/conexion.php';
 
- $verificar_insert  = mysqli_query($conexion, "SELECT * FROM t_llegada WHERE fk_expediente='$modi1' AND lleg_ffecha_atiende='$y1-$m1-$d1'");
+ $verificar_insert  = mysqli_query($conexion, "SELECT * FROM t_llegada WHERE fk_expediente='$modi1' AND lleg_ffecha_atiende='$y1-$m1-$d1' AND estado=1");
        if (mysqli_num_rows($verificar_insert) > 0) {
                   echo '<script>swal({
                     title: "Error",
@@ -93,6 +93,37 @@ $y = date("Y");
                    $ape=$fila['pac_capellidos'];  
                    $modi_llegada=$fila['id_llegada'];
                    $fe=$fila['estado']; 
+                $fe_nac = $fila['pac_ffecha_nac'];
+                   $partes = explode('-', $fe_nac);
+                   $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+
+//fecha actual
+    date_default_timezone_set('America/El_Salvador');
+    $dia = date("d");
+    $mes = date("m");
+    $ano = date("Y");
+
+//fecha de nacimiento
+
+//si el mes es el mismo pero el día inferior aun no ha cumplido años, le quitaremos un año al actual
+
+if (($partes[1] == $mes) && ($partes[2] > $dia)) {
+$ano=($ano-1); }
+
+//si el mes es superior al actual tampoco habrá cumplido años, por eso le quitamos un año al actual
+
+if ($partes[1] > $mes) {
+$ano=($ano-1);}
+
+//ya no habría mas condiciones, ahora simplemente restamos los años y mostramos el resultado como su edad
+
+$edad=($ano-$partes[0]);
+
+//print $edad;
+
+
+
+//echo floor($sem).'  Semanas';
                  
                  if ($fe==0) {
                      $estado="Desactivado";
@@ -105,21 +136,54 @@ $y = date("Y");
               //  $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
              
         ?>
+
       <tr>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $codigo;?></td>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
+        <th scope="row"><?php echo $edad;?></th>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
+
+
      <?php 
+     if ($edad>=8) { 
+      
+    
         if($fe==0){ ?>
-        <td class="text"><a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit" style="margin-right:50px">Consulta</a><a href="../Expediente_Admin/ProcesoDarBajaAltaColaAdmin.php?ir=<?php echo $modi_llegada; ?>"  class="btn btn-success fas fa-arrow-circle-up" style="margin-right:10px">Dar Alta</a></td>
+        <td class="text">
+           <a href="../Expediente_Admin/ProcesoDarBajaAltaColaAdmin.php?ir=<?php echo $modi_llegada; ?>"  class="btn btn-success fas fa-arrow-circle-up" style="margin-right:10px">Dar Alta</a>
+          <a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Consulta Ginecológica</a>
+          <a href="../Expediente_Admin/controlEmbarazo.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Control Prenatal</a>
+         </td>
         <?php
         }else{
         ?>
-        <td class="text"><a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit" style="margin-right:50px">Consulta</a><a href="../Expediente_Admin/ProcesoDarBajaAltaColaAdmin.php?ir=<?php echo $modi_llegada; ?>" class="btn btn-warning fas fa-arrow-circle-down" style="margin-right:10px">Dar Baja</a></td>
-
+        <td class="text">
+          <a href="../Expediente_Admin/ProcesoDarBajaAltaColaAdmin.php?ir=<?php echo $modi_llegada; ?>" class="btn btn-warning fas fa-arrow-circle-down" style="margin-right:10px">Dar Baja</a>
+          <a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Consulta Ginecológica</a>
+          <a href="../Expediente_Admin/controlEmbarazo.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Control Prenatal</a>
+          </td>
       <?php  }
-            }?>
-      
+    } else {
+
+
+
+       if($fe==0){ ?>
+        <td class="text">
+          <a href="../Expediente_Admin/ProcesoDarBajaAltaColaAdmin.php?ir=<?php echo $modi_llegada; ?>"  class="btn btn-success fas fa-arrow-circle-up" style="margin-right:10px">Dar Alta</a>
+          <a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Consulta Ginecológica</a>
+          </td>
+        <?php
+        }else{
+        ?>
+        <td class="text">
+           <a href="../Expediente_Admin/ProcesoDarBajaAltaColaAdmin.php?ir=<?php echo $modi_llegada; ?>" class="btn btn-warning fas fa-arrow-circle-down" style="margin-right:10px">Dar Baja</a>
+          <a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modificar; ?>" class="btn btn-success fas fa-edit">Consulta Ginecológica</a>
+         </td>
+      <?php  }
+            }
+
+          }?>
+
       </tr>
 
     </tbody>
