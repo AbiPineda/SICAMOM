@@ -5,7 +5,13 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
 
-
+                
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fas fa-briefcase"></i><span class="hide-menu">Expediente </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item"><a href="../Expediente/expedienteUsuario.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Crear Expediente</span></a></li>
+                        <li class="sidebar-item"><a href="../Expediente/verColaUsuario.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Lista de Expediente</span></a></li>
+                    </ul>
+                </li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fas fa-briefcase"></i><span class="hide-menu">Paciente </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
 
