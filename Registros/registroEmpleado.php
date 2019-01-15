@@ -7,10 +7,10 @@ include_once '../plantilla/menu_lateral.php';
 //sacar usuarios para bitacora
 
 include_once '../Conexion/conexion.php';
-$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
 while ($row = mysqli_fetch_array($usuario)) {
-    $id = $row['id_usuario'];
-    $NombreUsuario = $row['usu_cusuario'];
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
 }
 //sacar usuarios para bitacora
 ?>
@@ -33,7 +33,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                                   <div class="col-lg-4">
                                     <?php
                                         include_once '../Conexion/conexion.php';
-                                        $sacar = mysqli_query($conexion, "SELECT*FROM t_usuario");
+                                        $sacar = mysqli_query($conexion, "SELECT*FROM usuarios");
                                     ?>
                                     <label style="color: white">Usuario<small class="text-muted"></small></label>
                                     <select class="custom-select" name="doctorusu" style="width: 100%; height:36px;">
@@ -42,7 +42,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                                         while($row = mysqli_fetch_array($sacar)) 
                                         { 
                                         ?>
-                                        <option value="<?php echo $row['usu_cusuario'];?>"><?php echo $row['usu_cusuario'];?></option>
+                                        <option value="<?php echo $row['usuario'];?>"><?php echo $row['usuario'];?></option>
                                        <?php 
                                         } 
                                         ?> 
@@ -98,13 +98,13 @@ if (isset($_REQUEST['tirar'])) {
    $doctor= $_REQUEST['doctorusu'];
    $espe = $_REQUEST['especialidad'];                 
 
-      $sacar1 = mysqli_query($conexion,"SELECT * FROM t_usuario WHERE usu_cusuario='$doctor'");
+      $sacar1 = mysqli_query($conexion,"SELECT * FROM usuarios WHERE usuario='$doctor'");
                 while ($fila1 = mysqli_fetch_array($sacar1)) {
-                      $medico=$fila1['id_usuario']; 
-                      $mediconom=$fila1['usu_cnombre'];
-                      $medicoape=$fila1['usu_capellido'];
+                      $medico=$fila1['id']; 
+                      $mediconom=$fila1['nombre'];
+                    
 
-        mysqli_query($conexion, "INSERT INTO t_medico(t_usuario,med_cnombre,med_capellidos,med_cespecialidad) VALUES('$medico','$mediconom','$medicoape','$espe')");
+        mysqli_query($conexion, "INSERT INTO t_medico(med_cnombre,med_cespecialidad,fk_usuario) VALUES('$mediconom','$espe','$medico')");
         echo '<script>swal({
                     title: "Registro",
                     text: "Guardado!",

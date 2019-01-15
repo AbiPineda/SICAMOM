@@ -121,7 +121,7 @@
           						<svg class="login__icon name svg-icon" viewBox="0 0 20 20">
            						 <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
           						</svg>
-         							 <input id="nombre" type="text" class="login__input name" placeholder="Nombre" name="nombre" value="<?php if(isset($nombre)) echo $nombre; ?>" required >
+                                                        <input id="nombre" type="text" class="login__input name" placeholder="Nombre" name="nombre" value="<?php if(isset($nombre)) echo $nombre; ?>" required >
         					</div>
 							
 							
@@ -162,7 +162,7 @@
 							
 							<div style="margin-top:-15px" class="form-group">
 								<div class="col-sm-12 controls">
-										<button id="btn-signup type="submit" class="login__submit" name="Submit">Registrar</button>
+										<button id="btn-signup" type="submit" class="login__submit" name="Submit">Registrar</button>
 										
 								</div>
 							</div>
