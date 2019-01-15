@@ -64,6 +64,15 @@
 
             document.regForm.fech_ame.value = fechas;
 
+var fecha_probable = new Date($('#fecha_amenorrea').val());
+var dias = 281; // Número de días a agregar
+fecha_probable.setDate(fecha_probable.getDate() + dias);
+            
+            var fecha_probable2 = fecha_probable.getDate() + '/' +
+    (fecha_probable.getMonth() + 1) + '/' + fecha_probable.getFullYear();
+
+document.regForm.fech_parto.value = fecha_probable2;
+
             if (edad <= 17) {
                 document.f1.dui.disabled = true;
                 document.f1.tel.disabled = true;
@@ -103,7 +112,7 @@ function mostrar(id) {
                $("#vaginales").show();
                $("#cesareas").show();
             }
-              if (id == "si_planeado") {
+              if (id == "Si") {
                $("#si_planeado").show();
             }
             if (id == "no_planeado") {
@@ -196,7 +205,7 @@ $edad=($ano-$partes[0]);
   <!-- One "tab" for each step in the form: -->
    <div class="tab">
     <div class="row">
-          <div class="col-md-5" style="align: center">
+          <div class="col-md-3" style="align: center">
       <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label>
       <div class="input-group">
         <?php 
@@ -262,8 +271,9 @@ $edad=($ano-$partes[0]);
             $datetime2 = new DateTime($actual);
             $interval = $datetime1->diff($datetime2);
           
-
-
+//$fecha = date('Y-m-j');
+$nuevafecha = strtotime ( '+40 week' , strtotime ( $fecha ) ) ;
+$nuevafecha = date ( 'j/m/Y' , $nuevafecha );
           ?>
 
            <input type="date" name="fecha_amenorrea" value="<?php echo $fecha; ?>" class="form-control" id="fecha_amenorrea" max="2018-12-22" min="1947-01-02" onChange="javascript:calcularEdad();" disabled>                                  <div class="input-group-append">
@@ -271,9 +281,9 @@ $edad=($ano-$partes[0]);
                                         </div>
                                             </div> 
                                         </div>
-<div class="col-md-2"> 
+<div class="col-md-1"> 
 </div>
-                                          <div class="col-md-5">                             
+                                          <div class="col-md-3">                             
                                         <label style="color: white" >Edad Gestacional (Semanas): <small class="text-muted"></small></label>
                                         <div class="input-group">
                                           <input name="fech_ame" value="<?php   echo $semanasVal; ?>" id="fech_ameno" class="form-control" disabled >    
@@ -282,7 +292,17 @@ $edad=($ano-$partes[0]);
                                         </div>
                                         </div> 
                                     </div>
-
+<div class="col-md-1"> 
+</div>
+                                          <div class="col-md-3">                             
+                                        <label style="color: white" >Fecha Probable del Parto:<small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                          <input name="fech_parto" id="fech_parto" value="<?php   echo $nuevafecha; ?>" class="form-control" disabled >    
+                                           <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        </div> 
+                                    </div>
 
 
 
@@ -292,12 +312,24 @@ $edad=($ano-$partes[0]);
                                         </div>
                                             </div> 
                                         </div>
-<div class="col-md-2"> 
+<div class="col-md-1"> 
 </div>
-                                          <div class="col-md-5">                             
+                                          <div class="col-md-3">                             
                                         <label style="color: white" >Edad Gestacional (Semanas): <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                          <input name="fech_ame" id="fech_ame" class="form-control" onChange="javascript:desabilitar();">    
+                                          <input name="fech_ame" id="fech_ame"  class="form-control" onChange="javascript:desabilitar();">    
+                                           <div class="input-group-append">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                        </div> 
+                                    </div>
+<div class="col-md-1"> 
+</div>
+
+                                          <div class="col-md-3">                             
+                                        <label style="color: white" >Fecha Probable del Parto:<small class="text-muted"></small></label>
+                                        <div class="input-group">
+                                          <input name="fech_parto"  id="fech_parto" class="form-control" onChange="javascript:desabilitar();">    
                                            <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -463,7 +495,7 @@ aqui ponga una imagen
   <div class="col-md-2">
      <div id="embarazo_ectopico" style="display: none;">
      <div class="input-group">
-     <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="0" value="" size="5" >
+     <input type="number" min="0" class="form-control" id="embarazo_ecto" name="embarazo_ecto" placeholder="0" value="" size="5" >
      <div class="input-group-append">
      <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
      </div>
@@ -476,7 +508,7 @@ aqui ponga una imagen
   <div class="col-md-2">
      <div id="aborto" style="display: none;">
      <div class="input-group">
-     <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="0" value="" size="3" >
+     <input type="number" min="0" class="form-control" id="abort" name="abort" placeholder="0" value="" size="3" >
      <div class="input-group-append">
      <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
      </div>
@@ -490,7 +522,7 @@ aqui ponga una imagen
      <div class="row">
      <div class="col-md-12">
      <div class="input-group">
-     <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="0" value="" size="5" >
+     <input type="number" min="0" class="form-control" id="part" name="part" placeholder="0" value="" size="5" >
      <div class="input-group-append">
      <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
      </div>
@@ -516,7 +548,7 @@ aqui ponga una imagen
      <div class="col-md-6">
      <div id="vaginales" style="display: none;">
      <div class="input-group">
-     <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="0" value="" size="3" >
+     <input type="number" min="0" class="form-control" id="vag" name="vag" placeholder="0" value="" size="3" >
      <div class="input-group-append">
      <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
      </div>
@@ -527,7 +559,7 @@ aqui ponga una imagen
       <div class="col-md-6">  
            <div id="cesareas" style="display: none;">
      <div class="input-group">
-     <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="0" value="" size="3" >
+     <input type="number" min="0" class="form-control" id="ces" name="ces" placeholder="0" value="" size="3" >
      <div class="input-group-append">
      <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
      </div>
@@ -541,7 +573,7 @@ aqui ponga una imagen
      <div id="vivos" style="display: none;">
       <label style="color: white">Vivos:  <small class="text-muted"></small></label>
      <div class="input-group">
-     <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="0" value="" size="3" >
+     <input type="number" min="0" class="form-control" id="viv" name="viv" placeholder="0" value="" size="3" >
      <div class="input-group-append">
      <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
      </div>
@@ -553,7 +585,7 @@ aqui ponga una imagen
            <div id="muertos" style="display: none;">
      <label style="color: white">Muertos:  <small class="text-muted"></small></label>
      <div class="input-group">
-     <input type="number" min="0" class="form-control" id="lname" name="guantes" placeholder="0" value="" size="3" >
+     <input type="number" min="0" class="form-control" id="muert" name="muert" placeholder="0" value="" size="3" >
      <div class="input-group-append">
      <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
      </div>
@@ -565,7 +597,7 @@ aqui ponga una imagen
               <div class="row">
             <div class="col-md-12">
       <div id="fecha_parto_anterior" style="display: none;">
-      <label style="color: white">Fin Embarazo Anterior:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fnamep" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame" >       
+      <label style="color: white">Fin Embarazo Anterior:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fecha_parto_ant" autocomplete="off" name="fecha_parto_ant" >       
                                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -586,13 +618,13 @@ aqui ponga una imagen
   <br/><br/>
   <div class="row"> 
 <label class="container1" style="color: white;font-size: 12px;">NO
-  <input type="radio" value="no_planeado"  id="status" name="planeado" onChange="mostrar(this.value);" checked="checked">
+  <input type="radio" value="No"  id="status" name="planeado" onChange="mostrar(this.value);" checked="checked">
   <span class="checkmark"></span>
 </label>
 </div>
  <div class="row">
  <label class="container1" style="color: white;font-size: 12px;">SI
-  <input type="radio" value="si_planeado"  id="status" name="planeado" onChange="mostrar(this.value);">
+  <input type="radio" value="Si"  id="status" name="planeado" onChange="mostrar(this.value);">
  <span class="checkmark"></span>
 </label >
 </div>
@@ -604,37 +636,37 @@ aqui ponga una imagen
   <br/> <br/>
  <div class="row"> 
 <label class="container1" style="color: white;font-size: 12px;">No usaba
-  <input type="radio" name="met_anti">
+  <input type="radio" name="met_anti" value="No usaba">
  <span class="checkmark"></span>
 </label>
 </div>
  <div class="row"> 
 <label class="container1" style="color: white;font-size: 12px;">Barrera
-  <input type="radio" name="met_anti">
+  <input type="radio" name="met_anti" value="Barrera">
  <span class="checkmark"></span>
 </label>
 </div>
  <div class="row"> 
 <label class="container1" style="color: white;font-size: 12px;">DIU
-  <input type="radio" name="met_anti">
+  <input type="radio" name="met_anti" value="DIU">
  <span class="checkmark"></span>
 </label>
 </div>
  <div class="row"> 
 <label class="container1" style="color: white;font-size: 12px;">Hormonal
-  <input type="radio" name="met_anti">
+  <input type="radio" name="met_anti" value="Hormonal">
  <span class="checkmark"></span>
 </label>
 </div>
  <div class="row"> 
 <label class="container1" style="color: white;font-size: 12px;">Emergencia
-  <input type="radio" name="met_anti">
+  <input type="radio" name="met_anti" value="Emergencia">
  <span class="checkmark"></span>
 </label>
 </div>
  <div class="row"> 
 <label class="container1" style="color: white;font-size: 12px;">Natural
-  <input type="radio" name="met_anti">
+  <input type="radio" name="met_anti" value="Natural">
  <span class="checkmark"></span>
 </label>
 </div>
@@ -1006,6 +1038,9 @@ aqui ponga una imagen
            $obstetricos = $_REQUEST['obstetricos'];
            $resul_examenes = $_REQUEST['examenes'];
             $diagnostico = $_REQUEST['diagnostico'];
+            $fech_parto = $_REQUEST['fech_parto'];
+            $partes1 = explode('-', $fech_parto);
+                $p_fecha = "{$partes1[2]}-{$partes1[1]}-{$partes1[0]}"; 
        //  $tipoconsul = $_REQUEST['tipocon'];
          $amenorrea = $_REQUEST['fecha_amenorrea'];
          $talla = $_REQUEST['talla'];
@@ -1018,12 +1053,33 @@ aqui ponga una imagen
          $frecuencia = $_REQUEST['frecuencia'];
          $movimientos = $_REQUEST['movimientos'];
 
+         //OBSTETRICOS
+         $embarazo_ecto = $_REQUEST['embarazo_ecto'];
+         $abort = $_REQUEST['abort'];
+         $part = $_REQUEST['part'];
+         $vag = $_REQUEST['vag'];
+         $ces = $_REQUEST['ces']; 
+         $viv = $_REQUEST['viv'];
+         $muert = $_REQUEST['muert']; 
+         $fecha_parto_ant = $_REQUEST['fecha_parto_ant']; 
+         $planeado = $_REQUEST['planeado'];
+         $met_anti = $_REQUEST['met_anti'];
+
+
          $guantes = $_REQUEST['guantes'];
          $paletas = $_REQUEST['paletas'];
          $algodon = $_REQUEST['algodon'];
          $papel = $_REQUEST['papel'];
          $isopo = $_REQUEST['isopo'];
          $jeringa = $_REQUEST['jeringas'];
+
+         $curitas = $_REQUEST['curitas'];
+         $gasas = $_REQUEST['gasas'];
+         $especulo = $_REQUEST['especulo'];
+         $mascarillas = $_REQUEST['mascarillas'];
+         $agujas = $_REQUEST['agujas'];
+         $fotografico = $_REQUEST['fotografico'];
+
          
          
 $familiares = implode(',', $_POST['familiares']);
@@ -1059,7 +1115,7 @@ $personales = implode(',', $_POST['personales']);
   ///**************************consulta*****************
 ///**************prenatal*********************
 mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_ccirugias_previas,pre_ffecha_parto,pre_ctipo_riesgo)
-                                          VALUES('$consulta','si','2018-12-20','Control Prenatal')");
+                                          VALUES('$consulta','si','$p_fecha','Control Prenatal')");
 $sacarPrenatal = mysqli_query($conexion,"SELECT idprenatal FROM t_prenatal ORDER by idprenatal DESC LIMIT 1");
                 while ($fila4 = mysqli_fetch_array($sacarPrenatal)) {
                       $prena = $fila4['idprenatal']; 
@@ -1075,6 +1131,8 @@ $sacarPrenatal = mysqli_query($conexion,"SELECT idprenatal FROM t_prenatal ORDER
 
         mysqli_query($conexion, "INSERT INTO t_personales(personal,condGrave,fk_idprenatal) VALUES('" . $personales . "','$otra_personales','$prena')");
 
+         mysqli_query($conexion, "INSERT INTO t_obstetricos(abortos,embarazoEtopico,partos,vaginales,cesareas,vivo,muerto,planeado,anticonceptivos,fechaEmbarazoAnterior,fk_idprenatal) VALUES('$abort','$embarazo_ecto','$part','$vag','$ces','$viv','$muert','$planeado','$met_anti','$fecha_parto_ant','$prena')");
+
      }
 //*******************sacar familiar-*****************                     
           $sacar2 = mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
@@ -1086,6 +1144,11 @@ $sacarPrenatal = mysqli_query($conexion,"SELECT idprenatal FROM t_prenatal ORDER
           $sacar3 = mysqli_query($conexion,"SELECT idpersonal FROM t_personales ORDER by idpersonal DESC LIMIT 1");
                 while ($fila3 = mysqli_fetch_array($sacar3)) {
                       $personal_id = $fila3['idpersonal']; 
+                    }
+
+         $sacar4 = mysqli_query($conexion,"SELECT idobstetricos FROM t_obstetricos ORDER by idobstetricos DESC LIMIT 1");
+                while ($fila4 = mysqli_fetch_array($sacar4)) {
+                      $obstetricos_id = $fila4['idobstetricos']; 
                     }
   //********************sacar familiar................
   
