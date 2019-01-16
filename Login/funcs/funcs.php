@@ -221,7 +221,15 @@
 					$_SESSION['id_usuario'] = $id;
 					$_SESSION['tipo_usuario'] = $id_tipo;
 					
-					header("location: /SICAMOM/Html/ltr/index.html");
+					        if ($id_tipo == '1') { 
+
+     
+     						 header("location:../html/ltr/index.html");  
+      						  }else{
+            // lo redireccionas al indeex secretaria 
+         					 header("location:../html/ltr/indexSecretaria.html");  
+        					}
+        
 					} else {
 					
 					$errors = "La contrase&ntilde;a es incorrecta";
