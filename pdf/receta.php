@@ -27,13 +27,6 @@ WHERE t_expediente.id_expediente='$modificar' ");
      date_default_timezone_set('America/El_Salvador');
      $fecha_actual=date("d/m/Y");                              
 
-		
-        
-           
- 
-
-	
-	
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 	$pdf->AddPage('P','A5');

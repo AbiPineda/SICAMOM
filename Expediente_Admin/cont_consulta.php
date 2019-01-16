@@ -64,7 +64,7 @@ $y = date("Y");
 
         <a href="../Expediente_Admin/examenes.php?ir=<?php echo $modi_consulta; ?>" class="btn btn-success fas fa-edit">Examenes</a>
 
-        <a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modi_consulta; ?> "  class="btn btn-success fas fa-edit">Referencias Medicas</a>
+        <a href="../pdf/referencia.php?ir=<?php echo $modificar;?>" class="btn btn-success fas fa-edit">Referencia médica</a> 
 
         </td>
       
