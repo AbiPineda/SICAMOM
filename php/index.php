@@ -31,20 +31,27 @@ include_once '../Conexion/conexion.php';
 
     <div class="card" style="background: rgba(0, 101, 191,0.6)" >
       <h3 class="card-title" style="color: white" >Backup / Restore</h3>
+      <br></br>
+      
       <div class="col-md-12">
 
           <div id="bodywrap">
 
-
+<br></br>
   <div class="scroll-window-wrapper">
   
   <body>
-  <a href="./Backup.php" style="color: white" >Realizar copia de seguridad</a>
+     <h3 class="card-title" style="color: white" >Backup</h3><br>
+    
+  <a href="./Backup.php" class="btn btn-success" style="color: white" >Realizar copia de seguridad</a>
   <form action="./Restore.php" method="POST">
     <br></br>
-    <label>Selecciona un punto de restauración</label><br>
-    <select name="restorePoint">
-      <option value="" disabled="" selected="">Selecciona un punto de restauración</option>
+     <h3 class="card-title" style="color: white" >Seleccionar un punto de restauración</h3><br>
+
+    <div class="row mb-12">
+      <div class="col-lg-4">
+      <select name="restorePoint" class="custom-select">
+      <option  value="" disabled="" selected="">Selecciona un punto de restauración</option>
       <?php
         include_once './Connet.php';
         $ruta=BACKUP_PATH;
@@ -68,7 +75,17 @@ include_once '../Conexion/conexion.php';
         }
       ?>
     </select>
-    <button type="submit" >Restaurar</button>
+
+    
+    </div>
+
+    <div class="col-lg-4">
+      <button class="btn btn-info" type="submit" >Restaurar</button>
+    </div>
+
+    </div>
+  
+    <br></br>
   </form>
 </body>
 
