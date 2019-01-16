@@ -12,13 +12,13 @@
 		$password = $mysqli->real_escape_string($_POST['password']);	
 		$con_password = $mysqli->real_escape_string($_POST['con_password']);	
 		$email = $mysqli->real_escape_string($_POST['email']);
-		$id_tipo = $mysqli->real_escape_string($_POST['tusuario']);	
+		
 				
 		$activo = 0;
-		//$tipo_usuario = 2;
+		$tipo_usuario = 2;
 
 		
-		if(isNull($nombre, $usuario, $password, $con_password, $email, $id_tipo))
+		if(isNull($nombre, $usuario, $password, $con_password, $email))
 		{
 			$errors[] = "Debe llenar todos los campos";
 		}
@@ -51,7 +51,7 @@
 				$pass_hash = hashPassword($password);
 				$token = generateToken();
 				
-				$registro = registraUsuario($usuario, $pass_hash, $nombre, $email, $activo, $token, $id_tipo);
+				$registro = registraUsuario($usuario, $pass_hash, $nombre, $email, $activo, $token, $tipo_usuario);
 				
 				if($registro > 0 )
 				{
@@ -159,12 +159,6 @@
          							 <input id="email" type="email" class="login__input name" placeholder="Email" name="email" value="<?php if(isset($email)) echo $email; ?>" required >
         					</div>
 
-        					<div class="login__row">
-        					<select id="tusuario" class="custom-select" name="tusuario" style="width: 100%; height:36px;">
-                                            <option>Seleccionar</option>
-                                            <option value="1">Administrador</option>
-                                            <option value="2">Secretaria</option>
-                                        </select>
 
 							
 							

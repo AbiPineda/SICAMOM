@@ -223,10 +223,10 @@
 					
 					        if ($id_tipo == '1') { 
 
-     
+     						// lo redireccionas al index Administrador
      						 header("location:../html/ltr/index.html");  
       						  }else{
-            // lo redireccionas al indeex secretaria 
+            // lo redireccionas al index secretaria 
          					 header("location:../html/ltr/indexSecretaria.html");  
         					}
         
