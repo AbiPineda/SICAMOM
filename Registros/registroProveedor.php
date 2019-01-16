@@ -7,10 +7,10 @@ include_once '../plantilla/menu_lateral.php';
 //sacar usuarios para bitacora
 
 include_once '../Conexion/conexion.php';
-$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
 while ($row = mysqli_fetch_array($usuario)) {
-    $id = $row['id_usuario'];
-    $NombreUsuario = $row['usu_cusuario'];
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
 }
 //sacar usuarios para bitacora
 
@@ -169,10 +169,11 @@ else {
                 });</script>';
            
            //bitacora
+            mb_internal_encoding("UTF-8");
         ini_set('date.timezone', 'America/El_Salvador');
         $hora = date("H:i:s");
         mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
-                . " VALUES('$id','$NombreUsuario','Registro de Proveedor',now(),'$hora')");
+                . " VALUES('$id','$NombreUsuario','Registro de Proveedor ñ á',now(),'$hora')");
         //bitacora
             }
         }

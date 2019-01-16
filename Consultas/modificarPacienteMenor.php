@@ -3,6 +3,16 @@
     include_once '../plantilla/menu.php';
     include_once '../plantilla/menu_lateral.php';
     $modi = $_GET['ir1'];
+
+     //sacar usuarios para bitacora
+
+include_once '../Conexion/conexion.php';
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
+}
+//sacar usuarios para bitacora
     ?>
 
     <div class="page-wrapper" style="height: 671px;">
@@ -178,6 +188,14 @@ if (isset($_REQUEST['btnEnviar'])) {
                     location.href="modificarMenoresdeEdad.php";
                     
                 });</script>';
+
+                 //bitacora
+        
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Paciente menor de edad modificado',now(),'$hora')");
+        //bitacora
 } 
 ?>
 

@@ -144,7 +144,7 @@ if (isset($_REQUEST['Cancelar'])) {
         ini_set('date.timezone', 'America/El_Salvador');
         $hora = date("H:i:s");
         mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
-                . " VALUES('$id','$NombreUsuario','Se guardaron datos de una nueva compra|',now(),'$hora')");
+                . " VALUES('$id','$NombreUsuario','Se guardaron datos de una nueva compra',now(),'$hora')");
         //bitacora
     //recorrer para guardarlos
 

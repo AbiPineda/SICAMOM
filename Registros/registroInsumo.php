@@ -9,14 +9,15 @@ $codigo1 = '';
 //sacar usuarios para bitacora
 
 include_once '../Conexion/conexion.php';
-$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
 while ($row = mysqli_fetch_array($usuario)) {
-    $id = $row['id_usuario'];
-    $NombreUsuario = $row['usu_cusuario'];
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
 }
 //sacar usuarios para bitacora
 
     ?>
+    
     <div class="page-wrapper" style="height: 671px;">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
@@ -206,13 +207,13 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
     $unidad = $_REQUEST['unidad'];
     $minimo = $_REQUEST['minimo'];
     $tInsumo = $_REQUEST['tipoInsumo'];
-    $categoria = $_REQUEST['categoria'];
+    
 
     $esta = 1;
    
 
     
-    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo,presentacion,unidad,minimo,tipo,id_categoria) VALUES('$nombre','$marca','$descripcion','$esta','$codigo','$presentacion','$unidad','$minimo','$tInsumo','$categoria')");
+    mysqli_query($conexion, "INSERT INTO t_insumo(ins_cnombre_comercial,ins_cmarca,ins_cdescripcion,estado,codigo,presentacion,unidad,minimo,tipo) VALUES('$nombre','$marca','$descripcion','$esta','$codigo','$presentacion','$unidad','$minimo','$tInsumo')");
 
     echo '<script>swal({
                     title: "Exito",
@@ -227,6 +228,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                 });</script>';
 
      //bitacora
+        mb_internal_encoding("UTF-8");
         ini_set('date.timezone', 'America/El_Salvador');
         $hora = date("H:i:s");
         mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
@@ -242,14 +244,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
           ?>
 
 
-          <?php 
-          if (isset($_REQUEST['btnRegistrar'])) {
-    include_once '../Conexion/conexion.php';
-    $nombreCa = $_REQUEST['nombreCa'];
-    
-    mysqli_query($conexion, "INSERT INTO t_categoria_insumo(nombreCategoria) VALUES('$nombreCa')");  
-} 
-           ?>
+          
         <script type="text/javascript">
             /**
              * Funcion que devuelve true o false dependiendo de si la fecha es correcta.
@@ -351,7 +346,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
             }
         </script>
         
-<!--<script>
+<script>
 function campos(){
   var validado = true;
   elementos = document.getElementsByClassName("form-control");
@@ -367,4 +362,4 @@ function campos(){
      document.getElementById("boton").disabled = true;  
   }
 }
-</script>-->
+</script>

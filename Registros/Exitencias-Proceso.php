@@ -1,5 +1,15 @@
 <?php
 include_once '../Conexion/conexion.php';
+
+//sacar usuarios para bitacora
+
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
+}
+//sacar usuarios para bitacora
+
 $auxInsumo=$_GET['in'];
 $factura=$_GET['voy'];
   //unidades a insertar
@@ -47,5 +57,12 @@ mysqli_query($conexion, "UPDATE t_compra SET reduccion='$restar' WHERE fk_insumo
 echo "<script>
           location.href ='Existencias.php';
         </script>";
+
+        //bitacora
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Se prepararon insumos',now(),'$hora')");
+        //bitacora
 
 ?>

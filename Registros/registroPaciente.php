@@ -1,5 +1,4 @@
 <?php
-
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
@@ -7,13 +6,12 @@ include_once '../plantilla/menu_lateral.php';
 //sacar usuarios para bitacora
 
 include_once '../Conexion/conexion.php';
-$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
 while ($row = mysqli_fetch_array($usuario)) {
-    $id = $row['id_usuario'];
-    $NombreUsuario = $row['usu_cusuario'];
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
 }
 //sacar usuarios para bitacora
-
 ?>
 
 <script type="text/javascript">
@@ -121,32 +119,32 @@ while ($row = mysqli_fetch_array($usuario)) {
 
     <div class="container-fluid" >
         <div class="col-md-12 col-md-pull-12" align="right">
-                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
-                    </div>
-                    <br>
+            <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
+        </div>
+        <br>
 
-                    <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de paciente.</h4> 
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        
-      </div>
-      <div class="modal-body">
-        <div style="text-align: center;">
-<iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
-style="width:700px; height:500px;" frameborder="0"></iframe>
-</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      <!--  <button type="button" class="btn btn-primary">Save changes</button>  --> 
-      </div>
-    </div>
-  </div>
-</div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de paciente.</h4> 
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div style="text-align: center;">
+                            <iframe src="https://issuu.com/abitho/docs/manualregistropaciente/1?ff" 
+                                    style="width:700px; height:500px;" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <!--  <button type="button" class="btn btn-primary">Save changes</button>  --> 
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="card" style="background: rgba(0, 101, 191,0.6)">        
             <div class="card-body wizard-content">
@@ -155,7 +153,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                 <form action="" id="f1" name="f1" method="post" class="form-register" >
                     <input type="hidden" name="tirar" id="pase"/>
                     <div>
-                            <br/>
+                        <br/>
                         <section>
                             <div class="row mb-12">
 
@@ -214,7 +212,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                                             <span class="input-group-text"><i class="far fa-id-card"></i></span>
                                         </div>
                                     </div> 
-                                     
+
                                 </div>
 
                                 <div class="col-lg-3">
@@ -225,19 +223,19 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         </div>
                                     </div> 
-                                    
+
                                 </div>
 
                                 <br>
                                 <div class="col-lg-12">
 
-                                        <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                            <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar" ></div>
-                                        <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
-                                          <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button></div>
+                                    <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
+                                        <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar" ></div>
+                                    <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
+                                        <button type="reset" class="btn btn-info" name="nameCancelar">Cancelar </button></div>
 
-                                    </div>   
-                                
+                                </div>   
+
                             </div>
                     </div>
                     </section>
@@ -256,7 +254,6 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
 
 
 <?php
-
 if (isset($_REQUEST['tirar'])) {
     include_once '../Conexion/conexion.php';
 
@@ -267,7 +264,7 @@ if (isset($_REQUEST['tirar'])) {
     $fecha = $_REQUEST['user_date'];
     //$tipo = $_REQUEST['tipo'];
     $edad = $_REQUEST['inp'];
-    $esta=1;
+    $esta = 1;
 
     if ($edad <= 17) { //si es menor de edad entonce que levante el modal con JavaScript
         mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$esta')");
@@ -282,8 +279,9 @@ if (isset($_REQUEST['tirar'])) {
                     location.href="modal.php";
                     
                 });</script>';
-        
+
         //bitacora
+        mb_internal_encoding("UTF-8");
         ini_set('date.timezone', 'America/El_Salvador');
         $hora = date("H:i:s");
         mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
@@ -293,13 +291,13 @@ if (isset($_REQUEST['tirar'])) {
         //sigue la sentencia php para validar sino es menor de edad    
     } else { // como no es menor de edad solo recarcargara la pagina
         $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_paciente WHERE pac_cdui='$dui'");
-         $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_paciente WHERE pac_ctelefono='$telefono'");
-        if (mysqli_num_rows($verificar_insert) > 0 || mysqli_num_rows($verificar_insert2) > 0 ) {
+        $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_paciente WHERE pac_ctelefono='$telefono'");
+        if (mysqli_num_rows($verificar_insert) > 0 || mysqli_num_rows($verificar_insert2) > 0) {
             echo '<script>swal("Dui o Telefono ya existen")
              .then((value) => {
               swal(`Verifique los datos`);
                 });</script>';
-        }else {
+        } else {
             mysqli_query($conexion, "INSERT INTO t_paciente(pac_cnombre,pac_capellidos,pac_cdui,pac_ctelefono,pac_ffecha_nac,estado) VALUES('$nombre_pac','$apellido','$dui','$telefono','$fecha','$esta')");
 
             echo '<script>swal({
@@ -316,12 +314,12 @@ if (isset($_REQUEST['tirar'])) {
 
 
             //bitacora
-        ini_set('date.timezone', 'America/El_Salvador');
-        $hora = date("H:i:s");
-        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
-                . " VALUES('$id','$NombreUsuario','Registro de Paciente',now(),'$hora')");
-        //bitacora
-
+            mb_internal_encoding("UTF-8");
+            ini_set('date.timezone', 'America/El_Salvador');
+            $hora = date("H:i:s");
+            mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                    . " VALUES('$id','$NombreUsuario','Registro de Paciente',now(),'$hora')");
+            //bitacora
             //fin
         }
     }
@@ -329,44 +327,44 @@ if (isset($_REQUEST['tirar'])) {
 include_once '../plantilla/pie.php';
 ?>
 <script>
-function soloLetras(e) {
-    textoArea = document.getElementById("fnamep").value;
-    var total = textoArea.length;
-    if (total == 0) {
-      key = e.keyCode || e.which;
-      tecla = String.fromCharCode(key).toString();
-      letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; //Se define todo el abecedario que se quiere que se muestre.
-      especiales = [8, 9, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+    function soloLetras(e) {
+        textoArea = document.getElementById("fnamep").value;
+        var total = textoArea.length;
+        if (total == 0) {
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toString();
+            letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; //Se define todo el abecedario que se quiere que se muestre.
+            especiales = [8, 9, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
 
-      tecla_especial = false
-      for (var i in especiales) {
-        if (key == especiales[i]) {
-          tecla_especial = true;
-          break;
+            tecla_especial = false
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    tecla_especial = true;
+                    break;
+                }
+            }
+
+            if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+                return false;
+                alert('No puedes comenzar escribiendo numeros');
+            }
         }
-      }
-
-      if (letras.indexOf(tecla) == -1 && !tecla_especial) {
-        return false;
-        alert('No puedes comenzar escribiendo numeros');
-      }
     }
-  }
 </script>
 <script>
-function campos(){
-  var validado = true;
-  elementos = document.getElementsByClassName("form-control");
-  for(i=0;i<elementos.length;i++){
-    if(elementos[i].value == "" || elementos[i].value == null){
-    validado = false
+    function campos() {
+        var validado = true;
+        elementos = document.getElementsByClassName("form-control");
+        for (i = 0; i < elementos.length; i++) {
+            if (elementos[i].value == "" || elementos[i].value == null) {
+                validado = false
+            }
+        }
+        if (validado) {
+            document.getElementById("su").disabled = false;
+
+        } else {
+            document.getElementById("su").disabled = true;
+        }
     }
-  }
-  if(validado){
-  document.getElementById("su").disabled = false;
-  
-  }else{
-     document.getElementById("su").disabled = true;  
-  }
-}
 </script>

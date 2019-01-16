@@ -5,6 +5,14 @@ include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
 
+//sacar usuarios para bitacora
+
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
+}
+//sacar usuarios para bitacora
 ?>
 
 <html lang="en" >
@@ -225,6 +233,8 @@ function mostrar_Modal(insu,com){
                     location.href="devolucionInsumo.php";
                     
                 });</script>';
+
+                  
     }else{
 
    if ($devolver<=$re) {
@@ -253,6 +263,14 @@ function mostrar_Modal(insu,com){
                     location.href="devolucionInsumo.php";
                     
                 });</script>';
+
+                 //bitacora
+        
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Se ha realizado la devolucion de un insumo',now(),'$hora')");
+        //bitacora
   
   } else {
 

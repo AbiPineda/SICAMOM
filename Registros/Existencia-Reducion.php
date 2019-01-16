@@ -5,6 +5,16 @@ include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
 $insumoExi=$_GET['ir'];
+
+//sacar usuarios para bitacora
+
+include_once '../Conexion/conexion.php';
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
+}
+//sacar usuarios para bitacora
 ?>
 
 <html lang="en" >
