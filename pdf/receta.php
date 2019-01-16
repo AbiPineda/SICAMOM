@@ -2,13 +2,33 @@
 	include 'plantilla.php';
 	include '../Conexion/conexion.php';
 
+	$modificar=$_GET['ir'];
 
-	$sacar1 = mysqli_query($conexion, "SELECT * FROM t_medico");
-     
+	$pacientito= mysqli_query($conexion,"SELECT
+t_expediente.id_expediente,
+t_paciente.pac_cnombre,
+t_paciente.pac_capellidos,
+t_medico.med_cnombre,
+t_medico.med_capellidos
+FROM
+t_expediente
+INNER JOIN t_paciente ON t_expediente.fk_paciente = t_paciente.id_paciente
+INNER JOIN t_medico ON t_expediente.fk_medico = t_medico.idMedico
+WHERE t_expediente.id_expediente='$modificar' ");
+            while ($fila = mysqli_fetch_array($pacientito)) {
+
+            	 $nom=$fila['pac_cnombre']; 
+            	 $ape=$fila['pac_capellidos'];
+            	 $nomDr=$fila['med_cnombre'];
+            	 $apeDr=$fila['med_capellidos'];
+                   
+}
+
+     date_default_timezone_set('America/El_Salvador');
      $fecha_actual=date("d/m/Y");                              
 
 		
-        $sacar = mysqli_query($conexion, "SELECT * from receta");
+        
            
  
 
@@ -29,28 +49,16 @@
 			$pdf->Cell(210,5, utf8_decode('TEL: 2352-5461  CEL: 7083-6625'),0,1,'C');
 
 			$pdf->Ln(5);
-			$pdf->Cell(100,5, utf8_decode('Paciente:'),0,1,'L');
-			while ($fila = mysqli_fetch_array($sacar)) {
-                 $id=$fila['idreceta'];
-                 $nom=$fila['paciente'];  
-                 
+			$pdf->Cell(100,5, utf8_decode('Paciente:'.' '.$nom.' '.$ape),0,1,'L');
+			
+                
                  $pdf->Ln(0.5);
-                 $pdf->Cell(30,5, utf8_decode($fila['paciente']),0,0,'C');
+              //   $pdf->Cell(30,5, utf8_decode($fila['paciente']),0,0,'C');
                 
                                      
-	}
+	
 
-			$pdf->Cell(100,12, utf8_decode('Médico:'),0,1,'L');
-
-			while ($fila = mysqli_fetch_array($sacar1)) {
-                 $id=$fila['idMedico'];
-                 $nom=$fila['med_cnombre'];  
-                 $apellido=$fila['med_capellidos'];
-                 $pdf->Ln(0.5);
-                 $pdf->Cell(30,5, utf8_decode($fila['med_cnombre']),0,0,'C');
-                 $pdf->Cell(1);
-                 $pdf->Cell(-18,5, utf8_decode($fila['med_capellidos']),0,0,'C');                        
-	}
+			$pdf->Cell(100,12, utf8_decode('Médico:'.' '.$nomDr.' '.$apeDr),0,1,'L');
 
 			$pdf->Ln(-10);
 			$pdf->Cell(200,5, utf8_decode('Fecha: '),0,1,'C');

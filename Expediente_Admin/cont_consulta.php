@@ -56,9 +56,16 @@ $y = date("Y");
       <tr>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $codigo;?></td>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
-        <td class="text"><a href="../Expediente_Admin/recetas.php?ir=<?php echo $modi_consulta; ?>" class="btn btn-success fas fa-edit">Recetas</a>
+
+        <td class="text">
+
+
+      <a href="../pdf/receta.php?ir=<?php echo $modificar;?>" class="btn btn-success fas fa-edit">Receta</a>  
+
         <a href="../Expediente_Admin/examenes.php?ir=<?php echo $modi_consulta; ?>" class="btn btn-success fas fa-edit">Examenes</a>
+
         <a href="../Expediente_Admin/realizarConsultaDiaria.php?ir=<?php echo $modi_consulta; ?> "  class="btn btn-success fas fa-edit">Referencias Medicas</a>
+
         </td>
       
       </tr>
