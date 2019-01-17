@@ -6,7 +6,8 @@
 	{
 		function Header()
 		{
-			$this->Image('images/ClinicaLogo.png', 65, 3, 80 );
+			$this->Image('images/ClinicaLogo.png', 10, 3, 80 );
+			$this->Image('images/logonuevo.png', 190, 10, 80 );
 			$this->SetFont('Arial','B',7);
 			$this->Cell(1);
 			

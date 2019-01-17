@@ -107,7 +107,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                 
                 <th scope="row"><?php echo $factura; ?></th>
                 <td data-title="Released"><?php echo $fecha; ?></td>
-                <td class="text"><a href="../Consultas/modalFactura.php" class="btn btn-success fas fa-eye"> Detalle</a>
+                <td class="text"><a href="../pdf/detalleCompra.php" class="btn btn-success fas fa-eye"> Detalle</a>
 
                 </td>
 
