@@ -5,7 +5,7 @@
 	session_start(); //Iniciar una nueva sesión o reanudar la existente
 	
 	if(isset($_SESSION["id_usuario"])){ //En caso de existir la sesión redireccionamos
-		header("Location: Html/ltr/index.html");
+		header("Location: /SICAMOM/html/ltr/index.html");
 	}
 	
 	$errors = array();

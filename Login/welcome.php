@@ -4,7 +4,7 @@
 	include 'funcs/funcs.php';
 	
 	if(!isset($_SESSION["id_usuario"])){ //Si no ha iniciado sesión redirecciona a index.php
-		header("Location: /SICAMOM/SICAMOM/Html/ltr/index.html");
+		header("Location: /SICAMOM/html/ltr/index.html");
 	}
 	
 	$idUsuario = $_SESSION['id_usuario'];
