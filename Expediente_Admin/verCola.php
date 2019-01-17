@@ -361,7 +361,7 @@ $edad=($ano-$partes[0]);
       <tr>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $codigo;?></td>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
-        <th scope="row"><?php echo $edad;?></th>
+        <th scope="row"><?php echo $edad." años";?></th>
         <td data-title="Domestic Gross" data-type="currency"><?php echo $estado;?></td>
 
 

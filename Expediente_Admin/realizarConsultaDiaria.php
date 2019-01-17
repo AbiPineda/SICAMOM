@@ -84,7 +84,7 @@ $edad=($ano-$partes[0]);
     <div class="row">
                                               <div class="col-md-5">
       
-      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fnamep" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame" >       
+      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fecha" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame" >       
                                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -100,7 +100,7 @@ $edad=($ano-$partes[0]);
        <div class="col-md-2">
                                           
         <label style="color: white">Talla:  <small class="text-muted"></small></label><div class="input-group"><input type="text" class="form-control" id="fnamep" placeholder="Cm" autocomplete="off" maxlength="6" name="talla">
-        <div class="input-group-append">
+        <div class="input-group-append" required>
                                                   <span class="input-group-text"><i class="fas fa-child"></i></span>
                                               </div>
                                           </div> 
@@ -147,7 +147,7 @@ $edad=($ano-$partes[0]);
                       <div class="col-md-12">
                                         <label style="color: white">Resultado de Exámenes: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="examenes"></textarea> 
+                                             <textarea class="form-control" rows="3" name="examenes" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -158,7 +158,7 @@ $edad=($ano-$partes[0]);
                       <div class="col-md-12">
                                         <label style="color: white">Síntomas y Diagnóstico: <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                             <textarea class="form-control" rows="3" name="diagnostico"></textarea> 
+                                             <textarea class="form-control" rows="3" name="diagnostico" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas"></textarea> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
@@ -326,8 +326,7 @@ $edad=($ano-$partes[0]);
     <span class="step"></span>
     <span class="step"></span>
     <span class="step"></span>
-     <span class="step"></span>
-  </div>
+    </div>
 
   </form>
                       </div>
@@ -389,7 +388,7 @@ $edad=($ano-$partes[0]);
     var x, y, i, valid = true;
     x = document.getElementsByClassName("tab");
     y = x[currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
+    // A loop that checks every input field in the current tab:  
     for (i = 0; i < y.length; i++) {
       // If a field is empty...
       if (y[i].value == "") {

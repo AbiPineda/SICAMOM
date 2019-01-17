@@ -68,10 +68,11 @@ var fecha_probable = new Date($('#fecha_amenorrea').val());
 var dias = 281; // Número de días a agregar
 fecha_probable.setDate(fecha_probable.getDate() + dias);
             
-            var fecha_probable2 = fecha_probable.getDate() + '/' +
-    (fecha_probable.getMonth() + 1) + '/' + fecha_probable.getFullYear();
+            var $fecha_probable2 = fecha_probable.getFullYear()+ '-' +(fecha_probable.getMonth() + 1)+ '-' + fecha_probable.getDate();
+            var $fecha_probable3 = fecha_probable.getDate()+ '/' +(fecha_probable.getMonth() + 1)+ '/' +fecha_probable.getFullYear() ;
+//document.regForm.fech_parto.value = fecha_probable2;
 
-document.regForm.fech_parto.value = fecha_probable2;
+ $("#fech_parto1").val($fecha_probable3);
 
             if (edad <= 17) {
                 document.f1.dui.disabled = true;
@@ -117,6 +118,18 @@ function mostrar(id) {
             }
             if (id == "no_planeado") {
                $("#si_planeado").hide();
+            }
+             if (id == "si_cirugia") {
+               $("#cirugia").show();
+            }
+             if (id == "recetas") {
+               $("#recetas").show();
+            }
+               if (id == "referencias") {
+               $("#referencias").show();
+            }
+               if (id == "constancias") {
+               $("#constancias").show();
             }
 }
 </script>
@@ -274,9 +287,11 @@ $edad=($ano-$partes[0]);
 //$fecha = date('Y-m-j');
 $nuevafecha = strtotime ( '+40 week' , strtotime ( $fecha ) ) ;
 $nuevafecha = date ( 'j/m/Y' , $nuevafecha );
+
+
           ?>
 
-           <input type="date" name="fecha_amenorrea" value="<?php echo $fecha; ?>" class="form-control" id="fecha_amenorrea" max="2018-12-22" min="1947-01-02" onChange="javascript:calcularEdad();" disabled>                                  <div class="input-group-append">
+           <input type="date" name="fecha_amenorrea" value="<?php echo $fecha; ?>" class="form-control" id="fecha_amenorrea" min="1947-01-02" onChange="javascript:calcularEdad();" disabled max="<?php $actual; ?>">                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
                                             </div> 
@@ -306,8 +321,18 @@ $nuevafecha = date ( 'j/m/Y' , $nuevafecha );
 
 
 
-       <?php }else{ ?>
-      <input type="date" name="fecha_amenorrea" class="form-control" id="fecha_amenorrea" max="2018-12-22" min="1947-01-02" onChange="javascript:calcularEdad();">                                  <div class="input-group-append">
+       <?php }else{
+        date_default_timezone_set('America/El_Salvador');
+    $d1 = date("d");
+    $m1 = date("m");
+    $y1 = date("Y");
+$f_actual=date('Y-m-d');
+
+
+$fecha_min = strtotime ( '-38 weeks' , strtotime ( $f_actual ) ) ;
+$fecha_min = date ( 'Y-m-j' , $fecha_min );
+        ?>
+      <input type="date" name="fecha_amenorrea" class="form-control" id="fecha_amenorrea" onChange="javascript:calcularEdad();" max="<?php echo $f_actual; ?>" min="<?php echo $fecha_min; ?>">                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
                                             </div> 
@@ -329,7 +354,7 @@ $nuevafecha = date ( 'j/m/Y' , $nuevafecha );
                                           <div class="col-md-3">                             
                                         <label style="color: white" >Fecha Probable del Parto:<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                          <input name="fech_parto"  id="fech_parto" class="form-control" onChange="javascript:desabilitar();">    
+                                          <input name="fech_parto"  id="fech_parto1" class="form-control" onChange="javascript:desabilitar();">    
                                            <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -345,8 +370,24 @@ $nuevafecha = date ( 'j/m/Y' , $nuevafecha );
 INNER JOIN t_familiar ON t_prenatal.idprenatal=t_familiar.fk_idprenatal
 WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
                 if (mysqli_num_rows($val)>0) {
-  
+ 
+  $sacar2 = mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
+                while ($fila2 = mysqli_fetch_array($sacar2)) {
+                      $familiar_id = $fila2['idfamiliar']; 
+                    }
+
           ?>
+    <div class="row">      
+    <div class="col-md-4">                 
+<h5 class="card-title" style="color:white">FAMILIARES</h5>
+   <div class="input-group">
+                                             <input class="form-control" rows="3" name="ant_fam" value="<?php   echo $familiar_id; ?>"></input> 
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+                                            </div>
+                                        </div>
+</div> 
+</div>         
 aqui ponga una imagen
           <?php }else{?>
    
@@ -380,7 +421,7 @@ aqui ponga una imagen
  <div class="row">               
 <h5 class="card-title" style="color:white; align:center">PERSONALES</h5>
 </div>
-<div class="row">
+  <div class="row">
 <div class="col-md-6">  
   <label class="container1" style="color: white;font-size: 12px;"  >TBC
   <input type="checkbox" name="personales[]" value="TBC">
@@ -441,6 +482,40 @@ aqui ponga una imagen
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
                                         </div> 
+<br/><br/>
+<div class="row">
+<div class="col-md-12">
+  <h7 class="card-title" style="color: white">CIRUGIAS PREVIAS</h7> 
+  <br/>
+  <div class="row">
+  <div class="col-md-6"> 
+<label class="container1" style="color: white;font-size: 12px;">NO
+  <input type="radio" value="no_cirugia"  id="status" name="cirugia" onChange="mostrar(this.value);" checked="checked">
+  <span class="checkmark"></span>
+</label>
+</div>
+<div class="col-md-6">
+ <label class="container1" style="color: white;font-size: 12px;">SI
+  <input type="radio" value="si_cirugia"  id="status" name="cirugia" onChange="mostrar(this.value);">
+ <span class="checkmark"></span>
+</label >
+</div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <br/>
+         <div id="cirugia" style="display: none;">
+     <div class="input-group">
+    <textarea class="form-control" rows="3" name="cirugia"></textarea>
+     <div class="input-group-append">
+     <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+     </div>
+     </div> 
+    </div>
+  </div>
+</div>
+</div>
+</div>
                                     </div> 
                                   <div class="col-md-1">
                                   </div>
@@ -451,7 +526,47 @@ aqui ponga una imagen
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>
-                                        </div> 
+                                        </div>
+                                        <br/><br/> 
+                                        <div class="row">
+<div class="col-md-12">
+  <h7 class="card-title" style="color: white">TIPO DE RIESGO</h7> 
+  <br/>
+  <div class="row">
+  <div class="col-md-4"> 
+<label class="container1" style="color: white;font-size: 12px;">Bajo
+  <input type="radio" value="Bajo"  id="status" name="riesgo" checked="checked">
+  <span class="checkmark"></span>
+</label>
+</div>
+<div class="col-md-4">
+ <label class="container1" style="color: white;font-size: 12px;">Medio
+  <input type="radio" value="Medio"  id="status" name="riesgo" >
+ <span class="checkmark"></span>
+</label >
+</div>
+<div class="col-md-4">
+ <label class="container1" style="color: white;font-size: 12px;">Alto
+  <input type="radio" value="Alto"  id="status" name="riesgo" >
+ <span class="checkmark"></span>
+</label >
+</div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <br/>
+         <div id="cirugia" style="display: none;">
+     <div class="input-group">
+    <textarea class="form-control" rows="3" name="cirugia"></textarea>
+     <div class="input-group-append">
+     <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+     </div>
+     </div> 
+    </div>
+  </div>
+</div>
+</div>
+</div>
                                     </div> 
 </div>
 <?php }?>
@@ -753,6 +868,13 @@ aqui ponga una imagen
  
    <div class="tab"><h5 class="card-title" style="color: white">Enfermedades y Afecciones</h5>
                        <div class="row">                  
+                       <div class="col-md-12">
+                        <label style="color: white">Resultado de Ultrasonografia: <small class="text-muted"></small></label>
+                        Aqui para ingresar resultado de ultra
+                       </div>
+                       </div>
+                       <br/>
+                       <div class="row">                  
                       <div class="col-md-12">
                                         <label style="color: white">Resultado de Exámenes: <small class="text-muted"></small></label>
                                         <div class="input-group">
@@ -776,6 +898,79 @@ aqui ponga una imagen
                                     </div> 
                                 </div>
   </div>
+  <div class="tab"> 
+    <h7 class="card-title" style="color: white">ANEXOS:</h7>  
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+  <label class="container1" style="color: white;font-size: 14px;">Recetas Medicas
+  <input type="checkbox" value="recetas" id="status" name="status" onChange="mostrar(this.value);">
+   <span class="checkmark"></span>
+</label>
+<div class="row">
+    <div class="col-md-12">
+     <div id="recetas" style="display: none;">
+     <div class="input-group">
+     <textarea class="form-control" rows="3" id="recetas" name="recetas"></textarea> 
+     <div class="input-group-append">
+     <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+     </div>
+     </div> 
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+ <br/>
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+  <label class="container1" style="color: white;font-size: 14px;">Referencias Medicas
+  <input type="checkbox" value="referencias" id="status" name="status" onChange="mostrar(this.value);">
+   <span class="checkmark"></span>
+</label>
+<div class="row">
+    <div class="col-md-12">
+     <div id="referencias" style="display: none;">
+     <div class="input-group">
+     <textarea class="form-control" rows="3" id="referencias" name="referencias"></textarea> 
+     <div class="input-group-append">
+     <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+     </div>
+     </div> 
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+ <br/>
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+  <label class="container1" style="color: white;font-size: 14px;">Constancias Medicas
+  <input type="checkbox" value="constancias" id="status" name="status" onChange="mostrar(this.value);">
+   <span class="checkmark"></span>
+</label>
+<div class="row">
+    <div class="col-md-12">
+     <div id="constancias" style="display: none;">
+     <div class="input-group">
+     <textarea class="form-control" rows="3" id="constancias" name="constancias"></textarea> 
+     <div class="input-group-append">
+     <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+     </div>
+     </div> 
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+</div>
 <div class="tab"> <h5 class="card-title" style="color: white">Registro de Insumos</h5>
 
     <div class="row">
@@ -936,6 +1131,8 @@ aqui ponga una imagen
     <span class="step"></span>
     <span class="step"></span>
      <span class="step"></span>
+      <span class="step"></span>
+      <span class="step"></span>
   </div>
 
   </form>
@@ -1040,7 +1237,7 @@ aqui ponga una imagen
             $diagnostico = $_REQUEST['diagnostico'];
             $fech_parto = $_REQUEST['fech_parto'];
             $partes1 = explode('-', $fech_parto);
-                $p_fecha = "{$partes1[2]}-{$partes1[1]}-{$partes1[0]}"; 
+                $p_fecha = "{$partes1[0]}-{$partes1[1]}-{$partes1[2]}"; 
        //  $tipoconsul = $_REQUEST['tipocon'];
          $amenorrea = $_REQUEST['fecha_amenorrea'];
          $talla = $_REQUEST['talla'];
@@ -1052,7 +1249,11 @@ aqui ponga una imagen
          $altura = $_REQUEST['altura'];
          $frecuencia = $_REQUEST['frecuencia'];
          $movimientos = $_REQUEST['movimientos'];
-
+          $cirugia = $_REQUEST['cirugia'];
+          $riesgo = $_REQUEST['riesgo'];
+          $receta = $_REQUEST['receta'];
+          $referencias = $_REQUEST['referencias'];
+          $constancias = $_REQUEST['constancias'];
          //OBSTETRICOS
          $embarazo_ecto = $_REQUEST['embarazo_ecto'];
          $abort = $_REQUEST['abort'];
@@ -1101,7 +1302,7 @@ $personales = implode(',', $_POST['personales']);
 ///**************************consulta
         $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazo'");
         if (mysqli_num_rows($noMostrar)>0){
- mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
+ mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_receta,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
 
          }else{         
 
@@ -1115,7 +1316,7 @@ $personales = implode(',', $_POST['personales']);
   ///**************************consulta*****************
 ///**************prenatal*********************
 mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_ccirugias_previas,pre_ffecha_parto,pre_ctipo_riesgo)
-                                          VALUES('$consulta','si','$p_fecha','Control Prenatal')");
+                                          VALUES('$consulta','$cirugia','$fecha_probable3','$riesgo')");
 $sacarPrenatal = mysqli_query($conexion,"SELECT idprenatal FROM t_prenatal ORDER by idprenatal DESC LIMIT 1");
                 while ($fila4 = mysqli_fetch_array($sacarPrenatal)) {
                       $prena = $fila4['idprenatal']; 
@@ -1292,7 +1493,7 @@ mysqli_query($conexion,"UPDATE t_llegada SET estado=2 WHERE fk_expediente='$modi
 
                        echo '<script>swal({
                         title: "Registro",
-                        text: "Guardado!",
+                        text: "¡Guardado!",
                         type: "success",
                         confirmButtonText: "Aceptar",
                         closeOnConfirm: false
