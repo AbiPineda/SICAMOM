@@ -66,6 +66,8 @@ $y = date("Y");
 
         <a href="../pdf/referencia.php?ir=<?php echo $modificar;?>" class="btn btn-success fas fa-edit">Referencia médica</a> 
 
+        <a href="../pdf/constancia.php?ir=<?php echo $modificar;?>" class="btn btn-success fas fa-edit">Constancia médica</a> 
+
         </td>
       
       </tr>

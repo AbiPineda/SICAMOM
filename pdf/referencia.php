@@ -54,6 +54,9 @@ $edad=($ano-$partes[0]);
 
 }
 
+$dias = array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
 	
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
@@ -64,6 +67,23 @@ $edad=($ano-$partes[0]);
 
 
 	$pdf->Ln(5);
+
+	$pdf->SetFont('Arial','',9);
+	$pdf->Cell(90,5, utf8_decode('4º C.ORIENTE B. SAN FRANCISCO Nº 4-2, SAN VICENTE'),0,1,'C');
+	$pdf->SetX(30);		
+    $pdf->Cell(50,5, utf8_decode('TEL: 2393-0878  CEL: 7083-6625'),0,1,'L');
+
+    $pdf->SetXY(120,45);
+			$pdf->Cell(60,5, utf8_decode('PLAZA ANCALMO - LOCAL 7. 2º PLANTA'),0,1,'C');
+			$pdf->SetX(100);
+			$pdf->Cell(100,5, utf8_decode('BULEVAR WALTER THILO DENINGER ANTIGUO CUSCATLAN'),0,1,'C');  
+			$pdf->SetX(126);
+			$pdf->Cell(50,5, utf8_decode('TEL: 2352-5461  CEL: 7083-6625'),0,1,'C');
+
+			
+
+    
+$pdf->Ln(5);
 	$pdf->SetX(75);
 	$pdf->SetFont('Arial','B',11);
 	$pdf->Cell(100,5, utf8_decode('HOJA DE REFERENCIA MÉDICA'),0,1,'L');		
@@ -75,11 +95,13 @@ $edad=($ano-$partes[0]);
 			$pdf->Cell(100,12, utf8_decode('Médico:'.' '.$nomDr.' '.$apeDr),0,1,'L');
 
 			$pdf->Ln(-30);
-			$pdf->Cell(330,5, utf8_decode('Fecha: '.' '.$fecha_actual),0,1,'C');
+			$pdf->SetX(140);
+			$pdf->SetFont('Arial','',11);
+			$pdf->Cell(135,5, utf8_decode($dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y').'.'),0,1,'L');
 			$pdf->Ln(-5);
 		//	$pdf->Cell(335,5, utf8_decode($fecha_actual),0,1,'C');
 
-			$pdf->Ln(200);
+			$pdf->Ln(180);
 			$pdf->Cell(190,5, utf8_decode('Firma:_______________________'),0,1,'C');
 	
 	
