@@ -141,7 +141,7 @@ function mostrar(id) {
                            <h3 class="card-title" style="color: white" align="center">Control Prenatal</h3>
                            </br>
 </br>
-                          <form id="regForm" name="regForm" action="" method="post">
+                          <form id="regForm" name="regForm" action="" method="post" enctype="multipart/form-data">
 
  <!-- <h3 class="card-title" style="color: white">Register:</h3> -->
                   <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
@@ -388,7 +388,7 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
                                         </div>
 </div> 
 </div>         
-aqui ponga una imagen
+
           <?php }else{?>
    
   	<div class="row">      
@@ -870,7 +870,7 @@ aqui ponga una imagen
                        <div class="row">                  
                        <div class="col-md-12">
                         <label style="color: white">Resultado de Ultrasonografia: <small class="text-muted"></small></label>
-                        Aqui para ingresar resultado de ultra
+                         <input name="imagen" type="file" onChange="ver(form.file.value)" required accept="image/jpg,image/png,image/jpeg">
                        </div>
                        </div>
                        <br/>
@@ -1266,6 +1266,8 @@ aqui ponga una imagen
          $planeado = $_REQUEST['planeado'];
          $met_anti = $_REQUEST['met_anti'];
 
+         $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
+
 
          $guantes = $_REQUEST['guantes'];
          $paletas = $_REQUEST['paletas'];
@@ -1315,8 +1317,8 @@ $personales = implode(',', $_POST['personales']);
                     }
   ///**************************consulta*****************
 ///**************prenatal*********************
-mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_ccirugias_previas,pre_ffecha_parto,pre_ctipo_riesgo)
-                                          VALUES('$consulta','$cirugia','$fecha_probable3','$riesgo')");
+mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_ccirugias_previas,pre_ffecha_parto,pre_ctipo_riesgo,pre_iultra)
+                                          VALUES('$consulta','$cirugia','$fecha_probable3','$riesgo','$imagen')");
 $sacarPrenatal = mysqli_query($conexion,"SELECT idprenatal FROM t_prenatal ORDER by idprenatal DESC LIMIT 1");
                 while ($fila4 = mysqli_fetch_array($sacarPrenatal)) {
                       $prena = $fila4['idprenatal']; 
