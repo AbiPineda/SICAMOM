@@ -11,22 +11,25 @@ include_once '../Conexion/conexion.php';
 
 <head>
   <meta charset="UTF-8">
-  <title>Responsive & Accessible Data Table</title>
+  <title></title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
    <!-- Estilo de la tabla-->
-  <link href="../dist/css/styleTabla.css" rel="stylesheet">
+   <link href="../dist/css/styleTabla.css" rel="stylesheet">
 
 </head>
 
 <body>
-    <div class="page-wrapper" style="height: 671px;">
-         <div class="col-md-12 col-md-pull-12" align="right">
-                                    <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
+    <div class="page-wrapper" style="height: 810px;">
+        
+        
+        <div class="col-md-12 col-md-pull-12" align="right">
+                      <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
+        
         <br>
             <div class="row" align="center">
                 <div class="col-md-12">
@@ -42,21 +45,24 @@ include_once '../Conexion/conexion.php';
             </div>
                 </div>
             </div>
+        
   <div class="container-fluid">
 
-   
-                    <!-- Modal -->
+
+      
+
+            <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Ayuda | Dar alta/baja usuario.</h4> 
+        <h4 class="modal-title" id="myModalLabel">Ayuda | Expedientes.</h4> 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         
       </div>
       <div class="modal-body">
         <div style="text-align: center;">
-<iframe src="https://issuu.com/abitho/docs/dar_alta_baja_usuario/1?ff" 
+<iframe src="/1?ff" 
 style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>
@@ -68,9 +74,8 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
   </div>
 </div>
 
-<br/>
     <div class="card" >
-      <h3 class="card-title">Dar alta/baja | Datos de Usuarios</h3>
+      <h3 class="card-title">Expedientes Registrados</h3>
       <div class="col-md-12">
 
           <div id="bodywrap">
@@ -78,69 +83,57 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
 
   <div class="scroll-window-wrapper">
   <div class="scroll-window">
-  <table class="table table-striped table-hover user-list fixed-header" align="center">
+  <table class="table table-striped table-hover user-list fixed-header">
     <thead>
+      
+      <th><div># de Expediente</div></th>  
+      <th><div>Expediente</div></th>
+   <th><div>DUI</div></th>
+   <th><div>Telefono</div></th>
   
-      <th><div>Nombre</div></th>
- 
-      <th><div>Correo</div></th>
-      <th><div>Usuario</div></th>
- 
-      <th><div>Tipo de Usuario</div></th>
-     
+    
       <th><div>Acción</div></th>
-   
+  
       
     </thead>
-    <tbody  class="buscar"> <!--Se manda a llamar la clase del jquey para que haga la búsqueda automaticamente-->
-    <!-- Donde va el contenido de la tabla-->
-      <?php
-        $sacar = mysqli_query($conexion, "SELECT
-usuarios.usuario,
-usuarios.nombre,
-usuarios.correo,
-tipo_usuario.tipo,
-usuarios.id,
-usuarios.estado
-FROM
-usuarios
-INNER JOIN tipo_usuario ON usuarios.id_tipo = tipo_usuario.id");
-            while ($fila = mysqli_fetch_array($sacar)) {
-                  $modificar=$fila['id']; 
-                  
-                 $nom=$fila['nombre'];  
-                 $correo=$fila['correo'];  
-                 $usuario=$fila['usuario'];  
-                 
-                 $tipo=$fila['tipo'];
-                 $fe=$fila['estado']; 
-                 
-                 if ($fe==0) {
-                     $estado="Desactivado";
-                 } else {
-                     $estado="Activado";
-                 }
-            
-        ?>
-        
-      <tr>
-        <th scope="row"><?php echo $nom;?></th>
-      
-        <td data-title="Studio"><?php echo $correo;?></td>
-        <td data-title="Worldwide Gross" data-type="currency"><?php echo $usuario;?></td>
-      
-        <td data-title="Worldwide Grosss" data-type="currency"><?php echo $tipo;?></td>
-    
-        <?php 
-        if($fe==0){ ?>
-        <td class="text"><a href="../Consultas/ProcesoDarBajaAltaUsuario.php?ir=<?php echo $modificar; ?>"  class="btn btn-success fas fa-arrow-circle-up">Dar Alta</a></td>
+    <tbody  class="buscar"> 
         <?php
-        }else{
-        ?>
-        <td class="text"><a href="../Consultas/ProcesoDarBajaAltaUsuario.php?ir=<?php echo $modificar; ?>" class="btn btn-warning fas fa-arrow-circle-down" >Dar Baja</a></td>
-      
- <?php  }
-            }?>
+        $sacar1 = mysqli_query($conexion, "SELECT
+t_expediente.codigo,
+t_paciente.pac_cnombre,
+t_paciente.pac_capellidos,
+t_paciente.pac_cdui,
+t_paciente.pac_ctelefono,
+t_expediente.id_expediente
+FROM
+t_expediente
+INNER JOIN t_paciente ON t_expediente.fk_paciente = t_paciente.id_paciente
+");
+        while ($fila = mysqli_fetch_array($sacar1)) {
+             $modificar=$fila['id_expediente']; 
+          
+          
+             $codigo= $fila['codigo'];
+             $nombre = $fila['pac_cnombre'];
+             $apellidos= $fila['pac_capellidos'];
+             $dui= $fila['pac_cdui'];
+             $telefono= $fila['pac_ctelefono'];
+             
+            ?> 
+        <tr>
+                
+               
+                <td nowrap data-title="Released"><?php echo $codigo; ?></td>
+                 <td data-title="Released"><?php echo $nombre . " " . $apellidos; ?></td>
+                  <td data-title="Released"><?php echo $dui; ?></td>
+                   <td data-title="Released"><?php echo $telefono; ?></td>
+                   
+                <td class="center">
+                     <a href="verConsultas.php?ir=<?php echo $modificar; ?>"class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></a>
+
+                </td>
+
+       <?php  }?>
       
       </tr>
 
@@ -166,3 +159,4 @@ INNER JOIN tipo_usuario ON usuarios.id_tipo = tipo_usuario.id");
     include_once '../plantilla/pie.php';
 
 ?>
+

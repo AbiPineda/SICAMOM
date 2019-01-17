@@ -100,10 +100,27 @@ while ($row = mysqli_fetch_array($usuario)) {
 
 <body>
     <div class="page-wrapper" style="height: 671px;">
-  <div class="container-fluid">
-    <div class="col-md-12 col-md-pull-12" align="right">
+        <div class="col-md-12 col-md-pull-12" align="right">
                       <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
+        
+        <br>
+            <div class="row" align="center">
+                <div class="col-md-12">
+                    <div class="wrap">
+                <script src="../html/js/jquery.min.js" ></script>
+                <script src="../html/js/buscaresc.js"></script>
+                <div class="search">
+                    <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+                </div>
+            </div>
+  <div class="container-fluid">
+    
                    
                     <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -128,22 +145,6 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
   </div>
 </div>
 
-     <!-- Búsqueda UTILIZO EL JQUERY buscaresc.js que es el que hace el proceso interno de buscar
-    funciona junto con jquery de lo contrario nada colocas el id="filtar" que con ese nombre lo reconoce
-    el buscaresc.js para hacer el proceso que keres buscar ya sea por letras,numeros,dui, nit, loq sea
-    solo eso necesitas para que busque-->
-
-            <div class="wrap">
-              <script src="../html/js/jquery.min.js" ></script>
-            <script src="../html/js/buscaresc.js"></script>
-         <div class="search">
-            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
-            <button type="submit" class="searchButton">
-              <i class="fa fa-search"></i>
-           </button>
-         </div>
-      </div>
-            <!--Fin Búsqueda-->
 
     <div class="card" >
       <h3 class="card-title">Dar alta/baja | Datos del proveedor</h3>
