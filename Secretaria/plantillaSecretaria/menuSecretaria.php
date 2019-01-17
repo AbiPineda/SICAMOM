@@ -91,16 +91,17 @@
                                 <!-- User profile and search -->
                                 <!-- ============================================================== -->
                                 <li class="nav-item dropdown">
-                                    <label>Bienvenido/a</label>
-                                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"> </a>
-                                    <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                        
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="../../login/Login.php"><i class="fa fa-power-off m-r-5 m-l-5"></i> Cerrar Sesión</a>
-                                        <div class="dropdown-divider"></div>
-                                        
-                                    </div>
-                                </li>
+                            <label>Bienvenido/a</label>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                
+                              
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="../../Login/logout.php"><i class="fa fa-power-off m-r-5 m-l-5"></i>Cerrar sesión.</a>
+                                <div class="dropdown-divider"></div>
+                                
+                            </div>
+                        </li>
                                 <!-- ============================================================== -->
                                 <!-- User profile and search -->
                                 <!-- ============================================================== -->
