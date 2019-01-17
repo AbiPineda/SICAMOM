@@ -29,7 +29,7 @@ while ($row = mysqli_fetch_array($usuario)) {
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de usuario.</h4> 
+        <h4 class="modal-title" id="myModalLabel">Ayuda | Registro de Medico.</h4> 
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         
       </div>
@@ -83,11 +83,11 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <label style="color: white">E-mail<small class="text-muted"></small></label>
+                                        <label style="color: white">Dirección<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="email" class="form-control" autocomplete="off" placeholder="email" id="email" name="email" value=""  >
+                                            <input type="text" class="form-control" autocomplete="off" placeholder="Dirección" id="direccion" name="direccion" value=""  >
                                             <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fa fa-at"></i></span>
+                                                <span class="input-group-text"><i class="fa fa-map"></i></span>
                                             </div>
                                             </div>
                                                                     
@@ -95,50 +95,33 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
 
 
                                     <div class="col-lg-4">
-                                        <label style="padding-top: 12px; color: white">Nombre de Usuario<small class="text-muted"> </small></label>
+                                        <label style="padding-top: 12px; color: white">Telefono<small class="text-muted"> </small></label>
                                          <div class="input-group">
-                                            <input type="text" name="nusuario" class="form-control" autocomplete="off" id="phone-maske" placeholder="Ingrese Usuario"  value=""  > 
+                                             <input type="tel" name="telefono" class="form-control" autocomplete="off" id="phone-maske" placeholder="Telefono"  value=""  > 
                                             
                                             <div class="input-group-append">
-                                                <span class="input-group-text"><i class="far fa-id-card"></i></span>
+                                                <span class="input-group-text"><i class="fa fa-phone "></i></span>
                                             </div>
                                             </div>
                                        
-                                        <label style="padding-top: 12px; color: white" >Tipo de Usuario<small class="text-muted"></small></label>
-                                        <select class="custom-select" name="tusuario" style="width: 100%; height:36px;">
-                                            <option>Seleccionar</option>
-                                            <option value="Administrador">Administrador</option>
-                                            <option value="Secretaria">Secretaria</option>
-                                        </select>
                                     </div>
-
+                                    
                                     <div class="col-lg-4">
-                                        <label style="padding-top: 12px; color: white">Contraseña<small class="text-muted"></small></label>
+                                        <label style="padding-top: 12px; color: white">Especialidad<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <input type="password" pattern=".{4,}" title="4 o mas caracteres" class="form-control" autocomplete="off" placeholder="Contraseña" id="campo1" name="contrasena" value=""  >
-                                           
-                                             <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                            <input type="text" class="form-control" autocomplete="off" placeholder="Especialidad" id="especialidad" name="especialidad" value=""  >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-stethoscope"></i></span>
                                             </div>
-                                           </div>
-                                      
-
+                                            </div>
+                                                                    
                                     </div>
 
-                                    <div class="col-lg-4">
-                                        <label style="padding-top: 12px; color: white" >Confirmar contraseña<small class="text-muted"></small></label>
-                                      <div class="input-group">
-                                            <input type="password" class="form-control" autocomplete="off" placeholder="Ingrese contraseña" id="campo2" name="concontrasena" onkeyup="Habilitar()" value=""  >
-                                            
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                            </div>
-                                            </div>
-                                       <br>
+                                <div>
                                     <label style="color: white">*Observación: El botón "Guardar" se habilitará hasta que todos los campos sean completados</label>
                                     
                                         <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" disabled>Guardar </button>
+                                            <button type="submit" class="btn btn-info" name="btnGuardar" id="boton" >Guardar </button>
                                         </div>
                                         <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                             <button type="reset" class="btn btn-info" name="Cancelar" id="Cancelar">Cancelar </button>
@@ -166,58 +149,11 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
     $nombre = $_REQUEST['nombre'];
     echo $nombre;
     $apellido = $_REQUEST['apellido'];
-    $email = $_REQUEST['email'];
-    $nusuario = $_REQUEST['nusuario'];
-    $contrasena = $_REQUEST['contrasena'];
-    $tusuario = $_REQUEST['tusuario'];
-    $esta = 1;
-    Conexion::abrir_conexion();
-    $conexionx = Conexion::obtener_conexion();
-
-
-    $numero_correo = 0;
-    $numero_usuario = 0;
-
-
-    $sql = "SELECT * FROM t_usuario WHERE usu_ccorreo = '$email'";
-    foreach ($conexion->query($sql) as $row) {
-        $numero_correo++;
-    }
-
-    $sql = "SELECT * FROM t_usuario WHERE usu_cusuario = '$nusuario'";
-    foreach ($conexion->query($sql) as $row) {
-        $numero_usuario++;
-    }
-
-
-    if ($numero_correo) {
-        echo '<script>swal({
-                    title: "¡Atención!",
-                    text: "El correo ingresado ya existe!",
-                    type: "info",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="registroUsuario.php";
-                    
-                });</script>';
-    }if ($numero_usuario) {
-        echo '<script>swal({
-                    title: "¡Atención!",
-                    text: "El usuario ingresado ya existe!",
-                    type: "info",
-                    confirmButtonText: "Aceptar",
-                    closeOnConfirm: false
-                },
-                function () {
-                    location.href="registroUsuario.php";
-                    
-                });</script>';
-    }
-
-    if (!$numero_correo && !$numero_usuario) {
-        mysqli_query($conexion, "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario,estado) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario','$esta')");
+    $direccion = $_REQUEST['direccion'];
+    $tele = $_REQUEST['telefono'];
+    $especialidad= $_REQUEST['especialidad'];
+    
+        mysqli_query($conexion, "INSERT INTO t_medico(med_cnombre,med_capellidos,med_cespecialidad,direccion,telefono) VALUES('$nombre','$apellido','$especialidad','$direccion','$tele')");
 
         echo '<script>swal({
                     title: "Registro",
@@ -227,7 +163,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
                     closeOnConfirm: false
                 },
                 function () {
-                    location.href="registroUsuario.php";
+                    location.href="registroMedico.php";
             });</script>';
         
         //bitacora
@@ -236,13 +172,12 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
         mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
                 . " VALUES('$id','$NombreUsuario','Registro de Usuario',now(),'$hora')");
         //bitacora
-    }
+    
 
     //$sql = "INSERT INTO t_usuario(usu_cnombre,usu_capellido,usu_ccorreo,usu_cusuario,usu_ccontrasena,usu_ctipo_usuario) VALUES('$nombre','$apellido','$email','$nusuario','$contrasena','$tusuario')"; 
 
 
-    $sentencia = $conexionx->prepare($sql);
-    $usuario_insertado = $sentencia->execute();
+   
  } 
     
     include_once '../plantilla/pie.php';
@@ -310,7 +245,7 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
     <script
         src="../js/jquery.min.js">
     </script>
-<script>
+<!--<script>
 function campos(){
   var validado = true;
   elementos = document.getElementsByClassName("form-control");
@@ -326,4 +261,4 @@ function campos(){
      document.getElementById("boton").disabled = true;  
   }
 }
-</script>
+</script>-->
