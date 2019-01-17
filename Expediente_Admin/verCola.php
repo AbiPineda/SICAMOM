@@ -95,7 +95,7 @@ include_once '../Conexion/conexion.php';
           <input type="button" class="btn btn-warning" name="" id="su"  value="Papel de Cama: <?php echo $papel_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
-<!--HISOPOS-->
+<!--HISOPOS
   <?php
    $validarisopo = mysqli_query($conexion,"SELECT t_categoria_insumo.nombreCategoria, inventario_unidades.decremento FROM inventario_unidades INNER JOIN t_categoria_insumo ON inventario_unidades.categoria = t_categoria_insumo.idcategoria WHERE t_categoria_insumo.idcategoria=3");
    if (mysqli_num_rows($validarisopo)>0) {
@@ -113,7 +113,7 @@ include_once '../Conexion/conexion.php';
     <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
           <input type="button" class="btn btn-warning" name="" id="su"  value="Isopos: <?php echo $isopo_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
-}?>
+}?>-->
 <!--JERINGAS-->
   <?php
    $validarjeringas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Jeringa'");

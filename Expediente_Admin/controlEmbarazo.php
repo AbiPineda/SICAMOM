@@ -1,4 +1,4 @@
-      <?php
+<?php
       include_once '../plantilla/cabecera.php';
       include_once '../plantilla/menu.php';
       include_once '../plantilla/menu_lateral.php';
@@ -16,16 +16,11 @@
         var dteDate;
         month = month - 1;
         dteDate = new Date(year, month, day);
-
-
         return ((day == dteDate.getDate()) && (month == dteDate.getMonth()) && (year == dteDate.getFullYear()));
     }
-
-
     function validate_fecha(fecha)
     {
         var patron = new RegExp("^(19|20)+([0-9]{2})([-])([0-9]{1,2})([-])([0-9]{1,2})$");
-
         if (fecha.search(patron) == 0)
         {
             var values = fecha.split("-");
@@ -36,8 +31,6 @@
         }
         return false;
     }
-
-
     function calcularEdad()
     {
         var fecha = document.getElementById("fecha_amenorrea").value;
@@ -49,21 +42,16 @@
             var mes = values[1];
             var ano = values[0];
             var fecha_anterior = ano.concat("-"+mes).concat("-"+dia);
-
             // cogemos los valores actuales
             var fecha_hoy = new Date();
             var ahora_ano = fecha_hoy.getFullYear();
             var ahora_mes = fecha_hoy.getMonth() + 1;
             var ahora_dia = fecha_hoy.getDate();
             var fecha_ahora = ahora_ano+"-"+ahora_mes+"-"+ahora_dia;
-
             var fecha1 = moment(fecha_anterior);
-			var fecha2 = moment(fecha_ahora);
-
-			var fechas=(fecha2.diff(fecha1, 'week'));
-
+      var fecha2 = moment(fecha_ahora);
+      var fechas=(fecha2.diff(fecha1, 'week'));
             document.regForm.fech_ame.value = fechas;
-
 var fecha_probable = new Date($('#fecha_amenorrea').val());
 var dias = 281; // Número de días a agregar
 fecha_probable.setDate(fecha_probable.getDate() + dias);
@@ -71,9 +59,7 @@ fecha_probable.setDate(fecha_probable.getDate() + dias);
             var $fecha_probable2 = fecha_probable.getFullYear()+ '-' +(fecha_probable.getMonth() + 1)+ '-' + fecha_probable.getDate();
             var $fecha_probable3 = fecha_probable.getDate()+ '/' +(fecha_probable.getMonth() + 1)+ '/' +fecha_probable.getFullYear() ;
 //document.regForm.fech_parto.value = fecha_probable2;
-
  $("#fech_parto1").val($fecha_probable3);
-
             if (edad <= 17) {
                 document.f1.dui.disabled = true;
                 document.f1.tel.disabled = true;
@@ -81,10 +67,8 @@ fecha_probable.setDate(fecha_probable.getDate() + dias);
                 document.f1.dui.disabled = false;
                 document.f1.tel.disabled = false;
             }
-
             document.getElementById("result").innerHTML = "Tienes " + edad + " años, " + meses + " meses y " + dias + " días";
         } else {
-
             document.getElementById("result").innerHTML = "La fecha " + fecha + " es incorrecta";
         }
     }
@@ -100,11 +84,9 @@ function mostrar(id) {
     if (id == "embarazo_ectopico") {
         $("#embarazo_ectopico").show();
             }
-
     if (id == "aborto") {
                $("#aborto").show();
             }
-
     if (id == "parto") {
                $("#parto").show();
                $("#vivos").show();
@@ -160,33 +142,21 @@ function mostrar(id) {
                                             $fe = $fila['pac_ffecha_nac'];
                                              $partes = explode('-', $fe);
                 $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
-
 //fecha actual
     date_default_timezone_set('America/El_Salvador');
     $dia = date("d");
     $mes = date("m");
     $ano = date("Y");
-
 //fecha de nacimiento
-
 //si el mes es el mismo pero el día inferior aun no ha cumplido años, le quitaremos un año al actual
-
 if (($partes[1] == $mes) && ($partes[2] > $dia)) {
 $ano=($ano-1); }
-
 //si el mes es superior al actual tampoco habrá cumplido años, por eso le quitamos un año al actual
-
 if ($partes[1] > $mes) {
 $ano=($ano-1);}
-
 //ya no habría mas condiciones, ahora simplemente restamos los años y mostramos el resultado como su edad
-
 $edad=($ano-$partes[0]);
-
 //print $edad;
-
-
-
 //echo floor($sem).'  Semanas';
                                             ?>                             
                                        
@@ -233,19 +203,15 @@ $edad=($ano-$partes[0]);
              # code...
             $fecha=$x['con_fecha_amenorrea'];
            }
-
            $x=explode("-",$fecha);
            $anos=$x[0];
            $mes=$x[1];
            $dia=$x[2];
-
            $actual=date('Y-m-d');
-
            $x1=explode("-",$actual);
            $anosx=$x1[0];
            $mesx=$x1[1];
            $diax=$x1[2];
-
            $datetime1 = new DateTime($fecha);
             $datetime2 = new DateTime($actual);
             $interval = $datetime1->diff($datetime2);
@@ -267,19 +233,15 @@ $edad=($ano-$partes[0]);
              # code...
             $fecha=$x['con_fecha_amenorrea'];
            }
-
            $x=explode("-",$fecha);
            $anos=$x[0];
            $mes=$x[1];
            $dia=$x[2];
-
            $actual=date('Y-m-d');
-
            $x1=explode("-",$actual);
            $anosx=$x1[0];
            $mesx=$x1[1];
            $diax=$x1[2];
-
            $datetime1 = new DateTime($fecha);
             $datetime2 = new DateTime($actual);
             $interval = $datetime1->diff($datetime2);
@@ -287,8 +249,6 @@ $edad=($ano-$partes[0]);
 //$fecha = date('Y-m-j');
 $nuevafecha = strtotime ( '+40 week' , strtotime ( $fecha ) ) ;
 $nuevafecha = date ( 'j/m/Y' , $nuevafecha );
-
-
           ?>
 
            <input type="date" name="fecha_amenorrea" value="<?php echo $fecha; ?>" class="form-control" id="fecha_amenorrea" min="1947-01-02" onChange="javascript:calcularEdad();" disabled max="<?php $actual; ?>">                                  <div class="input-group-append">
@@ -327,8 +287,6 @@ $nuevafecha = date ( 'j/m/Y' , $nuevafecha );
     $m1 = date("m");
     $y1 = date("Y");
 $f_actual=date('Y-m-d');
-
-
 $fecha_min = strtotime ( '-38 weeks' , strtotime ( $f_actual ) ) ;
 $fecha_min = date ( 'Y-m-j' , $fecha_min );
         ?>
@@ -375,7 +333,6 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
                 while ($fila2 = mysqli_fetch_array($sacar2)) {
                       $familiar_id = $fila2['idfamiliar']; 
                     }
-
           ?>
     <div class="row">      
     <div class="col-md-4">                 
@@ -391,7 +348,7 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
 
           <?php }else{?>
    
-  	<div class="row">      
+    <div class="row">      
     <div class="col-md-4">                 
 <h5 class="card-title" style="color:white">FAMILIARES</h5>
   <label class="container1" style="color: white;font-size: 12px;" >TBC
@@ -416,7 +373,7 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
 </label>
 </div>
 <div class="col-md-1"> 
-	</div>
+  </div>
  <div class="col-md-7">  
  <div class="row">               
 <h5 class="card-title" style="color:white; align:center">PERSONALES</h5>
@@ -1145,7 +1102,6 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
       <script>
   var currentTab = 0; // Current tab is set to be the first tab (0)
   showTab(currentTab); // Display the crurrent tab
-
   function showTab(n) {
     // This function will display the specified tab of the form...
     var x = document.getElementsByClassName("tab");
@@ -1156,7 +1112,6 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
       document.getElementById("enviar").style.display = "none";
     } else {
       document.getElementById("prevBtn").style.display = "inline";
-
     }
     if (n == (x.length - 1)) {
       document.getElementById("nextBtn").style.display = "none";
@@ -1170,7 +1125,6 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
     //... and run a function that will display the correct step indicator:
     fixStepIndicator(n)
   }
-
   function nextPrev(n) {
     // This function will figure out which tab to display
     var x = document.getElementsByClassName("tab");
@@ -1189,7 +1143,6 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
     // Otherwise, display the correct tab:
     showTab(currentTab);
   }
-
   function validateForm() {
     // This function deals with validation of the form fields
     var x, y, i, valid = true;
@@ -1211,7 +1164,6 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
     }
     return valid; // return the valid status
   }
-
   function fixStepIndicator(n) {
     // This function removes the "active" class of all steps...
     var i, x = document.getElementsByClassName("step");
@@ -1227,7 +1179,6 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
     $d1 = date("d");
     $m1 = date("m");
     $y1 = date("Y");
-
         if (isset($_REQUEST['btnEnviar'])) {
         include_once '../Conexion/conexion.php';
         $otra_familiares = $_REQUEST['otra_familiares'];
@@ -1245,7 +1196,6 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
          $temp = $_REQUEST['temp'];
          $presion = $_REQUEST['presion'];
          $pulso = $_REQUEST['pulso'];
-
          $altura = $_REQUEST['altura'];
          $frecuencia = $_REQUEST['frecuencia'];
          $movimientos = $_REQUEST['movimientos'];
@@ -1265,36 +1215,29 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
          $fecha_parto_ant = $_REQUEST['fecha_parto_ant']; 
          $planeado = $_REQUEST['planeado'];
          $met_anti = $_REQUEST['met_anti'];
-
          $imagen = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
-
-
          $guantes = $_REQUEST['guantes'];
          $paletas = $_REQUEST['paletas'];
          $algodon = $_REQUEST['algodon'];
          $papel = $_REQUEST['papel'];
          $isopo = $_REQUEST['isopo'];
          $jeringa = $_REQUEST['jeringas'];
-
          $curitas = $_REQUEST['curitas'];
          $gasas = $_REQUEST['gasas'];
          $especulo = $_REQUEST['especulo'];
          $mascarillas = $_REQUEST['mascarillas'];
          $agujas = $_REQUEST['agujas'];
          $fotografico = $_REQUEST['fotografico'];
-
          
          
 $familiares = implode(',', $_POST['familiares']);
 $personales = implode(',', $_POST['personales']);
 //'" . $hematologia . "'
-
           mysqli_query($conexion, "INSERT INTO t_enfermeria(enf_destatura,enf_dpeso,enf_dtempetarura,enf_cpresion,enf_cpulso) VALUES('$talla','$peso','$temp','$presion','$pulso')");
           $sacar = mysqli_query($conexion,"SELECT id_enfermeria FROM t_enfermeria ORDER by id_enfermeria DESC LIMIT 1");
                 while ($fila = mysqli_fetch_array($sacar)) {
                       $enfermeria=$fila['id_enfermeria']; 
                     }
-
                      mysqli_query($conexion, "INSERT INTO t_enfermeria_fetal(fet_dfcf,fet_cactividad_fetal,fet_daltura_uterina) VALUES('$frecuencia','$movimientos','$altura')");
           $sacar1 = mysqli_query($conexion,"SELECT id_enfermeria_fetal FROM t_enfermeria_fetal ORDER by id_enfermeria_fetal DESC LIMIT 1");
                 while ($fila1 = mysqli_fetch_array($sacar1)) {
@@ -1305,12 +1248,9 @@ $personales = implode(',', $_POST['personales']);
         $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazo'");
         if (mysqli_num_rows($noMostrar)>0){
  mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_receta,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
-
          }else{         
-
             mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
-		   }
-
+       }
        $sacar4 = mysqli_query($conexion,"SELECT idconsulta FROM t_consulta ORDER by idconsulta DESC LIMIT 1");
                 while ($fila4 = mysqli_fetch_array($sacar4)) {
                       $consulta = $fila4['idconsulta']; 
@@ -1323,44 +1263,33 @@ $sacarPrenatal = mysqli_query($conexion,"SELECT idprenatal FROM t_prenatal ORDER
                 while ($fila4 = mysqli_fetch_array($sacarPrenatal)) {
                       $prena = $fila4['idprenatal']; 
                     }
-
 ////***************fin prenatal
 //0000000========
      $existe= mysqli_query($conexion,"SELECT*FROM t_familiar WHERE fk_idprenatal='$prena'");
      if (mysqli_num_rows($existe)>0) {
-
      }else{
       mysqli_query($conexion, "INSERT INTO t_familiar(familiar,condGrave,fk_idprenatal) VALUES('" . $familiares . "','$otra_familiares','$prena')");
-
         mysqli_query($conexion, "INSERT INTO t_personales(personal,condGrave,fk_idprenatal) VALUES('" . $personales . "','$otra_personales','$prena')");
-
          mysqli_query($conexion, "INSERT INTO t_obstetricos(abortos,embarazoEtopico,partos,vaginales,cesareas,vivo,muerto,planeado,anticonceptivos,fechaEmbarazoAnterior,fk_idprenatal) VALUES('$abort','$embarazo_ecto','$part','$vag','$ces','$viv','$muert','$planeado','$met_anti','$fecha_parto_ant','$prena')");
-
      }
 //*******************sacar familiar-*****************                     
           $sacar2 = mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
                 while ($fila2 = mysqli_fetch_array($sacar2)) {
                       $familiar_id = $fila2['idfamiliar']; 
                     }
-
-
           $sacar3 = mysqli_query($conexion,"SELECT idpersonal FROM t_personales ORDER by idpersonal DESC LIMIT 1");
                 while ($fila3 = mysqli_fetch_array($sacar3)) {
                       $personal_id = $fila3['idpersonal']; 
                     }
-
          $sacar4 = mysqli_query($conexion,"SELECT idobstetricos FROM t_obstetricos ORDER by idobstetricos DESC LIMIT 1");
                 while ($fila4 = mysqli_fetch_array($sacar4)) {
                       $obstetricos_id = $fila4['idobstetricos']; 
                     }
   //********************sacar familiar................
   
-
             
-
                 Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
-
 ///GUANTES
 $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Guantes'");
    if (mysqli_num_rows($validarguantes)>0) {
@@ -1412,7 +1341,6 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                       $desc_isopo=$isopo_dec-$isopo; 
    mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_isopo' WHERE tipo='Hisopos'");
   }
-
 ///JERINGAS
   $validarjeringas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Jeringa'");
    if (mysqli_num_rows($validarjeringas)>0) {
@@ -1423,7 +1351,6 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                       $desc_jeringa=$jeringa_dec-$jeringa; 
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_jeringa' WHERE tipo='Jeringa'");
 }
-
 ///CURITAS
   $validarcuritas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Curitas'");
    if (mysqli_num_rows($validarcuritas)>0) {
@@ -1434,7 +1361,6 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                       $desc_curitas=$curitas_dec-$curitas; 
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_curitas' WHERE tipo='Curitas'");
 }
-
 ///GASAS
   $validargasas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Gasa'");
    if (mysqli_num_rows($validargasas)>0) {
@@ -1445,7 +1371,6 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                       $desc_gasas=$gasas_dec-$gasas; 
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_gasas' WHERE tipo='Gasa'");
 }
-
 ///ESPECULO
   $validarespeculo = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Especulo'");
    if (mysqli_num_rows($validarespeculo)>0) {
@@ -1456,7 +1381,6 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                       $desc_especulo=$especulo_dec-$especulo; 
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_especulo' WHERE tipo='Especulo'");
 }
-
 ///MASCARILLAS
   $validarmascarilla = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Mascarilla'");
    if (mysqli_num_rows($validarmascarilla)>0) {
@@ -1467,7 +1391,6 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                       $desc_mascarilla=$mascarilla_dec-$mascarillas; 
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_mascarilla' WHERE tipo='Mascarilla'");
 }
-
 ///AGUJAS
   $validaraguja = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Aguja'");
    if (mysqli_num_rows($validaraguja)>0) {
@@ -1478,7 +1401,6 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
                       $desc_aguja=$aguja_dec-$agujas; 
  mysqli_query($conexion,"UPDATE inventario_unidades SET decremento='$desc_aguja' WHERE tipo='Aguja'");
 }
-
 ///PAPEL FOTOGRAFICO
   $validarFOTOGRAFICO = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Papel Fotografico'");
    if (mysqli_num_rows($validarFOTOGRAFICO)>0) {
@@ -1492,7 +1414,6 @@ $validarguantes = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHER
   
   
 mysqli_query($conexion,"UPDATE t_llegada SET estado=2 WHERE fk_expediente='$modi' AND lleg_ffecha_atiende='$y1-$m1-$d1'");
-
                        echo '<script>swal({
                         title: "Registro",
                         text: "¡Guardado!",
@@ -1505,9 +1426,7 @@ mysqli_query($conexion,"UPDATE t_llegada SET estado=2 WHERE fk_expediente='$modi
                         
                     });</script>';
             
-
             } 
            include_once '../plantilla/pie.php';
-
       ?>
          
