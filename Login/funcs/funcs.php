@@ -227,7 +227,7 @@
      						 header("location:../html/ltr/index.html");  
       						  }else{
             // lo redireccionas al index secretaria 
-         					 header("location:../html/ltr/indexSecretaria.html");  
+         					 header("location:../Secretaria/Inicio/indexSecretaria.html");  
         					}
         
 					} else {

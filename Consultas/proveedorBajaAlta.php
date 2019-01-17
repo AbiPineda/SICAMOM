@@ -3,6 +3,19 @@ include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
+
+
+
+//sacar usuarios para bitacora
+
+
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
+while ($row = mysqli_fetch_array($usuario)) {
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
+}
+//sacar usuarios para bitacora
+
 $llego=$_REQUEST['ir'];
 if($llego!=null){ 
    
@@ -212,6 +225,14 @@ while ($fila = mysqli_fetch_array($sacar)) {
                     location.href="darBajaAltaProveedor.php";
                     
                 });</script>';
+
+
+        //bitacora
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Se dio de baja al proveedor',now(),'$hora')");
+        //bitacora
                                 //////////////
 }
 

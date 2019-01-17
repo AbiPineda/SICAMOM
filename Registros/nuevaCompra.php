@@ -178,11 +178,11 @@ else {
         
     }
     ?>
-<div class="col-md-12 col-md-pull-12" align="right">
+
+    <div class="page-wrapper" style="height: 815px;">
+        <div class="col-md-12 col-md-pull-12" align="right">
        <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
       </div>
-    <div class="page-wrapper" style="height: 671px;">
-        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 
@@ -202,7 +202,7 @@ else {
       </div>
       <div class="modal-body">
         <div style="text-align: center;">
-<iframe src="https://issuu.com/abitho/docs/registro_de_compra/1?ff" 
+<iframe src="https://issuu.com/abitho/docs/registro_de_compra_cedd0f2fba1618/1?ff" 
 style="width:700px; height:500px;" frameborder="0"></iframe>
 </div>
       </div>

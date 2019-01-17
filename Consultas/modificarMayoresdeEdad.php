@@ -27,24 +27,25 @@ include_once '../Conexion/conexion.php';
       <div class="col-md-12 col-md-pull-12" align="right">
                       <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
                     </div>
+        
+        <br>
+            <div class="row" align="center">
+                <div class="col-md-12">
+                    <div class="wrap">
+                <script src="../html/js/jquery.min.js" ></script>
+                <script src="../html/js/buscaresc.js"></script>
+                <div class="search">
+                    <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?" autocomplete="off">
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+                </div>
+            </div>
   <div class="container-fluid">
              <div class="row mb-12">   
         
-            <div class="wrap">
-                <div>
-              <script src="../html/js/jquery.min.js" ></script>
-            <script src="../html/js/buscaresc.js"></script>
-       <br>
-         <div class="search col-lg-10">
-           <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
-            <button type="submit" class="searchButton">
-              <i class="fa fa-search"></i>
-           </button>
-
-         </div>
-                
-      </div>
-       </div>
       <div class="col-lg-2">
             
             <select class="custom-select" name="tipo" onchange="location = this.value">

@@ -4,7 +4,6 @@
     include_once '../plantilla/menu_lateral.php';
     $modi = $_GET['ir'];
 
-
     //sacar usuarios para bitacora
 
 include_once '../Conexion/conexion.php';
@@ -27,7 +26,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                         
                     <h3 class="card-title" style="color: white">Modificar Paciente | Datos personales</h3>
                             
-                    <form action="modificarPaciente.php" method="post">
+                    <form action="" method="post">
                         <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
                     <div>
                         <h3></h3>
