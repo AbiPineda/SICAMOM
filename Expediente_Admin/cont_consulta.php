@@ -28,7 +28,10 @@ include_once '../Conexion/conexion.php';
 date_default_timezone_set('America/El_Salvador');
 $d = date("d");
 $m = date("m");
-$y = date("Y");                
+$y = date("Y");    
+
+
+
          $sacar = mysqli_query($conexion, "SELECT*FROM t_medico, t_paciente, t_expediente, t_llegada WHERE t_expediente.fk_medico=idMedico AND fk_paciente=id_paciente AND t_llegada.fk_expediente=id_expediente AND (lleg_ffecha_atiende='$y-$m-$d') AND t_llegada.estado=2 ORDER BY id_llegada");
             while ($fila = mysqli_fetch_array($sacar)) {
                    $modificar=$fila['id_expediente'];
@@ -53,6 +56,8 @@ $y = date("Y");
                    $modi_consulta=$fila2['idconsulta'];
                  }
         ?>
+
+        
       <tr>
         <td data-title="Worldwide Gross" data-type="currency"><?php echo $codigo;?></td>
         <th scope="row"><?php echo $nom . " " . $ape;?></th>
@@ -67,6 +72,8 @@ $y = date("Y");
         <a href="../pdf/referencia.php?ir=<?php echo $modificar;?>" class="btn btn-success fas fa-edit">Referencia médica</a> 
 
         <a href="../pdf/constancia.php?ir=<?php echo $modificar;?>" class="btn btn-success fas fa-edit">Constancia médica</a> 
+
+        <a href="../pdf/examenes.php?ir=<?php echo $modificar;?>" class="btn btn-success fas fa-edit">Imprimir examenes</a>
 
         </td>
       

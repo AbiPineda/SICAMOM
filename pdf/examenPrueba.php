@@ -2,12 +2,10 @@
 	include 'plantilla3.php';
 	include '../Conexion/conexion.php';
 
-	$modificar=$_GET['ir'];
 
 $principal= mysqli_query($conexion,"SELECT*FROM t_examenes INNER JOIN t_consulta ON t_examenes.fk_consulta=t_consulta.idconsulta
 INNER JOIN t_expediente ON t_consulta.fk_expediente=t_expediente.id_expediente
-INNER JOIN t_paciente ON t_expediente.fk_paciente=t_paciente.id_paciente
-WHERE t_expediente.id_expediente='$modificar' ");
+INNER JOIN t_paciente ON t_expediente.fk_paciente=t_paciente.id_paciente ");
 
 while ($aux= mysqli_fetch_array($principal)){
     //comenzar a sacar los de los examenes
@@ -957,9 +955,12 @@ while ($aux= mysqli_fetch_array($principal)){
 			}
 
 			$pdf->SetXY(152,202.5);
+
+
+
 			if ($bact[2]!=null) {
 				 $pdf->SetFillColor(175, 122, 197 );
-				$pdf->Cell(47,6, utf8_decode('Cultivo'),1,1,'C',1);
+				$pdf->Cell(47,6, utf8_decode('Cultivo'),1,1,'C');
 			} else {
 				$pdf->Cell(47,6, utf8_decode('Cultivo'),1,1,'C');
 			}
@@ -988,10 +989,12 @@ while ($aux= mysqli_fetch_array($principal)){
 				$pdf->Cell(47,6, utf8_decode('Coprocultivo'),1,1,'C');
 			}
 
+			$prueba=1;
+
 			$pdf->SetXY(152,226.5);
-			if ($bact[6]!=null) {
+			if ($prueba==1) {
 				 $pdf->SetFillColor(175, 122, 197 );
-				$pdf->Cell(47,6, utf8_decode('Directo de Hongos (OH)'),1,1,'C');
+				$pdf->Cell(47,6, utf8_decode('Directo de Hongos (OH)'),1,1,'C',1);
 			} else {
 				$pdf->Cell(47,6, utf8_decode('Directo de Hongos (OH)'),1,1,'C');
 			}
