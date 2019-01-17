@@ -33,7 +33,15 @@ while ($row = mysqli_fetch_array($usuario)) {
                                   <div class="col-lg-4">
                                     <?php
                                         include_once '../Conexion/conexion.php';
-                                        $sacar = mysqli_query($conexion, "SELECT*FROM usuarios");
+                                        $sacar = mysqli_query($conexion, "SELECT
+usuarios.id,
+usuarios.usuario,
+tipo_usuario.tipo
+FROM
+usuarios
+INNER JOIN tipo_usuario ON usuarios.id_tipo = tipo_usuario.id
+WHERE 
+tipo_usuario.id = 1");
                                     ?>
                                     <label style="color: white">Usuario<small class="text-muted"></small></label>
                                     <select class="custom-select" name="doctorusu" style="width: 100%; height:36px;">

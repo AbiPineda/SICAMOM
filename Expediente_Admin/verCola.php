@@ -1,9 +1,19 @@
 <?php
-
+session_start();
 include_once '../plantilla/cabecera.php';
 include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
+include_once '../Login/funcs/conexion.php';
+
+
+$idUsuario = $_SESSION['id_usuario'];
+  
+  $sql = "SELECT id, nombre FROM usuarios WHERE id = '$idUsuario'";
+  $result = $mysqli->query($sql);
+  
+  $row = $result->fetch_assoc();
+
 ?>
 
   <div class="page-wrapper" style="height: 671px;">
@@ -305,7 +315,20 @@ date_default_timezone_set('America/El_Salvador');
 $d = date("d");
 $m = date("m");
 $y = date("Y");                
-          $sacar = mysqli_query($conexion, "SELECT*FROM t_medico, t_paciente, t_expediente, t_llegada WHERE fk_medico=idMedico AND fk_paciente=id_paciente AND fk_expediente=id_expediente AND (lleg_ffecha_atiende='$y-$m-$d') AND t_llegada.estado=1 ORDER BY id_llegada");
+          $sacar = mysqli_query($conexion, "SELECT
+t_expediente.codigo,
+t_paciente.pac_cnombre,
+t_paciente.pac_capellidos,
+t_llegada.id_llegada,
+t_llegada.estado,
+usuarios.id
+FROM
+t_expediente
+INNER JOIN t_medico ON t_expediente.fk_medico = t_medico.idMedico
+INNER JOIN t_paciente ON t_expediente.fk_paciente = t_paciente.id_paciente
+INNER JOIN t_llegada ON t_llegada.fk_expediente = t_expediente.id_expediente
+INNER JOIN usuarios ON t_medico.fk_usuario = usuarios.id
+WHERE t_llegada.estado=1 and usuarios.id=$idUsuario ");
             while ($fila = mysqli_fetch_array($sacar)) {
                    $modificar=$fila['id_expediente'];
                    $codigo=$fila['codigo'];
