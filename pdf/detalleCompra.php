@@ -35,13 +35,15 @@ $pdf->SetX(60);
 	 while ($fila = mysqli_fetch_array($sacar1)) {
                 
                 $factura=$fila['factura'];  
-                $fechCompra=$fila['fecha_actual']=date("d-m-Y");
+                $fechCompra=$fila['fecha_actual'];
+                $partes=explode('-', $fechCompra);
+                $fecha="{$partes[2]} - {$partes[1]} - {$partes[0]}";
 
 
                $pdf->SetX(60);
                 $pdf->SetFont('Arial','',12);
                 $pdf->Cell(45,6, utf8_decode('#'.$fila['factura']),1,0,'C');
-                 $pdf->Cell(50,6, utf8_decode($fila['fecha_actual']),1,1,'C'); 
+                 $pdf->Cell(50,6, utf8_decode($fecha),1,1,'C'); 
 
 
             }
