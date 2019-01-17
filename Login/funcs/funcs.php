@@ -105,12 +105,12 @@
 		}
 	}
 	
-	function registraUsuario($usuario, $pass_hash, $nombre, $email, $activo, $token, $tipo_usuario,$medico){
+	function registraUsuario($usuario, $pass_hash, $nombre, $email, $activo, $token, $tipo_usuario){
 		
 		global $mysqli;
 		
-		$stmt = $mysqli->prepare("INSERT INTO usuarios (usuario, password, nombre, correo, activacion, token, id_tipo, idmedico) VALUES(?,?,?,?,?,?,?,?)");
-		$stmt->bind_param('ssssisi', $usuario, $pass_hash, $nombre, $email, $activo, $token, $tipo_usuario, $medico);
+		$stmt = $mysqli->prepare("INSERT INTO usuarios (usuario, password, nombre, correo, activacion, token, id_tipo) VALUES(?,?,?,?,?,?,?)");
+		$stmt->bind_param('ssssisi', $usuario, $pass_hash, $nombre, $email, $activo, $token, $tipo_usuario);
 		
 		if ($stmt->execute()){
 			return $mysqli->insert_id;
@@ -222,12 +222,11 @@
 					$_SESSION['tipo_usuario'] = $id_tipo;
 					
 					        if ($id_tipo == '1') { 
-
      						// lo redireccionas al index Administrador
      						 header("location:../html/ltr/index.html");  
       						  }else{
             // lo redireccionas al index secretaria 
-         					 header("location:../Secretaria/Inicio/indexSecretaria.html");  
+         					 header("location:../html/ltr/indexSecretaria.html");  
         					}
         
 					} else {

@@ -12,12 +12,10 @@
 		$password = $mysqli->real_escape_string($_POST['password']);	
 		$con_password = $mysqli->real_escape_string($_POST['con_password']);	
 		$email = $mysqli->real_escape_string($_POST['email']);
-		$medico = $mysqli->real_escape_string($_POST['idmedico']);
 		
 				
 		$activo = 0;
 		$tipo_usuario = 2;
-
 		
 		if(isNull($nombre, $usuario, $password, $con_password, $email))
 		{
@@ -52,7 +50,7 @@
 				$pass_hash = hashPassword($password);
 				$token = generateToken();
 				
-				$registro = registraUsuario($usuario, $pass_hash, $nombre, $email, $activo, $token, $tipo_usuario,$medico);
+				$registro = registraUsuario($usuario, $pass_hash, $nombre, $email, $activo, $token, $tipo_usuario);
 				
 				if($registro > 0 )
 				{
@@ -85,11 +83,9 @@
 	
 ?>
 <html>
-    <head>
+	<head>
 
-        <style>
- 
-        </style>
+
 		<title>Registro</title>
 		
 		<link rel="stylesheet" href="css/bootstrap.min.css" >
@@ -121,29 +117,12 @@
 								<span></span>
 							</div>
 							
-                                                            <div class="login__row">
-                                                                <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
-                                                                <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
-                                                                </svg>
-                                                                
-                                                                <div>
-                                                                    <label>Nombre:</label>
-                                                                    <select class="custom-select" name="nombre" id="nombre" >
-                                                                        <?php
-                                                                        include_once '../Conexion/conexion.php';
-                                                                        $pro = mysqli_query($conexion, "SELECT*from t_medico");
-                                                                        ?>
-                                                                        <option>Seleccione:</option>
-                                                                        <?php
-                                                                        while ($row = mysqli_fetch_array($pro)) {
-                                                                            $prove = $row['idMedico'];
-                                                                            echo '<option value=' . "$row[0]" . '>' . $row[1] . '</option>';
-                                                                        }
-                                                                        ?>
-                                                                    </select>
-                                                                </div>
-                                                                
-                                                            </div>
+							<div class="login__row">
+          						<svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+           						 <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+          						</svg>
+                                                        <input id="nombre" type="text" class="login__input name" placeholder="Nombre" name="nombre" value="<?php if(isset($nombre)) echo $nombre; ?>" required >
+        					</div>
 							
 							
 							<div class="login__row">
@@ -200,5 +179,4 @@
 		</div>
 	</body>
 
-</html>															
-
+</html>
