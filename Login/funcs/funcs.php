@@ -224,7 +224,7 @@
 					        if ($id_tipo == '1') { 
 
      						// lo redireccionas al index Administrador
-     						 header("location:../html/ltr/index.php");  
+     						 header("location:../html/ltr/index.html");  
       						  }else{
             // lo redireccionas al index secretaria 
          					 header("location:../Secretaria/Inicio/indexSecretaria.html");  
