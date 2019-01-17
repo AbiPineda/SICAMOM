@@ -56,8 +56,8 @@ var fecha_probable = new Date($('#fecha_amenorrea').val());
 var dias = 281; // Número de días a agregar
 fecha_probable.setDate(fecha_probable.getDate() + dias);
             
-            var $fecha_probable2 = fecha_probable.getFullYear()+ '-' +(fecha_probable.getMonth() + 1)+ '-' + fecha_probable.getDate();
-            var $fecha_probable3 = fecha_probable.getDate()+ '/' +(fecha_probable.getMonth() + 1)+ '/' +fecha_probable.getFullYear() ;
+            var $fecha_probable3 = fecha_probable.getFullYear()+ '-' +(fecha_probable.getMonth() + 1)+ '-' + fecha_probable.getDate();
+            var $fecha_probable2 = fecha_probable.getDate()+ '/' +(fecha_probable.getMonth() + 1)+ '/' +fecha_probable.getFullYear() ;
 //document.regForm.fech_parto.value = fecha_probable2;
  $("#fech_parto1").val($fecha_probable3);
             if (edad <= 17) {
@@ -312,7 +312,7 @@ $fecha_min = date ( 'Y-m-j' , $fecha_min );
                                           <div class="col-md-3">                             
                                         <label style="color: white" >Fecha Probable del Parto:<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                          <input name="fech_parto"  id="fech_parto1" class="form-control" onChange="javascript:desabilitar();">    
+                                          <input type="text" name="fech_parto"  id="fech_parto1" class="form-control" onChange="javascript:desabilitar();">    
                                            <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -508,19 +508,6 @@ aqui ponga una imagen
  <span class="checkmark"></span>
 </label >
 </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <br/>
-         <div id="cirugia" style="display: none;">
-     <div class="input-group">
-    <textarea class="form-control" rows="3" name="cirugia"></textarea>
-     <div class="input-group-append">
-     <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
-     </div>
-     </div> 
-    </div>
-  </div>
 </div>
 </div>
 </div>
@@ -1201,7 +1188,7 @@ aqui ponga una imagen
          $movimientos = $_REQUEST['movimientos'];
           $cirugia = $_REQUEST['cirugia'];
           $riesgo = $_REQUEST['riesgo'];
-          $receta = $_REQUEST['receta'];
+          $receta = $_REQUEST['recetas'];
           $referencias = $_REQUEST['referencias'];
           $constancias = $_REQUEST['constancias'];
          //OBSTETRICOS
@@ -1246,9 +1233,9 @@ $personales = implode(',', $_POST['personales']);
 ///**************************consulta
         $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazo'");
         if (mysqli_num_rows($noMostrar)>0){
- mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_receta,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
+ mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_ref_medica,con_cons_medica,con_receta,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$referencias','$constancias','$receta','$fecha','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
          }else{         
-            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_ref_medica,con_cons_medica,con_receta,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$referencias','$constancias','$receta','$amenorrea','Control Prenatal','$resul_examenes','$enfermeria_fetal','embarazo')");
        }
        $sacar4 = mysqli_query($conexion,"SELECT idconsulta FROM t_consulta ORDER by idconsulta DESC LIMIT 1");
                 while ($fila4 = mysqli_fetch_array($sacar4)) {
@@ -1257,7 +1244,7 @@ $personales = implode(',', $_POST['personales']);
   ///**************************consulta*****************
 ///**************prenatal*********************
 mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_ccirugias_previas,pre_ffecha_parto,pre_ctipo_riesgo)
-                                          VALUES('$consulta','$cirugia','$fecha_probable3','$riesgo')");
+                                          VALUES('$consulta','$cirugia','$fech_parto','$riesgo')");
 $sacarPrenatal = mysqli_query($conexion,"SELECT idprenatal FROM t_prenatal ORDER by idprenatal DESC LIMIT 1");
                 while ($fila4 = mysqli_fetch_array($sacarPrenatal)) {
                       $prena = $fila4['idprenatal']; 
