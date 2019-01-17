@@ -565,7 +565,7 @@ $edad=($ano-$partes[0]);
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
                                                 <input type="submit" class="btn btn-info" name="btnEnviar" id="su"  value="Guardar" ></div>
                                             <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
-                                                <input type="button" class="btn btn-info" name="" id="su"  value="Lista de Espera" onclick="location.href='../Expediente_Admin/verCola.php'" ></div>
+                                                <input type="button" class="btn btn-info" name="" id="su"  value="Imprimir Examenes" onclick="location.href='../pdf/examenes.php'" ></div>
                                     </div>   
 </div>
   </form>
