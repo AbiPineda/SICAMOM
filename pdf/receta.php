@@ -21,6 +21,8 @@ WHERE t_expediente.id_expediente='$modificar' ");
             	 $ape=$fila['pac_capellidos'];
             	 $nomDr=$fila['med_cnombre'];
             	 $apeDr=$fila['med_capellidos'];
+
+            	// $recetita=$fila[''];
                    
 }
 
