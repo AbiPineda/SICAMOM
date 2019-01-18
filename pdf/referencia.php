@@ -99,12 +99,14 @@ $pdf->Ln(5);
 			$pdf->SetFont('Arial','',11);
 			$pdf->Cell(135,5, utf8_decode($dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y').'.'),0,1,'L');
 			//hora
-			$pdf->SetX(210);
+			$pdf->SetX(150);
 			$pdf->Cell(65,5, utf8_decode( " hora : ".date("h:i:s").'.'),0,1,'L');
-			$pdf->Ln(-5);
+			$pdf->Ln(25);
 		//	$pdf->Cell(335,5, utf8_decode($fecha_actual),0,1,'C');
 
-			$pdf->Ln(180);
+			$pdf->MultiCell(190,6, utf8_decode('Tolerancia Post-Ingesta 75grs. de Glucosa 2hrsbjajksnxcjknasjkcjkanscjnaskjc jkas jck jsak cjajskc jka sjkc asj c ks aj cjk k sa ksa js jk xkjajajakjnxjnajsnjxnanxnasnckaslkcnanklcnlkascaklncknaskncsncnklcasnknaklcnklnasklncsklncsklncksncklsnklsnkcsnkcnsklcsnkcsnklcnaklcsancsklnsakssclakscjacsa.'),1,'L',0,1);
+
+			$pdf->Ln(120);
 			$pdf->Cell(190,5, utf8_decode('Firma:_______________________'),0,1,'C');
 	
 	

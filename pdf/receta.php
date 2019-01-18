@@ -26,6 +26,20 @@ WHERE t_expediente.id_expediente='$modificar' ");
                    
 }
 
+$sacar1 = mysqli_query($conexion, "SELECT * FROM t_consulta WHERE idconsulta=7");
+while ($fila2 = mysqli_fetch_array($sacar1)) {
+                
+                 $consultita=$fila2['con_receta'];  
+                 
+             
+               
+                  
+                 
+
+	}
+
+
+
      date_default_timezone_set('America/El_Salvador');
      $fecha_actual=date("d/m/Y");                              
 
@@ -60,7 +74,11 @@ WHERE t_expediente.id_expediente='$modificar' ");
 			$pdf->Ln(-5);
 			$pdf->Cell(222,5, utf8_decode($fecha_actual),0,1,'C');
 
-			$pdf->Ln(110);
+			$pdf->Ln(10);
+			$pdf->SetFont('Arial','',7);
+			$pdf->MultiCell(120,6, utf8_decode($consultita),1,'L',0,1); 
+
+			$pdf->Ln(95);
 			$pdf->Cell(100,5, utf8_decode('Próxima cita:'),0,1,'L');
 	
 	//$pdf->SetFillColor(232,232,232);
