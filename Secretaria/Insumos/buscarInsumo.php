@@ -22,11 +22,27 @@ include_once '../../Conexion/conexion.php';
 
     <body>
         <div class="page-wrapper" style="height: 671px;">
+            <div class="col-md-12 col-md-pull-2" align="right">
+                <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
+            </div>
+            <br>
+            <div class="row" align="center">
+                <div class="col-md-12">
+                    <div class="wrap">
+                <script src="../html/js/jquery.min.js" ></script>
+                <script src="../html/js/buscaresc.js"></script>
+                <div class="search">
+                    <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+                </div>
+            </div>
             <div class="container-fluid">
 
-                <div class="col-md-12 col-md-pull-12" align="right">
-                    <a href='#'  data-toggle="modal" data-target='#myModal'><button type='button' class='btn btn-info btn-circle btn-lg'><i class="fa fa-question fa-2"></i></button></a>
-                </div>
+                
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -50,17 +66,6 @@ include_once '../../Conexion/conexion.php';
                     </div>
                 </div>
 
-                <div class="wrap">
-                    <script src="../../html/js/jquery.min.js" ></script>
-                    <script src="../../html/js/buscaresc.js"></script>
-                    <div class="search">
-                        <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
-                        <button type="submit" class="searchButton">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-                <!--Fin Búsqueda-->
 
 
 

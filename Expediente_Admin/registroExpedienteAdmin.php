@@ -61,9 +61,9 @@
                                         </div>                                    
                                     </div>
                                   <div class="col-lg-4">
-                                    <?php
-                                        include_once '../Conexion/conexion.php';
-                                        $sacar = mysqli_query($conexion, "SELECT
+                                          <?php
+                                          include_once '../Conexion/conexion.php';
+                                          $sacar = mysqli_query($conexion, "SELECT
 t_medico.med_cnombre,
 t_medico.med_capellidos,
 usuarios.usuario,
@@ -73,7 +73,7 @@ t_medico
 INNER JOIN usuarios ON t_medico.fk_usuario = usuarios.id
 INNER JOIN tipo_usuario ON usuarios.id_tipo = tipo_usuario.id
 where tipo_usuario.id=1");
-                                    ?>
+                                          ?>
                                     <label style="color: white">Doctor que atiende<small class="text-muted"></small></label>
                                     <select class="custom-select" name="doctorExpe" style="width: 100%; height:36px;">
                                         <option>Seleccionar</option>
