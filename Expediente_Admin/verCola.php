@@ -317,7 +317,9 @@ $m = date("m");
 $y = date("Y");                
           $sacar = mysqli_query($conexion, "SELECT
 t_expediente.codigo,
+t_expediente.id_expediente,
 t_paciente.pac_cnombre,
+t_paciente.pac_ffecha_nac,
 t_paciente.pac_capellidos,
 t_llegada.id_llegada,
 t_llegada.estado,
