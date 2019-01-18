@@ -7,11 +7,9 @@ include_once '../Conexion/conexion.php';
 
 include_once '../Login/funcs/conexion.php';
 
-
 $idUsuario = $_SESSION['id_usuario'];
 $sql = "SELECT id, nombre FROM usuarios WHERE id = '$idUsuario'";
   $result = $mysqli->query($sql);
-  
   $row = $result->fetch_assoc();
 
 ?>
@@ -121,7 +119,7 @@ t_medico
 INNER JOIN t_expediente ON t_expediente.fk_medico = t_medico.idMedico
 INNER JOIN t_paciente ON t_expediente.fk_paciente = t_paciente.id_paciente
 INNER JOIN usuarios ON t_medico.fk_usuario = usuarios.id
-WHERE t_medico.idMedico=$idUsuario ");
+WHERE t_medico.idMedico=4");
         while ($fila = mysqli_fetch_array($sacar)) {
              $modificar=$fila['id_expediente']; 
              $codigo= $fila['codigo'];

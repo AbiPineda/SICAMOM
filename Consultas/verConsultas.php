@@ -135,7 +135,7 @@ t_paciente WHERE t_paciente.id_paciente='$modi'");
                                             <th>Ultima Visita</th>
                                             
                                             <th>Diagnostico</th> 
-                                            <th>Abonar</th> 
+                                        
                                         </tr>
                                     </thead>
                                     <tbody class="buscar">
@@ -153,7 +153,7 @@ INNER JOIN t_paciente ON t_expediente.fk_paciente = t_paciente.id_paciente
 INNER JOIN t_consulta ON t_consulta.fk_expediente = t_expediente.id_expediente
 INNER JOIN t_medico ON t_expediente.fk_medico = t_medico.idMedico
 INNER JOIN usuarios ON t_medico.fk_usuario = usuarios.id
-where t_medico.idMedico=$idUsuario");
+where t_medico.idMedico=4");
             while ($fila = mysqli_fetch_array($sacar1)) {
              
                  $tipo=$fila['codigo'];  
