@@ -97,8 +97,32 @@ $edad=($ano-$partes[0]);
    <div class="tab">
     <div class="row">
                                               <div class="col-md-5">
+                                                 <?php 
+        date_default_timezone_set('America/El_Salvador');
+    $d1 = date("d");
+    $m1 = date("m");
+    $y1 = date("Y");
+$f_actual=date('Y-m-d');
+//$fecha_min = strtotime ( '-38 weeks' , strtotime ( $f_actual ) ) ;
+//$fecha_min = date ( 'Y-m-j' , $fecha_min );
+
+   include_once '../Conexion/conexion.php';
+                                        $sacar = mysqli_query($conexion, "SELECT*FROM t_paciente,t_expediente WHERE id_expediente='$modi' AND fk_paciente=id_paciente");
+                                         while ($fila = mysqli_fetch_array($sacar)) {
+                                            $modificar = $fila['id_expediente'];
+                                            $ape = $fila['pac_capellidos'];
+                                            $nom = $fila['pac_cnombre'];
+                                            $alergias = $fila['alergias'];
+                                            $tel = $fila['pac_ctelefono'];
+                                            $fe = $fila['pac_ffecha_nac'];
+                                             $partes = explode('-', $fe);
+                $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+
+$fecha_min = strtotime ( '+8 years' , strtotime($_fecha) ) ;
+$fecha_min = date ( 'Y-m-j' , $fecha_min );
+        ?>
       
-      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fecha" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame" >       
+      <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fecha" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame"  dad();" max="<?php echo $f_actual; ?>">       
                                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -106,7 +130,9 @@ $edad=($ano-$partes[0]);
                                             </div> 
                                         </div>
                                       </div>
-
+<?php
+}
+?>
   </div>
     <div class="tab">
       <h5 class="card-title" style="color: white">Registro de Signos Vitales</h5>

@@ -329,26 +329,72 @@ INNER JOIN t_familiar ON t_prenatal.idprenatal=t_familiar.fk_idprenatal
 WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
                 if (mysqli_num_rows($val)>0) {
  
-  $sacar2 = mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
-                while ($fila2 = mysqli_fetch_array($sacar2)) {
+$sacar_con=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modi' AND estado='embarazo'");
+ while ($fila3 = mysqli_fetch_array($sacar_con)) {
+                      $consul_id = $fila3['idconsulta'];
+                        $sacar_pre=mysqli_query($conexion,"SELECT*FROM t_prenatal, t_familiar WHERE fk_consulta='$consul_id'");
+ while ($fila4 = mysqli_fetch_array($sacar_pre)) {
+                      $pre_id = $fila4['idprenatal'];
+                      $cirugias = $fila4['pre_ccirugias_previas'];
+
+   $sacar_fam = mysqli_query($conexion,"SELECT * FROM t_familiar WHERE fk_idprenatal='$pre_id' ORDER by idfamiliar DESC LIMIT 1");
+                while ($fila2 = mysqli_fetch_array($sacar_fam)) {
                       $familiar_id = $fila2['idfamiliar']; 
                       $familiar = $fila2['familiar'];
+                      $con_fam = $fila2['condGrave'];
                     }
+                    $sacar_per= mysqli_query($conexion,"SELECT * FROM t_personales WHERE fk_idprenatal='$pre_id' ORDER by idpersonal DESC LIMIT 1");
+                while ($fila5 = mysqli_fetch_array($sacar_per)) {
+                      $personal_id = $fila5['idpersonal']; 
+                      $personal = $fila5['personal'];
+                      $con_per = $fila5['condGrave'];
+                    }
+
+                  }
+                }
           ?>
     <div class="row">      
-    <div class="col-md-4">                 
-<h5 class="card-title" style="color:white">FAMILIARES</h5>
-   <div class="input-group">
-                                             <input class="form-control" rows="3" name="ant_fam" value="<?php   echo $familiar; ?>"></input> 
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
-                                            </div>
+    <div class="col-md-6">                 
+<h5 class="card-title" style="color:white">FAMILIARES:</h5>
+<div class="row">
+   <div class="col-md-12">
+                                           <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="edades" id="fnamep" autocomplete="off" value="<?php echo $familiar; ?>" readonly="readonly" size="60">  
+                                        </div> 
+                                        </div> 
+                                        <br/><br/>
+                                        <div class="row">
+   <div class="col-md-12">
+     <div class="row">
+                                            <label style="color: white" >Otra condición medica: </label>
+                                          </div>
+                                            <div class="row">
+                                           <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="edad_fam" id="fnamep" autocomplete="off" value="<?php echo $con_fam; ?>" readonly="readonly" size="60">  
                                         </div>
+                                        </div> 
+                                        </div> 
 </div> 
+    <div class="col-md-6">                 
+<h5 class="card-title" style="color:white">FAMILIARES:</h5>
+<div class="row">
+   <div class="col-md-12">
+                                           <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="edad_per" id="fnamep" autocomplete="off" value="<?php echo $personal; ?>" readonly="readonly" size="60">  
+                                        </div> 
+                                        </div> 
+                                        <br/><br/>
+                                        <div class="row">
+   <div class="col-md-12">
+     <div class="row">
+                                            <label style="color: white" >Otra condición medica: </label>
+                                          </div>
+                                            <div class="row">
+                                           <input style="background: rgba(0, 101, 191,0); border: 0; color:white" type="text" name="edad_per" id="fnamep" autocomplete="off" value="<?php echo $con_per; ?>" readonly="readonly" size="60">  
+                                        </div>
+                                        </div> 
+                                        </div> 
+</div>
 </div>         
-aqui ponga una imagen
           <?php }else{?>
-   
+  
     <div class="row">      
     <div class="col-md-4">                 
 <h5 class="card-title" style="color:white">FAMILIARES</h5>
@@ -514,7 +560,7 @@ aqui ponga una imagen
 </div>
                                     </div> 
 </div>
-<?php }?>
+
                        </div>
 <div class="tab">
       <h5 class="card-title" style="color: white">ANTECEDENTES OBSTÉTRICOS</h5>
@@ -733,7 +779,9 @@ aqui ponga una imagen
     </div>
     </div>
  </div>
+<?php }?>
 </div>
+
     <div class="tab">
       <h5 class="card-title" style="color: white">Registro de Signos Vitales</h5>
       <div class="row">
@@ -812,12 +860,6 @@ aqui ponga una imagen
 
  
    <div class="tab"><h5 class="card-title" style="color: white">Enfermedades y Afecciones</h5>
-                       <div class="row">                  
-                       <div class="col-md-12">
-                        <label style="color: white">Resultado de Ultrasonografia: <small class="text-muted"></small></label>
-                        Aqui para ingresar resultado de ultra
-                       </div>
-                       </div>
                        <br/>
                        <div class="row">                  
                       <div class="col-md-12">
