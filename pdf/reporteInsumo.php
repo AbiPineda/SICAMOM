@@ -1,5 +1,5 @@
 <?php
-	include 'plantilla3.php';
+	include 'plantilla4.php';
 	include '../Conexion/conexion.php';
 
 	$sacar1 = mysqli_query($conexion, "SELECT * FROM t_insumo");
@@ -13,6 +13,12 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
 	$pdf = new PDF();
 	$pdf->AliasNbPages();
 	$pdf->AddPage('L','Letter');
+
+	$pdf->SetXY(110,20);
+	$pdf->SetFont('Arial','B',17);
+	$pdf->Cell(60,5, utf8_decode('MONTENEGRO MONTALVO'),0,1,'C');
+
+	$pdf->Ln(20);
 
 	$pdf->SetFont('Arial','B',12);
 	$pdf->Cell(45,6,utf8_decode('Lista de insumos'),0,0,'C');

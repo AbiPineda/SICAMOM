@@ -80,7 +80,7 @@ while ($fila2 = mysqli_fetch_array($sacar1)) {
 			$pdf->SetFont('Arial','',10);
 			$pdf->MultiCell(120,6, utf8_decode($recetita),1,'L',0,1); 
 
-			$pdf->Ln(85);
+			$pdf->Ln(45);
 			$pdf->Cell(100,5, utf8_decode('Próxima cita:'),0,1,'L');
 	
 	//$pdf->SetFillColor(232,232,232);
