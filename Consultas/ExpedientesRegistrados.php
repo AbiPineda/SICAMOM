@@ -5,6 +5,15 @@ include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
 
+include_once '../Login/funcs/conexion.php';
+
+
+$idUsuario = $_SESSION['id_usuario'];
+$sql = "SELECT id, nombre FROM usuarios WHERE id = '$idUsuario'";
+  $result = $mysqli->query($sql);
+  
+  $row = $result->fetch_assoc();
+
 ?>
 
 <html lang="en" >
@@ -98,21 +107,23 @@ style="width:700px; height:500px;" frameborder="0"></iframe>
     </thead>
     <tbody  class="buscar"> 
         <?php
-        $sacar1 = mysqli_query($conexion, "SELECT
+        include_once '../Conexion/conexion.php';
+        $sacar = mysqli_query($conexion, "SELECT
 t_expediente.codigo,
 t_paciente.pac_cnombre,
 t_paciente.pac_capellidos,
 t_paciente.pac_cdui,
 t_paciente.pac_ctelefono,
+usuarios.id,
 t_expediente.id_expediente
 FROM
-t_expediente
+t_medico
+INNER JOIN t_expediente ON t_expediente.fk_medico = t_medico.idMedico
 INNER JOIN t_paciente ON t_expediente.fk_paciente = t_paciente.id_paciente
-");
-        while ($fila = mysqli_fetch_array($sacar1)) {
+INNER JOIN usuarios ON t_medico.fk_usuario = usuarios.id
+WHERE t_medico.idMedico=$idUsuario ");
+        while ($fila = mysqli_fetch_array($sacar)) {
              $modificar=$fila['id_expediente']; 
-          
-          
              $codigo= $fila['codigo'];
              $nombre = $fila['pac_cnombre'];
              $apellidos= $fila['pac_capellidos'];

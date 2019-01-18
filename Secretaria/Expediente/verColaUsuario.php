@@ -83,7 +83,7 @@ include_once '../../Conexion/conexion.php';
                                                         $d = date("d");
                                                         $m = date("m");
                                                         $y = date("Y");
-                                                        $sacar = mysqli_query($conexion, "SELECT*FROM t_medico, t_paciente, t_expediente, t_llegada WHERE fk_medico=idMedico AND fk_paciente=id_paciente AND fk_expediente=id_expediente AND (lleg_ffecha_atiende='$y-$m-$d') ORDER BY id_llegada");
+                                                        $sacar = mysqli_query($conexion, "SELECT*FROM t_medico, t_paciente, t_expediente, t_llegada WHERE fk_medico=idMedico AND fk_paciente=id_paciente AND fk_expediente=id_expediente AND (lleg_ffecha_atiende='$y-$m-$d') ORDER BY id_llegada=1");
                                                         while ($fila = mysqli_fetch_array($sacar)) {
                                                             $modificar = $fila['id_paciente'];
                                                             $ape = $fila['pac_capellidos'];

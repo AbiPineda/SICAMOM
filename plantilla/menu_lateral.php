@@ -11,6 +11,8 @@
 
                         <li class="sidebar-item"><a href="../Expediente_Admin/expedienteAdmin.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Crear Expediente </span></a></li>
                          <li class="sidebar-item"><a href="../Expediente_Admin/verCola.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> Lista de Espera </span></a></li>
+                         <li class="sidebar-item"><a href="../Consultas/ExpedientesRegistrados.php" class="sidebar-link"><i class="fas fa-address-card"></i><span class="hide-menu"> ver Expedientes </span></a></li>
+                    
                     </ul>
                 </li>
 
