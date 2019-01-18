@@ -28,7 +28,7 @@ include_once '../../Conexion/conexion.php';
                             <h3 class="card-title" style="color: white">Buscar Paciente </h3> 
                             <div class="col-lg-12">
                                 <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                    <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Paciente" onclick="location.href = '../Registros/registroPaciente.php'" ></div>
+                                    <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Paciente" onclick="location.href = '../Paciente/registroPaciente.php'" ></div>
 
                                 <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
                                     <input type="button" class="btn btn-info" name="" id="su"  value="Ver Expediente" onclick="location.href = '../Expediente_Usuarios/verExpediente.php'" ></div>

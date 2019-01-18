@@ -10,10 +10,10 @@ $codigo1 = '';
 //sacar usuarios para bitacora
 
 
-$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+$usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
 while ($row = mysqli_fetch_array($usuario)) {
-    $id = $row['id_usuario'];
-    $NombreUsuario = $row['usu_cusuario'];
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
 }
 //sacar usuarios para bitacora
 ?>
