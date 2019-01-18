@@ -146,14 +146,14 @@ t_expediente.codigo,
 t_expediente.alergias,
 t_consulta.con_fecha_atiende,
 t_consulta.con_diagnostico,
-usuarios.usuario
+usuarios.id
 FROM
 t_expediente
 INNER JOIN t_paciente ON t_expediente.fk_paciente = t_paciente.id_paciente
 INNER JOIN t_consulta ON t_consulta.fk_expediente = t_expediente.id_expediente
 INNER JOIN t_medico ON t_expediente.fk_medico = t_medico.idMedico
 INNER JOIN usuarios ON t_medico.fk_usuario = usuarios.id
-where t_medico.idMedico=4");
+where usuarios.id=$modi");
             while ($fila = mysqli_fetch_array($sacar1)) {
              
                  $tipo=$fila['codigo'];  
