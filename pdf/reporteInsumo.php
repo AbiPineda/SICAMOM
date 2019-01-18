@@ -16,9 +16,12 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
 
 	$pdf->SetFont('Arial','B',12);
 	$pdf->Cell(45,6,utf8_decode('Lista de insumos'),0,0,'C');
-	$pdf->SetX(195);
+	$pdf->SetX(200);
 	$pdf->SetFont('Arial','',12);
-	$pdf->Cell(65,5, utf8_decode($dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y').'.'),0,1,'L');
+	$pdf->Cell(65,5, utf8_decode($dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y'). '.'),0,1,'L');
+	//hora
+	$pdf->SetX(210);
+	$pdf->Cell(65,5, utf8_decode( " hora : ".date("h:i:s").'.'),0,1,'L');
 
 	$pdf->Ln(5);
 

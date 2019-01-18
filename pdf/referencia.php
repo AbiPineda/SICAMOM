@@ -98,6 +98,9 @@ $pdf->Ln(5);
 			$pdf->SetX(140);
 			$pdf->SetFont('Arial','',11);
 			$pdf->Cell(135,5, utf8_decode($dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y').'.'),0,1,'L');
+			//hora
+			$pdf->SetX(210);
+			$pdf->Cell(65,5, utf8_decode( " hora : ".date("h:i:s").'.'),0,1,'L');
 			$pdf->Ln(-5);
 		//	$pdf->Cell(335,5, utf8_decode($fecha_actual),0,1,'C');
 
