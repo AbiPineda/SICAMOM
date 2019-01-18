@@ -59,7 +59,7 @@ fecha_probable.setDate(fecha_probable.getDate() + dias);
             var $fecha_probable3 = fecha_probable.getFullYear()+ '-' +(fecha_probable.getMonth() + 1)+ '-' + fecha_probable.getDate();
             var $fecha_probable2 = fecha_probable.getDate()+ '/' +(fecha_probable.getMonth() + 1)+ '/' +fecha_probable.getFullYear() ;
 //document.regForm.fech_parto.value = fecha_probable2;
- $("#fech_parto1").val($fecha_probable3);
+ $("#fech_parto1").val($fecha_probable2);
             if (edad <= 17) {
                 document.f1.dui.disabled = true;
                 document.f1.tel.disabled = true;
@@ -332,13 +332,14 @@ WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazo'");
   $sacar2 = mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
                 while ($fila2 = mysqli_fetch_array($sacar2)) {
                       $familiar_id = $fila2['idfamiliar']; 
+                      $familiar = $fila2['familiar'];
                     }
           ?>
     <div class="row">      
     <div class="col-md-4">                 
 <h5 class="card-title" style="color:white">FAMILIARES</h5>
    <div class="input-group">
-                                             <input class="form-control" rows="3" name="ant_fam" value="<?php   echo $familiar_id; ?>"></input> 
+                                             <input class="form-control" rows="3" name="ant_fam" value="<?php   echo $familiar; ?>"></input> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
                                             </div>

@@ -4,8 +4,22 @@
       include_once '../plantilla/menu_lateral.php';
          $modi = $_GET['ir'];
           ?>
+           <link href="../css/check.css" rel="stylesheet">
+    <script type="text/javascript">
+function mostrar(id) {
+               if (id == "recetas") {
+               $("#recetas").show();
+            }
+               if (id == "referencias") {
+               $("#referencias").show();
+            }
+               if (id == "constancias") {
+               $("#constancias").show();
+            }
+}
+</script>
    <link href="../css/multiform.css" rel="stylesheet">
-                    <div class="page-wrapper" style="height: 671px;">
+                    <div class="page-wrapper" style="height: 971px;">
                         <div class="container-fluid" >
                   <div class="card" style="background: rgba(0,101,191,0.6)">
                   <div class="card-body wizard-content">
@@ -166,7 +180,77 @@ $edad=($ano-$partes[0]);
                                     </div> 
                                 </div>
   </div>
+    <div class="tab"> 
+    <h7 class="card-title" style="color: white">ANEXOS:</h7>  
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+  <label class="container1" style="color: white;font-size: 14px;">Recetas Medicas
+  <input type="checkbox" value="recetas" id="status" name="status" onChange="mostrar(this.value);">
+   <span class="checkmark"></span>
+</label>
+<div class="row">
+    <div class="col-md-12">
+     <div id="recetas" style="display: none;">
+     <div class="input-group">
+     <textarea class="form-control" rows="3" id="recetas" name="recetas"></textarea> 
+     <div class="input-group-append">
+     <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+     </div>
+     </div> 
+    </div>
+  </div>
+</div>
+</div>
+</div>
 
+ <br/>
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+  <label class="container1" style="color: white;font-size: 14px;">Referencias Medicas
+  <input type="checkbox" value="referencias" id="status" name="status" onChange="mostrar(this.value);">
+   <span class="checkmark"></span>
+</label>
+<div class="row">
+    <div class="col-md-12">
+     <div id="referencias" style="display: none;">
+     <div class="input-group">
+     <textarea class="form-control" rows="3" id="referencias" name="referencias"></textarea> 
+     <div class="input-group-append">
+     <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+     </div>
+     </div> 
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+ <br/>
+    <br/>
+    <div class="row">
+      <div class="col-md-12">
+  <label class="container1" style="color: white;font-size: 14px;">Constancias Medicas
+  <input type="checkbox" value="constancias" id="status" name="status" onChange="mostrar(this.value);">
+   <span class="checkmark"></span>
+</label>
+<div class="row">
+    <div class="col-md-12">
+     <div id="constancias" style="display: none;">
+     <div class="input-group">
+     <textarea class="form-control" rows="3" id="constancias" name="constancias"></textarea> 
+     <div class="input-group-append">
+     <span class="input-group-text"><i class="fas fa-file-medical-alt"></i></span>
+     </div>
+     </div> 
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
   <div class="tab"> <h5 class="card-title" style="color: white">Registro de Insumos</h5>
 
     <div class="row">
@@ -431,6 +515,9 @@ $edad=($ano-$partes[0]);
          $temp = $_REQUEST['temp'];
          $presion = $_REQUEST['presion'];
          $pulso = $_REQUEST['pulso'];
+          $receta = $_REQUEST['recetas'];
+          $referencias = $_REQUEST['referencias'];
+          $constancias = $_REQUEST['constancias'];
 
          //insumos medicos a decrementar
 
@@ -455,7 +542,7 @@ $edad=($ano-$partes[0]);
                 while ($fila = mysqli_fetch_array($sacar)) {
                       $enfermeria=$fila['id_enfermeria']; 
                     }
-            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','Consulta Ginecologica','$resul_examenes','1','consulta')");
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_ref_medica,con_cons_medica,con_receta,con_fecha_amenorrea,con_ctipo_consulta,con_resul_examen,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$referencias','$constancias','$receta','$amenorrea','Consulta Ginecologica','$resul_examenes','1','consulta')");
 
             
 
