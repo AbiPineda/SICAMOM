@@ -289,6 +289,9 @@ $nuevafecha = date ( 'j/m/Y' , $nuevafecha );
 $f_actual=date('Y-m-d');
 $fecha_min = strtotime ( '-38 weeks' , strtotime ( $f_actual ) ) ;
 $fecha_min = date ( 'Y-m-j' , $fecha_min );
+
+$fecha_min_parto = strtotime ( '-2 month' , strtotime ( $f_actual ) ) ;
+$fecha_min_parto = date ( 'Y-m-j' , $fecha_min_parto );
         ?>
       <input type="date" name="fecha_amenorrea" class="form-control" id="fecha_amenorrea" onChange="javascript:calcularEdad();" max="<?php echo $f_actual; ?>" min="<?php echo $fecha_min; ?>">                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
@@ -703,7 +706,7 @@ $sacar_con=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$
               <div class="row">
             <div class="col-md-12">
       <div id="fecha_parto_anterior" style="display: none;">
-      <label style="color: white">Fin Embarazo Anterior:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fecha_parto_ant" autocomplete="off" name="fecha_parto_ant" >       
+      <label style="color: white">Fin Embarazo Anterior:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fecha_parto_ant" autocomplete="off" name="fecha_parto_ant" max="<?php echo $fecha_min_parto; ?>">       
                                                  <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>

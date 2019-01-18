@@ -118,8 +118,8 @@ $f_actual=date('Y-m-d');
                                              $partes = explode('-', $fe);
                 $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
 
-$fecha_min = strtotime ( '+8 years' , strtotime($_fecha) ) ;
-$fecha_min = date ( 'Y-m-j' , $fecha_min );
+//$fecha_min = strtotime ( '+8 year' , strtotime($_fecha) ) ;
+//$fecha_min = date ( 'Y-m-j' , $fecha_min );
         ?>
       
       <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label><div class="input-group"><input type="date" class="form-control" id="fecha" placeholder="Kg" autocomplete="off" maxlength="6" name="fecha_ame"  dad();" max="<?php echo $f_actual; ?>">       
