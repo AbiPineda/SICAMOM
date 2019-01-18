@@ -11,12 +11,14 @@ t_paciente.pac_capellidos,
 t_paciente.pac_ffecha_nac,
 t_expediente.codigo,
 t_medico.med_cnombre,
-t_medico.med_capellidos
+t_medico.med_capellidos,
+t_consulta.con_ref_medica
 
 FROM
 t_expediente
 INNER JOIN t_paciente ON t_expediente.fk_paciente = t_paciente.id_paciente
 INNER JOIN t_medico ON t_expediente.fk_medico = t_medico.idMedico
+INNER JOIN t_consulta ON t_consulta.fk_expediente = t_expediente.id_expediente
 WHERE t_expediente.id_expediente='$modificar' ");
             while ($fila = mysqli_fetch_array($pacientito)) {
 
@@ -28,6 +30,8 @@ WHERE t_expediente.id_expediente='$modificar' ");
             	 $Cod=$fila['codigo'];
             	 $partes = explode('-', $fechaN);
                 $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+
+                $refe=$fila['con_ref_medica'];
 
 //fecha actual
     date_default_timezone_set('America/El_Salvador');
@@ -104,7 +108,7 @@ $pdf->Ln(5);
 			$pdf->Ln(25);
 		//	$pdf->Cell(335,5, utf8_decode($fecha_actual),0,1,'C');
 
-			$pdf->MultiCell(190,6, utf8_decode('Tolerancia Post-Ingesta 75grs. de Glucosa 2hrsbjajksnxcjknasjkcjkanscjnaskjc jkas jck jsak cjajskc jka sjkc asj c ks aj cjk k sa ksa js jk xkjajajakjnxjnajsnjxnanxnasnckaslkcnanklcnlkascaklncknaskncsncnklcasnknaklcnklnasklncsklncsklncksncklsnklsnkcsnkcnsklcsnkcsnklcnaklcsancsklnsakssclakscjacsa.'),1,'L',0,1);
+			$pdf->MultiCell(190,6, utf8_decode($refe),1,'L',0,1);
 
 			$pdf->Ln(120);
 			$pdf->Cell(190,5, utf8_decode('Firma:_______________________'),0,1,'C');

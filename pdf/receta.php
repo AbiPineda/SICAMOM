@@ -9,11 +9,13 @@ t_expediente.id_expediente,
 t_paciente.pac_cnombre,
 t_paciente.pac_capellidos,
 t_medico.med_cnombre,
-t_medico.med_capellidos
+t_medico.med_capellidos,
+t_consulta.con_receta
 FROM
 t_expediente
 INNER JOIN t_paciente ON t_expediente.fk_paciente = t_paciente.id_paciente
 INNER JOIN t_medico ON t_expediente.fk_medico = t_medico.idMedico
+INNER JOIN t_consulta ON t_consulta.fk_expediente = t_expediente.id_expediente
 WHERE t_expediente.id_expediente='$modificar' ");
             while ($fila = mysqli_fetch_array($pacientito)) {
 
@@ -22,7 +24,7 @@ WHERE t_expediente.id_expediente='$modificar' ");
             	 $nomDr=$fila['med_cnombre'];
             	 $apeDr=$fila['med_capellidos'];
 
-            	// $recetita=$fila[''];
+            	 $recetita=$fila['con_receta'];
                    
 }
 
@@ -75,10 +77,10 @@ while ($fila2 = mysqli_fetch_array($sacar1)) {
 			$pdf->Cell(222,5, utf8_decode($fecha_actual),0,1,'C');
 
 			$pdf->Ln(10);
-			$pdf->SetFont('Arial','',7);
-			$pdf->MultiCell(120,6, utf8_decode($consultita),1,'L',0,1); 
+			$pdf->SetFont('Arial','',10);
+			$pdf->MultiCell(120,6, utf8_decode($recetita),1,'L',0,1); 
 
-			$pdf->Ln(95);
+			$pdf->Ln(85);
 			$pdf->Cell(100,5, utf8_decode('Próxima cita:'),0,1,'L');
 	
 	//$pdf->SetFillColor(232,232,232);
