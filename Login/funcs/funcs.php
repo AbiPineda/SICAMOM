@@ -223,7 +223,7 @@
 					
 					        if ($id_tipo == '1') { 
      						// lo redireccionas al index Administrador
-     						 header("location:../html/ltr/index.html");  
+     						 header("location:../Inicio/inicioAdmin.php");  
       						  }else{
             // lo redireccionas al index secretaria 
          					 header("location:../html/ltr/indexSecretaria.html");  

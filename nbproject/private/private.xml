@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xamp/htdocs/SICAMOM/SICAMOM/plantilla/menu_lateral.php</file>
-            <file>file:/C:/xamp/htdocs/SICAMOM/SICAMOM/Registros/registroInsumo.php</file>
-            <file>file:/C:/xamp/htdocs/SICAMOM/SICAMOM/Registros/registroEmpleado.php</file>
-            <file>file:/C:/xamp/htdocs/SICAMOM/SICAMOM/Registros/registroProveedor.php</file>
-            <file>file:/C:/xamp/htdocs/SICAMOM/SICAMOM/Registros/registroPaciente.php</file>
+            <file>file:/C:/xamp/htdocs/SICAMOM/Consultas/ExpedientesRegistrados.php</file>
+            <file>file:/C:/xamp/htdocs/SICAMOM/plantilla/menu_lateral.php</file>
+            <file>file:/C:/xamp/htdocs/SICAMOM/Consultas/verConsultas.php</file>
         </group>
     </open-files>
 </project-private>
