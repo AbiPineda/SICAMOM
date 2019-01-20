@@ -6,10 +6,10 @@ include_once '../plantilla/menu_lateral.php';
 //sacar usuarios para bitacora
 
 include_once '../Conexion/conexion.php';
-$usuario = mysqli_query($conexion, "SELECT*FROM t_usuario");
+$usuario = mysqli_query($conexion, "SELECT*FROM usuario");
 while ($row = mysqli_fetch_array($usuario)) {
-    $id = $row['id_usuario'];
-    $NombreUsuario = $row['usu_cusuario'];
+    $id = $row['id'];
+    $NombreUsuario = $row['usuario'];
 }
 //sacar usuarios para bitacora
 
@@ -32,12 +32,11 @@ while ($row = mysqli_fetch_array($usuario)) {
                             <h4 class="modal-title" id="myModalLabel"></h4>
                         </div>
                         <div class="modal-body">
-                            <!--<form id="example-form" action="" class="m-t-40" method="POST">-->
-                            <!-- **********MODIFICACION******************-->
+                            
                             <!--FORMULARIO PARA GUARDAR--><form action="" id="" method="post" class="form-register" >
 
                                 <!--CAPTURA COMO LA ACCION PARA GUARDAR--><input type="hidden" name="guardar" id="pase"/>
-                                <!-- **********FIN MODIFICACION******************-->
+                                
 
 
                                 <div class="col-lg-12">
@@ -100,23 +99,16 @@ while ($row = mysqli_fetch_array($usuario)) {
                                     </div> 
 
                                 </div>   
-                                <!--ERROR COMUN Y LO DEJARE AQUI PARA QUE VEAS
-                                LA ETIQUETA </form> DETRO DE ELLA SIEMPRE TEIENE QUE ESTAR LOS BOTONES-->
-
                                 <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
-                                    <!--yo lo utilizo tipo input porque asi me funciona--><input type="submit" class="btn btn-info" value="Guardar" name="modGuardar">
-
+                                <input type="submit" class="btn btn-info" value="Guardar" name="modGuardar">
                                 </div>
 
                                 <div class="row mb-12" style="float: right;margin-right: 20px; margin-top: 15px;">
                                     <button type="submit" class="btn btn-info" name="modCancelar">Cancelar </button>
 
                                 </div>
-                            </form>
-                           
+                            </form>                        
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -124,7 +116,6 @@ while ($row = mysqli_fetch_array($usuario)) {
 
             <div class="card-body wizard-content">
                 <h3 class="card-title">Registro Paciente.</h3>
-                <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
                 <form action="" id="f1" name="f1" method="post" class="form-register" >
                     <input type="hidden" name="tirar" id="pase"/>
                     <div>
@@ -156,7 +147,6 @@ while ($row = mysqli_fetch_array($usuario)) {
                                     <div class="col-lg-3">
                                         <label>Fecha de nacimiento<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <!--<input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">-->
                                             <input type="date" name="user_date" class="form-control" id="user_date" onChange="javascript:calcularEdad();"/>
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
@@ -168,13 +158,10 @@ while ($row = mysqli_fetch_array($usuario)) {
                                     <div class="col-lg-2">
                                         <label>Edad<small class="text-muted"></small></label>
                                         <div class="input-group">
-                                            <!--<input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">-->
                                             <input name="inp" id="inp" class="form-control"> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                             </div>
-
-
                                         </div> 
                                     </div>
                                 </div>
@@ -221,15 +208,9 @@ while ($row = mysqli_fetch_array($usuario)) {
                                 </div>
                             </div>
                         </section>
-
                     </div>
-
                 </form>
-
-
             </div>
-
-
         </div>
     </div>
 </div>
@@ -246,8 +227,7 @@ include_once '../plantilla/pie.php';
                                 $dui = $_REQUEST['duiRes'];
                                 $telefono = $_REQUEST['telefonoRes'];
                                 $esta=1;
-
-////////////
+                            
        $verificar_insert = mysqli_query($conexion, "SELECT * FROM t_responsable WHERE res_cdui='$dui'");
          $verificar_insert2 = mysqli_query($conexion, "SELECT * FROM t_responsable WHERE res_ctelefono='$telefono'");
         if (mysqli_num_rows($verificar_insert) > 0 || mysqli_num_rows($verificar_insert2) > 0 ) {
@@ -277,11 +257,8 @@ include_once '../plantilla/pie.php';
                 . " VALUES('$id','$NombreUsuario','Registro de Responsable para paciente Menor de Edad',now(),'$hora')");
         //bitacora
                             }
-                                //////////////
 }
-
-                            ?>
-
+?>
 <script type="text/javascript">
     $('#miModal').modal('show');
 </script>
