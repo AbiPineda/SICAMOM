@@ -226,7 +226,7 @@
      						 header("location:Inicio/inicioAdmin.php");  
       						  }else{
             // lo redireccionas al index secretaria 
-         					 header("location:Inicio/indexSecretaria");  
+         					 header("location:../html/ltr/indexSecretaria.html");  
         					}
         
 					} else {

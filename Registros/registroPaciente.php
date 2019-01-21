@@ -96,7 +96,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                 ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
                 dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
             }
-            
+            //document.f1.inp.disabled=true;
             document.f1.inp.value = edad;
 
             if (edad <= 17) {
@@ -140,7 +140,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        
+                        <!--  <button type="button" class="btn btn-primary">Save changes</button>  --> 
                     </div>
                 </div>
             </div>
@@ -149,6 +149,7 @@ while ($row = mysqli_fetch_array($usuario)) {
         <div class="card" style="background: rgba(0, 101, 191,0.6)">        
             <div class="card-body wizard-content">
                 <h3 class="card-title" style="color: white">Registro Paciente | Datos generales</h3>
+                <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
                 <form action="" id="f1" name="f1" method="post" class="form-register" >
                     <input type="hidden" name="tirar" id="pase"/>
                     <div>
@@ -180,6 +181,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                                 <div class="col-lg-3">
                                     <label style="color: white">Fecha de nacimiento<small class="text-muted"></small></label>
                                     <div class="input-group">
+                                        <!--<input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">-->
                                         <input type="date" name="user_date" class="form-control" id="user_date" max="2015-06-01" min="1947-01-02" onChange="javascript:calcularEdad();"/>
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
@@ -191,6 +193,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                                 <div class="col-lg-2">
                                     <label style="color: white">Edad<small class="text-muted"></small></label>
                                     <div class="input-group">
+                                        <!--<input type="date" name="fecha" class="form-control mydatepicker" placeholder="Ingrese fecha de nacimiento">-->
                                         <input name="inp" id="inp" class="form-control" onChange="javascript:desabilitar();"> 
                                         <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
@@ -259,6 +262,7 @@ if (isset($_REQUEST['tirar'])) {
     $dui = $_REQUEST['dui'];
     $telefono = $_REQUEST['telefono'];
     $fecha = $_REQUEST['user_date'];
+    //$tipo = $_REQUEST['tipo'];
     $edad = $_REQUEST['inp'];
     $esta = 1;
 
@@ -316,7 +320,7 @@ if (isset($_REQUEST['tirar'])) {
             mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
                     . " VALUES('$id','$NombreUsuario','Registro de Paciente',now(),'$hora')");
             //bitacora
-           
+            //fin
         }
     }
 }

@@ -1,9 +1,11 @@
 <?php
-include_once '../plantilla/cabecera.php';
-include_once '../plantilla/menu.php';
-include_once '../plantilla/menu_lateral.php';
-$modi = $_GET['ir'];
-//sacar usuarios para bitacora
+    include_once '../plantilla/cabecera.php';
+    include_once '../plantilla/menu.php';
+    include_once '../plantilla/menu_lateral.php';
+    $modi = $_GET['ir'];
+
+    //sacar usuarios para bitacora
+
 include_once '../Conexion/conexion.php';
 $usuario = mysqli_query($conexion, "SELECT*FROM usuarios");
 while ($row = mysqli_fetch_array($usuario)) {
@@ -11,24 +13,25 @@ while ($row = mysqli_fetch_array($usuario)) {
     $NombreUsuario = $row['usuario'];
 }
 //sacar usuarios para bitacora
-?>
-<div class="page-wrapper" style="height: 671px;">
+    ?>
 
-    <div class="container-fluid">
-        <div class="card" style="background: rgba(0, 101, 191,0.6)">
-            <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
-            </div>
-            <br> 
-            <div class="card-body wizard-content">
+    <div class="page-wrapper" style="height: 671px;">
 
-                <h3 class="card-title" style="color: white">Modificar Paciente | Datos personales</h3>
-
-                <form action="" method="post">
-                    <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
+        <div class="container-fluid">
+            <div class="card" style="background: rgba(0, 101, 191,0.6)">
+                <div class="contenedor-modal" style="float: right; margin-left: 10px; margin-top: 15px;" >
+                </div>
+                    <br> 
+                    <div class="card-body wizard-content">
+                        
+                    <h3 class="card-title" style="color: white">Modificar Paciente | Datos personales</h3>
+                            
+                    <form action="" method="post">
+                        <input type="hidden" name="tirar" value="<?php echo $modi; ?>" id="pase"/>
                     <div>
                         <h3></h3>
                         <section>
-
+                            
                             <div class="row mb-3">
                                 <div class="col-lg-4">
                                     <?php
@@ -41,8 +44,11 @@ while ($row = mysqli_fetch_array($usuario)) {
                                         $dui = $fila['pac_cdui'];
                                         $tel = $fila['pac_ctelefono'];
                                         $fe = $fila['pac_ffecha_nac'];
-                                        ?>
 
+                                        
+
+                                        ?>
+                                    
                                         <label style="padding-top: 12px; color: white">Nombre<small class="text-muted"></small></label>
                                         <div class="input-group">
                                             <input type="text" name="nombre" value="<?php echo $nom; ?>" class="form-control" id="fnamep" placeholder="Ingrese nombre" onkeypress="return soloLetras(event);" onkeyup="this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);" class="mayusculas" maxlength="30" value="" required autocomplete="off">  
@@ -63,7 +69,7 @@ while ($row = mysqli_fetch_array($usuario)) {
                                         </div>                                    
                                     </div>
 
-
+                                   
 
                                     <div class="col-lg-4">
                                         <label style="padding-top: 12px; color: white">Teléfono<small class="text-muted"> 9999-9999</small></label>
@@ -76,37 +82,37 @@ while ($row = mysqli_fetch_array($usuario)) {
                                     </div>
                                 </div>
                             </section> </div>
-                        <div>
-                            <h3></h3>
-                            <section>
+                                                        <div>
+                        <h3></h3>
+                        <section>
 
-                                <div class="col-lg-4">
+                                    <div class="col-lg-4">
 
-                                    <div class="row mb-12" style="float: left;margin-left: 975px; margin-top: 11px;">
-                                        <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
+                                        <div class="row mb-12" style="float: left;margin-left: 975px; margin-top: 11px;">
+                                            <input type="submit"  class="btn btn-info" name="btnEnviar" value="Guardar">
+                                        </div>
+                                        <div class="row mb-12" style="float: left;margin-left: 875px; margin-top: -34px;">
+                                            <button type="reset" class="btn btn-info" name="nameCancelar"  onclick="location.href='modificarMayoresdeEdad.php'">Cancelar </button>
+                                        </div>
+
                                     </div>
-                                    <div class="row mb-12" style="float: left;margin-left: 875px; margin-top: -34px;">
-                                        <button type="reset" class="btn btn-info" name="nameCancelar"  onclick="location.href = 'modificarMayoresdeEdad.php'">Cancelar </button>
-                                    </div>
-
-                                </div>
-                                <?php
-                            }
-                            ?>
+                                    <?php
+                                }
+                                ?>
                         </section>
 
                     </div>
-                </form>
+                    </form>
+
+                </div>
+                    
 
             </div>
-
-
         </div>
     </div>
-</div>
 
-<?php
-include_once '../plantilla/pie.php';
+    <?php
+    include_once '../plantilla/pie.php';
 
 
 
@@ -115,15 +121,23 @@ if (isset($_REQUEST['btnEnviar'])) {
     include_once '../Conexion/conexion.php';
 
     $nombre = $_REQUEST['nombre'];
+    echo $nombre;
     $apellido = $_REQUEST['apellido'];
+   
     $tel = $_REQUEST['telefono'];
+  
 
+    /*                    $ape = $fila['pac_capellidos'];
+                                        $nom = $fila['pac_cnombre'];
+                                        $dui = $fila['pac_cdui'];
+                                        $tel = $fila['pac_ctelefono'];
+                                        $fe = $fila['pac_ffecha_nac'];*/
     Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
     $sql = "UPDATE t_paciente SET pac_cnombre='$nombre',pac_capellidos='$apellido',pac_ctelefono='$tel' WHERE id_paciente='$modi'";
     $sentencia = $conexionx->prepare($sql);
     $usuario_insertado = $sentencia->execute();
-    echo '<script>swal({
+        echo '<script>swal({
                     title: "Registro Modificado",
                     text: "Guardado!",
                     type: "success",
@@ -135,36 +149,36 @@ if (isset($_REQUEST['btnEnviar'])) {
                     
                 });</script>';
 
-    //bitacora
-
-    ini_set('date.timezone', 'America/El_Salvador');
-    $hora = date("H:i:s");
-    mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
-            . " VALUES('$id','$NombreUsuario','Paciente mayor de edad modificado',now(),'$hora')");
-    //bitacora
-}
+                //bitacora
+        
+        ini_set('date.timezone', 'America/El_Salvador');
+        $hora = date("H:i:s");
+        mysqli_query($conexion, "INSERT INTO t_bitacora(fk_usuario,bit_cusuario,bit_cactividad,bit_ffecha,bit_hhora)"
+                . " VALUES('$id','$NombreUsuario','Paciente mayor de edad modificado',now(),'$hora')");
+        //bitacora
+} 
 ?>
 
 <script>
-    function soloLetras(e) {
-        textoArea = document.getElementById("fnamep").value;
-        var total = textoArea.length;
-        if (total == 0) {
-            key = e.keyCode || e.which;
-            tecla = String.fromCharCode(key).toString();
-            letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; //Se define todo el abecedario que se quiere que se muestre.
-            especiales = [8, 9, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
-            tecla_especial = false
-            for (var i in especiales) {
-                if (key == especiales[i]) {
-                    tecla_especial = true;
-                    break;
-                }
-            }
-            if (letras.indexOf(tecla) == -1 && !tecla_especial) {
-                return false;
-                alert('No puedes comenzar escribiendo numeros');
-            }
+function soloLetras(e) {
+    textoArea = document.getElementById("fnamep").value;
+    var total = textoArea.length;
+    if (total == 0) {
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toString();
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ"; //Se define todo el abecedario que se quiere que se muestre.
+      especiales = [8, 9, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+      tecla_especial = false
+      for (var i in especiales) {
+        if (key == especiales[i]) {
+          tecla_especial = true;
+          break;
         }
+      }
+      if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+        return false;
+        alert('No puedes comenzar escribiendo numeros');
+      }
     }
+  }
 </script>

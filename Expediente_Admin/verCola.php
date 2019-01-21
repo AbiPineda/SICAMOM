@@ -5,12 +5,15 @@ include_once '../plantilla/menu.php';
 include_once '../plantilla/menu_lateral.php';
 include_once '../Conexion/conexion.php';
 include_once '../Login/funcs/conexion.php';
+
+
 $idUsuario = $_SESSION['id_usuario'];
   
   $sql = "SELECT id, nombre FROM usuarios WHERE id = '$idUsuario'";
   $result = $mysqli->query($sql);
   
   $row = $result->fetch_assoc();
+
 ?>
 
   <div class="page-wrapper" style="height: 671px;">
@@ -18,7 +21,8 @@ $idUsuario = $_SESSION['id_usuario'];
 <div class="card" style="background: rgba(0, 101, 191,0.6)">        
             <div class="card-body wizard-content">
                 <h3 class="card-title" style="color: white">Lista de Espera</h3>
-                <div class="col-lg-12">
+                <!--<form id="example-form" action="registroPaciente.php" class="m-t-40" method="POST">-->
+                  <div class="col-lg-12">
                                             <div class="row mb-12" style="float: right; margin-right: 10px; margin-top: 15px;">
                                                 <input type="button" class="btn btn-info" name="" id="su"  value="Nuevo Registro" onclick="location.href='../Expediente_Admin/verExpedienteAdmin.php'" ></div>
                                     </div>   
@@ -101,7 +105,25 @@ $idUsuario = $_SESSION['id_usuario'];
           <input type="button" class="btn btn-warning" name="" id="su"  value="Papel de Cama: <?php echo $papel_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
+<!--HISOPOS
+  <?php
+   $validarisopo = mysqli_query($conexion,"SELECT t_categoria_insumo.nombreCategoria, inventario_unidades.decremento FROM inventario_unidades INNER JOIN t_categoria_insumo ON inventario_unidades.categoria = t_categoria_insumo.idcategoria WHERE t_categoria_insumo.idcategoria=3");
+   if (mysqli_num_rows($validarisopo)>0) {
+      $sacar5 = mysqli_query($conexion,"SELECT t_categoria_insumo.nombreCategoria, inventario_unidades.decremento FROM inventario_unidades INNER JOIN t_categoria_insumo ON inventario_unidades.categoria = t_categoria_insumo.idcategoria WHERE t_categoria_insumo.idcategoria=3");
+                while ($fila5 = mysqli_fetch_array($sacar5)) {
+                      $isopo_dec=$fila5['decremento'];
+                    } 
 
+ ?>   
+ <?php
+ if($isopo_dec>10){
+ ?>       <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-success" name="" id="su"  value="Isopos:<?php echo $isopo_dec;?>"  ></div>
+  <?php }else{?>
+    <div class="row mb-12" style="float: right; margin-right: 20px; margin-top: 15px;">
+          <input type="button" class="btn btn-warning" name="" id="su"  value="Isopos: <?php echo $isopo_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
+  <?php }
+}?>-->
 <!--JERINGAS-->
   <?php
    $validarjeringas = mysqli_query($conexion,"SELECT * FROM inventario_unidades WHERE tipo='Jeringa'");
@@ -240,24 +262,36 @@ $idUsuario = $_SESSION['id_usuario'];
           <input type="button" class="btn btn-warning" name="" id="su"  value="Papel: <?php echo $FOTOGRAFICO_dec;?>" onclick="location.href='../Registros/Existencias.php'" ></div>
   <?php }
 }?>
+
+
+
+
+
                                     </div>   
+
     </div>
        <div class="row mb-12">   
         
             <div class="wrap">
                 <div class="col-lg-12">
               <script src="../html/js/jquery.min.js" ></script>
-            <script src="../html/js/buscaresc.js"></script>      
+            <script src="../html/js/buscaresc.js"></script>
+       
          <div class="search">
            <input type="text" name="buscar" id="filtrar" class="searchTerm" placeholder="Que está buscando?">
             <button type="submit" class="searchButton">
               <i class="fa fa-search"></i>
            </button>
-         </div>               
+
+         </div>
+                
       </div>
        </div>
     </div>
-   <div class="card" >
+            <!--Fin Búsqueda-->
+
+
+    <div class="card" >
     </br>
       <div class="col-md-12">
           <div id="bodywrap">
@@ -269,7 +303,11 @@ $idUsuario = $_SESSION['id_usuario'];
      <th><div>Paciente</div></th>
      <th><div>Edad</div></th>
      <th><div>Estado</div></th>
-     <th><div>Accion</div></th> 
+     <th><div>Accion</div></th>
+    
+      
+      
+      
     </thead>
     <tbody  class="buscar"> 
 <?php
@@ -326,12 +364,23 @@ $ano=($ano-1);}
 //ya no habría mas condiciones, ahora simplemente restamos los años y mostramos el resultado como su edad
 
 $edad=($ano-$partes[0]);
+
+//print $edad;
+
+
+
+//echo floor($sem).'  Semanas';
                  
                  if ($fe==0) {
                      $estado="Desactivado";
                  } else {
                      $estado="Esperando...";
                  }
+               //  $tipo=$fila['con_ctipo_consulta'];  
+                 // $fe=$fila['pac_ffecha_nac']; 
+               // $partes = explode('-', $fe);
+              //  $_fecha = "{$partes[2]}-{$partes[1]}-{$partes[0]}"; 
+             
         ?>
 
       <tr>
@@ -380,17 +429,26 @@ $edad=($ano-$partes[0]);
             }
 
           }?>
+
+
+
+       <!-- <td class="text"><a href="../Expediente_Admin/realizarConsultaDiaria.php?ir= class="btn btn-success fas fa-edit">Consulta Ginecológica</a>
+          <a href="../Expediente_Admin/controlEmbarazo.php?ir=" class="btn btn-success fas fa-edit">Control Prenatal</a>
+        </td> -->
       </tr>
 
     </tbody>
   </table>
-  </div> 
-</div> 
-</div> 
-  </div>
-  </div>
-  </div>
-  </div>
+  </div> <!-- Div scroll-window -->
+</div> <!-- Div scroll-window-wrapper-->
+
+
+</div> <!-- Div bodywrap -->
+
+  </div> <!-- Div col-md-12 -->
+  </div> <!-- Div card -->
+  </div> <!-- Div page-wrapper -->
+  </div> <!-- Div page-wrapper -->
 
 <?php
 

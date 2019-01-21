@@ -45,7 +45,7 @@
                         <div class="dropdown-menu dropdown-menu-right user-dd animated">
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../Login/index.php"><i class="fa fa-power-off m-r-5 m-l-5"></i> Cerrar Sesión</a>
+                            <a class="dropdown-item" href="../Login/Login.php"><i class="fa fa-power-off m-r-5 m-l-5"></i> Cerrar Sesión</a>
                             <div class="dropdown-divider"></div>
 
                         </div>
