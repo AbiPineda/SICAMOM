@@ -1,18 +1,8 @@
 <?php
-include_once '../Secretaria/plantillaSecretaria/cabeceraSecretaria.php/plantilla/cabecera.php';
-include_once '../Secretaria/plantillaSecretaria/menuSecretaria.php';
-include_once '../Secretaria/plantillaSecretaria/menuLateralSecretaria.php';
-?>
 
-<link rel="stylesheet" href="../js/toastr.min.css">
-<div>
-    <div class="page-wrapper" style="background-image: url('../assets/images/portada.jpg'); height: 671px;" >
-    </div>
-    <footer class="footer text-center">
-        Todos los derechos reservados por UES-FMP 
-    </footer>    
-</div>
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-<?php
-include_once '../Secretaria/plantillaSecretaria/pieSecretaria.php';
-?>
