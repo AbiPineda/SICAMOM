@@ -168,10 +168,47 @@ $edad=($ano-$partes[0]);
       <label style="color: white">Fecha de Amenorrea:<small class="text-muted"></small></label>
       <div class="input-group">
         <?php 
+        //      
         include_once '../Conexion/conexion.php';
-        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar'");
+        
+        //**********************modificar estado a las 40 semanas ****
+        $estado=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazada'");
+        if (mysqli_num_rows($estado)>0) { 
+           $Mostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazada'");
+           while ($x=mysqli_fetch_array($Mostrar)) {
+             # code...
+            $fecha=$x['con_fecha_amenorrea'];
+           }
+
+           $x=explode("-",$fecha);
+           $anos=$x[0];
+           $mes=$x[1];
+           $dia=$x[2];
+
+           $actual=date('Y-m-d');
+
+           $x1=explode("-",$actual);
+           $anosx=$x1[0];
+           $mesx=$x1[1];
+           $diax=$x1[2];
+
+           $datetime1 = new DateTime($fecha);
+            $datetime2 = new DateTime($actual);
+            $interval = $datetime1->diff($datetime2);
+//            echo floor(($interval->format('%a') / 7)) . ' semanas con '
+//                 . ($interval->format('%a') % 7) . ' días';
+            $semanasVal=floor(($interval->format('%a') / 7));
+            
+            if ($semanasVal>=40) {
+                mysqli_query($conexion,"UPDATE t_consulta SET estado = 'finalizado' WHERE fk_expediente ='$modificar'");
+            }
+        
+        }
+        
+        //***********************
+        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazada'");
         if (mysqli_num_rows($noMostrar)>0) { 
-           $Mostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar'");
+           $Mostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar' AND estado='embarazada'");
            while ($x=mysqli_fetch_array($Mostrar)) {
              # code...
             $fecha=$x['con_fecha_amenorrea'];
@@ -207,8 +244,7 @@ $edad=($ano-$partes[0]);
                                           <div class="col-md-5">                             
                                         <label style="color: white" >Edad Gestacional (Semanas): <small class="text-muted"></small></label>
                                         <div class="input-group">
-                                          <input name="fech_ame" value="<?php   echo floor(($interval->format('%a') / 7)) . ' semanas con '
-                 . ($interval->format('%a') % 7) . ' días'; ?>" id="fech_ame" class="form-control" disabled >    
+                                          <input name="fech_ame" value="<?php   echo $semanasVal; ?>" id="fech_ame" class="form-control" disabled >    
                                            <div class="input-group-append">
                                             <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                         </div>
@@ -240,8 +276,10 @@ $edad=($ano-$partes[0]);
           </div>
 <div class="tab"><h4 class="card-title" style="color: white">ANTECEDENTES</h4>
           <?php 
-         
-          $val = mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
+       
+         $val =mysqli_query($conexion,"SELECT*FROM t_consulta INNER JOIN t_prenatal ON t_consulta.idconsulta=t_prenatal.fk_consulta
+INNER JOIN t_familiar ON t_prenatal.idprenatal=t_familiar.fk_idprenatal
+WHERE t_consulta.fk_expediente='$modificar' AND t_consulta.estado='embarazada'");
                 if (mysqli_num_rows($val)>0) {
   
           ?>
@@ -677,17 +715,42 @@ $personales = implode(',', $_POST['personales']);
                 while ($fila1 = mysqli_fetch_array($sacar1)) {
                       $enfermeria_fetal = $fila1['id_enfermeria_fetal']; 
                     }
-//0000000========
-                     $existe= mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
-                     if (mysqli_num_rows($existe)>0) {
                     
-                     }else{
-                      mysqli_query($conexion, "INSERT INTO t_familiar(familiar,condGrave) VALUES('" . $familiares . "','$otra_familiares')");
+///**************************consulta
+        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar'");
+        if (mysqli_num_rows($noMostrar)>0){
+ mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$enfermeria_fetal','embarazo')");
 
-                        mysqli_query($conexion, "INSERT INTO t_personales(personal,condGrave) VALUES('" . $personales . "','$otra_personales')");
+         }else{         
 
-                     }
-                     
+            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,enfermeria_fetal,estado) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','Control Prenatal','$enfermeria_fetal','embarazo')");
+		   }
+
+       $sacar4 = mysqli_query($conexion,"SELECT idconsulta FROM t_consulta ORDER by idconsulta DESC LIMIT 1");
+                while ($fila4 = mysqli_fetch_array($sacar4)) {
+                      $consulta = $fila4['idconsulta']; 
+                    }
+  ///**************************consulta*****************
+///**************prenatal*********************
+mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_ccirugias_previas,pre_ffecha_parto,pre_ctipo_riesgo)
+                                          VALUES('$consulta','si','2018-12-20','Control Prenatal')");
+$sacarPrenatal = mysqli_query($conexion,"SELECT idprenatal FROM t_prenatal ORDER by idprenatal DESC LIMIT 1");
+                while ($fila4 = mysqli_fetch_array($sacarPrenatal)) {
+                      $prena = $fila4['idprenatal']; 
+                    }
+
+////***************fin prenatal
+//0000000========
+     $existe= mysqli_query($conexion,"SELECT*FROM t_familiar WHERE fk_idprenatal='$prena'");
+     if (mysqli_num_rows($existe)>0) {
+
+     }else{
+      mysqli_query($conexion, "INSERT INTO t_familiar(familiar,condGrave,fk_idprenatal) VALUES('" . $familiares . "','$otra_familiares','$prena')");
+
+        mysqli_query($conexion, "INSERT INTO t_personales(personal,condGrave,fk_idprenatal) VALUES('" . $personales . "','$otra_personales','$prena')");
+
+     }
+//*******************sacar familiar-*****************                     
           $sacar2 = mysqli_query($conexion,"SELECT idfamiliar FROM t_familiar ORDER by idfamiliar DESC LIMIT 1");
                 while ($fila2 = mysqli_fetch_array($sacar2)) {
                       $familiar_id = $fila2['idfamiliar']; 
@@ -698,24 +761,10 @@ $personales = implode(',', $_POST['personales']);
                 while ($fila3 = mysqli_fetch_array($sacar3)) {
                       $personal_id = $fila3['idpersonal']; 
                     }
+  //********************sacar familiar................
+  
 
-  ///consulta
-        $noMostrar=mysqli_query($conexion,"SELECT*FROM t_consulta WHERE fk_expediente='$modificar'");
-        if (mysqli_num_rows($noMostrar)>0){
- mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,enfermeria_fetal) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$fecha','Control Prenatal','$enfermeria_fetal')");
-
-         }else{         
-
-            mysqli_query($conexion, "INSERT INTO t_consulta(fk_expediente,fk_enfermeria,con_fecha_atiende,con_diagnostico,con_fecha_amenorrea,con_ctipo_consulta,enfermeria_fetal) VALUES('$modi','$enfermeria','$y1-$m1-$d1','$diagnostico','$amenorrea','Control Prenatal','$enfermeria_fetal')");
-		   }
-
-       $sacar4 = mysqli_query($conexion,"SELECT idconsulta FROM t_consulta ORDER by idconsulta DESC LIMIT 1");
-                while ($fila4 = mysqli_fetch_array($sacar4)) {
-                      $consulta = $fila4['idconsulta']; 
-                    }
-
-            mysqli_query($conexion, "INSERT INTO t_prenatal(fk_consulta,pre_ccirugias_previas,pre_ffecha_parto,pre_ctipo_riesgo,fk_idfamiliar,fk_idpersonales,fk_idobstetricos)
-             VALUES('$consulta','si','2018-12-20','Control Prenatal','$familiar_id','$personal_id','1')");
+            
 
                 Conexion::abrir_conexion();
     $conexionx = Conexion::obtener_conexion();
